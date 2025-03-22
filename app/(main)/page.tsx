@@ -1,16 +1,15 @@
-import { auth } from "@/auth";
-import SignOutButton from "@/components/buttons/SignOutButton";
-import TopNavbar from "@/components/navbars/TopNavbar";
+import ChatWithPlayersSection from "@/components/home/ChatWithPlayersSection";
+import CreatePlayerProfileSection from "@/components/home/CreatePlayerProfileSection";
+import PlayerStatsSection from "@/components/home/PlayerStatsSection";
+import WelcomePage from "@/components/home/WelcomePage";
 
 export default async function Home() {
-  const session = await auth();
-  console.log(session?.user);
   return (
     <>
-      <TopNavbar
-        userEmail={session?.user?.email ?? ""}
-        userProfilePic={session?.user?.image ?? ""}
-      />
+      <WelcomePage />
+      <CreatePlayerProfileSection />
+      <ChatWithPlayersSection />
+      <PlayerStatsSection />
     </>
   );
 }

@@ -1,18 +1,9 @@
 import { ChevronDown, Settings, User } from "lucide-react";
 import React from "react";
-import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuPortal,
-  DropdownMenuSeparator,
-  DropdownMenuShortcut,
-  DropdownMenuSub,
-  DropdownMenuSubContent,
-  DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import SignOutButton from "./SignOutButton";
@@ -25,7 +16,7 @@ const UserDropdownButton = ({
 }) => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="flex gap-1 py-1 px-2 rounded-lg bg-[var(--border)]">
+      <DropdownMenuTrigger className="flex gap-1 py-1 px-3 rounded-lg bg-[var(--border)]">
         <p className="text-lg font-extralight tracking-wider">
           {formattedEmail}
         </p>
@@ -33,21 +24,21 @@ const UserDropdownButton = ({
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className="border-[1px] border-[var(--border)] bg-[var(--border)] w-[200px]">
-        <DropdownMenuItem className="flex justify-center">
+        <DropdownMenuItem className="flex justify-center hover:bg-[var(--secondary-text)]">
           <Link href="/" className="flex gap-1 font-extralight tracking-wider">
-            <p className="tracking-wider text-[var(--white)] ">Profile</p>
+            <p className="tracking-wider text-[var(--white)]">Profile</p>
             <User color="var(--white)" fill="var(--white)" />
           </Link>
         </DropdownMenuItem>
 
-        <DropdownMenuItem className="flex justify-center">
+        <DropdownMenuItem className="flex justify-center hover:bg-[var(--secondary-text)]">
           <Link href="/" className="flex gap-1 font-extralight tracking-wider">
             <p className="tracking-wider text-[var(--white)]">Settings</p>
             <Settings color="var(--white)" />
           </Link>
         </DropdownMenuItem>
 
-        <DropdownMenuItem className="flex justify-center">
+        <DropdownMenuItem className="flex justify-center hover:bg-[var(--secondary-text)]">
           <SignOutButton />
         </DropdownMenuItem>
       </DropdownMenuContent>

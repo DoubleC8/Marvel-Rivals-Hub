@@ -15,11 +15,21 @@ const page = () => {
       </div>
 
       <div className="w-1/2 h-full flex flex-col gap-3 items-center justify-center">
-        <h1 className="text-center text-6xl">Marvel Rivals Hub</h1>
+        <h1
+          className="text-center text-6xl"
+          style={{ fontFamily: "var(--marvelFont)" }}
+        >
+          Marvel Rivals Hub
+        </h1>
 
         <div className="w-11/12 mx-auto p-8 bg-[var(--white)] flex flex-col gap-3 rounded-2xl shadow-2xl">
-          <h2 className="text-center text-3xl tracking-wider">LOGIN</h2>
-          <p className="font-sans text-[var(--secondary-text)]">
+          <h2
+            className="text-center text-4xl tracking-wider"
+            style={{ fontFamily: "var(--marvelFont)" }}
+          >
+            LOGIN
+          </h2>
+          <p className="text-[var(--secondary-text)]">
             Your ultimate companion for Marvel Rivals! Find the perfect
             teammates, track player stats, and stay updated with the latest tips
             and game updates. Whether you’re strategizing for victory or looking
@@ -64,14 +74,15 @@ const page = () => {
 
             <button
               type="submit"
-              className="w-full py-2 text-xl font-semibold 
-              bg-[var(--yellow)] rounded-lg shadow-lg transition-all hover:opacity-85 cursor-pointer"
+              className="w-full py-2 text-2xl font-semibold text-center
+              bg-[var(--yellow)] rounded-lg shadow-lg transition-all hover:opacity-85 cursor-pointer hover:underline"
+              style={{ fontFamily: "var(--marvelFont)" }}
             >
               Login
             </button>
           </Form>
           <div className="flex flex-col gap-3">
-            <p className="font-sans text-center text-[var(--secondary-text)]">
+            <p className="text-center text-[var(--secondary-text)]">
               Or Login with:{" "}
             </p>
             <div className="flex flex-row gap-3 justify-center">
