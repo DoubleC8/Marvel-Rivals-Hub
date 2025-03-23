@@ -1,11 +1,12 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import Balances from "@/components/news/Balances";
+import PatchNotes from "@/components/news/PatchNotes";
+import DevDiaries from "@/components/news/DevDiaries";
 import axios from "axios";
-import Link from "next/link";
-import { formatDate } from "@/lib/utils";
 
-interface apiData {
+interface ApiData {
   date: string;
   fullContent: string;
   id: string;
@@ -14,137 +15,82 @@ interface apiData {
   imagePath: string;
 }
 
+const TABS = ["All", "Balances", "Patch Notes", "Dev Diaries"] as const;
+type Tab = (typeof TABS)[number];
+
 const Page = () => {
-  const apikey =
-    "19fb1c19789bf850f690e30ef8c660bc95ea8e8a40dd64d8bd7cbe486e35156f";
-  const [balances, setBalances] = useState<apiData[]>([]);
-  const [patchNotes, setPatchNotes] = useState<apiData[]>([]);
+  const [activeTab, setActiveTab] = useState<Tab>("All");
+  const [balances, setBalances] = useState<ApiData[]>([]);
+  const [patchNotes, setPatchNotes] = useState<ApiData[]>([]);
+  const [devDiaries, setDevDiaries] = useState<ApiData[]>([]);
+
+  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
   useEffect(() => {
-    const fetchBalances = async () => {
+    const fetchData = async (
+      endpoint: string,
+      setter: React.Dispatch<React.SetStateAction<ApiData[]>>,
+      key: string
+    ) => {
       try {
         const response = await axios.get(
-          "https://marvelrivalsapi.com/api/v1/balances?page=1&limit=10",
+          `https://marvelrivalsapi.com/api/v1/${endpoint}?page=1&limit=10`,
           {
-            headers: {
-              "x-api-key": apikey,
-            },
+            headers: { "x-api-key": apiKey },
           }
         );
-
-        console.log("API Response:", response.data); // Check the structure of the response
-
-        // If the data is inside an object, extract the array properly
-        setBalances(response.data.balances || []);
+        setter(response.data[key] || []);
       } catch (error) {
-        let errorMessage = "Failed to do something exceptional";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        console.log(errorMessage);
+        console.error(`Error fetching ${endpoint}:`, error);
       }
     };
 
-    const fetchPatchNotes = async () => {
-      try {
-        const response = await axios.get(
-          "https://marvelrivalsapi.com/api/v1/patch-notes?page=1&limit=10",
-          {
-            headers: {
-              "x-api-key":
-                "19fb1c19789bf850f690e30ef8c660bc95ea8e8a40dd64d8bd7cbe486e35156f",
-            },
-          }
-        );
-        console.log("API Patch Notes Response:", response.data); // Check the structure of the response
-
-        setPatchNotes(response.data.formatted_patches || []);
-      } catch (error) {
-        let errorMessage = "Failed to do something exceptional";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
-        console.log(errorMessage);
-      }
-    };
-
-    fetchBalances();
-    fetchPatchNotes();
+    Promise.all([
+      fetchData("balances", setBalances, "balances"),
+      fetchData("patch-notes", setPatchNotes, "formatted_patches"),
+      fetchData("dev-diaries", setDevDiaries, "dev_diaries"),
+    ]);
   }, []);
+
+  const renderContent = () => {
+    switch (activeTab) {
+      case "Balances":
+        return <Balances balances={balances} />;
+      case "Patch Notes":
+        return <PatchNotes patchNotes={patchNotes} />;
+      case "Dev Diaries":
+        return <DevDiaries devDiaries={devDiaries} />;
+      default:
+        return (
+          <div className="flex flex-col gap-5">
+            <Balances balances={balances} />
+            <PatchNotes patchNotes={patchNotes} />
+            <DevDiaries devDiaries={devDiaries} />
+          </div>
+        );
+    }
+  };
 
   return (
     <section className="m-5 flex flex-col gap-5">
-      <div className="flex flex-col gap-3 w-3/4 mx-auto">
-        <h1 className="text-5xl" style={{ fontFamily: "var(--marvelFont)" }}>
-          Balance Changes
-        </h1>
+      {/* Tabs */}
+      <nav
+        className="bg-[var(--yellow)] py-2 px-5 flex justify-around items-center rounded-full text-2xl shadow-2xl"
+        style={{ fontFamily: "var(--marvelFont)" }}
+      >
+        {TABS.map((tab) => (
+          <button
+            key={tab}
+            className={activeTab === tab ? "border-b-2" : ""}
+            onClick={() => setActiveTab(tab)}
+          >
+            {tab}
+          </button>
+        ))}
+      </nav>
 
-        <div className="flex flex-col gap-5">
-          {balances.map((balance, index) => (
-            <div
-              key={index}
-              className="bg-[var(--white)] p-5 rounded-2xl border-[2px] border-[var(--yellow)] flex flex-col gap-5"
-            >
-              <img
-                src={`https://marvelrivalsapi.com/rivals${balance.imagePath}`}
-                alt="balance image"
-                className="w-full rounded-2xl mx-auto"
-              ></img>
-              <div>
-                <h2
-                  className="text-2xl tracking-wider"
-                  style={{ fontFamily: "var(--marvelFont)" }}
-                >
-                  {balance.title} • {formatDate(balance.date)}
-                </h2>
-                <p>{balance.overview}</p>
-                <Link
-                  href={`/news/balances/${balance.id}`}
-                  className="font-extrabold hover:underline"
-                >
-                  Read More
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="flex flex-col gap-3 w-3/4 mx-auto">
-        <h1 className="text-5xl" style={{ fontFamily: "var(--marvelFont)" }}>
-          Balance Changes
-        </h1>
-
-        <div className="flex flex-col gap-5">
-          {patchNotes.map((patchNote, index) => (
-            <div
-              key={index}
-              className="bg-[var(--white)] p-5 rounded-2xl border-[2px] border-[var(--yellow)] flex flex-col gap-5"
-            >
-              <img
-                src={`https://marvelrivalsapi.com/rivals${patchNote.imagePath}`}
-                alt="patch note image"
-                className="w-full rounded-2xl mx-auto"
-              ></img>
-              <div>
-                <h2
-                  className="text-2xl tracking-wider"
-                  style={{ fontFamily: "var(--marvelFont)" }}
-                >
-                  {patchNote.title} • {formatDate(patchNote.date)}
-                </h2>
-                <p>{patchNote.overview}</p>
-                <Link
-                  href={`/news/balances/${patchNote.id}`}
-                  className="font-extrabold hover:underline"
-                >
-                  Read More
-                </Link>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
+      {/* Content */}
+      <div>{renderContent()}</div>
     </section>
   );
 };

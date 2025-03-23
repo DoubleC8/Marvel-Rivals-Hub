@@ -9,6 +9,7 @@ interface Balance {
   id: string;
   overview: string;
   title: string;
+  imagePath: string;
 }
 
 const Page = ({ params }: { params: Promise<{ id: string }> }) => {
@@ -42,8 +43,13 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
   }, [formattedBalanceId]);
 
   return (
-    <section className="m-5">
-      <div className="bg-white w-3/4 mx-auto p-5 rounded-2xl border-[2px] border-[var(--yellow)] flex flex-col gap-3">
+    <section className="my-10">
+      <div className="bg-white w-3/4 mx-auto p-5 rounded-2xl border-[2px] border-[var(--yellow)] flex flex-col gap-5">
+        <img
+          src={`https://marvelrivalsapi.com/rivals${balance?.imagePath}`}
+          alt="balance image"
+          className="w-full rounded-2xl mx-auto"
+        ></img>
         <h2
           className="text-3xl tracking-wider text-center"
           style={{ fontFamily: "var(--marvelFont)" }}
