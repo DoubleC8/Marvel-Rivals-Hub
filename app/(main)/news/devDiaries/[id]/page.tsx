@@ -3,10 +3,9 @@
 import React, { useEffect, useState, use } from "react";
 import axios from "axios";
 import { formatText } from "@/lib/utils";
-import LoadingPage from "../../loading";
 import NewsLoadingPage from "./loading";
 
-interface Balance {
+interface DevDiary {
   date: string;
   fullContent: string;
   id: string;
@@ -16,10 +15,9 @@ interface Balance {
 }
 
 const Page = ({ params }: { params: Promise<{ id: string }> }) => {
-  const { id: balanceId } = use(params);
-  const formattedBalanceId = balanceId?.substring(0, balanceId.indexOf("-"));
+  const { id: devDiaryId } = use(params);
 
-  const [balance, setBalance] = useState<Balance | null>(null);
+  const [devDiary, setDevDiary] = useState<DevDiary | null>(null);
   const [loading, setLoading] = useState(true);
 
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
@@ -28,7 +26,7 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
     const fetchBalance = async () => {
       try {
         const response = await axios.get(
-          `https://marvelrivalsapi.com/api/v1/balance/${formattedBalanceId}`,
+          `https://marvelrivalsapi.com/api/v1/balance/${devDiaryId}`,
           {
             headers: {
               "x-api-key": apiKey,
@@ -36,7 +34,7 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
           }
         );
 
-        setBalance(response.data);
+        setDevDiary(response.data);
       } catch (error) {
         console.error("Error fetching balance:", error);
       } finally {
@@ -44,36 +42,32 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
       }
     };
 
-    if (formattedBalanceId) {
+    if (devDiaryId) {
       fetchBalance();
     }
-  }, [formattedBalanceId]);
+  }, [devDiaryId]);
 
   if (loading) {
     return <NewsLoadingPage />;
   }
-
   return (
     <section className="my-10">
       <div className="bg-white w-3/4 mx-auto p-5 rounded-2xl border-[2px] border-[var(--yellow)] flex flex-col gap-5">
-        {balance?.imagePath && (
-          <img
-            src={`https://marvelrivalsapi.com/rivals${balance.imagePath}`}
-            alt="Balance Image"
-            className="w-full rounded-2xl mx-auto"
-          />
-        )}
         <h2
           className="text-5xl tracking-wider text-center"
           style={{ fontFamily: "var(--marvelFont)" }}
         >
-          {balance?.title}
+          {devDiary?.title || "Loading..."}
         </h2>
-        <p
-          dangerouslySetInnerHTML={{
-            __html: balance?.fullContent ? formatText(balance.fullContent) : "",
-          }}
-        />
+        {devDiary?.fullContent ? (
+          <p
+            dangerouslySetInnerHTML={{
+              __html: formatText(devDiary.fullContent),
+            }}
+          />
+        ) : (
+          <p>Loading content...</p>
+        )}
       </div>
     </section>
   );

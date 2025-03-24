@@ -5,6 +5,7 @@ import Balances from "@/components/news/Balances";
 import PatchNotes from "@/components/news/PatchNotes";
 import DevDiaries from "@/components/news/DevDiaries";
 import axios from "axios";
+import LoadingPage from "./loading";
 
 interface ApiData {
   date: string;
@@ -23,6 +24,7 @@ const Page = () => {
   const [balances, setBalances] = useState<ApiData[]>([]);
   const [patchNotes, setPatchNotes] = useState<ApiData[]>([]);
   const [devDiaries, setDevDiaries] = useState<ApiData[]>([]);
+  const [loading, setLoading] = useState(true); // 👈 Track loading state
 
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
@@ -45,14 +47,18 @@ const Page = () => {
       }
     };
 
+    setLoading(true); // 👈 Start loading
+
     Promise.all([
       fetchData("balances", setBalances, "balances"),
       fetchData("patch-notes", setPatchNotes, "formatted_patches"),
       fetchData("dev-diaries", setDevDiaries, "dev_diaries"),
-    ]);
+    ]).finally(() => setLoading(false)); // 👈 End loading when all calls complete
   }, []);
 
   const renderContent = () => {
+    if (loading) return <LoadingPage />; // 👈 Show skeleton while loading
+
     switch (activeTab) {
       case "Balances":
         return <Balances balances={balances} />;
@@ -62,7 +68,7 @@ const Page = () => {
         return <DevDiaries devDiaries={devDiaries} />;
       default:
         return (
-          <div className="flex flex-col gap-5">
+          <div className="flex flex-col gap-10">
             <Balances balances={balances} />
             <PatchNotes patchNotes={patchNotes} />
             <DevDiaries devDiaries={devDiaries} />

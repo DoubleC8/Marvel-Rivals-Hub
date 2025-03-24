@@ -3,7 +3,6 @@
 import React, { useEffect, useState, use } from "react";
 import axios from "axios";
 import { formatText } from "@/lib/utils";
-import LoadingPage from "../../loading";
 import NewsLoadingPage from "./loading";
 
 interface Balance {
@@ -56,24 +55,26 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
   return (
     <section className="my-10">
       <div className="bg-white w-3/4 mx-auto p-5 rounded-2xl border-[2px] border-[var(--yellow)] flex flex-col gap-5">
-        {balance?.imagePath && (
-          <img
-            src={`https://marvelrivalsapi.com/rivals${balance.imagePath}`}
-            alt="Balance Image"
-            className="w-full rounded-2xl mx-auto"
-          />
-        )}
+        <img
+          src={`https://marvelrivalsapi.com/rivals${balance?.imagePath}`}
+          alt="balance image"
+          className="w-full rounded-2xl mx-auto"
+        ></img>
         <h2
           className="text-5xl tracking-wider text-center"
           style={{ fontFamily: "var(--marvelFont)" }}
         >
-          {balance?.title}
+          {balance?.title || "Loading..."}
         </h2>
-        <p
-          dangerouslySetInnerHTML={{
-            __html: balance?.fullContent ? formatText(balance.fullContent) : "",
-          }}
-        />
+        {balance?.fullContent ? (
+          <p
+            dangerouslySetInnerHTML={{
+              __html: formatText(balance.fullContent),
+            }}
+          />
+        ) : (
+          <p>Loading content...</p>
+        )}
       </div>
     </section>
   );

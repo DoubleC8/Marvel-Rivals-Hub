@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+
 import TopNavbar from "@/components/navbars/TopNavbar";
 
 export default async function Layout({

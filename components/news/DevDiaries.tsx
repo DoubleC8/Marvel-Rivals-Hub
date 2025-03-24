@@ -33,7 +33,7 @@ const DevDiaries = ({ devDiaries }: { devDiaries: apiData[] }) => {
               </h2>
               <p>{devDiary.overview}</p>
               <Link
-                href={`/news/devDiares/${devDiary.id}`}
+                href={`/news/devDiaries/${devDiary.id}`}
                 className="font-extrabold hover:underline"
               >
                 Read More

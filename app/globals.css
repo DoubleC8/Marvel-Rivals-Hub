@@ -37,18 +37,20 @@ html, body{
 
 
 
-.topNavbar {
-  position: sticky;
-  top: 0;
-  overflow: hidden;
-  display: flex;
-  background-color: var(--black);
-  justify-content: space-between;
-  padding-inline: calc(var(--spacing) * 5) /* 1.25rem = 20px */;
-  padding-block: calc(var(--spacing) * 3) /* 0.75rem = 12px */;
-  height: 70px;
-  align-items: center;
-}
+
+  .topNavbar {
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+    display: flex;
+    background-color: var(--black);
+    justify-content: space-between;
+    padding-inline: calc(var(--spacing) * 5) /* 1.25rem = 20px */;
+    padding-block: calc(var(--spacing) * 3) /* 0.75rem = 12px */;
+    height: 70px;
+    align-items: center;
+  }
+
 
 .navbarLink {
   font-family: "marvelFont";
