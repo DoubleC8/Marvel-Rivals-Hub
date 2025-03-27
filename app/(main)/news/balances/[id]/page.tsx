@@ -3,8 +3,7 @@
 import React, { useEffect, useState, use } from "react";
 import axios from "axios";
 import { formatText } from "@/lib/utils";
-import LoadingPage from "../../loading";
-import NewsLoadingPage from "./loading";
+import NewsLoadingPage from "../../loading";
 
 interface Balance {
   date: string;
@@ -55,7 +54,11 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
 
   return (
     <section className="my-10">
-      <div className="bg-white w-3/4 mx-auto p-5 rounded-2xl border-[2px] border-[var(--yellow)] flex flex-col gap-5">
+      <div
+        className="bg-[var(--secondary-background)] 
+      w-3/4 mx-auto p-5 rounded-2xl border-[2px] 
+      border-[var(--purple)] flex flex-col gap-5 text-[var(--primary-text)]"
+      >
         {balance?.imagePath && (
           <img
             src={`https://marvelrivalsapi.com/rivals${balance.imagePath}`}

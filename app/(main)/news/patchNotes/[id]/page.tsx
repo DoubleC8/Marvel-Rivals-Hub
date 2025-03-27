@@ -3,9 +3,10 @@
 import React, { useEffect, useState, use } from "react";
 import axios from "axios";
 import { formatText } from "@/lib/utils";
-import NewsLoadingPage from "./loading";
 
-interface Balance {
+import NewsLoadingPage from "../../loading";
+
+interface PatchNote {
   date: string;
   fullContent: string;
   id: string;
@@ -15,19 +16,18 @@ interface Balance {
 }
 
 const Page = ({ params }: { params: Promise<{ id: string }> }) => {
-  const { id: balanceId } = use(params);
-  const formattedBalanceId = balanceId?.substring(0, balanceId.indexOf("-"));
+  const { id: patchNoteId } = use(params);
 
-  const [balance, setBalance] = useState<Balance | null>(null);
+  const [patchNote, setPatchNote] = useState<PatchNote | null>(null);
   const [loading, setLoading] = useState(true);
 
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
   useEffect(() => {
-    const fetchBalance = async () => {
+    const fetchPatchNote = async () => {
       try {
         const response = await axios.get(
-          `https://marvelrivalsapi.com/api/v1/balance/${formattedBalanceId}`,
+          `https://marvelrivalsapi.com/api/v1/patch-note/${patchNoteId}`,
           {
             headers: {
               "x-api-key": apiKey,
@@ -35,7 +35,8 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
           }
         );
 
-        setBalance(response.data);
+        setPatchNote(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching balance:", error);
       } finally {
@@ -43,10 +44,10 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
       }
     };
 
-    if (formattedBalanceId) {
-      fetchBalance();
+    if (patchNoteId) {
+      fetchPatchNote();
     }
-  }, [formattedBalanceId]);
+  }, [patchNoteId]);
 
   if (loading) {
     return <NewsLoadingPage />;
@@ -54,9 +55,13 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
 
   return (
     <section className="my-10">
-      <div className="bg-white w-3/4 mx-auto p-5 rounded-2xl border-[2px] border-[var(--yellow)] flex flex-col gap-5">
+      <div
+        className="bg-[var(--secondary-background)] 
+      w-3/4 mx-auto p-5 rounded-2xl border-[2px] 
+      border-[var(--purple)] flex flex-col gap-5 text-[var(--primary-text)]"
+      >
         <img
-          src={`https://marvelrivalsapi.com/rivals${balance?.imagePath}`}
+          src={`https://marvelrivalsapi.com/rivals${patchNote?.imagePath}`}
           alt="balance image"
           className="w-full rounded-2xl mx-auto"
         ></img>
@@ -64,12 +69,12 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
           className="text-5xl tracking-wider text-center"
           style={{ fontFamily: "var(--marvelFont)" }}
         >
-          {balance?.title || "Loading..."}
+          {patchNote?.title || "Loading..."}
         </h2>
-        {balance?.fullContent ? (
+        {patchNote?.fullContent ? (
           <p
             dangerouslySetInnerHTML={{
-              __html: formatText(balance.fullContent),
+              __html: formatText(patchNote.fullContent),
             }}
           />
         ) : (

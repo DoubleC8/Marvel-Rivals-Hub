@@ -17,4 +17,4 @@ export const formatEmail = async (email: string) => {
   const formattedEmail = email.substring(0, email.indexOf("@"));
   return "@" + formattedEmail;
 }
-
+ 

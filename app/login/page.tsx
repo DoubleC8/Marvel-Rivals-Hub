@@ -16,7 +16,7 @@ const page = () => {
 
       <div className="w-1/2 h-full flex flex-col gap-3 items-center justify-center">
         <h1
-          className="text-center text-6xl"
+          className="text-center text-6xl text-[var(--white)]"
           style={{ fontFamily: "var(--marvelFont)" }}
         >
           Marvel Rivals Hub
@@ -41,7 +41,7 @@ const page = () => {
             <div className="flex flex-col">
               <label
                 htmlFor="email"
-                className="font-medium text-[var(--primary-text)]"
+                className="font-medium text-[var(--black)]"
               >
                 Email:
               </label>
@@ -49,7 +49,7 @@ const page = () => {
                 type="email"
                 id="email"
                 name="email"
-                className="border border-[var(--border)] p-2 rounded-md 
+                className="border-[var(--border)] p-2 rounded-md border-[2px]
                 focus:outline-none focus:ring-2 focus:ring-[var(--yellow)]"
                 required
               />
@@ -58,7 +58,7 @@ const page = () => {
             <div className="flex flex-col">
               <label
                 htmlFor="password"
-                className="font-medium text-[var(--primary-text)]"
+                className="font-medium text-[var(--black)]"
               >
                 Password:
               </label>
@@ -66,7 +66,7 @@ const page = () => {
                 type="password"
                 id="password"
                 name="password"
-                className="border border-[var(--border)] p-2 rounded-md 
+                className="border-[2px] border-[var(--border)] p-2 rounded-md 
                 focus:outline-none focus:ring-2 focus:ring-[var(--yellow)]"
                 required
               />

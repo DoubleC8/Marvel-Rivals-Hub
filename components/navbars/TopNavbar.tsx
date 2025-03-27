@@ -39,7 +39,7 @@ const TopNavbar = ({
           <Link href="/" className="navbarLink">
             Leaderboards
           </Link>
-          <Link href="/" className="navbarLink">
+          <Link href="/player-stats" className="navbarLink">
             Player Stats
           </Link>
           <Link href="/news" className="navbarLink">

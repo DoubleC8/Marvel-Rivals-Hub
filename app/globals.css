@@ -5,14 +5,16 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #D1D7E4;
-  --secondary-background: #C0C9DA;
-  --primary-text: #000000;
-  --secondary-text: #7D8185;
-  --border: #212327;
+  --background: #1C1B2D;
+  --secondary-background: #151425;
+  --primary-text: #FFFFFF;
+  --secondary-text: #AEB2B6;
+  --accent-color: #2B2D3F;
+  --border: #E4E7EA;
   --white: #FFFFFF;
   --black: #000000;
   --yellow: #F6DD55;
+  --purple: #a848c4;
 
   --marvelFont: "MarvelFont"
 }
@@ -37,19 +39,19 @@ html, body{
 
 
 
-
-  .topNavbar {
-    position: sticky;
-    top: 0;
-    overflow: hidden;
-    display: flex;
-    background-color: var(--black);
-    justify-content: space-between;
-    padding-inline: calc(var(--spacing) * 5) /* 1.25rem = 20px */;
-    padding-block: calc(var(--spacing) * 3) /* 0.75rem = 12px */;
-    height: 70px;
-    align-items: center;
-  }
+.topNavbar {
+  position: sticky;
+  top: 0;
+  overflow: hidden;
+  display: flex;
+  background-color: var(--black);
+  justify-content: space-between;
+  padding-inline: calc(var(--spacing) * 5) /* 1.25rem = 20px */;
+  padding-block: calc(var(--spacing) * 3) /* 0.75rem = 12px */;
+  height: 70px;
+  width: 100%;
+  align-items: center;
+}
 
 
 .navbarLink {
@@ -64,7 +66,7 @@ html, body{
 }
 
 .navbarLink:hover{
-  background-color: var(--border);
+  background-color: var(--accent-color);
 }
 
 .profile-pic{

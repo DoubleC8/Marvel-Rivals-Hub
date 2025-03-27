@@ -4,11 +4,14 @@ import React from "react";
 
 const CreatePlayerProfileSection = () => {
   return (
-    <section className="pt-10 pb-5 flex justify-center items-center">
-      <div className="flex flex-col gap-5 w-[40%]">
+    <section className="pt-10 pb-5 flex justify-center items-center text-[var(--primary-text)]">
+      <div
+        className="flex flex-col gap-5 w-[40%] bg-[var(--secondary-background)]
+       p-5 rounded-2xl border-[2px] border-[var(--purple)]"
+      >
         <div className="flex flex-col">
           <span className="flex gap-3 items-baseline">
-            <Users size={35} />
+            <Users size={35} className="text-[var(--secondary-text)]" />
             <h1
               className="text-4xl"
               style={{ fontFamily: "var(--marvelFont)" }}
@@ -21,7 +24,7 @@ const CreatePlayerProfileSection = () => {
           </p>
         </div>
 
-        <ol className="list-decimal space-y-6">
+        <ol className="space-y-6">
           <li className="text-2xl">
             <h2
               className="text-2xl"
@@ -90,7 +93,8 @@ const CreatePlayerProfileSection = () => {
           <Link
             href="/"
             className="text-2xl tracking-wide bg-[var(--yellow)] 
-                py-3 px-7 rounded-xl hover:opacity-85 hover:underline"
+                py-3 px-7 rounded-xl hover:opacity-85 
+                hover:underline text-[var(--black)] shadow-2xl"
             style={{ fontFamily: "var(--marvelFont)" }}
           >
             Create Player Profile

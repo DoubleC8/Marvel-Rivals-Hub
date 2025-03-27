@@ -5,7 +5,7 @@ import Balances from "@/components/news/Balances";
 import PatchNotes from "@/components/news/PatchNotes";
 import DevDiaries from "@/components/news/DevDiaries";
 import axios from "axios";
-import LoadingPage from "./loading";
+import NewsLoadingPage from "./loading";
 
 interface ApiData {
   date: string;
@@ -57,7 +57,7 @@ const Page = () => {
   }, []);
 
   const renderContent = () => {
-    if (loading) return <LoadingPage />; // 👈 Show skeleton while loading
+    if (loading) return <NewsLoadingPage />; // 👈 Show skeleton while loading
 
     switch (activeTab) {
       case "Balances":
@@ -81,7 +81,7 @@ const Page = () => {
     <section className="m-5 flex flex-col gap-5">
       {/* Tabs */}
       <nav
-        className="bg-[var(--yellow)] py-2 px-5 flex justify-around items-center rounded-full text-2xl shadow-2xl"
+        className="bg-[var(--yellow)] py-2 px-5 flex justify-around items-center rounded-full text-2xl shadow-2xl "
         style={{ fontFamily: "var(--marvelFont)" }}
       >
         {TABS.map((tab) => (

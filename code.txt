@@ -1,0 +1,62 @@
+<div
+        className="flex w-3/4 py-5 px-10 bg-[var(--secondary-background)] 
+      border-[2px] border-[var(--purple)] rounded-2xl mx-auto text-[var(--white)] justify-between"
+        style={{ fontFamily: "var(--marvelFont)" }}
+      >
+        <div className="flex gap-5 items-center">
+          <img
+            src={`https://marvelrivalsapi.com/rivals${playerInfo?.player?.icon?.player_icon}`}
+            alt={`${playerInfo?.name} Icon`}
+            className="rounded-full"
+            width={100}
+            height={100}
+          ></img>
+          <div className="flex flex-col tracking-wider justify-between h-[100px]">
+            <h1>{playerInfo?.name}</h1>
+            <h2>Level : {playerInfo?.player?.level}</h2>
+            <h2>UID : {playerInfo?.uid}</h2>
+          </div>
+        </div>
+
+        <div className="flex flex-col tracking-wider justify-between h-[100px] text-center">
+          <h1 className="text-2xl">Win Percentage</h1>
+          <h2>
+            Ranked:{" "}
+            {playerInfo?.overall_stats?.ranked?.total_wins /
+              playerInfo?.overall_stats?.ranked?.total_matches}
+            %
+          </h2>
+          <h2>
+            Unranked:{" "}
+            {playerInfo?.overall_stats?.unranked?.total_wins /
+              playerInfo?.overall_stats?.unranked?.total_matches}
+            %
+          </h2>
+        </div>
+
+        <div className="flex flex-col tracking-wider justify h-[100px] text-center">
+          <h1 className="text-2xl">Rank</h1>
+
+          <h2 className="flex gap-1 items-center">
+            Current Rank :{" "}
+            <img
+              src={`https://marvelrivalsapi.com/rivals${playerInfo?.player?.rank?.image}`}
+              alt={`${playerInfo?.name} Rank`}
+              className="rounded-full"
+              width={50}
+              height={50}
+            />
+            {playerInfo?.player?.rank?.rank}
+          </h2>
+          {/* TODO: Get season highest ranking */}
+          {/* <h2>Season Highest : {playerInfo?.player?.rank?.rank}</h2> */}
+        </div>
+
+        <div className="flex flex-col tracking-wider justify h-[100px] text-center">
+          <h1 className="text-2xl">Console</h1>
+
+          <h2>{playerInfo?.player?.info?.login_os}</h2>
+          {/* TODO: Get season highest ranking */}
+          {/* <h2>Season Highest : {playerInfo?.player?.rank?.rank}</h2> */}
+        </div>
+      </div>{" "}
