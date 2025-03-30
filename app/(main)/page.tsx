@@ -6,10 +6,13 @@ import WelcomePage from "@/components/home/WelcomePage";
 export default async function Home() {
   return (
     <>
-      <WelcomePage />
-      <CreatePlayerProfileSection />
-      <ChatWithPlayersSection />
-      <PlayerStatsSection />
+      <div className="homepage-web">
+        <WelcomePage />
+        <CreatePlayerProfileSection />
+        <ChatWithPlayersSection />
+        <PlayerStatsSection />
+      </div>
+      <div className="homepage-mobile"></div>
     </>
   );
 }

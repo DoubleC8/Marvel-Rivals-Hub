@@ -6,7 +6,6 @@ import React, { useState } from "react";
 import CardLoader from "./loading";
 import SearchedPlayerCard from "@/components/cards/SearchedPlayerCard";
 import { formatSearchedPlayerName } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
 interface PlayerInfo {
@@ -26,6 +25,7 @@ interface PlayerInfo {
 
 const PlayerStatsPage = () => {
   const [playerInfo, setPlayerInfo] = useState<PlayerInfo>();
+  const [recentPlayers, setRecentPlayers] = useState<Array<PlayerInfo>>([]);
   const [loading, setLoading] = useState(false);
 
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
@@ -33,20 +33,23 @@ const PlayerStatsPage = () => {
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const rawPlayerName = formData.get("playerInfo");
+    const rawPlayerInput = formData.get("playerInfo") as string | null;
 
-    if (!rawPlayerName || typeof rawPlayerName !== "string") {
+    if (!rawPlayerInput) {
       return;
     }
 
-    const playerName = formatSearchedPlayerName(rawPlayerName);
+    const isUID = /^\d+$/.test(rawPlayerInput);
+    const playerIdentifier = isUID
+      ? rawPlayerInput
+      : formatSearchedPlayerName(rawPlayerInput);
 
     setPlayerInfo(undefined);
     setLoading(true);
 
     try {
       const response = await axios.get(
-        `https://marvelrivalsapi.com/api/v1/player/${playerName}`,
+        `https://marvelrivalsapi.com/api/v1/player/${playerIdentifier}`,
         {
           headers: { "x-api-key": apiKey },
         }
@@ -54,12 +57,18 @@ const PlayerStatsPage = () => {
 
       setPlayerInfo(response.data);
 
-      toast.success(`Player stats loaded successfully!`, {
-        description: `Fetched on ${new Date().toLocaleString()}`,
+      //Recent searches should only be the three most recent players
+      setRecentPlayers((prev) => {
+        const updatedList = [response.data, ...prev].slice(0, 3); //adding the new search at the beggining of the array
+        return updatedList;
+      });
+
+      toast.success(`${response.data.name}'s stats loaded successfully!`, {
+        description: `Feteched on ${new Date().toLocaleString()}`,
       });
     } catch (error) {
-      toast.error(`Couldn't find player stats.`, {
-        description: "Please check the name or try using the UID.",
+      toast.error(`Could not load player stats.`, {
+        description: "Please check the name or try using their UID.",
       });
       console.error("Error fetching player stats:", error);
     } finally {
@@ -68,39 +77,96 @@ const PlayerStatsPage = () => {
   };
 
   return (
-    <section className="flex flex-col h-[95vh] gap-20">
-      <div className="flex flex-col gap-3 text-center justify-end h-[50%]">
-        <h1
-          className="text-7xl text-[var(--primary-text)]"
-          style={{ fontFamily: "var(--marvelFont)" }}
-        >
-          Look up Player Stats
-        </h1>
-        <p className="text-xl text-[var(--secondary-text)]">
-          Check Marvel Rivals Stats
-        </p>
+    <section className="flex flex-col h-[95vh] py-3 px-5 justify-around">
+      <div className="w-full h-3/5 flex justify-between items-end">
+        <div className="w-6/10 flex flex-col gap-5">
+          <div>
+            <h1
+              className="text-7xl text-[var(--primary-text)]"
+              style={{ fontFamily: "var(--marvelFont)" }}
+            >
+              Look up Player Stats
+            </h1>
+            <p className="text-xl text-[var(--secondary-text)]">
+              Check Marvel Rivals Stats
+            </p>
+          </div>
 
-        <form
-          onSubmit={handleSubmit}
-          className="flex items-center justify-center"
-        >
-          <input
-            name="playerInfo"
-            className="bg-[var(--white)] w-1/2 p-4 rounded-bl-2xl rounded-tl-2xl focus:outline-none focus:ring-0"
-            placeholder="Enter In-Game Name or UID"
-            required
-          />
-          <button
-            type="submit"
-            className="bg-[var(--yellow)] p-4 rounded-br-2xl rounded-tr-2xl hover:opacity-85"
-            disabled={loading}
+          <form
+            onSubmit={handleSubmit}
+            className="flex items-center justify-center"
           >
-            <Search />
-          </button>
-        </form>
+            <input
+              name="playerInfo"
+              className="bg-[var(--white)] w-full p-4 rounded-bl-2xl rounded-tl-2xl focus:outline-none focus:ring-0"
+              placeholder="Enter In-Game Name or UID"
+              required
+            />
+            <button
+              type="submit"
+              className="bg-[var(--yellow)] p-4 rounded-br-2xl rounded-tr-2xl hover:opacity-85"
+              disabled={loading}
+            >
+              <Search />
+            </button>
+          </form>
+        </div>
+
+        <div
+          className="h-3/4 w-3/10 border-[2px] 
+        rounded-2xl border-[var(--purple)] bg-[var(--secondary-background)]
+        py-3 px-5 "
+        >
+          <h1
+            className="text-3xl text-[var(--primary-text)] text-center border-b-[2px] border-b-[var(--purple)]"
+            style={{ fontFamily: "var(--marvelFont)" }}
+          >
+            Recent Searches
+          </h1>
+
+          {recentPlayers.length > 0 ? (
+            <div className="flex flex-col justify-between items-center">
+              {recentPlayers.map((recentPlayer, index) => (
+                <div
+                  className="w-full flex items-center justify-between py-3 px-5 rounded-2xl
+        text-[var(--primary-text)] hover:bg-[var(--accent-color)] ease-in"
+                  style={{ fontFamily: "var(--marvelFont)" }}
+                  key={index}
+                >
+                  <img
+                    src={`https://marvelrivalsapi.com/rivals${recentPlayer?.player?.icon?.player_icon}`}
+                    alt={`${recentPlayer?.player?.name} Icon`}
+                    className="rounded-full"
+                    width={50}
+                    height={50}
+                  />
+                  <div className="flex flex-col tracking-wider justify-between">
+                    <h1>{recentPlayer?.player?.name}</h1>
+                    <h2>{recentPlayer?.player?.uid}</h2>
+                  </div>
+                  <img
+                    src={`https://marvelrivalsapi.com/rivals${recentPlayer?.player?.rank?.image}`}
+                    alt={`${recentPlayer?.player?.name} Rank`}
+                    className="rounded-full"
+                    width={50}
+                    height={50}
+                  />
+                  <h2>{recentPlayer?.player?.info?.login_os}</h2>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <h1
+              className="h-[50%] text-3xl text-[var(--primary-text)] text-center flex flex-col justify-end"
+              style={{ fontFamily: "var(--marvelFont)" }}
+            >
+              No Recent Searches
+            </h1>
+          )}
+        </div>
       </div>
 
-      <div className="flex flex-col justify-start h-[45%]">
+      <div className="flex flex-col h-3/5 justify-center">
         {loading && <CardLoader />}
         {playerInfo && <SearchedPlayerCard playerInfo={playerInfo} />}
       </div>

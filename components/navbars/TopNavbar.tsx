@@ -16,7 +16,7 @@ const TopNavbar = ({
   const defaultProfilePic = "/images/Default_pfp.png";
 
   return (
-    <nav className="topNavbar">
+    <nav className="topNavbar-web">
       <div className="flex gap-3 text-[var(--white)]">
         <Link href="/">
           <Image

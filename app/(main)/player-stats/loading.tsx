@@ -5,7 +5,7 @@ const CardLoader = () => {
   return (
     <Skeleton
       className="bg-zinc-700 flex 
-    w-3/4 py-5 px-10 rounded-2xl mx-auto justify-around border-[2px] border-zinc-800"
+    w-3/4 h-1/2 items-center py-5 px-10 rounded-2xl mx-auto justify-around border-[2px] border-zinc-800"
     >
       <div className="flex mr-3">
         <Skeleton className="w-[100px] h-[100px] bg-zinc-800 rounded-full" />

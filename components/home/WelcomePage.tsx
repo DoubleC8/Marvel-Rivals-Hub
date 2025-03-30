@@ -8,7 +8,7 @@ const WelcomePage = () => {
       <div className="homeHeaderGradient">
         <div className="flex flex-col items-center gap-10">
           <h1
-            className="text-8xl text-[var(--yellow)] tracking-wider"
+            className="text-8xl text-[var(--yellow)] tracking-wider text-center"
             style={{ fontFamily: "var(--marvelFont)" }}
           >
             Welcome to Marvel Rivals Hub

@@ -28,8 +28,8 @@ const SearchedPlayerCard = ({ playerInfo }: { playerInfo: PlayerInfo }) => {
   console.log("Player info", playerInfo);
   return (
     <div
-      className="flex w-3/4 py-5 px-10 bg-[var(--secondary-background)] 
-      border-[2px] border-[var(--purple)] rounded-2xl mx-auto text-[var(--white)] justify-between"
+      className="flex h-1/2 w-3/4 py-5 px-10 bg-[var(--secondary-background)] 
+      border-[2px] border-[var(--purple)] items-center rounded-2xl mx-auto text-[var(--white)] justify-between"
       style={{ fontFamily: "var(--marvelFont)" }}
     >
       <div className="flex gap-5 items-center">
@@ -77,8 +77,8 @@ const SearchedPlayerCard = ({ playerInfo }: { playerInfo: PlayerInfo }) => {
             src={`https://marvelrivalsapi.com/rivals${playerInfo?.player?.rank?.image}`}
             alt={`${playerInfo?.player?.name} Rank`}
             className="rounded-full"
-            width={50}
-            height={50}
+            width={75}
+            height={75}
           />
           {playerInfo?.player?.rank?.playerRank}
         </h2>
