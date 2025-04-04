@@ -1,7 +1,6 @@
 "use client";
 
 import axios from "axios";
-import { ChartNoAxesColumn } from "lucide-react";
 import React, { useState, useEffect } from "react";
 import { toast } from "sonner";
 
@@ -17,6 +16,8 @@ import {
 
 import LeaderboardLoadingPage from "./loading";
 import LeaderboardTable from "@/components/leaderboard/LeaderboardTable";
+import LeaderboardHeader from "@/components/leaderboard/LeaderboardHeader";
+import PaginationMenuBar from "@/components/leaderboard/PaginationMenuBar";
 
 //list of all heroes in marvel rivals
 const heroes = [
@@ -95,18 +96,27 @@ interface Player {
   total_hero_heal: string;
 }
 
-const page = () => {
+const Page = () => {
   const [hero, setHero] = useState("winter soldier");
   const [consoleType, setConsoletype] = useState("ps");
   const [heroLeaderboard, setHeroLeaderboard] = useState<Player[]>([]);
   const [loading, setLoading] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const playersPerPage = 100;
+  const indexOfLastPlayer = currentPage * playersPerPage;
+  const indexOfFirstPlayer = indexOfLastPlayer - playersPerPage;
+  const currentPlayers = heroLeaderboard.slice(
+    indexOfFirstPlayer,
+    indexOfLastPlayer
+  );
+  const totalPages = Math.ceil(heroLeaderboard.length / playersPerPage);
 
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
 
   useEffect(() => {
     const fetchHeroLeaderboard = async () => {
       setLoading(true);
-
       try {
         const response = await axios.get(
           `https://marvelrivalsapi.com/api/v1/heroes/leaderboard/${hero}?platform=${consoleType}`,
@@ -115,12 +125,11 @@ const page = () => {
           }
         );
 
-        setHeroLeaderboard(response.data.players.slice(0, 100));
+        setHeroLeaderboard(response.data.players);
         toast.success("Leaderboard data fetched successfuly!", {
           description: `Data for the top ${hero.toLocaleUpperCase()}
             players on ${consoleType} fetched on ${new Date().toLocaleString()}`,
         });
-        console.log(heroLeaderboard);
       } catch (error) {
         toast.error(`Could not load leaderboard.`);
         console.error("Error fetching player stats:", error);
@@ -134,31 +143,19 @@ const page = () => {
   }, [hero, consoleType]);
 
   useEffect(() => {
-    console.log(heroLeaderboard);
-  }, [heroLeaderboard]);
+    setCurrentPage(1);
+  }, [hero, consoleType]);
 
   return (
-    <section className="py-3 px-5 flex flex-col justify-center items-center gap-5">
-      <h1
-        className="text-7xl text-[var(--primary-text)] flex align-middle gap-3 py-2 px-5"
-        style={{ fontFamily: "var(--marvelFont)" }}
-      >
-        <ChartNoAxesColumn size={60} />
-        Leaderboards
-      </h1>
+    <section className="py-3 px-5 flex flex-col justify-center items-center gap-5 mb-5">
+      <LeaderboardHeader />
 
       <nav className="w-full flex justify-center gap-5 h-9">
         <Select onValueChange={setHero}>
-          <SelectTrigger
-            className="w-1/3 bg-[var(--secondary-background)] 
-          border-[var(--purple)] text-[var(--primary-text)] font-extrabold text-xl"
-          >
+          <SelectTrigger className="w-1/3 bg-[var(--secondary-background)] border-[var(--purple)] text-[var(--primary-text)] font-extrabold text-xl">
             <SelectValue placeholder="Select a Hero" />
           </SelectTrigger>
-          <SelectContent
-            className="bg-[var(--secondary-background)] 
-          text-[var(--primary-text)] border-[var(--purple)]"
-          >
+          <SelectContent className="bg-[var(--secondary-background)] text-[var(--primary-text)] border-[var(--purple)]">
             <SelectGroup>
               <SelectLabel className="text-xl font-bold">Heroes</SelectLabel>
               {heroes.map((hero, index) => (
@@ -176,16 +173,10 @@ const page = () => {
         </Select>
 
         <Select onValueChange={setConsoletype}>
-          <SelectTrigger
-            className="w-1/3 bg-[var(--secondary-background)] 
-          border-[var(--purple)] text-[var(--primary-text)] font-extrabold text-xl"
-          >
+          <SelectTrigger className="w-1/3 bg-[var(--secondary-background)] border-[var(--purple)] text-[var(--primary-text)] font-extrabold text-xl">
             <SelectValue placeholder="Select a Console" />
           </SelectTrigger>
-          <SelectContent
-            className="bg-[var(--secondary-background)] 
-          text-[var(--primary-text)] border-[var(--purple)]"
-          >
+          <SelectContent className="bg-[var(--secondary-background)] text-[var(--primary-text)] border-[var(--purple)]">
             <SelectGroup>
               <SelectLabel className="text-xl font-bold">Consoles</SelectLabel>
               {consoles.map((console, index) => (
@@ -205,10 +196,19 @@ const page = () => {
 
       {loading ? (
         <LeaderboardLoadingPage />
-      ) : heroLeaderboard &&
-        Array.isArray(heroLeaderboard) &&
-        heroLeaderboard.length > 0 ? (
-        <LeaderboardTable players={heroLeaderboard} /> // Pass the data here!
+      ) : currentPlayers.length > 0 ? (
+        <div className="flex flex-col gap-5 justify-center w-full items-center">
+          <LeaderboardTable
+            players={currentPlayers}
+            currentPage={currentPage}
+            playersPerPage={playersPerPage}
+          />
+          <PaginationMenuBar
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
+        </div>
       ) : (
         <p>No data available.</p>
       )}
@@ -216,4 +216,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

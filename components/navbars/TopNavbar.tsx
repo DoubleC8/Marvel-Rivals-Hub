@@ -33,7 +33,7 @@ const TopNavbar = ({
           <Link href="/" className="navbarLink">
             Messages
           </Link>
-          <Link href="/" className="navbarLink">
+          <Link href="/find-teammates" className="navbarLink">
             Find Teammates
           </Link>
           <Link href="/leaderboards" className="navbarLink">
