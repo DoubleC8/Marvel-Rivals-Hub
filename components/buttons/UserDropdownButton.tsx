@@ -17,7 +17,7 @@ const UserDropdownButton = ({
   return (
     <DropdownMenu>
       <DropdownMenuTrigger className="flex gap-1 py-1 px-3 rounded-lg bg-[var(--accent-color)]">
-        <p className="text-lg font-extralight tracking-wider">
+        <p className="text-lg text-[var(--primary-text)] tracking-wider">
           {formattedEmail}
         </p>
         <ChevronDown size={23} />

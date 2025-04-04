@@ -82,9 +82,10 @@ const PlayerStatsPage = () => {
         <div className="w-6/10 flex flex-col gap-5">
           <div>
             <h1
-              className="text-7xl text-[var(--primary-text)]"
+              className="text-7xl text-[var(--primary-text)] flex align-middle gap-3"
               style={{ fontFamily: "var(--marvelFont)" }}
             >
+              <Search size={60} />
               Look up Player Stats
             </h1>
             <p className="text-xl text-[var(--secondary-text)]">

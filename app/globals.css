@@ -7,14 +7,20 @@
 :root {
   --background: #1C1B2D;
   --secondary-background: #151425;
+
   --primary-text: #FFFFFF;
   --secondary-text: #AEB2B6;
+
   --accent-color: #2B2D3F;
   --border: #E4E7EA;
   --white: #FFFFFF;
   --black: #000000;
   --yellow: #F6DD55;
   --purple: #a848c4;
+  --blue: #1F51FF;
+  --red: 	#FF3131;
+  --green: #32CD32;
+
 
   --marvelFont: "MarvelFont"
 }
@@ -35,6 +41,7 @@
 
 html, body{
   background-color: var(--background);
+  color: var(--primary-text);
 }
 
 

@@ -40,3 +40,64 @@ export const formatStats = (total_wins: number, total_matches: number): string =
   ).toFixed(2) + "%";
 };
 
+
+const BASE_IMAGE_URL = 'https://marvelrivalsapi.com/rivals/ranked/'; // Define your base image URL
+
+function range(start: number, end: number): number[] {
+  const result: number[] = [];
+  for (let i = start; i < end; i++) {
+    result.push(i);
+  }
+  return result;
+}
+
+export const get_rank = (level: number): { rank: string; image: string | null; color: string | null } => {
+  const ranked_images = [
+    '/bronze.png',
+    '/silver.png',
+    '/gold.png',
+    '/platinum.png',
+    '/diamond.png',
+    '/grandmaster.png',
+    '/celestial.png',
+    '/eternity.png',
+    '/one_above_all.png',
+  ];
+  const ranked_colors = [
+    '#A7693F',
+    '#7B9196',
+    '#FFDA57',
+    '#58E1E8',
+    '#1680FF',
+    '#EB46FF',
+    '#FE5A1D',
+    '#FF4F4D',
+    '#FF4F4D',
+  ];
+  const ranks: [string, number[]][] = [
+    ['Bronze', range(1, 4)],
+    ['Silver', range(4, 7)],
+    ['Gold', range(7, 10)],
+    ['Platinum', range(10, 13)],
+    ['Diamond', range(13, 16)],
+    ['Grandmaster', range(16, 19)],
+    ['Celestial', range(19, 22)],
+    ['Eternity', [22]],
+    ['One Above All', [23]],
+  ];
+
+  const tiers: { [key: number]: string } = { 0: 'III', 1: 'II', 2: 'I' };
+
+  for (let i = 0; i < ranks.length; i++) {
+    const [rank, levels] = ranks[i];
+    if (levels.includes(level)) {
+      if (rank === 'Eternity' || rank === 'One Above All') {
+        return { rank: rank, image: BASE_IMAGE_URL + ranked_images[i], color: ranked_colors[i] };
+      }
+      const tier = tiers[(level - Math.min(...levels)) % 3];
+      return { rank: `${rank} ${tier}`, image: BASE_IMAGE_URL + ranked_images[i], color: ranked_colors[i] };
+    }
+  }
+
+  return { rank: 'Invalid level', image: null, color: null };
+};

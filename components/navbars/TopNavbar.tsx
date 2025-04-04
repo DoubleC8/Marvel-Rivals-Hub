@@ -36,7 +36,7 @@ const TopNavbar = ({
           <Link href="/" className="navbarLink">
             Find Teammates
           </Link>
-          <Link href="/" className="navbarLink">
+          <Link href="/leaderboards" className="navbarLink">
             Leaderboards
           </Link>
           <Link href="/player-stats" className="navbarLink">
