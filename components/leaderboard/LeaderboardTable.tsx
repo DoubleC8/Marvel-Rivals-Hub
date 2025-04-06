@@ -1,6 +1,6 @@
 import React from "react";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
-import { get_rank } from "@/lib/utils";
+import { formatStats, get_rank, getRankClass } from "@/lib/utils";
 import LeaderboardTableHeader from "./leaderboard-table/LeaderboardTableHeader";
 
 interface PlayerInfo {
@@ -62,7 +62,7 @@ const LeaderboardTable = ({
               key={player.player_uid}
             >
               <TableCell className="text-center text-lg">
-                {globalRank}
+                <p className={getRankClass(globalRank)}>{globalRank}</p>
               </TableCell>
 
               <TableCell>
@@ -102,7 +102,7 @@ const LeaderboardTable = ({
                 <div className="flex gap-2 justify-center items-center">
                   <span className="text-[var(--yellow)]">
                     {player.matches > 0
-                      ? ((player.wins / player.matches) * 100).toFixed(2) + "%"
+                      ? formatStats(player.wins, player.matches)
                       : "0.00%"}
                   </span>
                   <span className="text-[var(--secondary-text)]">

@@ -24,7 +24,7 @@ const page = () => {
 
         <div className="w-11/12 mx-auto p-8 bg-[var(--white)] flex flex-col gap-3 rounded-2xl shadow-2xl">
           <h2
-            className="text-center text-4xl tracking-wider"
+            className="text-center text-4xl tracking-wider text-[var(--black)]"
             style={{ fontFamily: "var(--marvelFont)" }}
           >
             LOGIN
@@ -75,7 +75,7 @@ const page = () => {
             <button
               type="submit"
               className="w-full py-2 text-2xl font-semibold text-center
-              bg-[var(--yellow)] rounded-lg shadow-lg transition-all hover:opacity-85 cursor-pointer hover:underline"
+              bg-[var(--yellow)] text-[var(--black)] rounded-lg shadow-lg transition-all hover:opacity-85 cursor-pointer hover:underline"
               style={{ fontFamily: "var(--marvelFont)" }}
             >
               Login

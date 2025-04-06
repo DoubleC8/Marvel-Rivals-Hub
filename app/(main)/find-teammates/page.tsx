@@ -1,69 +1,116 @@
 "use client";
 
-import { TrendingUp } from "lucide-react";
-import { Pie, PieChart } from "recharts";
-
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  Tooltip,
+  ResponsiveContainer,
+  LabelList,
+} from "recharts";
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
 
-import {
-  ChartConfig,
-  ChartContainer,
-  ChartTooltip,
-  ChartTooltipContent,
-} from "@/components/ui/chart";
+interface WinLossData {
+  name: string;
+  wins: number;
+  losses: number;
+  total: number;
+  winRate: string;
+}
 
-// Adjusted chart data with CSS variables for colors
-const chartData = [
-  { stat: "wins", visitors: 275, fill: "var(--blue)" },
-  { stat: "loses", visitors: 200, fill: "var(--red)" },
-];
+const rawData = [{ name: "All", wins: 54, losses: 22 }];
 
-// Clean chartConfig since you're not mapping by browser here
-const chartConfig = {
-  wins: {
-    label: "Wins",
-    color: "hsl(var(--blue))",
-  },
-  loses: {
-    label: "Loses",
-    color: "hsl(var(--red))",
-  },
-} satisfies ChartConfig;
+// Add derived fields
+const chartData: WinLossData[] = rawData.map((d) => {
+  const total = d.wins + d.losses;
+  const winRate = total ? ((d.wins / total) * 100).toFixed(2) + "%" : "0.00%";
+  return { ...d, total, winRate };
+});
 
-function Page() {
+const chartColors = {
+  wins: "var(--blue)",
+  losses: "var(--red)",
+};
+
+export default function page() {
   return (
-    <Card className="flex flex-col border-transparent">
-      <CardContent className="flex justify-center items-center border-transparent">
-        <ChartContainer
-          config={chartConfig}
-          className="w-[50px] h-[50px]" // fixed size
-        >
-          <PieChart width={50} height={50}>
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent hideLabel />}
+    <Card>
+      <CardHeader>
+        <CardTitle>Win/Loss Distribution</CardTitle>
+        <CardDescription>Player Statistics</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <ResponsiveContainer width="50%" height={chartData.length * 50}>
+          <BarChart
+            layout="vertical"
+            data={chartData}
+            barCategoryGap={20}
+            margin={{ top: 0, right: 50, left: 50, bottom: 0 }}
+          >
+            <YAxis
+              type="category"
+              dataKey="name"
+              axisLine={false}
+              tickLine={false}
+              tick={false}
             />
-            <Pie
-              data={chartData}
-              dataKey="visitors"
-              nameKey="stat"
-              outerRadius={25}
-              innerRadius={15}
-              stroke="none"
-              isAnimationActive={false}
-            />
-          </PieChart>
-        </ChartContainer>
+            <XAxis type="number" hide />
+
+            <Bar
+              dataKey="wins"
+              stackId="a"
+              fill={chartColors.wins}
+              radius={[8, 0, 0, 8]}
+              barSize={20}
+            >
+              <LabelList
+                dataKey="wins"
+                position="insideLeft"
+                formatter={(value: number) => `${value}W`}
+                fill="white"
+                fontSize={12}
+                fontWeight={700}
+              />
+            </Bar>
+
+            <Bar
+              dataKey="losses"
+              stackId="a"
+              fill={chartColors.losses}
+              radius={[0, 8, 8, 0]}
+              barSize={20}
+            >
+              <LabelList
+                dataKey="losses"
+                position="insideRight"
+                formatter={(value: number) => `${value}L`}
+                fill="white"
+                fontSize={12}
+                fontWeight={700}
+              />
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+
+        {/* Optional: Display win rate separately below chart */}
+        <div className="mt-2 flex flex-col gap-2">
+          {chartData.map((d, i) => (
+            <div key={i} className="flex justify-between text-sm text-muted">
+              <span>Games: {d.total}</span>
+              <span className="text-[var(--green)] font-semibold">
+                {d.winRate}
+              </span>
+            </div>
+          ))}
+        </div>
       </CardContent>
     </Card>
   );
 }
-
-export default Page;

@@ -97,8 +97,8 @@ interface Player {
 }
 
 const Page = () => {
-  const [hero, setHero] = useState("winter soldier");
-  const [consoleType, setConsoletype] = useState("ps");
+  const [hero, setHero] = useState("Winter Soldier");
+  const [consoleType, setConsoletype] = useState("pc");
   const [heroLeaderboard, setHeroLeaderboard] = useState<Player[]>([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
@@ -128,7 +128,7 @@ const Page = () => {
         setHeroLeaderboard(response.data.players);
         toast.success("Leaderboard data fetched successfuly!", {
           description: `Data for the top ${hero.toLocaleUpperCase()}
-            players on ${consoleType} fetched on ${new Date().toLocaleString()}`,
+            players fetched on ${new Date().toLocaleString()}`,
         });
       } catch (error) {
         toast.error(`Could not load leaderboard.`);
@@ -150,10 +150,13 @@ const Page = () => {
     <section className="py-3 px-5 flex flex-col justify-center items-center gap-5 mb-5">
       <LeaderboardHeader />
 
-      <nav className="w-full flex justify-center gap-5 h-9">
+      <nav className="w-3/4 flex justify-between h-9">
         <Select onValueChange={setHero}>
-          <SelectTrigger className="w-1/3 bg-[var(--secondary-background)] border-[var(--purple)] text-[var(--primary-text)] font-extrabold text-xl">
-            <SelectValue placeholder="Select a Hero" />
+          <SelectTrigger className="w-[45%] bg-[var(--secondary-background)] border-[var(--purple)] border-[2px] text-[var(--primary-text)] font-extrabold text-xl">
+            <SelectValue
+              placeholder="Select a Hero"
+              style={{ fontFamily: "var(--marvelFont)" }}
+            />
           </SelectTrigger>
           <SelectContent className="bg-[var(--secondary-background)] text-[var(--primary-text)] border-[var(--purple)]">
             <SelectGroup>
@@ -173,7 +176,7 @@ const Page = () => {
         </Select>
 
         <Select onValueChange={setConsoletype}>
-          <SelectTrigger className="w-1/3 bg-[var(--secondary-background)] border-[var(--purple)] text-[var(--primary-text)] font-extrabold text-xl">
+          <SelectTrigger className="w-[45%] bg-[var(--secondary-background)] border-[var(--purple)] border-[2px] text-[var(--primary-text)] font-extrabold text-xl">
             <SelectValue placeholder="Select a Console" />
           </SelectTrigger>
           <SelectContent className="bg-[var(--secondary-background)] text-[var(--primary-text)] border-[var(--purple)]">
@@ -184,9 +187,8 @@ const Page = () => {
                   key={index}
                   value={console}
                   className="track-widest text-xl hover:bg-[var(--accent-color)] ease-in hover:cursor-pointer"
-                  style={{ fontFamily: "var(--marvelFont)" }}
                 >
-                  {console}
+                  {console.toLocaleUpperCase()}
                 </SelectItem>
               ))}
             </SelectGroup>
@@ -196,8 +198,11 @@ const Page = () => {
 
       {loading ? (
         <LeaderboardLoadingPage />
-      ) : currentPlayers.length > 0 ? (
+      ) : (
         <div className="flex flex-col gap-5 justify-center w-full items-center">
+          <p className="text-[var(--secondary-text)] w-3/4">
+            Top 500 {hero} Players on {consoleType.toLocaleUpperCase()}
+          </p>
           <LeaderboardTable
             players={currentPlayers}
             currentPage={currentPage}
@@ -209,8 +214,6 @@ const Page = () => {
             onPageChange={setCurrentPage}
           />
         </div>
-      ) : (
-        <p>No data available.</p>
       )}
     </section>
   );

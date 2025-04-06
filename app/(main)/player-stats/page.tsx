@@ -85,11 +85,11 @@ const PlayerStatsPage = () => {
               className="text-7xl text-[var(--primary-text)] flex align-middle gap-3"
               style={{ fontFamily: "var(--marvelFont)" }}
             >
-              <Search size={60} />
+              <Search size={60} color={`var(--secondary-text)`} />
               Look up Player Stats
             </h1>
             <p className="text-xl text-[var(--secondary-text)]">
-              Check Marvel Rivals Stats
+              Check Marvel Rivals Player Stats
             </p>
           </div>
 
@@ -99,7 +99,9 @@ const PlayerStatsPage = () => {
           >
             <input
               name="playerInfo"
-              className="bg-[var(--white)] w-full p-4 rounded-bl-2xl rounded-tl-2xl focus:outline-none focus:ring-0"
+              className="bg-[var(--white)] w-full p-4 
+              rounded-bl-2xl rounded-tl-2xl 
+              focus:outline-none focus:ring-0 placeholder:text-[var(--secondary-text)]"
               placeholder="Enter In-Game Name or UID"
               required
             />
@@ -108,7 +110,7 @@ const PlayerStatsPage = () => {
               className="bg-[var(--yellow)] p-4 rounded-br-2xl rounded-tr-2xl hover:opacity-85"
               disabled={loading}
             >
-              <Search />
+              <Search color={`var(--black)`} />
             </button>
           </form>
         </div>

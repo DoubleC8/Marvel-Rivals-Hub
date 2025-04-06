@@ -5,7 +5,7 @@ const LeaderboardTableHeader = () => {
   return (
     <TableHeader>
       <TableRow>
-        <TableHead className="font-extrabold text-center w-[10%]">
+        <TableHead className="font-extrabold text-center w-[6%]">
           Rank
         </TableHead>
         <TableHead className="font-extrabold w-[40%]">Player</TableHead>

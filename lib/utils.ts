@@ -101,3 +101,11 @@ export const get_rank = (level: number): { rank: string; image: string | null; c
 
   return { rank: 'Invalid level', image: null, color: null };
 };
+
+export const getRankClass = (rank: number) => {
+  const base = "py-2 rounded-xl text-[var(--black)]";
+
+  if (rank === 1) return `${base} bg-[var(--gold)]`;
+  if (rank === 2) return `${base} bg-[var(--silver)]`;
+  if (rank === 3) return `${base} bg-[var(--bronze)]`;
+}

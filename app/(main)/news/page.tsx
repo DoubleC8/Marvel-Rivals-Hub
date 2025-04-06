@@ -81,13 +81,16 @@ const Page = () => {
     <section className="m-5 flex flex-col gap-5">
       {/* Tabs */}
       <nav
-        className="bg-[var(--yellow)] py-2 px-5 flex justify-around items-center rounded-full text-2xl shadow-2xl "
+        className="bg-[var(--yellow)] py-2 px-5 flex justify-around items-center 
+        rounded-full text-2xl shadow-2xl text-[var(--black)] font-bold"
         style={{ fontFamily: "var(--marvelFont)" }}
       >
         {TABS.map((tab) => (
           <button
             key={tab}
-            className={activeTab === tab ? "border-b-2" : ""}
+            className={`hover:cursor-pointer ${
+              activeTab === tab ? "border-b-2" : ""
+            }`}
             onClick={() => setActiveTab(tab)}
           >
             {tab}
