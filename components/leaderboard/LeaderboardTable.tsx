@@ -58,7 +58,7 @@ const LeaderboardTable = ({
 
           return (
             <TableRow
-              className="bg-[var(--accent-color)] border-b-[2px] border-b-[#1A1B26] font-extrabold hover:opacity-85 ease-in hover:cursor-pointer"
+              className="bg-[var(--accent-color)] border-b-[2px] border-b-[var(--secondary-accent-color)] font-extrabold hover:opacity-85 ease-in hover:cursor-pointer"
               key={player.player_uid}
             >
               <TableCell className="text-center text-lg">

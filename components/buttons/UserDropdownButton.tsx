@@ -16,15 +16,19 @@ const UserDropdownButton = ({
 }) => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="flex gap-1 py-1 px-3 rounded-lg bg-[var(--accent-color)]">
-        <p className="text-lg text-[var(--primary-text)] tracking-wider">
+      <DropdownMenuTrigger
+        className="h-[40px] w-[200px] flex items-stretch justify-center pt-2 gap-1 px-3 rounded-lg bg-[var(--accent-color)]
+       hover:cursor-pointer hover:bg-[var(--secondary-accent-color)] ease-in-out duration-100"
+      >
+        <p className="text-xl text-[var(--primary-text)] tracking-wide">
           {formattedEmail}
         </p>
-        <ChevronDown size={23} />
+        <ChevronDown />
       </DropdownMenuTrigger>
 
-      <DropdownMenuContent className="border-[1px] border-[var(--border)] bg-[var(--accent-color)] w-[200px]">
-        <DropdownMenuItem className="flex justify-center hover:bg-[var(--secondary-text)]">
+      <DropdownMenuContent className="border-[1px] border-[var(--secondary-accent-color)] bg-[var(--accent-color)] w-[200px]">
+        <DropdownMenuItem className="flex justify-center hover:bg-[var(--secondary-text)] ease-in-out duration-100">
+          {/**TODO: Make profile page where users can see their stats, friends, pending invitations, etc.. */}
           <Link href="/" className="flex gap-1 font-extralight tracking-wider">
             <p className="tracking-wider text-[var(--white)] font-extrabold">
               Profile
@@ -38,6 +42,7 @@ const UserDropdownButton = ({
         </DropdownMenuItem>
 
         <DropdownMenuItem className="flex justify-center hover:bg-[var(--secondary-text)]">
+          {/**TODO: Make settings page where users can change their icon, claim an account, change thir theme, etc.. */}
           <Link href="/" className="flex gap-1 font-extralight tracking-wider">
             <p className="tracking-wider text-[var(--white)] font-extrabold">
               Settings
@@ -55,10 +60,3 @@ const UserDropdownButton = ({
 };
 
 export default UserDropdownButton;
-
-{
-  /* <button className="flex items-center gap-3 justify-center">
-      <p className="text-lg font-extralight tracking-wider">{formattedEmail}</p>
-      <ChevronDown />
-    </button> */
-}

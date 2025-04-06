@@ -16,9 +16,9 @@ const TopNavbar = ({
   const defaultProfilePic = "/images/Default_pfp.png";
 
   return (
-    <nav className="topNavbar-web">
-      <div className="flex gap-3 text-[var(--white)]">
-        <Link href="/">
+    <nav className="topNavbar">
+      <div className="flex items-center gap-5">
+        <Link href="/" title="Home Page">
           <Image
             src={marevlRivalsIcon}
             height={40}
@@ -26,56 +26,78 @@ const TopNavbar = ({
             alt="Marvel Rivals Icon"
           />
         </Link>
-        <div className="flex gap-3 items-center">
-          <Link href="/" className="navbarLink">
+        <div className="flex gap-5">
+          <Link href="/" className="navbarLink" title="Home Page">
             Home
           </Link>
-          <Link href="/" className="navbarLink">
+          <Link href="/messages" className="navbarLink" title="Messages">
             Messages
           </Link>
-          <Link href="/find-teammates" className="navbarLink">
+          <Link
+            href="/find-teammates"
+            className="navbarLink"
+            title="Find Teammates"
+          >
             Find Teammates
           </Link>
-          <Link href="/leaderboards" className="navbarLink">
+          <Link
+            href="/leaderboards"
+            className="navbarLink"
+            title="Leaderboards"
+          >
             Leaderboards
           </Link>
-          <Link href="/player-stats" className="navbarLink">
+          <Link
+            href="/player-stats"
+            className="navbarLink"
+            title="Player Stats"
+          >
             Player Stats
           </Link>
-          <Link href="/news" className="navbarLink">
+          <Link href="/news" className="navbarLink" title="News">
             News
           </Link>
         </div>
       </div>
+
       {userEmail !== "" ? (
         <div
           className="flex text-[var(--white)] items-center gap-5"
           style={{ fontFamily: "var(--marvelFont)" }}
         >
           <UserDropdownButton formattedEmail={formatEmail(userEmail)} />
-          <Image
-            src={userProfilePic}
-            height={40}
-            width={40}
-            alt={`${userEmail} Profile Pic`}
-            className="profile-pic"
-          />
+          <Link href={`/`} title="Go to Profile Page">
+            <Image
+              src={userProfilePic}
+              height={40}
+              width={40}
+              alt={`${userEmail} Profile Pic`}
+              className="rounded-xl"
+            />
+          </Link>
         </div>
       ) : (
-        <div className="flex gap-2 text-[var(--white)] items-center">
-          <Link href="/login" className="navbarLink">
-            Sign in
-          </Link>
-          <p className="text-lg font-extralight tracking-wider">OR</p>
-          <Link href="/login" className="navbarLink">
-            Sign Up
-          </Link>
+        <div className="flex items-center justify-center gap-5">
+          <div className="flex items-baseline gap-5">
+            <Link href="/login" className="navbarLink" title="Sign in">
+              Sign in
+            </Link>
+            <p
+              className="text-xl tracking-wide"
+              style={{ fontFamily: "var(--marvelFont)" }}
+            >
+              OR
+            </p>
+            <Link href="/login" className="navbarLink" title="Sign up">
+              Sign Up
+            </Link>
+          </div>
           <Image
             src={defaultProfilePic}
             height={40}
             width={40}
             alt="Default Profile Pic"
-            className="profile-pic"
+            className="rounded-lg hover:cursor-pointer"
           />
         </div>
       )}
