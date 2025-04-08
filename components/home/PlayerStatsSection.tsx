@@ -5,42 +5,37 @@ import React from "react";
 const PlayerStatsSection = () => {
   return (
     <section
-      className="mt-5 pt-5 pb-5 flex items-center 
-    justify-center gap-10 text-[var(--primary-text)]"
+      className="h-full w-full px-5 py-20 flex
+   justify-center items-center gap-5"
     >
       <div
-        className="flex flex-col gap-5 w-[40%] p-5 
-      border-[2px] rounded-2xl border-[var(--purple)] bg-[var(--secondary-background)]"
+        className="flex flex-col gap-5 p-5 border-[2px] border-[var(--purple)] 
+    rounded-lg w-[45%] h-fit bg-[var(--background)]"
       >
-        <div className="flex flex-col">
-          <span className="flex gap-3">
-            <Search size={35} className="text-[var(--secondary-text)]" />
+        <div className="flex flex-col gap-3">
+          <div className="flex gap-3 items-stretch">
+            <Search size={36} className="text-[var(--secondary-text)]" />
             <h1
-              className="text-4xl"
+              className="text-[36px]"
               style={{ fontFamily: "var(--marvelFont)" }}
             >
               Track Player Stats & Rankings!
             </h1>
-          </span>
-          <p className="text-lg text-[var(--secondary-text)]">
+          </div>
+          <p className="text-[20px] text-[var(--secondary-text)]">
             Search for player profiles, compare stats, and find skilled
             teammates to dominate Marvel Rivals with!
           </p>
         </div>
 
-        {/*TODO: Make this take you player stats page */}
+        {/*TODO: Make this take you create a player profile page (different from login page) */}
         <div>
-          <Link
-            href="/"
-            className="text-2xl tracking-wide bg-[var(--yellow)] 
-                py-3 px-7 rounded-xl hover:opacity-85 hover:underline text-[var(--black)]"
-            style={{ fontFamily: "var(--marvelFont)" }}
-          >
+          <Link href="/player-stats" className="homeSectionButton">
             Look up Player Stats
           </Link>
         </div>
       </div>
-      <div className="w-40%">
+      <div className="w-[45%]  flex flex-col items-center">
         <img src="/images/Peni_Parker.webp" className="h-[700px]"></img>
       </div>
     </section>
