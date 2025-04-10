@@ -2,8 +2,8 @@
 
 import React, { useEffect, useState, use } from "react";
 import axios from "axios";
-import { formatText } from "@/lib/utils";
-import NewsLoadingPage from "../../loading";
+import NewsPageLoadingComponent from "../../loading";
+import NewsPage from "@/components/news/NewsPage";
 
 interface Balance {
   date: string;
@@ -49,35 +49,19 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
   }, [formattedBalanceId]);
 
   if (loading) {
-    return <NewsLoadingPage />;
+    return <NewsPageLoadingComponent />;
   }
 
   return (
-    <section className="my-10">
-      <div
-        className="bg-[var(--secondary-background)] 
-      w-3/4 mx-auto p-5 rounded-2xl border-[2px] 
-      border-[var(--purple)] flex flex-col gap-5 text-[var(--primary-text)]"
-      >
-        {balance?.imagePath && (
-          <img
-            src={`https://marvelrivalsapi.com/rivals${balance.imagePath}`}
-            alt="Balance Image"
-            className="w-full rounded-2xl mx-auto"
-          />
-        )}
-        <h2
-          className="text-5xl tracking-wider text-center"
-          style={{ fontFamily: "var(--marvelFont)" }}
-        >
-          {balance?.title}
-        </h2>
-        <p
-          dangerouslySetInnerHTML={{
-            __html: balance?.fullContent ? formatText(balance.fullContent) : "",
-          }}
+    <section className="p-5 flex flex-col gap-5">
+      {balance && (
+        <NewsPage
+          imagePath={balance.imagePath}
+          title={balance.title}
+          date={balance.date}
+          fullContent={balance.fullContent}
         />
-      </div>
+      )}
     </section>
   );
 };

@@ -1,6 +1,5 @@
-import { formatDate } from "@/lib/utils";
-import Link from "next/link";
 import React from "react";
+import NewsCard from "../cards/NewsCard";
 
 interface apiData {
   date: string;
@@ -23,33 +22,16 @@ const Balances = ({ balances }: { balances: apiData[] }) => {
 
       <div className="flex flex-col gap-5">
         {balances.map((balance, index) => (
-          <div
+          <NewsCard
+            newsType="balances"
+            date={balance.date}
+            fullContent={balance.fullContent}
+            id={balance.id}
+            overview={balance.overview}
+            title={balance.title}
+            imagePath={`https://marvelrivalsapi.com/rivals${balance.imagePath}`}
             key={index}
-            className="bg-[var(--secondary-background)]
-             p-5 rounded-2xl border-[2px] border-[var(--purple)] 
-             flex flex-col gap-5 text-[var(--primary-text)]"
-          >
-            <img
-              src={`https://marvelrivalsapi.com/rivals${balance.imagePath}`}
-              alt="balance image"
-              className="w-full rounded-2xl mx-auto"
-            ></img>
-            <div>
-              <h2
-                className="text-2xl tracking-wider"
-                style={{ fontFamily: "var(--marvelFont)" }}
-              >
-                {balance.title} • {formatDate(balance.date)}
-              </h2>
-              <p>{balance.overview}</p>
-              <Link
-                href={`/news/balances/${balance.id}`}
-                className="font-extrabold hover:underline text-[var(--secondary-text)]"
-              >
-                Read More
-              </Link>
-            </div>
-          </div>
+          />
         ))}
       </div>
     </div>

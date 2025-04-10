@@ -10,13 +10,18 @@ export default async function Layout({
   const session = await auth();
 
   return (
-    <main>
+    <main className="flex flex-col min-h-screen">
       <TopNavbar
         userEmail={session?.user?.email ?? ""}
         userProfilePic={session?.user?.image ?? ""}
       />
-      <div>{children}</div>
+
+      {/* Growable content section */}
+      <div className="flex-grow">{children}</div>
+
       <Toaster richColors />
+
+      {/* Footer naturally sits at bottom */}
       <Footer />
     </main>
   );

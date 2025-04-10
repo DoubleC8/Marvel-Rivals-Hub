@@ -58,8 +58,9 @@ html, body{
   display: flex;
   justify-content: space-between;
   position: sticky;
-  top: calc(var(--spacing) * 0) /* 0rem = 0px */;
+  top: 0; 
   overflow: hidden;
+  z-index: 50;
 }
 
 

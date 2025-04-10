@@ -1,6 +1,5 @@
-import { formatDate } from "@/lib/utils";
-import Link from "next/link";
 import React from "react";
+import NewsCard from "../cards/NewsCard";
 
 interface apiData {
   date: string;
@@ -15,36 +14,24 @@ const DevDiaries = ({ devDiaries }: { devDiaries: apiData[] }) => {
   return (
     <div className="flex flex-col gap-3 w-3/4 mx-auto">
       <h1
-        className="text-5xl text-[var(--primary-text)]"
+        className="text-5xl text-[var(--primary-text)] "
         style={{ fontFamily: "var(--marvelFont)" }}
       >
-        Dev Diares
+        Dev Diaries
       </h1>
 
       <div className="flex flex-col gap-5">
         {devDiaries.map((devDiary, index) => (
-          <div
+          <NewsCard
+            newsType="devDiaries"
+            date={devDiary.date}
+            fullContent={devDiary.fullContent}
+            id={devDiary.id}
+            overview={devDiary.overview}
+            title={devDiary.title}
+            imagePath={`https://marvelrivalsapi.com/rivals${devDiary.imagePath}`}
             key={index}
-            className="bg-[var(--secondary-background)] 
-            p-5 rounded-2xl border-[2px] border-[var(--purple)] 
-            flex flex-col gap-5 text-[var(--primary-text)]"
-          >
-            <div>
-              <h2
-                className="text-2xl tracking-wider"
-                style={{ fontFamily: "var(--marvelFont)" }}
-              >
-                {devDiary.title} • {formatDate(devDiary.date)}
-              </h2>
-              <p>{devDiary.overview}</p>
-              <Link
-                href={`/news/devDiaries/${devDiary.id}`}
-                className="font-extrabold hover:underline text-[var(--secondary-text)]"
-              >
-                Read More
-              </Link>
-            </div>
-          </div>
+          />
         ))}
       </div>
     </div>

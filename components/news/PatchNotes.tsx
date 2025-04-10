@@ -1,6 +1,5 @@
-import { formatDate } from "@/lib/utils";
-import Link from "next/link";
 import React from "react";
+import NewsCard from "../cards/NewsCard";
 
 interface apiData {
   date: string;
@@ -23,33 +22,16 @@ const PatchNotes = ({ patchNotes }: { patchNotes: apiData[] }) => {
 
       <div className="flex flex-col gap-5">
         {patchNotes.map((patchNote, index) => (
-          <div
+          <NewsCard
+            newsType="patchNotes"
+            date={patchNote.date}
+            fullContent={patchNote.fullContent}
+            id={patchNote.id}
+            overview={patchNote.overview}
+            title={patchNote.title}
+            imagePath={`https://marvelrivalsapi.com/rivals${patchNote.imagePath}`}
             key={index}
-            className="bg-[var(--secondary-background)] 
-            p-5 rounded-2xl border-[2px] border-[var(--purple)] 
-            flex flex-col gap-5 text-[var(--primary-text)]"
-          >
-            <img
-              src={`https://marvelrivalsapi.com/rivals${patchNote.imagePath}`}
-              alt="patch note image"
-              className="w-full rounded-2xl mx-auto"
-            ></img>
-            <div>
-              <h2
-                className="text-2xl tracking-wider"
-                style={{ fontFamily: "var(--marvelFont)" }}
-              >
-                {patchNote.title} • {formatDate(patchNote.date)}
-              </h2>
-              <p>{patchNote.overview}</p>
-              <Link
-                href={`/news/patchNotes/${patchNote.id}`}
-                className="font-extrabold hover:underline text-[var(--secondary-text)]"
-              >
-                Read More
-              </Link>
-            </div>
-          </div>
+          />
         ))}
       </div>
     </div>

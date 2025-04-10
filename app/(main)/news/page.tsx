@@ -4,8 +4,8 @@ import React, { useEffect, useState } from "react";
 import Balances from "@/components/news/Balances";
 import PatchNotes from "@/components/news/PatchNotes";
 import DevDiaries from "@/components/news/DevDiaries";
-import axios from "axios";
-import NewsLoadingPage from "./loading";
+import NewsCardLoadingComponent from "./loading";
+import { getNewsData } from "@/lib/actions";
 
 interface ApiData {
   date: string;
@@ -26,38 +26,27 @@ const Page = () => {
   const [devDiaries, setDevDiaries] = useState<ApiData[]>([]);
   const [loading, setLoading] = useState(true); // 👈 Track loading state
 
-  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-
   useEffect(() => {
-    const fetchData = async (
-      endpoint: string,
-      setter: React.Dispatch<React.SetStateAction<ApiData[]>>,
-      key: string
-    ) => {
+    const fetchAllNewsData = async () => {
+      setLoading(true);
+
       try {
-        const response = await axios.get(
-          `https://marvelrivalsapi.com/api/v1/${endpoint}?page=1&limit=10`,
-          {
-            headers: { "x-api-key": apiKey },
-          }
-        );
-        setter(response.data[key] || []);
-      } catch (error) {
-        console.error(`Error fetching ${endpoint}:`, error);
+        const newsData = await getNewsData();
+        setBalances(newsData.balances);
+        setPatchNotes(newsData.patchNotes);
+        setDevDiaries(newsData.devDiaries);
+      } catch (err) {
+        console.error("Error fetching news data:", err);
+      } finally {
+        setLoading(false);
       }
     };
 
-    setLoading(true); // 👈 Start loading
-
-    Promise.all([
-      fetchData("balances", setBalances, "balances"),
-      fetchData("patch-notes", setPatchNotes, "formatted_patches"),
-      fetchData("dev-diaries", setDevDiaries, "dev_diaries"),
-    ]).finally(() => setLoading(false)); // 👈 End loading when all calls complete
+    fetchAllNewsData();
   }, []);
 
   const renderContent = () => {
-    if (loading) return <NewsLoadingPage />; // 👈 Show skeleton while loading
+    if (loading) return <NewsCardLoadingComponent />; // 👈 Show skeleton while loading
 
     switch (activeTab) {
       case "Balances":

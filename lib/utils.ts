@@ -12,6 +12,11 @@ export const formatDate = (dateString: string) => {
   return `${month}/${year}`;
 }
 
+export const formatNewsPageDate = (dateString: string) => {
+  const [year, day, month] = dateString.split("/");
+  return `${day}/${month}/${year}`
+}
+
 export const formatText = (text: string = ""): string => {
   return text
     .replace(/\n{2,}/g, "</p><p>") // Convert double new lines to paragraphs
@@ -19,7 +24,7 @@ export const formatText = (text: string = ""): string => {
     .replace(/-\s*(.*)$/gm, "<li>$1</li>") // Convert list items into bullets
     .replace(
       /(Discord|X|Facebook|Instagram|TikTok|YouTube|Twitch) \[(.*?)\]/g,
-      '<a href="$2" target="_blank">$1</a>'
+      '<a  href="$2" target="_blank">$1</a>'
     ); // Convert links
 };
 
