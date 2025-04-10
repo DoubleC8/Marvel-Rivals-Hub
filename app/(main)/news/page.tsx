@@ -6,6 +6,7 @@ import PatchNotes from "@/components/news/PatchNotes";
 import DevDiaries from "@/components/news/DevDiaries";
 import NewsCardLoadingComponent from "./loading";
 import { getNewsData } from "@/lib/actions";
+import { toast } from "sonner";
 
 interface ApiData {
   date: string;
@@ -35,8 +36,15 @@ const Page = () => {
         setBalances(newsData.balances);
         setPatchNotes(newsData.patchNotes);
         setDevDiaries(newsData.devDiaries);
-      } catch (err) {
-        console.error("Error fetching news data:", err);
+
+        toast.success(`Successfully loaded news data!`, {
+          description: `Loaded on ${new Date().toLocaleString()}`,
+        });
+      } catch (error) {
+        toast.error(`Unable to load news data. Please try again later.`, {
+          description: `Unable to load news data on ${new Date().toLocaleString()}`,
+        });
+        console.error("Error fetching news data:", error);
       } finally {
         setLoading(false);
       }

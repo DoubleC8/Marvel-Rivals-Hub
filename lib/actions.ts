@@ -4,6 +4,8 @@
   ASYNC FUYNCTIONS ARE USED FOR WHEN DOING SOMGTHING LIKE FETCHING DATA*/}
 
 import { signIn, signOut } from "@/auth";
+import axios from "axios";
+import { toast } from "sonner";
 
 export const login = async () => {
   await signIn("github", { redirectTo: "/" });
@@ -48,3 +50,25 @@ export const getNewsData = async () => {
     devDiaries: devsJson.dev_diaries || [],
   };
 };
+
+
+
+export const fetchNewsPageData = async (newsType: string, newsId: string) => {
+  console.log(`https://marvelrivalsapi.com/api/v1/${newsType}/${newsId}`)
+  try {
+    const response = await axios.get(
+      `https://marvelrivalsapi.com/api/v1/${newsType}/${newsId}`,
+      {
+        headers: {
+          "x-api-key": process.env.API_KEY,
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching balance:", error);
+  }
+};
+
+

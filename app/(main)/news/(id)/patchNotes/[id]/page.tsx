@@ -1,10 +1,11 @@
 "use client";
 
 import React, { useEffect, useState, use } from "react";
-import axios from "axios";
 
 import NewsPage from "@/components/news/NewsPage";
 import NewsPageLoadingComponent from "../../loading";
+import { fetchNewsPageData } from "@/lib/actions";
+import { toast } from "sonner";
 
 interface PatchNote {
   date: string;
@@ -21,32 +22,29 @@ const Page = ({ params }: { params: Promise<{ id: string }> }) => {
   const [patchNote, setPatchNote] = useState<PatchNote | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-
   useEffect(() => {
-    const fetchPatchNote = async () => {
-      try {
-        const response = await axios.get(
-          `https://marvelrivalsapi.com/api/v1/patch-note/${patchNoteId}`,
-          {
-            headers: {
-              "x-api-key": apiKey,
-            },
-          }
-        );
+    const fetchData = async () => {
+      if (!patchNoteId) return;
 
-        setPatchNote(response.data);
-        console.log(response.data);
+      try {
+        const data = await fetchNewsPageData("balance", patchNoteId);
+        setPatchNote(data);
+
+        console.log(data);
+        toast.success(`Successfully loaded ${data.title}!`, {
+          description: `Loaded on ${new Date().toLocaleString()}`,
+        });
       } catch (error) {
-        console.error("Error fetching balance:", error);
+        toast.error(`Unable to load news page data. Please try again later.`, {
+          description: `Unable to load news data on ${new Date().toLocaleString()}`,
+        });
+        console.error(error);
       } finally {
         setLoading(false);
       }
     };
 
-    if (patchNoteId) {
-      fetchPatchNote();
-    }
+    fetchData();
   }, [patchNoteId]);
 
   if (loading) {

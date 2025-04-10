@@ -1,9 +1,10 @@
 "use client";
 
 import React, { useEffect, useState, use } from "react";
-import axios from "axios";
 import NewsPageLoadingComponent from "../../loading";
 import NewsPage from "@/components/news/NewsPage";
+import { fetchNewsPageData } from "@/lib/actions";
+import { toast } from "sonner";
 
 interface Balance {
   date: string;
@@ -16,36 +17,34 @@ interface Balance {
 
 const Page = ({ params }: { params: Promise<{ id: string }> }) => {
   const { id: balanceId } = use(params);
-  const formattedBalanceId = balanceId?.substring(0, balanceId.indexOf("-"));
+  const formattedBalanceId = balanceId?.split("-")[0];
 
   const [balance, setBalance] = useState<Balance | null>(null);
   const [loading, setLoading] = useState(true);
 
-  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-
   useEffect(() => {
-    const fetchBalance = async () => {
-      try {
-        const response = await axios.get(
-          `https://marvelrivalsapi.com/api/v1/balance/${formattedBalanceId}`,
-          {
-            headers: {
-              "x-api-key": apiKey,
-            },
-          }
-        );
+    const fetchData = async () => {
+      if (!formattedBalanceId) return;
 
-        setBalance(response.data);
+      try {
+        const data = await fetchNewsPageData("balance", formattedBalanceId);
+        setBalance(data);
+
+        console.log(data);
+        toast.success(`Successfully loaded ${data.title}!`, {
+          description: `Loaded on ${new Date().toLocaleString()}`,
+        });
       } catch (error) {
-        console.error("Error fetching balance:", error);
+        toast.error(`Unable to load news page data. Please try again later.`, {
+          description: `Unable to load news data on ${new Date().toLocaleString()}`,
+        });
+        console.error(error);
       } finally {
         setLoading(false);
       }
     };
 
-    if (formattedBalanceId) {
-      fetchBalance();
-    }
+    fetchData();
   }, [formattedBalanceId]);
 
   if (loading) {
