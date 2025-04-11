@@ -20,23 +20,25 @@ const NewsCard = ({
 }) => {
   return (
     <div
-      className="bg-[var(--secondary-background)]
+      className="w-[525px] h-[525px] bg-[var(--secondary-background)]
              p-5 rounded-xl border-[2px] border-[var(--purple)] 
              flex flex-col gap-5"
     >
       <img
         src={`${imagePath}`}
         alt={`${title} image`}
-        className="w-full h-[500px] rounded-xl mx-auto"
+        className="w-full min-h-[250px] rounded-xl mx-auto"
       ></img>
-      <div>
-        <h2
-          className="text-2xl tracking-wider"
-          style={{ fontFamily: "var(--marvelFont)" }}
-        >
-          {title} • {formatDate(date)}
-        </h2>
-        <p>{overview}</p>
+      <div className="flex flex-col justify-between h-[250px] ">
+        <div className="flex flex-col gap-5">
+          <h2
+            className="text-2xl tracking-wide"
+            style={{ fontFamily: "var(--marvelFont)" }}
+          >
+            {title} • {formatDate(date)}
+          </h2>
+          <p className="text-[17px]">{overview}</p>
+        </div>
         <Link
           href={`/news/${newsType}/${id}`}
           className="font-extrabold hover:underline text-[var(--secondary-text)] 

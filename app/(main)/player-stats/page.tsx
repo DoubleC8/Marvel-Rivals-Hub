@@ -1,12 +1,12 @@
 "use client";
 
-import axios from "axios";
 import { Search } from "lucide-react";
 import React, { useState } from "react";
-import CardLoader from "./loading";
 import SearchedPlayerCard from "@/components/cards/SearchedPlayerCard";
 import { formatSearchedPlayerName } from "@/lib/utils";
 import { toast } from "sonner";
+import { fetchPlayerData } from "@/lib/actions";
+import PlayerCardLoader from "./loading";
 
 interface PlayerInfo {
   player: {
@@ -25,7 +25,7 @@ interface PlayerInfo {
 
 const PlayerStatsPage = () => {
   const [playerInfo, setPlayerInfo] = useState<PlayerInfo>();
-  const [recentPlayers, setRecentPlayers] = useState<Array<PlayerInfo>>([]);
+  // const [recentPlayers, setRecentPlayers] = useState<Array<PlayerInfo>>([]);
   const [loading, setLoading] = useState(false);
 
   const apiKey = process.env.NEXT_PUBLIC_API_KEY;
@@ -48,23 +48,19 @@ const PlayerStatsPage = () => {
     setLoading(true);
 
     try {
-      const response = await axios.get(
-        `https://marvelrivalsapi.com/api/v1/player/${playerIdentifier}`,
-        {
-          headers: { "x-api-key": apiKey },
-        }
-      );
+      const data = await fetchPlayerData(playerIdentifier);
 
-      setPlayerInfo(response.data);
+      console.log(data);
+      setPlayerInfo(data);
 
       //Recent searches should only be the three most recent players
-      setRecentPlayers((prev) => {
-        const updatedList = [response.data, ...prev].slice(0, 3); //adding the new search at the beggining of the array
-        return updatedList;
-      });
+      // setRecentPlayers((prev) => {
+      //   const updatedList = [data, ...prev].slice(0, 3); //adding the new search at the beggining of the array
+      //   return updatedList;
+      // });
 
-      toast.success(`${response.data.name}'s stats loaded successfully!`, {
-        description: `Feteched on ${new Date().toLocaleString()}`,
+      toast.success(`${data.name}'s stats loaded successfully!`, {
+        description: `Loaded on ${new Date().toLocaleString()}`,
       });
     } catch (error) {
       toast.error(`Could not load player stats.`, {
@@ -77,7 +73,7 @@ const PlayerStatsPage = () => {
   };
 
   return (
-    <section className="p-5">
+    <section className="p-5 flex flex-col gap-5">
       <div className="w-full flex justify-between items-end">
         <div className="w-6/10 flex flex-col gap-5">
           <div>
@@ -114,6 +110,11 @@ const PlayerStatsPage = () => {
             </button>
           </form>
         </div>
+      </div>
+
+      <div>
+        {loading && <PlayerCardLoader />}
+        {playerInfo && <SearchedPlayerCard playerInfo={playerInfo} />}
       </div>
     </section>
   );

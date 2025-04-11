@@ -20,7 +20,7 @@ const DevDiaries = ({ devDiaries }: { devDiaries: apiData[] }) => {
         Dev Diaries
       </h1>
 
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-row flex-wrap gap-5 justify-between">
         {devDiaries.map((devDiary, index) => (
           <NewsCard
             newsType="devDiaries"

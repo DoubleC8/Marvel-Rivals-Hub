@@ -71,4 +71,21 @@ export const fetchNewsPageData = async (newsType: string, newsId: string) => {
   }
 };
 
+export const fetchPlayerData = async(playerIdentifier:string) => {
+
+  try {
+    const response = await axios.get(
+      `https://marvelrivalsapi.com/api/v1/player/${playerIdentifier}`,
+      {
+        headers: { "x-api-key": process.env.API_KEY },
+      }
+    );
+
+    return response.data;
+  } catch(error){
+    console.error("Error fetching player data: ", error);
+  }
+
+}
+
 

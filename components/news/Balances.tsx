@@ -20,7 +20,7 @@ const Balances = ({ balances }: { balances: apiData[] }) => {
         Balance Changes
       </h1>
 
-      <div className="flex flex-col gap-5">
+      <div className="flex flex-row flex-wrap gap-5 justify-between">
         {balances.map((balance, index) => (
           <NewsCard
             newsType="balances"
