@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <div
       className="w-full px-5 py-3 bg-[var(--black)] bottom-0 left-0
-     text-[var(--secondary-text)] flex flex-col gap-3 text-lg "
+     text-[var(--secondary-text)] flex flex-col gap-3 text-lg z-50"
     >
       <div className="flex gap-3 justify-center">
         <Link

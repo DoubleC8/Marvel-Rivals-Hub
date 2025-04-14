@@ -5,7 +5,6 @@
 
 import { signIn, signOut } from "@/auth";
 import axios from "axios";
-import { toast } from "sonner";
 
 export const login = async () => {
   await signIn("github", { redirectTo: "/" });
@@ -89,3 +88,4 @@ export const fetchPlayerData = async(playerIdentifier:string) => {
 }
 
 
+// https://marvelrivalsapi.com/api/v1/player/Sypeh

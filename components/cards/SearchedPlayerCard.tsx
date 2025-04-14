@@ -1,5 +1,6 @@
 import { formatStats } from "@/lib/utils";
 import React from "react";
+import PrivatePlayerCard from "./PrivatePlayerCard";
 
 interface PlayerInfo {
   player: {
@@ -8,7 +9,7 @@ interface PlayerInfo {
     uid: string;
     icon: { player_icon: string };
     info: { login_os: string };
-    rank: { image: string; playerRank: string };
+    rank: { rank: string; image: string; playerRank: string };
   };
   overall_stats: {
     ranked: { total_matches: number; total_wins: number };
@@ -16,14 +17,24 @@ interface PlayerInfo {
   };
 }
 
-const SearchedPlayerCard = ({ playerInfo }: { playerInfo: PlayerInfo }) => {
+const SearchedPlayerCard = ({
+  playerInfo,
+  hasSearched,
+}: {
+  playerInfo: PlayerInfo | undefined;
+  hasSearched: boolean;
+}) => {
+  if (!playerInfo || !playerInfo.player?.name || !playerInfo.player?.uid) {
+    return <PrivatePlayerCard />;
+  }
+
   return (
     <div
-      className="flex w-3/4 h-[150px] p-5 bg-[var(--secondary-background)] 
-      border-[2px] border-[var(--purple)] items-center rounded-xl mx-auto justify-between"
+      className="flex w-3/4 h-[150px] p-3 bg-[var(--secondary-background)] 
+    border-[2px] border-[var(--purple)] items-center rounded-xl mx-auto justify-between"
       style={{ fontFamily: "var(--marvelFont)" }}
     >
-      <div className="flex gap-5 items-center">
+      <div className="flex gap-5 items-center w-1/4">
         <img
           src={`https://marvelrivalsapi.com/rivals${playerInfo?.player?.icon?.player_icon}`}
           alt={`${playerInfo?.player?.name} Icon`}
@@ -38,50 +49,66 @@ const SearchedPlayerCard = ({ playerInfo }: { playerInfo: PlayerInfo }) => {
         </div>
       </div>
 
-      <div className="flex flex-col gap-1 h-[100px] text-center ">
-        <h1 className="text-3xl tracking-wider">Win Percentage</h1>
-        <div className="tracking-wide text-xl">
-          <h2>
-            Ranked:{" "}
-            {playerInfo?.overall_stats?.ranked?.total_matches
-              ? formatStats(
-                  playerInfo?.overall_stats?.ranked?.total_wins,
-                  playerInfo?.overall_stats?.ranked?.total_matches
-                )
-              : "N/A"}
-          </h2>
-          <h2>
-            Unranked:{" "}
-            {playerInfo?.overall_stats?.unranked?.total_matches
-              ? formatStats(
-                  playerInfo?.overall_stats?.unranked?.total_wins,
-                  playerInfo?.overall_stats?.unranked?.total_matches
-                )
-              : "N/A"}
+      <div className="w-7/10 flex justify-between">
+        <div className="flex flex-col gap-1 h-[100px] text-center">
+          <h1 className="text-3xl tracking-wider">Win Percentage</h1>
+          <div className="tracking-wide text-xl">
+            <h2>
+              Ranked:{" "}
+              {playerInfo?.overall_stats?.ranked?.total_matches
+                ? formatStats(
+                    playerInfo?.overall_stats?.ranked?.total_wins,
+                    playerInfo?.overall_stats?.ranked?.total_matches
+                  )
+                : "N/A"}
+            </h2>
+            <h2>
+              Unranked:{" "}
+              {playerInfo?.overall_stats?.unranked?.total_matches
+                ? formatStats(
+                    playerInfo?.overall_stats?.unranked?.total_wins,
+                    playerInfo?.overall_stats?.unranked?.total_matches
+                  )
+                : "N/A"}
+            </h2>
+          </div>
+        </div>
+
+        <div className="flex flex-col h-[100px] text-center">
+          <h1 className="text-3xl tracking-wider">Rank</h1>
+          {playerInfo?.player?.rank?.rank === "Invalid level" ? (
+            <div className="flex justify-center h-[50px] ">
+              <h2 className="flex flex-col justify-center tracking-wide text-xl">
+                Current Rank: Bronze
+              </h2>
+              <img
+                src={`https://marvelrivalsapi.com/rivals/ranked/bronze.png`}
+                alt={`${playerInfo?.player?.name} Rank`}
+                width={50}
+                height={50}
+              />
+            </div>
+          ) : (
+            <div className="flex justify-center h-[50px] ">
+              <h2 className="flex flex-col justify-center tracking-wide text-xl">
+                Current Rank: {playerInfo?.player?.rank?.playerRank}
+              </h2>
+              <img
+                src={`https://marvelrivalsapi.com/rivals${playerInfo?.player?.rank?.image}`}
+                alt={`${playerInfo?.player?.name} Rank`}
+                width={50}
+                height={50}
+              />
+            </div>
+          )}
+        </div>
+
+        <div className="flex flex-col gap-1 h-[100px] text-center">
+          <h1 className="text-3xl tracking-wider">Console</h1>
+          <h2 className="text-xl tracking-wide">
+            {playerInfo?.player?.info?.login_os}
           </h2>
         </div>
-      </div>
-
-      <div className="flex flex-col h-[100px] text-center">
-        <h1 className="text-3xl tracking-wider">Rank</h1>
-        <div className="flex justify-center h-[50px] ">
-          <h2 className="flex flex-col justify-center tracking-wide text-xl">
-            Current Rank: {playerInfo?.player?.rank?.playerRank}
-          </h2>
-          <img
-            src={`https://marvelrivalsapi.com/rivals${playerInfo?.player?.rank?.image}`}
-            alt={`${playerInfo?.player?.name} Rank`}
-            width={50}
-            height={50}
-          />
-        </div>
-      </div>
-
-      <div className="flex flex-col gap-1 h-[100px] text-center ">
-        <h1 className="text-3xl tracking-wider">Console</h1>
-        <h2 className="text-xl tracking-wide">
-          {playerInfo?.player?.info?.login_os}
-        </h2>
       </div>
     </div>
   );

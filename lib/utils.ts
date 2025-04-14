@@ -28,16 +28,16 @@ export const formatText = (text: string = ""): string => {
     ); // Convert links
 };
 
-export const formatSearchedPlayerName = (playerName: string): string => {
-  const formattedName = playerName.toLowerCase().split(' ');
-  for (var i = 0; i < formattedName.length; i++) {
-      // You do not need to check if i is larger than splitStr length, as your for does that for you
-      // Assign it back to the array
-      formattedName[i] = formattedName[i].charAt(0).toUpperCase() + formattedName[i].substring(1);     
-  }
-  // Directly return the joined string
-  return formattedName.join(' '); 
-}
+// export const formatSearchedPlayerName = (playerName: string): string => {
+//   const formattedName = playerName.toLowerCase().split(' ');
+//   for (var i = 0; i < formattedName.length; i++) {
+//       // You do not need to check if i is larger than splitStr length, as your for does that for you
+//       // Assign it back to the array
+//       formattedName[i] = formattedName[i].charAt(0).toUpperCase() + formattedName[i].substring(1);     
+//   }
+//   // Directly return the joined string
+//   return formattedName.join(' '); 
+// }
 
 export const formatStats = (total_wins: number, total_matches: number): string => {
   return (
@@ -108,9 +108,9 @@ export const get_rank = (level: number): { rank: string; image: string | null; c
 };
 
 export const getRankClass = (rank: number) => {
-  const base = "py-2 rounded-xl text-[var(--black)]";
+  const base = "py-2 rounded-xl text-[var(--primary-text)]";
 
-  if (rank === 1) return `${base} bg-[var(--gold)]`;
+  if (rank === 1) return `${base} !text-[var(--black)] bg-[var(--gold)]`;
   if (rank === 2) return `${base} bg-[var(--silver)]`;
   if (rank === 3) return `${base} bg-[var(--bronze)]`;
 }

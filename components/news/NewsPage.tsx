@@ -21,7 +21,7 @@ const NewsPage = ({
       {imagePath && (
         <img
           src={`https://marvelrivalsapi.com/rivals${imagePath}`}
-          alt="Balance Image"
+          alt="Dev Dairy Image"
           className="w-full h-[550px] rounded-xl mx-auto"
         />
       )}

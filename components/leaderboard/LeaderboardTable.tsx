@@ -66,15 +66,15 @@ const LeaderboardTable = ({
               </TableCell>
 
               <TableCell>
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-5">
                   <img
                     src={`https://marvelrivalsapi.com/rivals/players/heads/player_head_${player.info.cur_head_icon_id}.png`}
                     alt="Player Icon"
-                    className="rounded-full"
+                    className="rounded-lg"
                     width={50}
                     height={50}
                   />
-                  <span className="font-extrabold text-md">
+                  <span className="font-extrabold text-lg">
                     {player.info.name}
                   </span>
                 </div>
@@ -82,24 +82,26 @@ const LeaderboardTable = ({
 
               <TableCell>
                 <div className="flex items-center gap-3">
-                  <img
-                    src={rankInfo.image || ""}
-                    alt="Rank Icon"
-                    width={50}
-                    height={50}
-                  />
-                  <span className="font-extrabold text-md">
+                  {rankInfo.image && (
+                    <img
+                      src={rankInfo.image}
+                      alt="Rank Icon"
+                      width={50}
+                      height={50}
+                    />
+                  )}
+                  <span className="font-extrabold text-lg">
                     {rankInfo.rank}
                   </span>
                 </div>
               </TableCell>
 
-              <TableCell className="text-[var(--secondary-text)]">
+              <TableCell className="text-[var(--secondary-text)] text-lg">
                 {player.info.rank_season?.rank_score}
               </TableCell>
 
               <TableCell>
-                <div className="flex gap-2 justify-center items-center">
+                <div className="flex gap-2 justify-center items-center text-lg">
                   <span className="text-[var(--yellow)]">
                     {player.matches > 0
                       ? formatStats(player.wins, player.matches)

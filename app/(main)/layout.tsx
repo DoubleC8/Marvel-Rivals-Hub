@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import Footer from "@/components/Footer";
+import Footer from "@/components/navbars/Footer";
 
 import TopNavbar from "@/components/navbars/TopNavbar";
 import { Toaster } from "@/components/ui/sonner";

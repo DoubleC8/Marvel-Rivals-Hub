@@ -3,10 +3,11 @@
 import { Search } from "lucide-react";
 import React, { useState } from "react";
 import SearchedPlayerCard from "@/components/cards/SearchedPlayerCard";
-import { formatSearchedPlayerName } from "@/lib/utils";
+// import { formatSearchedPlayerName } from "@/lib/utils";
 import { toast } from "sonner";
 import { fetchPlayerData } from "@/lib/actions";
 import PlayerCardLoader from "./loading";
+import StatsHeader from "@/components/player-stats/StatsHeader";
 
 interface PlayerInfo {
   player: {
@@ -15,7 +16,7 @@ interface PlayerInfo {
     uid: string;
     icon: { player_icon: string };
     info: { login_os: string };
-    rank: { image: string; playerRank: string };
+    rank: { rank: string; image: string; playerRank: string };
   };
   overall_stats: {
     ranked: { total_matches: number; total_wins: number };
@@ -25,44 +26,45 @@ interface PlayerInfo {
 
 const PlayerStatsPage = () => {
   const [playerInfo, setPlayerInfo] = useState<PlayerInfo>();
-  // const [recentPlayers, setRecentPlayers] = useState<Array<PlayerInfo>>([]);
   const [loading, setLoading] = useState(false);
-
-  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+  const [hasSearched, setHasSearched] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
-    const rawPlayerInput = formData.get("playerInfo") as string | null;
+    const playerIdentifier = formData.get("playerInfo") as string | null;
 
-    if (!rawPlayerInput) {
+    if (!playerIdentifier) {
       return;
     }
 
-    const isUID = /^\d+$/.test(rawPlayerInput);
-    const playerIdentifier = isUID
-      ? rawPlayerInput
-      : formatSearchedPlayerName(rawPlayerInput);
+    // const isUID = /^\d+$/.test(rawPlayerInput);
+    // const playerIdentifier = isUID
+    //   ? rawPlayerInput
+    //   : formatSearchedPlayerName(rawPlayerInput);
 
     setPlayerInfo(undefined);
     setLoading(true);
+    setHasSearched(true);
 
     try {
       const data = await fetchPlayerData(playerIdentifier);
 
       console.log(data);
-      setPlayerInfo(data);
 
-      //Recent searches should only be the three most recent players
-      // setRecentPlayers((prev) => {
-      //   const updatedList = [data, ...prev].slice(0, 3); //adding the new search at the beggining of the array
-      //   return updatedList;
-      // });
+      if (!data?.player?.name) {
+        setPlayerInfo(undefined);
+      } else {
+        setPlayerInfo(data);
+      }
 
-      toast.success(`${data.name}'s stats loaded successfully!`, {
-        description: `Loaded on ${new Date().toLocaleString()}`,
-      });
+      if (data?.player?.name) {
+        toast.success(`${data.player.name}'s stats loaded successfully!`, {
+          description: `Loaded on ${new Date().toLocaleString()}`,
+        });
+      }
     } catch (error) {
+      setPlayerInfo(undefined);
       toast.error(`Could not load player stats.`, {
         description: "Please check the name or try using their UID.",
       });
@@ -73,21 +75,10 @@ const PlayerStatsPage = () => {
   };
 
   return (
-    <section className="p-5 flex flex-col gap-5">
-      <div className="w-full flex justify-between items-end">
+    <section className="w-full h-[90vh] flex flex-col p-5 justify-center">
+      <div className="w-full h-1/2 flex justify-between items-end">
         <div className="w-6/10 flex flex-col gap-5">
-          <div>
-            <h1
-              className="text-7xl flex gap-3"
-              style={{ fontFamily: "var(--marvelFont)" }}
-            >
-              <Search size={60} color={`var(--secondary-text)`} />
-              Look up Player Stats
-            </h1>
-            <p className="text-xl text-[var(--secondary-text)]">
-              Check Marvel Rivals Player Stats
-            </p>
-          </div>
+          <StatsHeader />
 
           <form
             onSubmit={handleSubmit}
@@ -112,9 +103,14 @@ const PlayerStatsPage = () => {
         </div>
       </div>
 
-      <div>
+      <div className="h-1/2 flex flex-col justify-center">
         {loading && <PlayerCardLoader />}
-        {playerInfo && <SearchedPlayerCard playerInfo={playerInfo} />}
+        {!loading && hasSearched && (
+          <SearchedPlayerCard
+            playerInfo={playerInfo}
+            hasSearched={hasSearched}
+          />
+        )}
       </div>
     </section>
   );
