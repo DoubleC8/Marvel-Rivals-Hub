@@ -17,6 +17,7 @@ interface PlayerInfo {
     icon: { player_icon: string };
     info: { login_os: string };
     rank: { rank: string; image: string; playerRank: string };
+    isPrivate: boolean;
   };
   overall_stats: {
     ranked: { total_matches: number; total_wins: number };
@@ -27,7 +28,6 @@ interface PlayerInfo {
 const PlayerStatsPage = () => {
   const [playerInfo, setPlayerInfo] = useState<PlayerInfo>();
   const [loading, setLoading] = useState(false);
-  const [hasSearched, setHasSearched] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -45,37 +45,27 @@ const PlayerStatsPage = () => {
 
     setPlayerInfo(undefined);
     setLoading(true);
-    setHasSearched(true);
 
     try {
       const data = await fetchPlayerData(playerIdentifier);
 
       console.log(data);
-
-      if (!data?.player?.name) {
-        setPlayerInfo(undefined);
-      } else {
-        setPlayerInfo(data);
-      }
-
-      if (data?.player?.name) {
-        toast.success(`${data.player.name}'s stats loaded successfully!`, {
-          description: `Loaded on ${new Date().toLocaleString()}`,
-        });
-      }
+      setPlayerInfo(data);
+      toast.success(`${data.player.name}'s stats loaded successfully!`, {
+        description: `Loaded on ${new Date().toLocaleString()}`,
+      });
     } catch (error) {
-      setPlayerInfo(undefined);
       toast.error(`Could not load player stats.`, {
-        description: "Please check the name or try using their UID.",
+        description: "Please check their name or use their UID.",
       });
       console.error("Error fetching player stats:", error);
     } finally {
-      setLoading(false);
+      setLoading(false); // ✅ this ensures loading state is cleared no matter what
     }
   };
 
   return (
-    <section className="w-full h-[90vh] flex flex-col p-5 justify-center">
+    <section className="w-full h-[92vh] flex flex-col p-5 justify-center">
       <div className="w-full h-1/2 flex justify-between items-end">
         <div className="w-6/10 flex flex-col gap-5">
           <StatsHeader />
@@ -105,13 +95,13 @@ const PlayerStatsPage = () => {
 
       <div className="h-1/2 flex flex-col justify-center">
         {loading && <PlayerCardLoader />}
-        {!loading && hasSearched && (
-          <SearchedPlayerCard
-            playerInfo={playerInfo}
-            hasSearched={hasSearched}
-          />
-        )}
+        {playerInfo && <SearchedPlayerCard playerInfo={playerInfo} />}
       </div>
+      <p className="text-center text-[var(--secondary-text)] mt-auto">
+        IMPORTANT: Searching player stats by username is a new feature and is
+        not always reliable. Searching player stats by player UID is more
+        stable.
+      </p>
     </section>
   );
 };

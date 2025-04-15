@@ -2,6 +2,7 @@ import React from "react";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { formatStats, get_rank, getRankClass } from "@/lib/utils";
 import LeaderboardTableHeader from "./leaderboard-table/LeaderboardTableHeader";
+import PaginationMenuBar from "./PaginationMenuBar";
 
 interface PlayerInfo {
   cur_head_icon_id: string;
@@ -40,84 +41,105 @@ interface LeaderboardTableProps {
   players: Player[];
   currentPage: number;
   playersPerPage: number;
+  totalPlayers: number;
+  hero: string;
+  consoleType: string;
+  onPageChange: (page: number) => void;
 }
 
 const LeaderboardTable = ({
   players,
   currentPage,
   playersPerPage,
+  totalPlayers,
+  hero,
+  consoleType,
+  onPageChange,
 }: LeaderboardTableProps) => {
   return (
-    <Table>
-      <LeaderboardTableHeader />
-      <TableBody>
-        {players.map((player, index) => {
-          const rankInfo = get_rank(player.info.rank_season?.level || 0);
-          const losses = player.matches - player.wins;
-          const globalRank = (currentPage - 1) * playersPerPage + index + 1;
+    <div className="flex flex-col gap-5 justify-center w-full items-center">
+      <p className="text-[var(--secondary-text)] w-3/4">
+        Top {totalPlayers} {hero} Players on {consoleType.toUpperCase()}
+      </p>
 
-          return (
-            <TableRow
-              className="bg-[var(--accent-color)] border-b-[2px] border-b-[var(--secondary-accent-color)] font-extrabold hover:opacity-85 ease-in hover:cursor-pointer"
-              key={player.player_uid}
-            >
-              <TableCell className="text-center text-lg">
-                <p className={getRankClass(globalRank)}>{globalRank}</p>
-              </TableCell>
+      <Table>
+        <LeaderboardTableHeader />
+        <TableBody>
+          {players.map((player, index) => {
+            const rankInfo = get_rank(player.info.rank_season?.level || 0);
+            const losses = player.matches - player.wins;
+            const globalRank = (currentPage - 1) * playersPerPage + index + 1;
 
-              <TableCell>
-                <div className="flex items-center gap-5">
-                  <img
-                    src={`https://marvelrivalsapi.com/rivals/players/heads/player_head_${player.info.cur_head_icon_id}.png`}
-                    alt="Player Icon"
-                    className="rounded-lg"
-                    width={50}
-                    height={50}
-                  />
-                  <span className="font-extrabold text-lg">
-                    {player.info.name}
-                  </span>
-                </div>
-              </TableCell>
+            return (
+              <TableRow
+                className="bg-[var(--accent-color)] border-b-[2px] border-b-[var(--secondary-accent-color)] font-extrabold hover:opacity-85 ease-in hover:cursor-pointer"
+                key={player.player_uid}
+              >
+                <TableCell className="text-center text-lg">
+                  <p className={getRankClass(globalRank)}>{globalRank}</p>
+                </TableCell>
 
-              <TableCell>
-                <div className="flex items-center gap-3">
-                  {rankInfo.image && (
+                <TableCell>
+                  <div className="flex items-center gap-5">
                     <img
-                      src={rankInfo.image}
-                      alt="Rank Icon"
+                      src={`https://marvelrivalsapi.com/rivals/players/heads/player_head_${player.info.cur_head_icon_id}.png`}
+                      alt="Player Icon"
+                      className="rounded-lg"
                       width={50}
                       height={50}
                     />
-                  )}
-                  <span className="font-extrabold text-lg">
-                    {rankInfo.rank}
-                  </span>
-                </div>
-              </TableCell>
+                    <span className="font-extrabold text-lg">
+                      {player.info.name}
+                    </span>
+                  </div>
+                </TableCell>
 
-              <TableCell className="text-[var(--secondary-text)] text-lg">
-                {player.info.rank_season?.rank_score}
-              </TableCell>
+                <TableCell>
+                  <div className="flex items-center gap-3">
+                    {rankInfo.image && (
+                      <img
+                        src={rankInfo.image}
+                        alt="Rank Icon"
+                        width={50}
+                        height={50}
+                      />
+                    )}
+                    <span className="font-extrabold text-lg">
+                      {rankInfo.rank}
+                    </span>
+                  </div>
+                </TableCell>
 
-              <TableCell>
-                <div className="flex gap-2 justify-center items-center text-lg">
-                  <span className="text-[var(--yellow)]">
-                    {player.matches > 0
-                      ? formatStats(player.wins, player.matches)
-                      : "0.00%"}
-                  </span>
-                  <span className="text-[var(--secondary-text)]">
-                    <span className="text-[var(--blue)]">{player.wins}W</span> /{" "}
-                    <span className="text-[var(--red)]">{losses}L</span>
-                  </span>
-                </div>
-              </TableCell>
-            </TableRow>
-          );
-        })}
-      </TableBody>
-    </Table>
+                <TableCell className="text-[var(--secondary-text)] text-lg">
+                  {player.info.rank_season?.rank_score}
+                </TableCell>
+
+                <TableCell>
+                  <div className="flex gap-2 justify-center items-center text-lg">
+                    <span className="text-[var(--yellow)]">
+                      {player.matches > 0
+                        ? formatStats(player.wins, player.matches)
+                        : "0.00%"}
+                    </span>
+                    <span className="text-[var(--secondary-text)]">
+                      <span className="text-[var(--blue)]">{player.wins}W</span>{" "}
+                      / <span className="text-[var(--red)]">{losses}L</span>
+                    </span>
+                  </div>
+                </TableCell>
+              </TableRow>
+            );
+          })}
+        </TableBody>
+      </Table>
+
+      <PaginationMenuBar
+        currentPage={currentPage}
+        totalPages={Math.ceil(totalPlayers / playersPerPage)}
+        onPageChange={onPageChange}
+      />
+    </div>
   );
 };
+
 export default LeaderboardTable;

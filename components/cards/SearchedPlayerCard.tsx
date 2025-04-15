@@ -10,6 +10,7 @@ interface PlayerInfo {
     icon: { player_icon: string };
     info: { login_os: string };
     rank: { rank: string; image: string; playerRank: string };
+    isPrivate: boolean;
   };
   overall_stats: {
     ranked: { total_matches: number; total_wins: number };
@@ -17,17 +18,7 @@ interface PlayerInfo {
   };
 }
 
-const SearchedPlayerCard = ({
-  playerInfo,
-  hasSearched,
-}: {
-  playerInfo: PlayerInfo | undefined;
-  hasSearched: boolean;
-}) => {
-  if (!playerInfo || !playerInfo.player?.name || !playerInfo.player?.uid) {
-    return <PrivatePlayerCard />;
-  }
-
+const SearchedPlayerCard = ({ playerInfo }: { playerInfo: PlayerInfo }) => {
   return (
     <div
       className="flex w-3/4 h-[150px] p-3 bg-[var(--secondary-background)] 
@@ -105,9 +96,10 @@ const SearchedPlayerCard = ({
 
         <div className="flex flex-col gap-1 h-[100px] text-center">
           <h1 className="text-3xl tracking-wider">Console</h1>
-          <h2 className="text-xl tracking-wide">
-            {playerInfo?.player?.info?.login_os}
-          </h2>
+          <div className="tracking-wide text-xl">
+            <h2>{playerInfo?.player?.info?.login_os}</h2>
+            <h2>{`${playerInfo?.player?.isPrivate ? "Private" : "Public"}`}</h2>
+          </div>
         </div>
       </div>
     </div>

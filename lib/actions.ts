@@ -87,5 +87,21 @@ export const fetchPlayerData = async(playerIdentifier:string) => {
 
 }
 
+export const fetchLeaderboardData = async(hero: string, consoleType: string) => {
+  try {
+    const response = await axios.get(
+      `https://marvelrivalsapi.com/api/v1/heroes/leaderboard/${hero}?platform=${consoleType}`,
+      {
+        headers: { "x-api-key": process.env.API_KEY },
+      }
+    );
+
+    return response.data.players;
+    
+  } catch (error) {
+    console.error("Error fetching player leaderboard data:", error);
+  }
+}
+
 
 // https://marvelrivalsapi.com/api/v1/player/Sypeh

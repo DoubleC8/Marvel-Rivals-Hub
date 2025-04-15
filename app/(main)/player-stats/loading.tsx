@@ -27,9 +27,10 @@ const PlayerCardLoader = () => {
         <Skeleton className="bg-zinc-800 w-[70%] h-6" />
       </div>
 
-      <div className="flex flex-col gap-3 h-[100px]  w-1/4 items-end">
+      <div className="flex flex-col gap-3 h-[100px] w-1/4 items-end">
         <Skeleton className="bg-zinc-800 w-1/2 h-9" />
         <Skeleton className="bg-zinc-800 w-[45%] h-6" />
+        <Skeleton className="bg-zinc-800 w-[30%] h-6" />
       </div>
     </Skeleton>
   );

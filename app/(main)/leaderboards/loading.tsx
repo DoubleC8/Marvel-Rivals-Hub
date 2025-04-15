@@ -7,7 +7,7 @@ const LeaderboardLoadingPage = () => {
     <div className="w-3/4 mx-auto flex flex-col gap-5 justify-center z-0">
       <Skeleton className="w-3/10 h-6 bg-zinc-700" />
       <Skeleton className="w-full h-[80vh] border-[2px] border-zinc-800 rounded-lg bg-zinc-700 flex flex-col">
-        <div className="h-1/10 flex py-2 px-1">
+        <div className="h-[5%] flex py-2 px-1">
           <div className="w-1/2 flex gap-3">
             <Skeleton className="w-1/10 h-8 bg-zinc-800" />
             <Skeleton className="w-1/10 h-8 bg-zinc-800" />

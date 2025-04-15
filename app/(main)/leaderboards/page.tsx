@@ -1,14 +1,13 @@
 "use client";
 
-import axios from "axios";
 import React, { useState, useEffect } from "react";
 import { toast } from "sonner";
 
 import LeaderboardLoadingPage from "./loading";
 import LeaderboardTable from "@/components/leaderboard/LeaderboardTable";
 import LeaderboardHeader from "@/components/leaderboard/LeaderboardHeader";
-import PaginationMenuBar from "@/components/leaderboard/PaginationMenuBar";
 import LeaderboardNavbar from "@/components/leaderboard/LeaderboardNavbar";
+import { fetchLeaderboardData } from "@/lib/actions";
 
 interface PlayerInfo {
   cur_head_icon_id: string;
@@ -59,28 +58,19 @@ const Page = () => {
   );
   const totalPages = Math.ceil(heroLeaderboard.length / playersPerPage);
 
-  const apiKey = process.env.NEXT_PUBLIC_API_KEY;
-
   useEffect(() => {
     const fetchHeroLeaderboard = async () => {
       setLoading(true);
       try {
-        const response = await axios.get(
-          `https://marvelrivalsapi.com/api/v1/heroes/leaderboard/${hero}?platform=${consoleType}`,
-          {
-            headers: { "x-api-key": apiKey },
-          }
-        );
-
-        console.log(response.data);
-        setHeroLeaderboard(response.data.players);
-        toast.success("Leaderboard data fetched successfuly!", {
-          description: `Data for the top ${hero.toLocaleUpperCase()}
-            players fetched on ${new Date().toLocaleString()}`,
+        const leaderboardData = await fetchLeaderboardData(hero, consoleType);
+        console.log(leaderboardData);
+        setHeroLeaderboard(leaderboardData);
+        toast.success("Leaderboard data fetched successfully!", {
+          description: `Data for the top ${hero.toUpperCase()} players fetched on ${new Date().toLocaleString()}`,
         });
       } catch (error) {
-        toast.error(`Could not load leaderboard.`);
-        console.error("Error fetching player stats:", error);
+        toast.error("Could not load leaderboard.");
+        console.error("Error fetching leaderboard data: ", error);
       } finally {
         setLoading(false);
       }
@@ -97,31 +87,22 @@ const Page = () => {
   return (
     <section className="py-3 px-5 flex flex-col justify-center items-center gap-5 mb-5">
       <LeaderboardHeader />
-
       <LeaderboardNavbar
         onHeroChange={setHero}
         onConsoleChange={setConsoletype}
       />
-
       {loading ? (
         <LeaderboardLoadingPage />
       ) : (
-        <div className="flex flex-col gap-5 justify-center w-full items-center">
-          <p className="text-[var(--secondary-text)] w-3/4">
-            Top {heroLeaderboard.length} {hero} Players on{" "}
-            {consoleType.toLocaleUpperCase()}
-          </p>
-          <LeaderboardTable
-            players={currentPlayers}
-            currentPage={currentPage}
-            playersPerPage={playersPerPage}
-          />
-          <PaginationMenuBar
-            currentPage={currentPage}
-            totalPages={totalPages}
-            onPageChange={setCurrentPage}
-          />
-        </div>
+        <LeaderboardTable
+          players={currentPlayers}
+          currentPage={currentPage}
+          playersPerPage={playersPerPage}
+          totalPlayers={heroLeaderboard.length}
+          hero={hero}
+          consoleType={consoleType}
+          onPageChange={setCurrentPage}
+        />
       )}
     </section>
   );
