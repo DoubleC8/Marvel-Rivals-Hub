@@ -70,7 +70,7 @@ const SearchedPlayerCard = ({ playerInfo }: { playerInfo: PlayerInfo }) => {
           {playerInfo?.player?.rank?.rank === "Invalid level" ? (
             <div className="flex justify-center h-[50px] ">
               <h2 className="flex flex-col justify-center tracking-wide text-xl">
-                Current Rank: Bronze
+                Current Rank: Bronze I
               </h2>
               <img
                 src={`https://marvelrivalsapi.com/rivals/ranked/bronze.png`}

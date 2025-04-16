@@ -88,7 +88,7 @@ const LeaderboardTable = ({
                       width={50}
                       height={50}
                     />
-                    <span className="font-extrabold text-lg">
+                    <span className="font-extrabold text-xl">
                       {player.info.name}
                     </span>
                   </div>
@@ -96,22 +96,40 @@ const LeaderboardTable = ({
 
                 <TableCell>
                   <div className="flex items-center gap-3">
-                    {rankInfo.image && (
-                      <img
-                        src={rankInfo.image}
-                        alt="Rank Icon"
-                        width={50}
-                        height={50}
-                      />
+                    {rankInfo.rank === "Invalid level" ? (
+                      <>
+                        <img
+                          src={`https://marvelrivalsapi.com/rivals/ranked/bronze.png`}
+                          alt={`${player.info.name} Rank`}
+                          width={50}
+                          height={50}
+                        />
+                        <h2 className="flex flex-col justify-center tracking-wide text-xl">
+                          Bronze I
+                        </h2>
+                      </>
+                    ) : (
+                      <>
+                        {rankInfo.image && (
+                          <img
+                            src={rankInfo.image}
+                            alt="Rank Icon"
+                            width={50}
+                            height={50}
+                          />
+                        )}
+                        <h2 className="font-extrabold text-xl">
+                          {rankInfo.rank}
+                        </h2>
+                      </>
                     )}
-                    <span className="font-extrabold text-lg">
-                      {rankInfo.rank}
-                    </span>
                   </div>
                 </TableCell>
 
-                <TableCell className="text-[var(--secondary-text)] text-lg">
-                  {player.info.rank_season?.rank_score}
+                <TableCell className="text-[var(--secondary-text)] text-lg text-center">
+                  {player.info.rank_season?.rank_score
+                    ? player.info.rank_season?.rank_score
+                    : "N/A"}
                 </TableCell>
 
                 <TableCell>

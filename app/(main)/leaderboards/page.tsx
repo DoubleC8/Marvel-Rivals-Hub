@@ -56,7 +56,6 @@ const Page = () => {
     indexOfFirstPlayer,
     indexOfLastPlayer
   );
-  const totalPages = Math.ceil(heroLeaderboard.length / playersPerPage);
 
   useEffect(() => {
     const fetchHeroLeaderboard = async () => {
@@ -85,15 +84,14 @@ const Page = () => {
   }, [hero, consoleType]);
 
   return (
-    <section className="py-3 px-5 flex flex-col justify-center items-center gap-5 mb-5">
+    <section className="min-h-[92vh] p-5 flex flex-col justify-between items-center gap-5">
       <LeaderboardHeader />
       <LeaderboardNavbar
         onHeroChange={setHero}
         onConsoleChange={setConsoletype}
       />
-      {loading ? (
-        <LeaderboardLoadingPage />
-      ) : (
+      {loading && <LeaderboardLoadingPage />}
+      {!loading && (
         <LeaderboardTable
           players={currentPlayers}
           currentPage={currentPage}
@@ -104,6 +102,11 @@ const Page = () => {
           onPageChange={setCurrentPage}
         />
       )}
+      <p className="text-center text-[var(--secondary-text)]">
+        IMPORTANT: Leaderboards may appear limited at the start of the season.
+        More player data will populate as the season progresses and players
+        complete ranked matches.
+      </p>
     </section>
   );
 };
