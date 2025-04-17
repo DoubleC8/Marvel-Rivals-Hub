@@ -34,7 +34,7 @@ const ChatWithPlayersSection = () => {
 
         {/*TODO: Make this take you create a player profile page (different from login page) */}
         <div>
-          <Link href="/find-teammates" className="homeSectionButton">
+          <Link href="/messages" className="homeSectionButton">
             Find Your Next Teammate
           </Link>
         </div>

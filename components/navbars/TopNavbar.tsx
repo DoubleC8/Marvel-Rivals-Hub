@@ -33,13 +33,14 @@ const TopNavbar = ({
           <Link href="/messages" className="navbarLink" title="Messages">
             Messages
           </Link>
-          <Link
+          {/* For now, do remove this as it can be put into the messaging portion */}
+          {/* <Link
             href="/find-teammates"
             className="navbarLink"
             title="Find Teammates"
           >
             Find Teammates
-          </Link>
+          </Link> */}
           <Link
             href="/leaderboards"
             className="navbarLink"
