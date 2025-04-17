@@ -29,7 +29,7 @@ const page = () => {
           >
             LOGIN
           </h2>
-          <p className="text-[var(--secondary-text)]">
+          <p className="text-[var(--secondary-text)] text-lg">
             Your ultimate companion for Marvel Rivals! Find the perfect
             teammates, track player stats, and stay updated with the latest tips
             and game updates. Whether you’re strategizing for victory or looking

@@ -12,6 +12,7 @@ const TopNavbar = ({
   userEmail: string;
   userProfilePic: string;
 }) => {
+  console.log("user email:", userEmail, "user profile pic: ", userProfilePic);
   const marevlRivalsIcon = "/images/marvel-rivals-icon-v2.webp";
   const defaultProfilePic = "/images/Default_pfp.png";
 
