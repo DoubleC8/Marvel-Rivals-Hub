@@ -9,6 +9,11 @@ export default async function middleware(request: NextRequest) {
   const session = await auth();
   const { pathname } = request.nextUrl;
 
+  // Redirect logged-in users away from the login page
+  if (pathname === "/login" && session) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
+
   // Check if the current path is a protected route
   const isProtected = protectedRoutes.some((route) =>
     pathname.startsWith(route)
