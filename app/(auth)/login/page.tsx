@@ -1,9 +1,12 @@
 import React from "react";
 import Form from "next/form";
-import GitHubLoginButton from "@/components/buttons/GitHubLoginButton";
+import LoginButton from "@/components/buttons/LoginButton";
 
 const page = () => {
   const marvelRivalsLogo = "/images/Marvel_Rivals_Logo.webp";
+  const githubLogo = "/images/github_logo.png";
+  const googleLogo = "/images/google_logo.png";
+
   return (
     <section className="flex h-screen">
       <div className="w-1/2 h-full bg-[var(--yellow)] flex flex-col justify-center">
@@ -29,7 +32,7 @@ const page = () => {
           >
             LOGIN
           </h2>
-          <p className="text-[var(--secondary-text)] text-lg">
+          <p className="text-[var(--secondary-text)] text-lg text-center">
             Your ultimate companion for Marvel Rivals! Find the perfect
             teammates, track player stats, and stay updated with the latest tips
             and game updates. Whether you’re strategizing for victory or looking
@@ -86,7 +89,8 @@ const page = () => {
               Or Login with:{" "}
             </p>
             <div className="flex flex-row gap-3 justify-center">
-              <GitHubLoginButton />
+              <LoginButton name="github" logo={githubLogo} />
+              <LoginButton name="google" logo={googleLogo} />
             </div>
           </div>
         </div>

@@ -1,0 +1,100 @@
+"use client";
+
+import { formatEmail } from "@/lib/actions";
+import axios from "axios";
+import Image from "next/image";
+import { useRouter } from "next/navigation";
+import React, { useState } from "react";
+
+interface IncomingFriendRequest {
+  senderId: string;
+  senderEmail: string;
+  senderImage: string;
+}
+
+interface FriendRequestsProps {
+  incomingFriendRequests: IncomingFriendRequest[];
+  sessionId: string;
+}
+
+const FriendRequests: React.FC<FriendRequestsProps> = ({
+  incomingFriendRequests,
+  sessionId,
+}) => {
+  const router = useRouter();
+  const [friendRequests, setFriendRequests] = useState<IncomingFriendRequest[]>(
+    incomingFriendRequests
+  );
+
+  const acceptFriend = async (senderId: string) => {
+    await axios.post(`/api/friends/accept`, { id: senderId });
+
+    setFriendRequests((prev) =>
+      prev.filter((request) => request.senderId !== senderId)
+    );
+
+    router.refresh();
+  };
+
+  const denyFriend = async (senderId: string) => {
+    await axios.post(`/api/friends/deny`, { id: senderId });
+
+    setFriendRequests((prev) =>
+      prev.filter((request) => request.senderId !== senderId)
+    );
+
+    router.refresh();
+  };
+
+  return (
+    <>
+      {friendRequests.length === 0 ? (
+        <p className="text-sm text-[var(--secondary-text)]">
+          Nothing to show here...
+        </p>
+      ) : (
+        friendRequests.map((request) => (
+          <div
+            key={request.senderId}
+            className="max-w-3/4 p-3 rounded-lg bg-[var(--accent-color)] flex gap-3 items-center justify-between"
+          >
+            <div className="flex gap-3 items-center">
+              {" "}
+              <Image
+                src={request.senderImage}
+                height={40}
+                width={40}
+                alt={`${request.senderEmail} Profile Pic`}
+                className="rounded-xl"
+              />
+              <p className="font-bold text-lg">{request.senderEmail}</p>{" "}
+            </div>
+
+            <div className="flex gap-3">
+              <button
+                onClick={() => acceptFriend(request.senderId)}
+                aria-label="Accept Friend Request"
+                className="min-w-[100px] bg-[var(--yellow)] text-[var(--black)] 
+              px-3 py-0.5 rounded-lg text-lg font-bold
+              hover:opacity-85 ease-in-out hover:cursor-pointer"
+              >
+                Confirm
+              </button>
+              <button
+                onClick={() => denyFriend(request.senderId)}
+                aria-label="Deny Friend Request"
+                className="min-w-[100px] bg-[var(--red)] 
+              px-3 py-0.5 rounded-lg text-lg font-bold
+              hover:opacity-85 ease-in-out hover:cursor-pointer"
+              >
+                Delete
+              </button>
+            </div>
+          </div>
+        ))
+      )}
+    </>
+  );
+};
+
+export default FriendRequests;

@@ -6,12 +6,12 @@
 import { signIn, signOut } from "@/auth";
 import axios from "axios";
 
-export const login = async () => {
-  await signIn("github", { redirectTo: "/" });
+export const login = async ({ name }: {name: string}) => {
+  await signIn(`${name}`, { redirectTo: "/" });
 };
 
 export const logout = async () => {
-  await signOut({ redirectTo: "/login" });
+  await signOut({ redirectTo: "/login", redirect:true });
 };
 
 export const formatEmail = async (email: string) => {

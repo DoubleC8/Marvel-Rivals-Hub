@@ -10,7 +10,7 @@ export default async function Layout({
   const session = await auth();
 
   return (
-    <main className="flex flex-col min-h-screen">
+    <main className="flex flex-col min-h-screen w-full">
       <TopNavbar
         userEmail={session?.user?.email ?? ""}
         userProfilePic={session?.user?.image ?? ""}

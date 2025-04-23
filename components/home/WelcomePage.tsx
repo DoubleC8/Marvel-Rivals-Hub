@@ -1,8 +1,14 @@
+import { auth } from "@/auth";
 import { ChevronsDown } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
-const WelcomePage = () => {
+const WelcomePage = async () => {
+  const session = await auth();
+  const user = session?.user;
+
+  console.log("Session: ", session);
+  console.log("User: ", user);
   return (
     <section className="homeHeader">
       <div className="homeHeaderGradient">
@@ -26,9 +32,13 @@ const WelcomePage = () => {
             </p>
           </div>
 
-          <Link href="/login" className="homeSignUpButton">
-            SIGN UP
-          </Link>
+          {session ? (
+            ""
+          ) : (
+            <Link href="/login" className="homeSignUpButton">
+              SIGN UP
+            </Link>
+          )}
           <ChevronsDown color="var(--white)" size={60} />
         </div>
       </div>
