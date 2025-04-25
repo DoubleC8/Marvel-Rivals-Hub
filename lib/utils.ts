@@ -28,16 +28,16 @@ export const formatText = (text: string = ""): string => {
     ); // Convert links
 };
 
-// export const formatSearchedPlayerName = (playerName: string): string => {
-//   const formattedName = playerName.toLowerCase().split(' ');
-//   for (var i = 0; i < formattedName.length; i++) {
-//       // You do not need to check if i is larger than splitStr length, as your for does that for you
-//       // Assign it back to the array
-//       formattedName[i] = formattedName[i].charAt(0).toUpperCase() + formattedName[i].substring(1);     
-//   }
-//   // Directly return the joined string
-//   return formattedName.join(' '); 
-// }
+export const formatPlayerName = (playerName: string): string => {
+  const formattedName = playerName.toLowerCase().split(' ');
+  for (var i = 0; i < formattedName.length; i++) {
+      // You do not need to check if i is larger than splitStr length, as your for does that for you
+      // Assign it back to the array
+      formattedName[i] = formattedName[i].charAt(0).toUpperCase() + formattedName[i].substring(1);     
+  }
+  // Directly return the joined string
+  return formattedName.join(' '); 
+}
 
 export const formatStats = (total_wins: number, total_matches: number): string => {
   return (
@@ -113,4 +113,9 @@ export const getRankClass = (rank: number) => {
   if (rank === 1) return `${base} !text-[var(--black)] bg-[var(--gold)]`;
   if (rank === 2) return `${base} bg-[var(--silver)]`;
   if (rank === 3) return `${base} bg-[var(--bronze)]`;
+}
+
+export function chatHrefConstructor(id1: string, id2: string) {
+  const sortedIds = [id1, id2].sort()
+  return `${sortedIds[0]}--${sortedIds[1]}`
 }

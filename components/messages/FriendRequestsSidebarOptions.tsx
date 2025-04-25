@@ -18,8 +18,8 @@ const FriendRequestsSidebarOptions: React.FC<
   return (
     <Link
       href={"/messages/requests"}
-      className="flex items-center gap-3 w-fit py-2 px-3 justify-center 
-  mx-auto rounded-lg hover:bg-[var(--accent-color)] ease-in-out duration-[0.1s] truncate"
+      className="flex items-center gap-3 w-fit py-2 px-3
+      rounded-lg hover:bg-[var(--accent-color)] ease-in-out duration-[0.1s] truncate"
     >
       <SmilePlus />
       <div className="flex gap-3 items-center">

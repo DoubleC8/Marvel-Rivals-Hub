@@ -4,6 +4,8 @@ import { fetchRedis } from "@/helpers/redis";
 import { notFound } from "next/navigation";
 import React from "react";
 
+//NOT USING THIS ROUTE
+
 const page = async () => {
   const session = await auth();
 

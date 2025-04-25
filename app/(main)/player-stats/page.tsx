@@ -3,7 +3,7 @@
 import { Search } from "lucide-react";
 import React, { useState } from "react";
 import SearchedPlayerCard from "@/components/cards/SearchedPlayerCard";
-// import { formatSearchedPlayerName } from "@/lib/utils";
+// import { formatPlayerName } from "@/lib/utils";
 import { toast } from "sonner";
 import { fetchPlayerData } from "@/lib/actions";
 import PlayerCardLoader from "./loading";
@@ -41,7 +41,7 @@ const PlayerStatsPage = () => {
     // const isUID = /^\d+$/.test(rawPlayerInput);
     // const playerIdentifier = isUID
     //   ? rawPlayerInput
-    //   : formatSearchedPlayerName(rawPlayerInput);
+    //   : formatPlayerName(rawPlayerInput);
 
     setPlayerInfo(undefined);
     setLoading(true);

@@ -4,7 +4,7 @@ import React from "react";
 const Footer = () => {
   return (
     <div
-      className="w-full px-5 py-3 bg-[var(--black)] bottom-0 left-0
+      className="w-full  px-5 py-3 bg-[var(--black)] bottom-0 left-0
      text-[var(--secondary-text)] flex flex-col gap-3 text-lg z-50"
     >
       <div className="flex gap-3 justify-center">
@@ -25,7 +25,7 @@ const Footer = () => {
           Contact Us
         </Link>
       </div>
-      <p className="text-sm">
+      <p className="text-sm text-center">
         Marvel Rivals is a registered trademark of NetEase Games. Trademarks are
         the property of their respective owners. Game materials copyright
         NetEase Games. NetEase Games has not endorsed and is not responsible for

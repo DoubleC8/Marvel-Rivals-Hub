@@ -41,7 +41,6 @@ const SideNavbar = () => {
           </Link>
         ))}
       </div>
-      <FriendRequestsSidebarOptions sessionId={ses} />
     </nav>
   );
 };

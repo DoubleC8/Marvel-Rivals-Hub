@@ -1,7 +1,9 @@
 import { auth } from "@/auth";
 import FriendRequestsSidebarOptions from "@/components/messages/FriendRequestsSidebarOptions";
+import SidebarChatList from "@/components/messages/SidebarChatList";
+import { getFriendsByUserId } from "@/helpers/get-friends-by-user-id";
 import { fetchRedis } from "@/helpers/redis";
-import { UserPlus } from "lucide-react";
+import { Handshake, UserPlus, Users } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -23,7 +25,7 @@ const sidebarOptions: SidebarOption[] = [
   {
     id: 1,
     name: "Add Friend",
-    href: "/messages",
+    href: "/messages/add-friend",
     icon: UserPlus, // Pass the component, not an object
   },
 ];
@@ -34,10 +36,9 @@ export default async function MessagesLayout({
   children: ReactNode;
 }) {
   const session = await auth();
+  if (!session) notFound();
 
-  if (!session) {
-    notFound();
-  }
+  const friends = await getFriendsByUserId(session.user.id);
 
   const unseenRequestCount = (
     (await fetchRedis(
@@ -48,30 +49,45 @@ export default async function MessagesLayout({
 
   return (
     <div className="flex w-full h-full">
-      <nav className="h-screen w-1/4 p-5 border-r-[2px] border-[var(--accent-color)]">
-        <h1
-          className="text-4xl text-center tracking-wide"
+      <nav className="flex flex-col gap-5 h-screen w-1/4 p-5 border-r-[2px] border-[var(--accent-color)]">
+        <Link
+          href={"/messages"}
+          className="text-5xl text-center tracking-wide"
           style={{ fontFamily: "marvelFont" }}
         >
-          Conversations
-        </h1>
+          Messages
+        </Link>
+
         <div className="flex flex-col gap-3">
+          <span className="flex gap-3 items-center text-lg font-bold">
+            <Users />
+            <h1>Friends</h1>
+          </span>
+          <SidebarChatList sessionId={session.user.id} friends={friends} />
+        </div>
+
+        <div className="flex flex-col gap-3">
+          <span className="flex gap-3 items-center text-lg font-bold">
+            <Handshake />
+            <h1>Actions</h1>
+          </span>
           {sidebarOptions.map(({ id, name, href, icon: Icon }) => (
             <Link
               href={href}
               key={id}
               className="flex items-center gap-3 w-fit py-2 px-3 justify-center 
-  mx-auto rounded-lg hover:bg-[var(--accent-color)] ease-in-out duration-[0.1s] truncate"
+                 rounded-lg hover:bg-[var(--accent-color)] ease-in-out duration-[0.1s] truncate"
             >
               <Icon />
               <p className="font-bold text-lg">{name}</p>
             </Link>
           ))}
+
+          <FriendRequestsSidebarOptions
+            sessionId={session.user.id}
+            initialUnseenRequestCount={unseenRequestCount}
+          />
         </div>
-        <FriendRequestsSidebarOptions
-          sessionId={session.user.id}
-          initialUnseenRequestCount={unseenRequestCount}
-        />
       </nav>
       {/* Main chat window */}
       {children}

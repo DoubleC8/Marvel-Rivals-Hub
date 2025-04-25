@@ -1,4 +1,4 @@
-import { MessageCircle } from "lucide-react";
+import { MessageCircle, MessageSquare, MessageSquareMore } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -17,8 +17,11 @@ const ChatWithPlayersSection = () => {
       rounded-lg w-[45%] h-fit bg-[var(--background)]"
       >
         <div className="flex flex-col gap-3">
-          <div className="flex gap-3 items-stretch">
-            <MessageCircle size={36} className="text-[var(--secondary-text)]" />
+          <div className="flex gap-3 items-center">
+            <MessageSquareMore
+              size={36}
+              className="text-[var(--secondary-text)]"
+            />
             <h1
               className="text-[36px]"
               style={{ fontFamily: "var(--marvelFont)" }}

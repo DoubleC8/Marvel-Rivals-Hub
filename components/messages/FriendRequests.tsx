@@ -2,6 +2,7 @@
 
 import { formatEmail } from "@/lib/actions";
 import axios from "axios";
+import { Frown } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react";
@@ -49,9 +50,10 @@ const FriendRequests: React.FC<FriendRequestsProps> = ({
   return (
     <>
       {friendRequests.length === 0 ? (
-        <p className="text-sm text-[var(--secondary-text)]">
-          Nothing to show here...
-        </p>
+        <div className="h-3/4 flex flex-col gap-5 text-[var(--secondary-text)] font-extrabold items-center justify-center">
+          <Frown className="size-40" />
+          <p className="text-4xl">No Friend Request yet.</p>
+        </div>
       ) : (
         friendRequests.map((request) => (
           <div
@@ -65,7 +67,7 @@ const FriendRequests: React.FC<FriendRequestsProps> = ({
                 height={40}
                 width={40}
                 alt={`${request.senderEmail} Profile Pic`}
-                className="rounded-xl"
+                className="rounded-lg"
               />
               <p className="font-bold text-lg">{request.senderEmail}</p>{" "}
             </div>
