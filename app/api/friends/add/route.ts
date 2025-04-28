@@ -3,6 +3,8 @@
 import { auth } from '@/auth';
 import { fetchRedis } from '@/helpers/redis';
 import { db } from '@/lib/db';
+import { pusherServer } from '@/lib/pusher';
+import { toPusherKey } from '@/lib/utils';
 import { addFriendValidator } from '@/lib/validations/add-friend';
 import { z } from 'zod';
 
@@ -75,6 +77,16 @@ export async function POST(req: Request) {
       });
     }
 
+    await pusherServer.trigger(
+      toPusherKey(`user:${idToAdd}:incoming_friend_requests`),
+      'incoming_friend_requests',
+      {
+        senderId: session.user.id,
+        senderEmail: session.user.email,
+        senderImage: session.user.image
+      }
+    )
+
     // Add friend request using sadd to ensure uniqueness
     await db.sadd(`user:${idToAdd}:incoming_friend_requests`, session.user.id);
     
@@ -85,6 +97,7 @@ export async function POST(req: Request) {
       status: 200,
       headers: { 'Content-Type': 'application/json' }
     });
+
   } catch (error) {
     if (error instanceof z.ZodError) {
       return new Response(JSON.stringify({ message: 'Invalid email format' }), { 

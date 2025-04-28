@@ -34,7 +34,7 @@ const ChatInput: FC<ChatInputProps> = ({ chatPartner, chatId }) => {
 
   return (
     <div
-      className="flex justify-between items-center border-t-[2px]
+      className="h-[17%] flex justify-between items-center border-t-[2px]
      border-[var(--accent-color)] px-4 py-5 mb-2 sm:mb-0"
     >
       <div

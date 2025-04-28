@@ -7,6 +7,10 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
+export const toPusherKey = (key: string) => {
+  return key.replace(/:/g, "__");
+}
+
 export const formatDate = (dateString: string) => {
   const [year, month] = dateString.split("/");
   return `${month}/${year}`;

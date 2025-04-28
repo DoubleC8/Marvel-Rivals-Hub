@@ -1,11 +1,13 @@
 "use client";
 
 import { formatEmail } from "@/lib/actions";
+import { pusherClient } from "@/lib/pusher";
+import { toPusherKey } from "@/lib/utils";
 import axios from "axios";
 import { Frown } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 interface IncomingFriendRequest {
   senderId: string;
@@ -26,6 +28,33 @@ const FriendRequests: React.FC<FriendRequestsProps> = ({
   const [friendRequests, setFriendRequests] = useState<IncomingFriendRequest[]>(
     incomingFriendRequests
   );
+
+  useEffect(() => {
+    pusherClient.subscribe(
+      toPusherKey(`user:${sessionId}:incoming_friend_requests`)
+    );
+
+    const friendRequestHandler = ({
+      senderId,
+      senderEmail,
+      senderImage, // <-- Add this here
+    }: IncomingFriendRequest) => {
+      console.log("function got called");
+      setFriendRequests((prev) => [
+        ...prev,
+        { senderId, senderEmail, senderImage },
+      ]);
+    };
+
+    pusherClient.bind("incoming_friend_requests", friendRequestHandler);
+
+    return () => {
+      pusherClient.unsubscribe(
+        toPusherKey(`user:${sessionId}:incoming_friend_requests`)
+      );
+      pusherClient.unbind("incoming_friend_requests", friendRequestHandler);
+    };
+  }, []);
 
   const acceptFriend = async (senderId: string) => {
     await axios.post(`/api/friends/accept`, { id: senderId });

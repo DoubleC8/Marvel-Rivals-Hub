@@ -48,8 +48,9 @@ export default async function MessagesLayout({
   ).length;
 
   return (
-    <div className="flex w-full h-full">
-      <nav className="flex flex-col gap-5 h-screen w-1/4 p-5 border-r-[2px] border-[var(--accent-color)]">
+    <div className="flex w-full h-screen overflow-hidden">
+      {/* Sidebar */}
+      <nav className="sticky top-0 flex flex-col gap-5 h-screen w-1/4 p-5 border-r-[2px] border-[var(--accent-color)] overflow-y-auto">
         <Link
           href={"/messages"}
           className="text-5xl text-center tracking-wide"
@@ -76,7 +77,7 @@ export default async function MessagesLayout({
               href={href}
               key={id}
               className="flex items-center gap-3 w-fit py-2 px-3 justify-center 
-                 rounded-lg hover:bg-[var(--accent-color)] ease-in-out duration-[0.1s] truncate"
+                rounded-lg hover:bg-[var(--accent-color)] ease-in-out duration-[0.1s] truncate"
             >
               <Icon />
               <p className="font-bold text-lg">{name}</p>
@@ -89,8 +90,9 @@ export default async function MessagesLayout({
           />
         </div>
       </nav>
+
       {/* Main chat window */}
-      {children}
+      <div className="flex-1 overflow-y-auto">{children}</div>
     </div>
   );
 }
