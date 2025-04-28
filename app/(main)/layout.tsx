@@ -19,7 +19,7 @@ export default async function Layout({
       {/* Growable content section */}
       <div className="flex-grow">{children}</div>
 
-      <Toaster richColors />
+      <Toaster richColors position="top-right" expand={true} />
 
       {/* Footer naturally sits at bottom */}
       <Footer />
