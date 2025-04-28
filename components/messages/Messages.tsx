@@ -3,15 +3,28 @@
 import { cn } from "@/lib/utils";
 import { Message } from "@/lib/validations/message";
 import React, { useRef, useState } from "react";
+import { format } from "date-fns";
+import Image from "next/image";
 
 interface MessagesProps {
   initialMessages: Message[];
   sessionId: string;
+  sessionImg: string | null | undefined;
+  chatPartner: User;
 }
 
-const Messages: React.FC<MessagesProps> = ({ initialMessages, sessionId }) => {
+const Messages: React.FC<MessagesProps> = ({
+  sessionImg,
+  chatPartner,
+  initialMessages,
+  sessionId,
+}) => {
   const [messages, setMessages] = useState<Message[]>(initialMessages);
   const scrollDownRef = useRef<HTMLDivElement | null>(null);
+
+  const formatTimestamp = (timestamp: number) => {
+    return format(timestamp, "hh:mm a");
+  };
   return (
     <div
       id="messages"
@@ -48,8 +61,9 @@ const Messages: React.FC<MessagesProps> = ({ initialMessages, sessionId }) => {
               >
                 <span
                   className={cn("px-4 py-2 rounded-lg inline-block", {
-                    "bg-indigo-600 text-white": isCurrentUser,
-                    "bg-gray-200 text-gray-900": !isCurrentUser,
+                    "bg-gradient-to-bl from-violet-500 to-[var(--purple)]":
+                      isCurrentUser,
+                    "bg-[var(--border)] text-[var(--black)]": !isCurrentUser,
                     "rounded-br-none":
                       !hasNextMessageFromSameUser && isCurrentUser,
                     "rounded-bl-none":
@@ -57,10 +71,27 @@ const Messages: React.FC<MessagesProps> = ({ initialMessages, sessionId }) => {
                   })}
                 >
                   {message.text}{" "}
-                  <span className="ml-2 text-xs text-gray-400">
-                    {message.timestamp}
+                  <span className="ml-2 text-xs text-[var(--secondary-text)]">
+                    {formatTimestamp(message.timestamp)}
                   </span>
                 </span>
+              </div>
+
+              <div
+                className={cn("relative w-9 h-9", {
+                  "order-2": isCurrentUser,
+                  "order-1": !isCurrentUser,
+                  invisible: hasNextMessageFromSameUser,
+                })}
+              >
+                <Image
+                  src={
+                    isCurrentUser ? (sessionImg as string) : chatPartner.image
+                  }
+                  fill
+                  alt="Profile Picture"
+                  className="rounded-lg"
+                />
               </div>
             </div>
           </div>
