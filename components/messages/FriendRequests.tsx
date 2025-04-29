@@ -1,6 +1,5 @@
 "use client";
 
-import { formatEmail } from "@/lib/actions";
 import { pusherClient } from "@/lib/pusher";
 import { toPusherKey } from "@/lib/utils";
 import axios from "axios";

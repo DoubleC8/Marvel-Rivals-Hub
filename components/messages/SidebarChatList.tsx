@@ -71,7 +71,7 @@ const SidebarChatList: React.FC<SidebarChatListProps> = ({
       role="list"
       className="max-h-[25rem] overflow-y-auto flex flex-col gap-3"
     >
-      {friends.sort().map((friend) => {
+      {activeChats.sort().map((friend) => {
         const unseenMessagesCount = unseenMessages.filter((unseenMsg) => {
           return unseenMsg.senderId === friend.id;
         }).length;
