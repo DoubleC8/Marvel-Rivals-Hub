@@ -57,7 +57,7 @@ const Page = async ({ params }: PageProps) => {
   const initialMessages = await getChatMessages(chatId);
 
   return (
-    <div className="flex flex-col w-full max-h-full justify-between ">
+    <div className="flex flex-col w-full h-full justify-between">
       {/* Top bar */}
       <div className="flex sm:items-center justify-between py-3 border-b-[2px] border-[var(--accent-color)] px-5 sticky">
         <div className="flex items-center space-x-4">

@@ -1,4 +1,5 @@
 import { auth } from "@/auth";
+import GlobalSocketHandler from "@/components/GlobalSocketHandler";
 import Footer from "@/components/navbars/Footer";
 
 import TopNavbar from "@/components/navbars/TopNavbar";
@@ -17,7 +18,10 @@ export default async function Layout({
       />
 
       {/* Growable content section */}
-      <div className="flex-grow">{children}</div>
+      <div className="flex-grow">
+        {session && <GlobalSocketHandler sessionId={session.user.id} />}
+        {children}
+      </div>
 
       <Toaster richColors position="top-right" expand={true} />
 

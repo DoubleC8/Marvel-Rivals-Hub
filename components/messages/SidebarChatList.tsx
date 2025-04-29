@@ -5,7 +5,6 @@ import { chatHrefConstructor, toPusherKey } from "@/lib/utils";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { toast } from "sonner";
 
 interface SidebarChatListProps {
   friends: User[];
@@ -42,21 +41,7 @@ const SidebarChatList: React.FC<SidebarChatListProps> = ({
 
       if (!shouldNotify) return;
 
-      // should be notified
-      toast.success(`New Message From ${message.senderName}`, {
-        description: message.text,
-        action: {
-          label: "View",
-          onClick: () =>
-            router.push(
-              `/messages/chat/${chatHrefConstructor(
-                sessionId,
-                message.senderId
-              )}`
-            ),
-        },
-        duration: 5000,
-      });
+      //notifcations are handled in the globalSocketHandler
 
       setUnseenMessages((prev) => [...prev, message]);
     };

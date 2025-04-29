@@ -34,7 +34,7 @@ const page = async () => {
   );
 
   return (
-    <section className="w-3/4 h-screen p-5 flex flex-col gap-3">
+    <section className="w-full h-screen p-5 flex flex-col">
       <h1 className="text-6xl" style={{ fontFamily: "marvelFont" }}>
         Friend Requests
       </h1>
