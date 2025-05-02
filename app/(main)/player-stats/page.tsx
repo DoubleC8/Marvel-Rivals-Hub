@@ -3,20 +3,19 @@
 import { Search } from "lucide-react";
 import React, { useState } from "react";
 import SearchedPlayerCard from "@/components/cards/SearchedPlayerCard";
-// import { formatPlayerName } from "@/lib/utils";
 import { toast } from "sonner";
 import { fetchPlayerData } from "@/lib/actions";
 import PlayerCardLoader from "./loading";
 import StatsHeader from "@/components/player-stats/StatsHeader";
 
-interface PlayerInfo {
+interface PlayerCardInfo {
   player: {
     name: string;
     level: string;
     uid: string;
     icon: { player_icon: string };
     info: { login_os: string };
-    rank: { rank: string; image: string; playerRank: string };
+    rank: { color: string; rank: string; image: string };
     isPrivate: boolean;
   };
   overall_stats: {
@@ -26,7 +25,7 @@ interface PlayerInfo {
 }
 
 const PlayerStatsPage = () => {
-  const [playerInfo, setPlayerInfo] = useState<PlayerInfo>();
+  const [playerCardInfo, setPlayerCardInfo] = useState<PlayerCardInfo>();
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -38,19 +37,14 @@ const PlayerStatsPage = () => {
       return;
     }
 
-    // const isUID = /^\d+$/.test(rawPlayerInput);
-    // const playerIdentifier = isUID
-    //   ? rawPlayerInput
-    //   : formatPlayerName(rawPlayerInput);
-
-    setPlayerInfo(undefined);
+    setPlayerCardInfo(undefined);
     setLoading(true);
 
     try {
       const data = await fetchPlayerData(playerIdentifier);
 
       console.log(data);
-      setPlayerInfo(data);
+      setPlayerCardInfo(data);
       toast.success(`${data.player.name}'s stats loaded successfully!`, {
         description: `Loaded on ${new Date().toLocaleString()}`,
       });
@@ -65,7 +59,7 @@ const PlayerStatsPage = () => {
   };
 
   return (
-    <section className="w-full h-[92vh] flex flex-col p-5 justify-center">
+    <section className="w-full h-[100vh] flex flex-col p-5 justify-center">
       <div className="w-full h-1/2 flex justify-between items-end">
         <div className="w-6/10 flex flex-col gap-5">
           <StatsHeader />
@@ -95,7 +89,9 @@ const PlayerStatsPage = () => {
 
       <div className="h-1/2 flex flex-col justify-center">
         {loading && <PlayerCardLoader />}
-        {playerInfo && <SearchedPlayerCard playerInfo={playerInfo} />}
+        {playerCardInfo && (
+          <SearchedPlayerCard playerCardInfo={playerCardInfo} />
+        )}
       </div>
       <p className="text-center text-[var(--secondary-text)] mt-auto">
         IMPORTANT: Searching player stats by username is a new feature and is

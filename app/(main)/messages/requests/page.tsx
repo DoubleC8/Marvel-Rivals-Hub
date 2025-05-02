@@ -1,6 +1,7 @@
 import { auth } from "@/auth";
 import FriendRequests from "@/components/messages/FriendRequests";
 import { fetchRedis } from "@/helpers/redis";
+import { SmilePlus, UserPlus } from "lucide-react";
 import { notFound } from "next/navigation";
 import React from "react";
 
@@ -34,10 +35,16 @@ const page = async () => {
   );
 
   return (
-    <section className="w-full h-screen p-5 flex flex-col">
-      <h1 className="text-6xl" style={{ fontFamily: "marvelFont" }}>
-        Friend Requests
-      </h1>
+    <section className="w-full h-full flex flex-col p-5">
+      <div>
+        <h1
+          className="text-7xl flex gap-3"
+          style={{ fontFamily: "var(--marvelFont)" }}
+        >
+          <SmilePlus size={60} color={`var(--secondary-text)`} />
+          Friend Requests
+        </h1>
+      </div>
       <FriendRequests
         incomingFriendRequests={incomingFriendRequests}
         sessionId={session.user.id}

@@ -35,7 +35,7 @@ export const UnseenChatToast = ({
           alt={`${senderName} Profile Picture`}
           className="w-10 h-10 rounded-lg object-cover"
         />
-        <div className="flex flex-col gap-1">
+        <div>
           <h2 className="text-lg font-extrabold">{senderName}</h2>
           <p className="text-[var(--secondary-text)]">{senderMessage}</p>
         </div>
