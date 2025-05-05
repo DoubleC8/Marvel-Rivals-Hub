@@ -15,6 +15,7 @@ export default async function Layout({
       <TopNavbar
         userEmail={session?.user?.email ?? ""}
         userProfilePic={session?.user?.image ?? ""}
+        userName={session?.user?.name ?? ""}
       />
 
       {/* Growable content section */}
