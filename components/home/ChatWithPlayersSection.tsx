@@ -8,7 +8,7 @@ const ChatWithPlayersSection = () => {
       className="h-full w-full px-5 py-20 flex
      justify-center items-center gap-5 bg-[var(--secondary-background)]"
     >
-      <div className="w-[45%]  flex flex-col items-center">
+      <div className="hidden sm:w-[45%] sm:flex flex-col items-center">
         <img src="/images/Jeff_the_Land_Shark.webp" className="h-[700px]"></img>
       </div>
 

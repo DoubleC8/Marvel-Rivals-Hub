@@ -5,7 +5,7 @@ import React from "react";
 const CreatePlayerProfileSection = () => {
   return (
     <section className="h-full w-full px-5 py-20 flex justify-center gap-5">
-      <div className="flex flex-col gap-5 p-5 border-[2px] border-[var(--purple)] rounded-lg w-[45%] bg-[var(--secondary-background)]">
+      <div className="flex flex-col gap-5 p-5 border-[2px] border-[var(--purple)] rounded-lg w-8/10 sm:w-[45%] bg-[var(--secondary-background)]">
         <div className="flex flex-col gap-3">
           <div className="flex gap-3 items-stretch">
             <Users size={36} className="text-[var(--secondary-text)]" />
@@ -92,7 +92,8 @@ const CreatePlayerProfileSection = () => {
           </Link>
         </div>
       </div>
-      <div className="w-[45%]">
+
+      <div className="hidden md:w-[45%]">
         <img src="/images/Winter-Solider.png" className="h-[700px]"></img>
       </div>
     </section>

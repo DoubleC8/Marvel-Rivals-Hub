@@ -109,6 +109,7 @@ html, body{
   padding: calc(var(--spacing) * 5) /* 1.25rem = 20px */;
   align-items: center;
   transition: 0.3s ease;
+  z-index: 50;
 }
 
 .offScreenMenu.active {
@@ -125,7 +126,6 @@ html, body{
   letter-spacing: var(--tracking-wide) /* 0.025em */;
   transition: ease-in-out 0.1s;
 }
-
 
 .navbarLink:hover{
   cursor: pointer;
@@ -154,23 +154,92 @@ html, body{
   background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 1));
 }
 
-.homeSignUpButton {
-  font-family: "marvelFont";
-  color: var(--black);
-  background-color: var(--yellow);
-  padding-block: calc(var(--spacing) * 1);
-  padding-inline: calc(var(--spacing) * 5);
-  font-size: var(--text-3xl) /* 1.875rem = 30px */;
-  width: calc(1/4 * 100%);
-  text-align: center;
-  border-radius: var(--radius-lg) /* 1rem = 16px */;
-  transition: ease-in-out 0.1s;
+@media (min-width: 700px) {
+  .welcomeHeroContent {
+    width: 100%;
+    height: 98%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    padding: 0 2rem;
+  }
+
+  .welcomeHeroTitle {
+    font-size: 5rem;
+    color: var(--yellow);
+    font-family: var(--marvelFont);
+  }
+
+  .welcomeHeroText {
+    width: 90%;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: var(--white);
+  }
+
+  .welcomeHeroButton {
+    width: 30%;
+    font-family: var(--marvelFont);
+    background-color: var(--yellow);
+    color: var(--black);
+    padding: 0.25rem;
+    font-size: 1.875rem;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    transition: opacity 0.2s ease-in-out;
+  }
+
+  .welcomeHeroButton:hover {
+    opacity: 0.85;
+    text-decoration: underline;
+  }
 }
 
-.homeSignUpButton:hover{
-  background-color: rgba(246, 221, 85, 0.90);
-  text-decoration: underline;
+@media (max-width: 700px){
+  .welcomeHeroContent {
+    width: 100%;
+    height: 98%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    text-align: center;
+    padding: 0 2rem;
+  }
+
+  .welcomeHeroTitle {
+    font-size: 3rem;
+    color: var(--yellow);
+    font-family: var(--marvelFont);
+  }
+
+  .welcomeHeroText {
+    width: 100%;
+    font-weight: bold;
+    font-size: 1rem;
+    color: var(--white);
+    background-color: var(--secondary-background);
+    padding: 1rem;
+    border: 2px solid var(--purple);
+    border-color: var(--purple);
+    border-radius: 0.5rem;
+  }
+
+  .welcomeHeroButton {
+    width: 75%;
+    font-family: var(--marvelFont);
+    background-color: var(--yellow);
+    color: var(--black);
+    padding: 0.25rem;
+    font-size: 1.875rem;
+    font-weight: bold;
+    border-radius: 0.5rem;
+    transition: opacity 0.2s ease-in-out;
+  }
 }
+
 
 .homeSectionButton {
   font-family: "marvelFont";
