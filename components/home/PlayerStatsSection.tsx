@@ -4,14 +4,8 @@ import React from "react";
 
 const PlayerStatsSection = () => {
   return (
-    <section
-      className="h-full w-full px-5 py-20 flex
-   justify-center items-center gap-5"
-    >
-      <div
-        className="flex flex-col gap-5 p-5 border-[2px] border-[var(--purple)] 
-    rounded-lg w-[45%] h-fit bg-[var(--background)]"
-      >
+    <section className="homeSection">
+      <div className="homeContextCard">
         <div className="flex flex-col gap-3">
           <div className="flex gap-3 items-stretch">
             <Search size={36} className="text-[var(--secondary-text)]" />
@@ -35,8 +29,8 @@ const PlayerStatsSection = () => {
           </Link>
         </div>
       </div>
-      <div className="w-[45%]  flex flex-col items-center">
-        <img src="/images/Peni_Parker.webp" className="h-[700px]"></img>
+      <div className="homeHeroImageCard">
+        <img src="/images/Peni_Parker.webp" className="homeHeroImage"></img>
       </div>
     </section>
   );

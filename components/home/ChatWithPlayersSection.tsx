@@ -4,18 +4,15 @@ import React from "react";
 
 const ChatWithPlayersSection = () => {
   return (
-    <section
-      className="h-full w-full px-5 py-20 flex
-     justify-center items-center gap-5 bg-[var(--secondary-background)]"
-    >
-      <div className="hidden sm:w-[45%] sm:flex flex-col items-center">
-        <img src="/images/Jeff_the_Land_Shark.webp" className="h-[700px]"></img>
+    <section className="homeSectionChat">
+      <div className="homeHeroImageCard">
+        <img
+          src="/images/Jeff_the_Land_Shark.webp"
+          className="homeHeroImage"
+        ></img>
       </div>
 
-      <div
-        className="flex flex-col gap-5 p-5 border-[2px] border-[var(--purple)] 
-      rounded-lg w-[45%] h-fit bg-[var(--background)]"
-      >
+      <div className="homeContextCard !bg-[var(--background)]">
         <div className="flex flex-col gap-3">
           <div className="flex gap-3 items-center">
             <MessageSquareMore
