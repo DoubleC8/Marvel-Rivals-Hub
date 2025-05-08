@@ -12,7 +12,7 @@ interface apiData {
 
 const PatchNotes = ({ patchNotes }: { patchNotes: apiData[] }) => {
   return (
-    <div className="flex flex-col gap-3 w-3/4 mx-auto">
+    <div className="flex flex-col gap-3 w-full mx-auto">
       <h1
         className="text-5xl text-[var(--primary-text)]"
         style={{ fontFamily: "var(--marvelFont)" }}
@@ -20,7 +20,7 @@ const PatchNotes = ({ patchNotes }: { patchNotes: apiData[] }) => {
         Patch Notes
       </h1>
 
-      <div className="flex flex-row flex-wrap gap-5 justify-between">
+      <div className="newsCardSection">
         {patchNotes.map((patchNote, index) => (
           <NewsCard
             newsType="patchNotes"

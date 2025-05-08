@@ -12,7 +12,7 @@ interface apiData {
 
 const Balances = ({ balances }: { balances: apiData[] }) => {
   return (
-    <div className="flex flex-col gap-3 w-3/4 mx-auto">
+    <div className="flex flex-col gap-3 w-full mx-auto">
       <h1
         className="text-5xl text-[var(--primary-text)]"
         style={{ fontFamily: "var(--marvelFont)" }}
@@ -20,7 +20,7 @@ const Balances = ({ balances }: { balances: apiData[] }) => {
         Balance Changes
       </h1>
 
-      <div className="flex flex-row flex-wrap gap-5 justify-between">
+      <div className="newsCardSection">
         {balances.map((balance, index) => (
           <NewsCard
             newsType="balances"

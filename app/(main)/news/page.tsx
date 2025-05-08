@@ -25,7 +25,7 @@ const Page = () => {
   const [balances, setBalances] = useState<ApiData[]>([]);
   const [patchNotes, setPatchNotes] = useState<ApiData[]>([]);
   const [devDiaries, setDevDiaries] = useState<ApiData[]>([]);
-  const [loading, setLoading] = useState(true); // 👈 Track loading state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchAllNewsData = async () => {
@@ -54,7 +54,7 @@ const Page = () => {
   }, []);
 
   const renderContent = () => {
-    if (loading) return <NewsCardLoadingComponent />; // 👈 Show skeleton while loading
+    if (loading) return <NewsCardLoadingComponent />;
 
     switch (activeTab) {
       case "Balances":
@@ -77,11 +77,7 @@ const Page = () => {
   return (
     <section className="p-5 flex flex-col gap-5">
       {/* Tabs */}
-      <nav
-        className="h-fit w-3/4 mx-auto bg-[var(--yellow)] px-5 py-3 flex justify-around items-center 
-        rounded-lg text-2xl shadow-2xl text-[var(--black)] tracking-wide"
-        style={{ fontFamily: "var(--marvelFont)" }}
-      >
+      <nav className="newsNavbar" style={{ fontFamily: "var(--marvelFont)" }}>
         {TABS.map((tab) => (
           <button
             key={tab}

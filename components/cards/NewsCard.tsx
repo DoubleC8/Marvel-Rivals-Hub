@@ -19,17 +19,13 @@ const NewsCard = ({
   imagePath: string;
 }) => {
   return (
-    <div
-      className="w-[525px] h-[525px] bg-[var(--secondary-background)]
-             p-5 rounded-xl border-[2px] border-[var(--purple)] 
-             flex flex-col gap-5"
-    >
+    <div className="newsCard">
       <img
         src={`${imagePath}`}
         alt={`${title} image`}
-        className="w-full min-h-[250px] rounded-xl mx-auto"
+        className="w-full min-h-[275px] rounded-xl mx-auto"
       ></img>
-      <div className="flex flex-col justify-between h-[250px] ">
+      <div className="flex flex-col justify-between h-fit md:h-[250px] ">
         <div className="flex flex-col gap-5">
           <h2
             className="text-2xl tracking-wide"

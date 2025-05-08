@@ -19,6 +19,7 @@ const TopNavbar = ({
 
   return (
     <>
+      {/**Computer Navbar */}
       <nav className="topNavbar hidden lg:flex">
         <div className="flex items-center gap-5">
           <Link href="/" title="Home Page">
@@ -107,7 +108,8 @@ const TopNavbar = ({
         )}
       </nav>
 
-      <nav className="flex lg:hidden items-center justify-between h-16 bg-black text-[var(--secondary-text)] px-5">
+      {/**Mobile Navbar */}
+      <nav className="flex sticky z-60 top-0 lg:hidden items-center justify-between h-16 bg-black text-[var(--secondary-text)] px-5">
         <Link href="/" title="Home Page">
           <Image
             src={marevlRivalsIcon}

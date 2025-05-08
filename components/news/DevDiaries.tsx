@@ -12,15 +12,15 @@ interface apiData {
 
 const DevDiaries = ({ devDiaries }: { devDiaries: apiData[] }) => {
   return (
-    <div className="flex flex-col gap-3 w-3/4 mx-auto">
+    <div className="flex flex-col gap-3 w-full mx-auto">
       <h1
-        className="text-5xl text-[var(--primary-text)] "
+        className="text-5xl text-[var(--primary-text)]"
         style={{ fontFamily: "var(--marvelFont)" }}
       >
         Dev Diaries
       </h1>
 
-      <div className="flex flex-row flex-wrap gap-5 justify-between">
+      <div className="newsCardSection">
         {devDiaries.map((devDiary, index) => (
           <NewsCard
             newsType="devDiaries"
