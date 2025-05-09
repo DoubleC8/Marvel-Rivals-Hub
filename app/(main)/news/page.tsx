@@ -65,7 +65,7 @@ const Page = () => {
         return <DevDiaries devDiaries={devDiaries} />;
       default:
         return (
-          <div className="flex flex-col gap-10">
+          <div className="flex flex-col gap-10 w-full max-w-[1100px] mx-auto">
             <Balances balances={balances} />
             <PatchNotes patchNotes={patchNotes} />
             <DevDiaries devDiaries={devDiaries} />
@@ -92,7 +92,9 @@ const Page = () => {
       </nav>
 
       {/* Content */}
-      <div>{renderContent()}</div>
+      <div className="flex flex-col gap-10 w-full max-w-[1100px] mx-auto">
+        {renderContent()}
+      </div>
     </section>
   );
 };

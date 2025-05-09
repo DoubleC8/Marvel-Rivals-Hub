@@ -13,16 +13,12 @@ const NewsPage = ({
   fullContent: string;
 }) => {
   return (
-    <div
-      className="w-3/4 mx-auto bg-[var(--secondary-background)]
-                 p-5 rounded-xl border-[2px] border-[var(--purple)] 
-                 flex flex-col gap-5"
-    >
+    <div className="newsPage">
       {imagePath && (
         <img
           src={`https://marvelrivalsapi.com/rivals${imagePath}`}
           alt="Dev Dairy Image"
-          className="w-full h-[550px] rounded-xl mx-auto"
+          className="w-full max-h-[550px] rounded-xl mx-auto"
         />
       )}
       <div>
@@ -38,7 +34,7 @@ const NewsPage = ({
           </p>
         </div>
         <p
-          className="text-lg"
+          className="text-lg overflow-x-clip"
           dangerouslySetInnerHTML={{
             __html: fullContent ? formatText(fullContent) : "",
           }}

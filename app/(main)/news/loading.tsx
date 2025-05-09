@@ -7,7 +7,7 @@ const NewsCardLoadingComponent = () => {
   return (
     <div className="flex flex-col gap-10 w-full max-w-[1100px] mx-auto">
       {newsTitle.map((title, index) => (
-        <div className="w-full flex flex-col gap-3" key={index}>
+        <div className="flex flex-col gap-3 w-full mx-auto" key={index}>
           <h1
             className="text-5xl text-[var(--primary-text)]"
             style={{ fontFamily: "var(--marvelFont)" }}

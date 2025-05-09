@@ -6,12 +6,8 @@ const NewsPageLoadingComponent = () => {
 
   return (
     <section className="p-5 flex flex-col gap-5">
-      <Skeleton
-        className="w-3/4 mx-auto bg-zinc-700
-             p-5 rounded-xl border-[2px] border-zinc-800 
-             flex flex-col gap-5 z-0"
-      >
-        <Skeleton className="w-full h-[550px] rounded-xl mx-auto bg-zinc-800" />
+      <Skeleton className="newsPageLoader">
+        <Skeleton className="w-full h-[200px] lg:h-[550px] md:h-[350px] rounded-xl mx-auto bg-zinc-800" />
         <div className="flex flex-col gap-5">
           <Skeleton className="w-3/4 h-12 mx-auto bg-zinc-800" />
           <Skeleton className="w-2/10 h-6 mx-auto bg-zinc-800" />
