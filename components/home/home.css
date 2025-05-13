@@ -1,0 +1,213 @@
+.homeHeader {
+    background-image: url("/images/marvel-rivals-bg-2.jpg");
+    background-repeat: repeat;
+    background-size: cover;
+    background-position: top;
+    width: 100%;
+    height: 100vh
+}
+  
+.homeHeaderGradient {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 1));
+}
+  
+  
+.homeSectionButton {
+    font-family: "marvelFont";
+    color: var(--black);
+    background-color: var(--yellow);
+    padding-block: calc(var(--spacing) * 3);
+    padding-inline: calc(var(--spacing) * 5);
+    font-size: 24px;
+    text-align: center;
+    border-radius: var(--radius-lg) /* 1rem = 16px */;
+    transition: ease-in-out 0.1s;
+}
+  
+.homeSectionButton:hover{
+    background-color: rgba(246, 221, 85, 0.90);
+    text-decoration: underline;
+}
+
+/* Styling for landscape tablets and up */
+@media (min-width: 815px) {
+    .welcomeHeroContent {
+      width: 100%;
+      height: 98%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      text-align: center;
+      padding: 0 2rem;
+    }
+  
+    .welcomeHeroTitle {
+      font-size: 5rem;
+      color: var(--yellow);
+      font-family: var(--marvelFont);
+    }
+  
+    .welcomeHeroText {
+      width: 90%;
+      font-weight: bold;
+      font-size: 1.5rem;
+      color: var(--white);
+    }
+  
+    .welcomeHeroButton {
+      width: 30%;
+      font-family: var(--marvelFont);
+      background-color: var(--yellow);
+      color: var(--black);
+      padding: 0.25rem;
+      font-size: 1.875rem;
+      font-weight: bold;
+      border-radius: 0.5rem;
+      transition: opacity 0.2s ease-in-out;
+    }
+  
+    .welcomeHeroButton:hover {
+      opacity: 0.85;
+      text-decoration: underline;
+    }
+  
+    .homeSection {
+      height: 100%;
+      width: 100%;
+      padding: calc(var(--spacing) * 5) /* 1.25rem = 20px */;
+      display: flex;
+      gap: calc(var(--spacing) * 5);
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .homeSectionChat {
+      height: 100%;
+      width: 100%;
+      background-color: var(--secondary-background);
+      padding: calc(var(--spacing) * 5) /* 1.25rem = 20px */;
+      display: flex;
+      gap: calc(var(--spacing) * 5);
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .homeContextCard {
+      display: flex;
+      flex-direction: column;
+      gap: calc(var(--spacing) * 5) /* 1.25rem = 20px */;
+      padding: calc(var(--spacing) * 5) /* 1.25rem = 20px */;
+      border: 2px solid var(--purple);
+      border-radius: var(--radius-lg) /* 0.5rem = 8px */;
+      width: 45%;
+      height: fit-content;
+      background-color: var(--secondary-background);
+    }
+  
+    .homeHeroImageCard{
+      max-width: 40%;
+      display: flex;
+      justify-content: center;
+    }
+  
+    .homeHeroImage{
+      max-height: 600px;
+    }
+
+  }
+  
+  /* Styling for portrait tablets and below */
+  @media (max-width: 815px){
+    .welcomeHeroContent {
+      width: 100%;
+      height: 98%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      text-align: center;
+      padding: 0 2rem;
+    }
+  
+    .welcomeHeroTitle {
+      font-size: 3rem;
+      color: var(--yellow);
+      font-family: var(--marvelFont);
+    }
+  
+    .welcomeHeroText {
+      width: 100%;
+      font-weight: bold;
+      font-size: 1rem;
+      color: var(--white);
+      background-color: var(--secondary-background);
+      padding: 1rem;
+      border: 2px solid var(--purple);
+      border-color: var(--purple);
+      border-radius: 0.5rem;
+    }
+  
+    .welcomeHeroButton {
+      width: 75%;
+      font-family: var(--marvelFont);
+      background-color: var(--yellow);
+      color: var(--black);
+      padding: 0.25rem;
+      font-size: 1.875rem;
+      font-weight: bold;
+      border-radius: 0.5rem;
+      transition: opacity 0.2s ease-in-out;
+    }
+  
+    .homeSection {
+      height: 100%;
+      width: 100%;
+      padding: calc(var(--spacing) * 5) /* 1.25rem = 20px */;
+      display: flex;
+      gap: calc(var(--spacing) * 5);
+      flex-direction: column-reverse;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .homeSectionChat{
+      height: 100%;
+      width: 100%;
+      background-color: var(--secondary-background);
+      padding: calc(var(--spacing) * 5) /* 1.25rem = 20px */;
+      display: flex;
+      gap: calc(var(--spacing) * 5);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .homeContextCard {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: calc(var(--spacing) * 5) /* 1.25rem = 20px */;
+      padding: calc(var(--spacing) * 5) /* 1.25rem = 20px */;
+      border: 2px solid var(--purple);
+      border-radius: var(--radius-lg) /* 0.5rem = 8px */;
+      width: 100%;
+      height: fit-content;
+      background-color: var(--secondary-background);
+    }
+  
+    .homeHeroImageCard{
+      display: flex;
+      justify-content: center;
+    }
+    .homeHeroImage{
+      width: calc(8/10 * 100%) /* 80% */;
+      max-height: 6500px;
+    }
+}

@@ -1,0 +1,37 @@
+/* ========================= */
+/*         LOADERS          */
+/* ========================= */
+
+.newsCardLoader {
+    width: 100%;
+    min-width: 0;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    z-index: 0;
+    background-color: var(--color-zinc-700);
+    padding: calc(var(--spacing) * 5);
+    border-radius: var(--radius-lg);
+    border: 2px solid var(--color-zinc-800);
+    gap: calc(var(--spacing) * 5);
+  }
+  
+  .newsLoadingSection {
+    display: grid;
+    gap: 3rem;
+    width: 100%;
+  }
+  
+  @media (min-width: 815px) {
+    .newsLoadingSection {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+  
+  @media (max-width: 815px) {
+    .newsLoadingSection {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+  }
+  

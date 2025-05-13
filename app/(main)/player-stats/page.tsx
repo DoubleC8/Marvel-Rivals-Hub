@@ -54,46 +54,43 @@ const PlayerStatsPage = () => {
       });
       console.error("Error fetching player stats:", error);
     } finally {
-      setLoading(false); // ✅ this ensures loading state is cleared no matter what
+      setLoading(false);
     }
   };
 
   return (
-    <section className="w-full h-[100vh] flex flex-col p-5 justify-center">
-      <div className="w-full h-1/2 flex justify-between items-end">
-        <div className="w-6/10 flex flex-col gap-5">
-          <StatsHeader />
+    <section className="w-full h-[100vh] gap-5 flex flex-col p-5 justify-center">
+      <div className="playerStatsFormContainer">
+        <StatsHeader />
 
-          <form
-            onSubmit={handleSubmit}
-            className="flex items-center justify-center"
+        <form
+          onSubmit={handleSubmit}
+          className="flex items-center justify-center w-full"
+        >
+          <input
+            name="playerInfo"
+            className="playerStatsInputForm"
+            placeholder="Enter In-Game Name or UID"
+            required
+          />
+          <button
+            type="submit"
+            className="playerStatsInputIcon"
+            disabled={loading}
           >
-            <input
-              name="playerInfo"
-              className="bg-[var(--white)] text-[var(--black)] w-full p-4 
-              rounded-bl-xl rounded-tl-xl 
-              focus:outline-none focus:ring-0 placeholder:text-[var(--secondary-text)]"
-              placeholder="Enter In-Game Name or UID"
-              required
-            />
-            <button
-              type="submit"
-              className="bg-[var(--yellow)] p-4 rounded-br-xl rounded-tr-xl hover:opacity-85"
-              disabled={loading}
-            >
-              <Search color={`var(--black)`} />
-            </button>
-          </form>
-        </div>
+            <Search color={`var(--black)`} />
+          </button>
+        </form>
       </div>
 
-      <div className="h-1/2 flex flex-col justify-center">
+      <div className="playerCardContainer">
         {loading && <PlayerCardLoader />}
         {playerCardInfo && (
           <SearchedPlayerCard playerCardInfo={playerCardInfo} />
         )}
       </div>
-      <p className="text-center text-[var(--secondary-text)] mt-auto">
+
+      <p className="text-center text-[var(--secondary-text)] mt-auto text-sm lg:text-lg">
         IMPORTANT: Searching player stats by username is a new feature and is
         not always reliable. Searching player stats by player UID is more
         stable.
