@@ -49,6 +49,10 @@ export const formatStats = (total_wins: number, total_matches: number): string =
   ).toFixed(2) + "%";
 };
 
+export const formatPlayerImages = (playerImageData: string) => {
+  return ("https://marvelrivalsapi.com/rivals" + playerImageData);
+}
+
 
 const BASE_IMAGE_URL = 'https://marvelrivalsapi.com/rivals/ranked/'; // Define your base image URL
 

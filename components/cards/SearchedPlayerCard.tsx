@@ -1,27 +1,12 @@
 import { formatStats } from "@/lib/utils";
+import { PlayerInfo } from "@/types/playerInfo";
 import Link from "next/link";
 import React from "react";
-
-interface PlayerCardInfo {
-  player: {
-    name: string;
-    level: string;
-    uid: string;
-    icon: { player_icon: string };
-    info: { login_os: string };
-    rank: { color: string; rank: string; image: string };
-    isPrivate: boolean;
-  };
-  overall_stats: {
-    ranked: { total_matches: number; total_wins: number };
-    unranked: { total_matches: number; total_wins: number };
-  };
-}
 
 const SearchedPlayerCard = ({
   playerCardInfo,
 }: {
-  playerCardInfo: PlayerCardInfo;
+  playerCardInfo: PlayerInfo;
 }) => {
   return (
     <>
@@ -112,9 +97,7 @@ const SearchedPlayerCard = ({
           </h1>
           <div className="flex flex-col justify-center items-center font-bold text-lg lg:text-2xl">
             <h2>{playerCardInfo?.player.info.login_os}</h2>
-            <h2>{`${
-              playerCardInfo.player.isPrivate ? "Private" : "Public"
-            }`}</h2>
+            <h2>{`${playerCardInfo.isPrivate ? "Private" : "Public"}`}</h2>
           </div>
         </div>
       </div>
@@ -202,9 +185,7 @@ const SearchedPlayerCard = ({
           <h1 className="text-2xl font-extrabold tracking-wide">Console</h1>
           <div className="flex flex-col justify-center items-center font-bold text-xl">
             <h2>{playerCardInfo?.player.info.login_os}</h2>
-            <h2>{`${
-              playerCardInfo.player.isPrivate ? "Private" : "Public"
-            }`}</h2>
+            <h2>{`${playerCardInfo.isPrivate ? "Private" : "Public"}`}</h2>
           </div>
         </div>
 

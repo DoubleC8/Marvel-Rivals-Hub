@@ -70,22 +70,30 @@ export const fetchNewsPageData = async (newsType: string, newsId: string) => {
   }
 };
 
-export const fetchPlayerData = async(playerIdentifier:string) => {
-
+export const fetchPlayerData = async (playerIdentifier: string) => {
   try {
     const response = await axios.get(
       `https://marvelrivalsapi.com/api/v1/player/${playerIdentifier}`,
       {
-        headers: { "x-api-key": process.env.API_KEY },
+        headers: {
+          "x-api-key": process.env.API_KEY,
+        },
       }
     );
 
-    return response.data;
-  } catch(error){
-    console.error("Error fetching player data: ", error);
-  }
+    // Check if the API explicitly marks the profile as private
+    if (response.data?.error && response.data?.status === 403) {
+      return { isPrivate: true };
+    }
 
-}
+    return response.data;
+  } catch (error: any) {
+    if (error.response?.status === 403) {
+      return { isPrivate: true };
+    }
+    throw error; // Let other errors bubble up
+  }
+};
 
 export const fetchLeaderboardData = async(hero: string, consoleType: string) => {
   try {
@@ -104,4 +112,3 @@ export const fetchLeaderboardData = async(hero: string, consoleType: string) => 
 }
 
 
-// https://marvelrivalsapi.com/api/v1/player/Sypeh

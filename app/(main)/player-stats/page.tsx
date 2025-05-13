@@ -7,25 +7,11 @@ import { toast } from "sonner";
 import { fetchPlayerData } from "@/lib/actions";
 import PlayerCardLoader from "./loading";
 import StatsHeader from "@/components/player-stats/StatsHeader";
-
-interface PlayerCardInfo {
-  player: {
-    name: string;
-    level: string;
-    uid: string;
-    icon: { player_icon: string };
-    info: { login_os: string };
-    rank: { color: string; rank: string; image: string };
-    isPrivate: boolean;
-  };
-  overall_stats: {
-    ranked: { total_matches: number; total_wins: number };
-    unranked: { total_matches: number; total_wins: number };
-  };
-}
+import { PlayerInfo } from "@/types/playerInfo";
+import PrivatePlayerCard from "@/components/cards/PrivatePlayerCard";
 
 const PlayerStatsPage = () => {
-  const [playerCardInfo, setPlayerCardInfo] = useState<PlayerCardInfo>();
+  const [playerCardInfo, setPlayerCardInfo] = useState<PlayerInfo>();
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -45,9 +31,14 @@ const PlayerStatsPage = () => {
 
       console.log(data);
       setPlayerCardInfo(data);
-      toast.success(`${data.player.name}'s stats loaded successfully!`, {
-        description: `Loaded on ${new Date().toLocaleString()}`,
-      });
+
+      if ("isPrivate" in data && data.isPrivate) {
+        toast.warning("This player's profile is private.");
+      } else {
+        toast.success(`${data.player.name}'s stats loaded successfully!`, {
+          description: `Loaded on ${new Date().toLocaleString()}`,
+        });
+      }
     } catch (error) {
       toast.error(`Could not load player stats.`, {
         description: "Please check their name or use their UID.",
@@ -85,8 +76,12 @@ const PlayerStatsPage = () => {
 
       <div className="playerCardContainer">
         {loading && <PlayerCardLoader />}
-        {playerCardInfo && (
-          <SearchedPlayerCard playerCardInfo={playerCardInfo} />
+        {playerCardInfo?.isPrivate ? (
+          <PrivatePlayerCard />
+        ) : (
+          playerCardInfo && (
+            <SearchedPlayerCard playerCardInfo={playerCardInfo} />
+          )
         )}
       </div>
 
