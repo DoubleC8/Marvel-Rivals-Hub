@@ -12,9 +12,9 @@ const SearchedPlayerCard = ({
     <>
       <div className="searchedPlayerCard">
         <Link
-          href={"/"}
+          href={`/player-stats/${playerCardInfo.uid}`}
           className="flex gap-5 items-center
-        hover:cursor-pointer hover:bg-[var(--accent-color)] ease-in-out duration-100 pr-3 rounded-lg"
+        hover:cursor-pointer hover:bg-[var(--accent-color)] hover:text-[var(--yellow)] ease-in-out duration-100 pr-3 rounded-lg"
           title="Go to Player Profile"
         >
           <img

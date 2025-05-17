@@ -50,8 +50,32 @@ export const formatStats = (total_wins: number, total_matches: number): string =
 };
 
 export const formatPlayerImages = (playerImageData: string) => {
-  return ("https://marvelrivalsapi.com/rivals" + playerImageData);
+  return playerImageData.includes("/rivals") 
+  ? (`https://marvelrivalsapi.com${playerImageData}`) 
+  : (`https://marvelrivalsapi.com/rivals${playerImageData}`)
+};
+
+export const getLoginOsImage = (loginOs: string) => {
+  const playstationLogo = "/images/playstation_logo.png";
+  const xboxLogo = "/images/Xbox_one_logo.png";
+  const steamLogo = "/images/Steam_icon_logo.png"
+
+  switch(loginOs){
+    case "Playstation":
+      return playstationLogo;
+    case "Xbox" :
+      return xboxLogo;
+    case "PC":
+       return steamLogo;
+  }
 }
+
+export const getLastMatchDay = (lastMatch: string) => {
+  const today = new Date().getDate();
+  const daysSinceLastMatch = today - new Date(lastMatch).getDate();
+  return daysSinceLastMatch;
+}
+
 
 
 const BASE_IMAGE_URL = 'https://marvelrivalsapi.com/rivals/ranked/'; // Define your base image URL

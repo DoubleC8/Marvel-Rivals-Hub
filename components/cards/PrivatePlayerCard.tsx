@@ -1,22 +1,24 @@
-import { Ghost, Lock } from "lucide-react";
+import { Ghost } from "lucide-react";
 import React from "react";
 
 const PrivatePlayerCard = () => {
   return (
-    <div
-      className="flex w-full h-[150px] p-3 bg-[var(--secondary-background)] 
-  border-[2px] border-[var(--purple)] items-center rounded-xl mx-auto justify-between"
-      style={{ fontFamily: "var(--marvelFont)" }}
-    >
+    <div className="privatePlayerCard">
       <div className="flex gap-5 items-center">
         <Ghost width={100} height={100} />
       </div>
-      <span className="flex gap-3 items-stretch">
-        <h1 className="tracking-wide text-3xl">
+      <div className="text-center mx-auto">
+        <h1
+          className="tracking-wide text-3xl"
+          style={{ fontFamily: "var(--marvelFont)" }}
+        >
           This player’s profile is private. Stats and rank data are not publicly
           available.
         </h1>
-      </span>
+        <p className="text-2xl font-bold text-[var(--secondary-text)]">
+          Please try searching another player.
+        </p>
+      </div>
     </div>
   );
 };
