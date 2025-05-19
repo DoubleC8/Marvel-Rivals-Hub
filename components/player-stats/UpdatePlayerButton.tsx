@@ -2,13 +2,14 @@
 
 import React from "react";
 import axios from "axios";
+import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
 const UpdatePlayerButton = ({
   userUid,
   name,
 }: {
-  userUid: string;
+  userUid: number;
   name: string;
 }) => {
   const handleUpdatePlayerProfile = async () => {
@@ -17,8 +18,7 @@ const UpdatePlayerButton = ({
         `https://marvelrivalsapi.com/api/v1/player/${userUid}/update`,
         {
           headers: {
-            "x-api-key":
-              "19fb1c19789bf850f690e30ef8c660bc95ea8e8a40dd64d8bd7cbe486e35156f",
+            "x-api-key": process.env.API_KEY!,
           },
         }
       );
@@ -38,16 +38,14 @@ const UpdatePlayerButton = ({
     }
   };
   return (
-    <button
-      className="text-xl 
-        font-bold text-[var(--black)] 
-        bg-[var(--yellow)] h-fit w-fit px-5 py-1 rounded-lg shadow-2xl 
+    <Button
+      className="h-8 w-35 bg-[var(--yellow)] text-[var(--black)] text-xl font-extrabold
         hover:cursor-pointer hover:opacity-85 ease-in-out duration-100"
       onClick={() => handleUpdatePlayerProfile()}
       title="Update Player Profile"
     >
       Update
-    </button>
+    </Button>
   );
 };
 

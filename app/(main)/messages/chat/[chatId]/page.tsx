@@ -4,7 +4,7 @@ import Messages from "@/components/messages/Messages";
 import { fetchRedis } from "@/helpers/redis";
 import { formatEmail } from "@/lib/actions";
 import { db } from "@/lib/db";
-import { formatPlayerName } from "@/lib/utils";
+import { formatName } from "@/lib/utils";
 import { messageArrayValidator } from "@/lib/validations/message";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -71,7 +71,7 @@ const Page = async ({ params }: PageProps) => {
           </div>
           <div className="flex flex-col">
             <span className="text-xl font-semibold">
-              {formatPlayerName(chatPartner.name)}
+              {formatName(chatPartner.name)}
             </span>
             <span className="text-sm text-[var(--secondary-text)]">
               {formatEmail(chatPartner.email)}

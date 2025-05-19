@@ -1,5 +1,7 @@
 {/**USE ONLY FOR NON-ASYNC FUCNTIONS */}
 
+
+import { Heroes } from "@/types/Heroes";
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -32,7 +34,7 @@ export const formatText = (text: string = ""): string => {
     ); // Convert links
 };
 
-export const formatPlayerName = (playerName: string): string => {
+export const formatName = (playerName: string): string => {
   const formattedName = playerName.toLowerCase().split(' ');
   for (var i = 0; i < formattedName.length; i++) {
       // You do not need to check if i is larger than splitStr length, as your for does that for you
@@ -76,7 +78,44 @@ export const getLastMatchDay = (lastMatch: string) => {
   return daysSinceLastMatch;
 }
 
+export interface TopHero {
+  hero_name: string, 
+  hero_icon: string, //TEMP FIX, API WILL BE FIXED LATER
+  numberOfMatches: number,
+  numberOfWins: number,
+  winLossRatio: number,
+  kills: number;
+  deaths: number;
+  assists: number;
+  kda: number;
+}
 
+export const getTopHeroes = (heroes: Heroes[]): TopHero[] => {
+  return heroes
+    .filter((hero) => hero.matches > 0)
+    .map((hero) => {
+      const winRate = parseFloat(
+        ((hero.wins / hero.matches) * 100).toFixed(2)
+      );
+
+      return {
+        hero_name: hero.hero_name,
+        hero_icon: hero.hero_thumbnail,
+        numberOfMatches: hero.matches,
+        numberOfWins: hero.wins,
+        winLossRatio: winRate,
+        kills: hero.kills,
+        deaths: hero.deaths,
+        assists: hero.assists,
+        kda: getKDA(hero.kills, hero.deaths, hero.assists),
+      };
+    });
+};
+
+export const getKDA = (kills: number, deaths: number, assists: number): number => {
+  const kda = (kills + assists) / (deaths === 0 ? 1 : deaths); // Avoid division by 0
+  return parseFloat(kda.toFixed(2));
+};
 
 const BASE_IMAGE_URL = 'https://marvelrivalsapi.com/rivals/ranked/'; // Define your base image URL
 

@@ -1,11 +1,7 @@
 "use client";
 
 import { pusherClient } from "@/lib/pusher";
-import {
-  chatHrefConstructor,
-  formatPlayerName,
-  toPusherKey,
-} from "@/lib/utils";
+import { chatHrefConstructor, formatName, toPusherKey } from "@/lib/utils";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -98,9 +94,7 @@ const SidebarChatList: React.FC<SidebarChatListProps> = ({
                 alt={`${friend.email} Profile Pic`}
                 className="rounded-lg"
               />
-              <p className="font-bold text-lg">
-                {formatPlayerName(friend.name)}
-              </p>{" "}
+              <p className="font-bold text-lg">{formatName(friend.name)}</p>{" "}
               {unseenMessagesCount > 0 ? (
                 <p
                   className="text-md font-bold rounded-full 
