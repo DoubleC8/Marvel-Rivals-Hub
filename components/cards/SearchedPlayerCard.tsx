@@ -1,4 +1,4 @@
-import { formatStats } from "@/lib/utils";
+import { formatWinLossRatio } from "@/lib/utils";
 import { PlayerInfo } from "@/types/playerInfo";
 import Link from "next/link";
 import React from "react";
@@ -39,7 +39,7 @@ const SearchedPlayerCard = ({
             <h2>
               Ranked:{" "}
               {playerCardInfo.overall_stats.ranked.total_matches
-                ? formatStats(
+                ? formatWinLossRatio(
                     playerCardInfo.overall_stats.ranked.total_wins,
                     playerCardInfo.overall_stats.ranked.total_matches
                   )
@@ -48,7 +48,7 @@ const SearchedPlayerCard = ({
             <h2>
               Unranked:{" "}
               {playerCardInfo?.overall_stats.unranked.total_matches
-                ? formatStats(
+                ? formatWinLossRatio(
                     playerCardInfo.overall_stats.unranked.total_wins,
                     playerCardInfo.overall_stats.unranked.total_matches
                   )
@@ -126,7 +126,7 @@ const SearchedPlayerCard = ({
             <h2>
               Ranked:{" "}
               {playerCardInfo.overall_stats.ranked.total_matches
-                ? formatStats(
+                ? formatWinLossRatio(
                     playerCardInfo.overall_stats.ranked.total_wins,
                     playerCardInfo.overall_stats.ranked.total_matches
                   )
@@ -135,7 +135,7 @@ const SearchedPlayerCard = ({
             <h2>
               Unranked:{" "}
               {playerCardInfo?.overall_stats.unranked.total_matches
-                ? formatStats(
+                ? formatWinLossRatio(
                     playerCardInfo.overall_stats.unranked.total_wins,
                     playerCardInfo.overall_stats.unranked.total_matches
                   )

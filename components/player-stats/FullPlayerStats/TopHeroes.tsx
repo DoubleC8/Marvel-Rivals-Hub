@@ -28,7 +28,10 @@ const TopHeroes = ({
       : heroes_unranked.sort((a, b) => b.kda - a.kda);
 
   return (
-    <div className="w-[32%] flex flex-col gap-2 h-full bg-[var(--secondary-background)] rounded-lg p-3 overflow-y-auto">
+    <div
+      className="w-[32%] flex flex-col bg-[var(--secondary-background)]
+         rounded-lg p-3 overflow-y-scroll  border-[1px] border-[var(--accent-color)] shadow-2xl"
+    >
       <div className="flex items-center justify-between">
         <h1 className="font-bold text-lg">Top Heroes</h1>
         <Select

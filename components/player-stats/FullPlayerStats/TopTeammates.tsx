@@ -15,8 +15,8 @@ interface TopTeammate {
 const TopTeammates = ({ teamMates }: { teamMates: TopTeammate[] }) => {
   return (
     <div
-      className="w-[32%] h-full flex flex-col bg-[var(--secondary-background)]
-         rounded-lg p-3 overflow-y-scroll"
+      className="w-[32%] flex flex-col bg-[var(--secondary-background)]
+         rounded-lg p-3 overflow-y-scroll  border-[1px] border-[var(--accent-color)] shadow-2xl"
     >
       <h1 className="font-bold text-xl">Top Teammates</h1>
 

@@ -25,7 +25,7 @@ const PlayerStatsHeader = ({
     <div
       className="w-9/10 mx-auto flex items-center justify-between 
     bg-[var(--accent-color)] border-[2px] border-[var(--secondary-background)] 
-    p-3 rounded-lg"
+    p-3 rounded-lg shadow-2xl"
     >
       <div className="flex gap-3 items-center">
         <div className="relative w-[100px] h-[100px]">

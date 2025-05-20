@@ -46,7 +46,7 @@ export const formatName = (playerName: string): string => {
   return formattedName.join(' '); 
 }
 
-export const formatStats = (total_wins: number, total_matches: number): string => {
+export const formatWinLossRatio = (total_wins: number, total_matches: number): string => {
   return (
     (total_wins / total_matches) * 100
   ).toFixed(2) + "%";
@@ -118,8 +118,46 @@ export const getKDA = (kills: number, deaths: number, assists: number): number =
   return parseFloat(kda.toFixed(2));
 };
 
+export const getCurrentSeasonRankInfo = (
+  rankSeasons: Record<string, { level: number; rank_score: number }>
+): { rank: string; rank_score: number; image: string | null } | null => {
+  const entries = Object.entries(rankSeasons)
+    .filter(([key]) => /^\d{7}$/.test(key))
+    .sort((a, b) => parseInt(b[0].slice(-1)) - parseInt(a[0].slice(-1))); // sort by season desc
 
-const BASE_IMAGE_URL = 'https://marvelrivalsapi.com/rivals/ranked/'; // Define your base image URL
+  if (entries.length === 0) return null;
+
+  const [_, latestSeasonData] = entries[0];
+  const { rank, image } = get_rank(latestSeasonData.level);
+
+  return {
+    rank,
+    rank_score: latestSeasonData.rank_score,
+    image,
+  };
+};
+
+
+export const getCurrentSeasonMaxRankInfo = (
+  rankSeasons: Record<string, { max_level: number; max_rank_score: number }>
+): { rank: string; max_rank_score: number; image: string | null } | null => {
+  const entries = Object.entries(rankSeasons)
+    .filter(([key]) => /^\d{7}$/.test(key)) 
+    .sort((a, b) => parseInt(b[0].slice(-1)) - parseInt(a[0].slice(-1))); // sort descending by season ID
+
+  if (entries.length === 0) return null;
+
+  const [_, latestSeasonData] = entries[0];
+  const { rank, image } = get_rank(latestSeasonData.max_level);
+
+  return {
+    rank,
+    max_rank_score: latestSeasonData.max_rank_score,
+    image,
+  };
+};
+
+const BASE_IMAGE_URL = 'https://marvelrivalsapi.com/rivals/ranked'; // Define your base image URL
 
 function range(start: number, end: number): number[] {
   const result: number[] = [];

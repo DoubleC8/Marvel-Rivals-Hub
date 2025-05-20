@@ -1,6 +1,6 @@
 import React from "react";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
-import { formatStats, get_rank, getRankClass } from "@/lib/utils";
+import { formatWinLossRatio, get_rank, getRankClass } from "@/lib/utils";
 import LeaderboardTableHeader from "./leaderboard-table/LeaderboardTableHeader";
 import PaginationMenuBar from "./PaginationMenuBar";
 
@@ -136,7 +136,7 @@ const LeaderboardTable = ({
                   <div className="flex gap-2 justify-center items-center text-lg">
                     <span className="text-[var(--yellow)]">
                       {player.matches > 0
-                        ? formatStats(player.wins, player.matches)
+                        ? formatWinLossRatio(player.wins, player.matches)
                         : "0.00%"}
                     </span>
                     <span className="text-[var(--secondary-text)]">
