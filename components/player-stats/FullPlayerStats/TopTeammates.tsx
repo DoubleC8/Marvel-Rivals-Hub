@@ -1,4 +1,4 @@
-import { formatPlayerImages } from "@/lib/utils";
+import { formatPlayerImages, getPercentColor } from "@/lib/utils";
 import Link from "next/link";
 import React from "react";
 
@@ -56,12 +56,7 @@ const TopTeammates = ({ teamMates }: { teamMates: TopTeammate[] }) => {
                 <h1
                   className="font-extrabold text-md text-right"
                   style={{
-                    color:
-                      parseFloat(teamMate.win_rate) < 25
-                        ? "var(--red)"
-                        : parseFloat(teamMate.win_rate) <= 50
-                        ? "var(--yellow)"
-                        : "var(--green)",
+                    color: getPercentColor(parseFloat(teamMate.win_rate)),
                   }}
                 >
                   {teamMate.win_rate}%

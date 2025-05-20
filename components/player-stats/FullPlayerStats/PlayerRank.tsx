@@ -1,4 +1,8 @@
-import { formatPlayerImages, formatWinLossRatio } from "@/lib/utils";
+import {
+  formatPlayerImages,
+  formatWinLossRatio,
+  getPercentColor,
+} from "@/lib/utils";
 import React from "react";
 
 const PlayerRank = ({
@@ -43,7 +47,18 @@ const PlayerRank = ({
               {player_ranked_wins}W{" "}
               {player_ranked_total_matches - player_ranked_wins}L
             </p>
-            <p>
+            <p
+              style={{
+                color: getPercentColor(
+                  parseFloat(
+                    formatWinLossRatio(
+                      player_ranked_wins,
+                      player_ranked_total_matches
+                    )
+                  )
+                ),
+              }}
+            >
               {formatWinLossRatio(
                 player_ranked_wins,
                 player_ranked_total_matches

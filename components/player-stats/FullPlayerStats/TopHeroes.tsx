@@ -1,6 +1,11 @@
 "use client";
 
-import { formatName, formatPlayerImages, TopHero } from "@/lib/utils";
+import {
+  formatName,
+  formatPlayerImages,
+  getPercentColor,
+  TopHero,
+} from "@/lib/utils";
 import { Ghost } from "lucide-react";
 import React, { useState } from "react";
 
@@ -86,12 +91,7 @@ const TopHeroes = ({
                     <h1
                       className="font-extrabold text-md"
                       style={{
-                        color:
-                          hero.winLossRatio < 25
-                            ? "var(--red)"
-                            : hero.winLossRatio <= 50
-                            ? "var(--yellow)"
-                            : "var(--green)",
+                        color: getPercentColor(hero.winLossRatio),
                       }}
                     >
                       {hero.winLossRatio}%
