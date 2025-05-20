@@ -1,6 +1,7 @@
 {/**USE ONLY FOR NON-ASYNC FUCNTIONS */}
 
 
+import { mockPlayerData } from "@/mockPlayerData";
 import { Heroes } from "@/types/Heroes";
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
@@ -116,6 +117,7 @@ export const getKDA = (kills: number, deaths: number, assists: number): number =
   const kda = (kills + assists) / (deaths === 0 ? 1 : deaths); // Avoid division by 0
   return parseFloat(kda.toFixed(2));
 };
+
 
 const BASE_IMAGE_URL = 'https://marvelrivalsapi.com/rivals/ranked/'; // Define your base image URL
 
