@@ -1,4 +1,4 @@
-import { formatWinLossRatio } from "@/lib/utils";
+import { formatWinLossRatio, getPercentColor } from "@/lib/utils";
 import { PlayerInfo } from "@/types/playerInfo";
 import Link from "next/link";
 import React from "react";
@@ -10,17 +10,17 @@ const SearchedPlayerCard = ({
 }) => {
   return (
     <>
-      <div className="searchedPlayerCard">
+      <div className="searchedPlayerCard shadow-2xl ease-in-out duration-200">
         <Link
           href={`/player-stats/${playerCardInfo.uid}`}
           className="flex gap-5 items-center
-        hover:cursor-pointer hover:bg-[var(--accent-color)] hover:text-[var(--yellow)] ease-in-out duration-100 pr-3 rounded-lg"
+        hover:cursor-pointer hover:bg-[var(--accent-color)] hover:text-[var(--yellow)] ease-in-out duration-100 pr-3 rounded-lg "
           title="Go to Player Profile"
         >
           <img
             src={`https://marvelrivalsapi.com/rivals${playerCardInfo.player.icon.player_icon}`}
             alt={`${playerCardInfo.player.name} Icon`}
-            className="rounded-lg"
+            className="rounded-lg border-[2px] border-[var(--purple)]"
             width={100}
             height={100}
           />
@@ -38,21 +38,43 @@ const SearchedPlayerCard = ({
           <div className="flex flex-col justify-center items-center font-bold text-lg lg:text-2xl">
             <h2>
               Ranked:{" "}
-              {playerCardInfo.overall_stats.ranked.total_matches
-                ? formatWinLossRatio(
-                    playerCardInfo.overall_stats.ranked.total_wins,
-                    playerCardInfo.overall_stats.ranked.total_matches
-                  )
-                : "N/A"}
+              <span
+                style={{
+                  color: getPercentColor(
+                    formatWinLossRatio(
+                      playerCardInfo.overall_stats.ranked.total_wins,
+                      playerCardInfo.overall_stats.ranked.total_matches
+                    )
+                  ),
+                }}
+              >
+                {playerCardInfo?.overall_stats.ranked.total_matches
+                  ? formatWinLossRatio(
+                      playerCardInfo.overall_stats.ranked.total_wins,
+                      playerCardInfo.overall_stats.ranked.total_matches
+                    )
+                  : "N/A"}
+              </span>
             </h2>
             <h2>
               Unranked:{" "}
-              {playerCardInfo?.overall_stats.unranked.total_matches
-                ? formatWinLossRatio(
-                    playerCardInfo.overall_stats.unranked.total_wins,
-                    playerCardInfo.overall_stats.unranked.total_matches
-                  )
-                : "N/A"}
+              <span
+                style={{
+                  color: getPercentColor(
+                    formatWinLossRatio(
+                      playerCardInfo.overall_stats.unranked.total_wins,
+                      playerCardInfo.overall_stats.unranked.total_matches
+                    )
+                  ),
+                }}
+              >
+                {playerCardInfo?.overall_stats.unranked.total_matches
+                  ? formatWinLossRatio(
+                      playerCardInfo.overall_stats.unranked.total_wins,
+                      playerCardInfo.overall_stats.unranked.total_matches
+                    )
+                  : "N/A"}
+              </span>
             </h2>
           </div>
         </div>
@@ -102,12 +124,12 @@ const SearchedPlayerCard = ({
         </div>
       </div>
 
-      <div className="mobileSearchedPlayerCard">
+      <div className="mobileSearchedPlayerCard shadow-2xl">
         <div className="flex gap-5">
           <img
             src={`https://marvelrivalsapi.com/rivals${playerCardInfo.player.icon.player_icon}`}
             alt={`${playerCardInfo.player.name} Icon`}
-            className="rounded-lg"
+            className="rounded-lg border-[2px] border-[var(--purple)]"
             width={100}
             height={100}
           />
@@ -125,21 +147,43 @@ const SearchedPlayerCard = ({
           <div className="flex flex-col text-end font-bold text-xl">
             <h2>
               Ranked:{" "}
-              {playerCardInfo.overall_stats.ranked.total_matches
-                ? formatWinLossRatio(
-                    playerCardInfo.overall_stats.ranked.total_wins,
-                    playerCardInfo.overall_stats.ranked.total_matches
-                  )
-                : "N/A"}
+              <span
+                style={{
+                  color: getPercentColor(
+                    formatWinLossRatio(
+                      playerCardInfo.overall_stats.ranked.total_wins,
+                      playerCardInfo.overall_stats.ranked.total_matches
+                    )
+                  ),
+                }}
+              >
+                {playerCardInfo?.overall_stats.ranked.total_matches
+                  ? formatWinLossRatio(
+                      playerCardInfo.overall_stats.ranked.total_wins,
+                      playerCardInfo.overall_stats.ranked.total_matches
+                    )
+                  : "N/A"}
+              </span>
             </h2>
             <h2>
               Unranked:{" "}
-              {playerCardInfo?.overall_stats.unranked.total_matches
-                ? formatWinLossRatio(
-                    playerCardInfo.overall_stats.unranked.total_wins,
-                    playerCardInfo.overall_stats.unranked.total_matches
-                  )
-                : "N/A"}
+              <span
+                style={{
+                  color: getPercentColor(
+                    formatWinLossRatio(
+                      playerCardInfo.overall_stats.unranked.total_wins,
+                      playerCardInfo.overall_stats.unranked.total_matches
+                    )
+                  ),
+                }}
+              >
+                {playerCardInfo?.overall_stats.unranked.total_matches
+                  ? formatWinLossRatio(
+                      playerCardInfo.overall_stats.unranked.total_wins,
+                      playerCardInfo.overall_stats.unranked.total_matches
+                    )
+                  : "N/A"}
+              </span>
             </h2>
           </div>
         </div>
@@ -190,7 +234,7 @@ const SearchedPlayerCard = ({
         </div>
 
         <Link
-          href={"/"}
+          href={`/player-stats/${playerCardInfo.uid}`}
           className="w-full bg-[var(--yellow)] text-[var(--black)] font-bold text-2xl text-center py-2 rounded-lg"
         >
           Go to Profile

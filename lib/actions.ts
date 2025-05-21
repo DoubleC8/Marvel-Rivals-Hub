@@ -50,8 +50,6 @@ export const getNewsData = async () => {
   };
 };
 
-
-
 export const fetchNewsPageData = async (newsType: string, newsId: string) => {
   console.log(`https://marvelrivalsapi.com/api/v1/${newsType}/${newsId}`)
   try {
@@ -110,5 +108,24 @@ export const fetchLeaderboardData = async(hero: string, consoleType: string) => 
     console.error("Error fetching player leaderboard data:", error);
   }
 }
+
+export const updatePlayerData = async (uid: number) => {
+  try {
+    const response = await axios.get(
+      `https://marvelrivalsapi.com/api/v1/player/${uid}/update`,
+      {
+        headers: {
+          "x-api-key": process.env.API_KEY || "",
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("Error updating player data:", error);
+    throw new Error("Failed to update player data");
+  }
+};
+
 
 

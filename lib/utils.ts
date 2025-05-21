@@ -118,13 +118,14 @@ export const getKDA = (kills: number, deaths: number, assists: number): number =
   return parseFloat(kda.toFixed(2));
 };
 
-export const getPercentColor = (ratio: number): string => {
-  return ratio < 25 
-  ? "var(--red)"
-  : ratio <= 60
-  ? "var(--yellow)"
-  : "var(--green)"
-}
+export const getPercentColor = (percentage: number | string) => {
+  const percentNum = typeof percentage === "string" ? parseFloat(percentage) : percentage;
+
+  if (isNaN(percentNum)) return "var(--white)";
+  if (percentNum >= 60) return "var(--green)";
+  if (percentNum >= 50) return "var(--gold)";
+  return "var(--red)";
+};
 
 export const getCurrentSeasonRankInfo = (
   rankSeasons: Record<string, { level: number; rank_score: number }>

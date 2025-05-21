@@ -14,34 +14,30 @@ const UpdatePlayerButton = ({
 }) => {
   const handleUpdatePlayerProfile = async () => {
     try {
-      const response = await axios.get(
-        `https://marvelrivalsapi.com/api/v1/player/${userUid}/update`,
-        {
-          headers: {
-            "x-api-key": process.env.API_KEY!,
-          },
-        }
-      );
-      console.log(response.data);
+      const response = await axios.post("/api/update-player", {
+        uid: userUid,
+      });
 
+      console.log(response.data);
       window.location.reload();
 
       toast.success(`${name}'s stats have successfully been updated!`, {
         description: `${name}'s stats were updated on ${new Date().toLocaleDateString()}`,
       });
     } catch (error) {
-      console.error("Error updating players profile:", error);
-      toast.error(`Could not update ${name}'s players stats.`, {
+      console.error("Error updating player's profile:", error);
+      toast.error(`Could not update ${name}'s stats.`, {
         description:
-          "Please try again later. Please allow 30 minutes between updates.",
+          "Please try again later. Make sure at least 30 minutes have passed since the last update.",
       });
     }
   };
+
   return (
     <Button
       className="h-8 w-35 bg-[var(--yellow)] text-[var(--black)] text-xl font-extrabold
         hover:cursor-pointer hover:opacity-85 ease-in-out duration-100"
-      onClick={() => handleUpdatePlayerProfile()}
+      onClick={handleUpdatePlayerProfile}
       title="Update Player Profile"
     >
       Update

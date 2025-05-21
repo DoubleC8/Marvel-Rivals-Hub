@@ -1,36 +1,32 @@
+import React from "react";
+import UpdatePlayerButton from "./UpdatePlayerButton";
 import {
   formatPlayerImages,
   getLastMatchDay,
   getLoginOsImage,
 } from "@/lib/utils";
-import React from "react";
-import UpdatePlayerButton from "./UpdatePlayerButton";
 
 const PlayerStatsHeader = ({
   name,
   uid,
-  icon,
+  player_icon,
   level,
   login_os,
-  playerLastMatch,
+  last_inserted_match,
 }: {
   name: string;
   uid: number;
-  icon: string;
+  player_icon: string;
   level: string;
   login_os: string;
-  playerLastMatch: string;
+  last_inserted_match: string;
 }) => {
   return (
-    <div
-      className="w-9/10 mx-auto flex items-center justify-between 
-    bg-[var(--accent-color)] border-[2px] border-[var(--secondary-background)] 
-    p-3 rounded-lg shadow-2xl"
-    >
-      <div className="flex gap-3 items-center">
-        <div className="relative w-[100px] h-[100px]">
+    <div className="w-full flex items-center justify-between bg-[var(--accent-color)] p-3 rounded-lg border-[2px] border-[var(--secondary-background)] shadow-2xl">
+      <div className="flex gap-3 ">
+        <div className="relative w-[125px] h-[125px]">
           <img
-            src={formatPlayerImages(icon)}
+            src={formatPlayerImages(player_icon)}
             alt={`${name} Player Icon`}
             className="absolute rounded-lg border-[3px] border-[var(--purple)] w-full h-full"
           />
@@ -43,8 +39,8 @@ const PlayerStatsHeader = ({
           </p>
         </div>
 
-        <div className="flex flex-col justify-between tracking-wide h-[100px]">
-          <p className="text-3xl font-extrabold">{name}</p>
+        <div className="h-[125px] flex flex-col justify-evenly">
+          <p className="text-2xl font-extrabold">{name}</p>
           <div className="flex gap-2 items-center">
             <p className="text-xl font-bold text-[var(--secondary-text)]">
               {login_os}
@@ -55,13 +51,12 @@ const PlayerStatsHeader = ({
           </div>
           <p className="text-lg text-[var(--secondary-text)] font-bold">
             Last Match:{" "}
-            {getLastMatchDay(playerLastMatch) > 0
-              ? getLastMatchDay(playerLastMatch) + " day ago"
+            {getLastMatchDay(last_inserted_match) > 0
+              ? getLastMatchDay(last_inserted_match) + " day ago"
               : "Today"}
           </p>
         </div>
       </div>
-
       <UpdatePlayerButton userUid={uid} name={name} />
     </div>
   );
