@@ -1,4 +1,4 @@
-export interface Heroes {
+export interface Hero {
     hero_id: number;
     hero_name: string;
     hero_thumbnail: string;

@@ -4,7 +4,7 @@ import {
   formatName,
   formatPlayerImages,
   getPercentColor,
-  TopHero,
+  getTopHeroes,
 } from "@/lib/utils";
 import { Ghost } from "lucide-react";
 import React, { useState } from "react";
@@ -16,29 +16,27 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Hero } from "@/types/Heroes";
 
 const TopHeroes = ({
   heroes_unranked,
   heroes_ranked,
 }: {
-  heroes_unranked: TopHero[];
-  heroes_ranked: TopHero[];
+  heroes_unranked: Hero[];
+  heroes_ranked: Hero[];
 }) => {
   const [selectedType, setSelectedType] = useState<"unranked" | "ranked">(
     "unranked"
   );
   const topHeroes =
     selectedType === "ranked"
-      ? heroes_ranked.sort((a, b) => b.kda - a.kda)
-      : heroes_unranked.sort((a, b) => b.kda - a.kda);
+      ? getTopHeroes(heroes_ranked).sort((a, b) => b.kda - a.kda)
+      : getTopHeroes(heroes_unranked).sort((a, b) => b.kda - a.kda);
 
   return (
-    <div
-      className="w-[32%] flex flex-col bg-[var(--secondary-background)]
-         rounded-lg p-3 overflow-y-scroll  border-[1px] border-[var(--accent-color)] shadow-2xl"
-    >
-      <div className="flex items-center justify-between">
-        <h1 className="font-bold text-lg">Top Heroes</h1>
+    <div className="playerStatsContainer overflow-y-auto">
+      <div className="flex items-center justify-between h-[40px]">
+        <h1 className="font-extrabold text-xl">Top Heroes</h1>
         <Select
           value={selectedType}
           onValueChange={(value) =>
@@ -71,7 +69,7 @@ const TopHeroes = ({
                   <div className="flex items-center gap-3">
                     <img
                       src={formatPlayerImages(hero.hero_icon)}
-                      className="w-[40px] rounded-lg bg-[var(--accent-color)]"
+                      className="w-[45px] h-[45px] rounded-lg bg-[var(--accent-color)]"
                     />
                     <p className="font-extrabold text-md">
                       {formatName(hero.hero_name)}

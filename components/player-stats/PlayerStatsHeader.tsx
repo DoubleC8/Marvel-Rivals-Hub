@@ -22,7 +22,7 @@ const PlayerStatsHeader = ({
   last_inserted_match: string;
 }) => {
   return (
-    <div className="w-full flex items-center justify-between bg-[var(--accent-color)] p-3 rounded-lg border-[2px] border-[var(--secondary-background)] shadow-2xl">
+    <div className="w-9/10 mx-auto flex items-center justify-between bg-[var(--accent-color)] p-3 rounded-lg border-[2px] border-[var(--secondary-background)] shadow-2xl">
       <div className="flex gap-3 ">
         <div className="relative w-[125px] h-[125px]">
           <img

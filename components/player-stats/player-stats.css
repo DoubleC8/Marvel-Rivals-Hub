@@ -114,6 +114,17 @@
     .mobileSearchedPlayerCardLoader{
         display: none;
     }
+
+    .playerStatsContainer{
+      width: 32%;
+      height: 40vh;
+      background-color: var(--secondary-background);
+      padding: calc(var(--spacing) * 3) /* 0.75rem = 12px */;
+      border-radius: var(--radius-lg) /* 0.5rem = 8px */;
+      --tw-shadow: 0 25px 50px -12px var(--tw-shadow-color, rgb(0 0 0 / 0.25));
+      box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow), var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);
+      border: 1px solid var(--accent-color)
+    }
   }
   
   /* ------------------------- */

@@ -12,15 +12,13 @@ interface TopTeammate {
   win_rate: string;
 }
 
-const TopTeammates = ({ teamMates }: { teamMates: TopTeammate[] }) => {
+const TopTeammates = ({ team_mates }: { team_mates: TopTeammate[] }) => {
   return (
-    <div
-      className="w-[32%] flex flex-col bg-[var(--secondary-background)]
-         rounded-lg p-3 overflow-y-scroll  border-[1px] border-[var(--accent-color)] shadow-2xl"
-    >
-      <h1 className="font-bold text-xl">Top Teammates</h1>
-
-      <table className="table-auto">
+    <div className="playerStatsContainer overflow-y-auto">
+      <h1 className="font-extrabold text-xl h-[40px] flex items-center">
+        Top Teammates
+      </h1>
+      <table className="table-auto w-full">
         <thead className="h-10 border-b border-[var(--accent-color)]">
           <tr className="font-extrabold text-lg">
             <th className="text-left">Player</th>
@@ -29,38 +27,38 @@ const TopTeammates = ({ teamMates }: { teamMates: TopTeammate[] }) => {
           </tr>
         </thead>
         <tbody>
-          {teamMates.map((teamMate, index) => (
+          {team_mates.map((teamMate, index) => (
             <tr key={index} className="border-b border-[var(--accent-color)]">
-              <td className="py-2">
-                <div className="flex gap-3 items-center">
-                  <img
-                    src={formatPlayerImages(teamMate.player_info.player_icon)}
-                    alt={`${teamMate.player_info.nick_name} Player Icon`}
-                    className="w-[40px] rounded-lg"
-                  />
-                  <Link
-                    href={`/player-stats/${teamMate.player_info.player_uid}`}
-                    className="font-extrabold text-md hover:cursor-pointer
+              <td className="py-2 flex items-center gap-3 font-extrabold">
+                <img
+                  src={formatPlayerImages(teamMate.player_info.player_icon)}
+                  alt={`${teamMate.player_info.nick_name} Player Icon`}
+                  className="w-[45px] h-[45px] rounded-lg bg-[var(--accent-color)]"
+                />
+                <Link
+                  href={`/player-stats/${teamMate.player_info.player_uid}`}
+                  className="font-extrabold text-md hover:cursor-pointer
                          hover:text-[var(--yellow)] ease-in-out duration-100"
-                  >
-                    {teamMate.player_info.nick_name}
-                  </Link>
-                </div>
+                >
+                  {teamMate.player_info.nick_name}
+                </Link>
               </td>
+
               <td>
-                <h1 className="font-extrabold text-right text-md">
+                <p className="font-extrabold text-md text-right">
                   {teamMate.matches}
-                </h1>
+                </p>
               </td>
+
               <td>
-                <h1
+                <p
                   className="font-extrabold text-md text-right"
                   style={{
-                    color: getPercentColor(parseFloat(teamMate.win_rate)),
+                    color: getPercentColor(teamMate.win_rate),
                   }}
                 >
                   {teamMate.win_rate}%
-                </h1>
+                </p>
               </td>
             </tr>
           ))}

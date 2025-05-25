@@ -1,8 +1,8 @@
 {/**USE ONLY FOR NON-ASYNC FUCNTIONS */}
 
 
-import { mockPlayerData } from "@/mockPlayerData";
-import { Heroes } from "@/types/Heroes";
+import { Hero } from "@/types/Heroes";
+import { Match } from "@/types/Match";
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -73,11 +73,15 @@ export const getLoginOsImage = (loginOs: string) => {
   }
 }
 
-export const getLastMatchDay = (lastMatch: string) => {
-  const today = new Date().getDate();
-  const daysSinceLastMatch = today - new Date(lastMatch).getDate();
-  return daysSinceLastMatch;
-}
+export const getLastMatchDay = (timestamp: number) => {
+  const matchDate = new Date(timestamp * 1000); // correct: convert UNIX to ms
+  const today = new Date();
+
+  const diffTime = today.getTime() - matchDate.getTime(); // difference in ms
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); // convert ms to days
+
+  return diffDays;
+};
 
 export interface TopHero {
   hero_name: string, 
@@ -89,9 +93,10 @@ export interface TopHero {
   deaths: number;
   assists: number;
   kda: number;
+  mvps: number
 }
 
-export const getTopHeroes = (heroes: Heroes[]): TopHero[] => {
+export const getTopHeroes = (heroes: Hero[]): TopHero[] => {
   return heroes
     .filter((hero) => hero.matches > 0)
     .map((hero) => {
@@ -104,18 +109,19 @@ export const getTopHeroes = (heroes: Heroes[]): TopHero[] => {
         hero_icon: hero.hero_thumbnail,
         numberOfMatches: hero.matches,
         numberOfWins: hero.wins,
-        winLossRatio: winRate,
+        winLossRatio: winRate, // ✅ You missed this line
         kills: hero.kills,
         deaths: hero.deaths,
         assists: hero.assists,
         kda: getKDA(hero.kills, hero.deaths, hero.assists),
+        mvps: hero.mvp,
       };
     });
 };
 
 export const getKDA = (kills: number, deaths: number, assists: number): number => {
-  const kda = (kills + assists) / (deaths === 0 ? 1 : deaths); // Avoid division by 0
-  return parseFloat(kda.toFixed(2));
+  if (!deaths || deaths === 0) return kills + assists; // avoid division by zero
+  return parseFloat(((kills + assists) / deaths).toFixed(2));
 };
 
 export const getPercentColor = (percentage: number | string) => {
@@ -126,6 +132,33 @@ export const getPercentColor = (percentage: number | string) => {
   if (percentNum >= 50) return "var(--gold)";
   return "var(--red)";
 };
+
+
+export const getMatchType = (matchGameModeId: number): string => {
+  const gameModes: Record<number, string> = { 
+    1: "Quick Play",
+    2: "Competitive",
+    3: "Custom",
+    4: "Arcade",
+    7: "Practice vs AI",
+    9: "Tournament",
+  }
+
+  return gameModes[matchGameModeId] ?? "Other";
+} 
+
+export const hexToRgba = (hex: string, opacity: number) => {
+ var r = parseInt(hex.slice(1, 3), 16),
+        g = parseInt(hex.slice(3, 5), 16),
+        b = parseInt(hex.slice(5, 7), 16);
+
+    if (opacity) {
+        return "rgba(" + r + ", " + g + ", " + b + ", " + opacity + ")";
+    } else {
+      return "rgb(" + r + ", " + g + ", " + b + ")";
+    }
+      
+}
 
 export const getCurrentSeasonRankInfo = (
   rankSeasons: Record<string, { level: number; rank_score: number }>
