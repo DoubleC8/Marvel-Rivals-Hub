@@ -7,8 +7,8 @@ import TopTeammates from "@/components/player-stats/FullPlayerStats/TopTeammates
 
 import PlayerStatsChart from "@/components/player-stats/FullPlayerStats/PlayerStatsChart";
 
-import { PlayerInfo } from "@/types/playerInfo";
 import PlayerMatchHistory from "@/components/player-stats/FullPlayerStats/PlayerMatchHistory";
+import PlayerRankInfo from "@/components/player-stats/FullPlayerStats/PlayerRankInfo";
 
 const page = async ({ params }: { params: { uid: string } }) => {
   const userUid = params.uid;
@@ -47,10 +47,7 @@ const page = async ({ params }: { params: { uid: string } }) => {
       />
 
       <div className="w-9/10 mx-auto flex justify-between">
-        <div className="playerStatsContainer">
-          <h1 className="font-extrabold text-xl">Current Rank</h1>
-          <h1 className="font-extrabold text-xl">Highest Rank</h1>
-        </div>
+        <PlayerRankInfo playerData={playerData} />
 
         <div className="playerStatsContainer !w-[66%] !p-0">
           <h1 className="font-extrabold text-xl p-3">KDA Trend</h1>

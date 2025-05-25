@@ -14,7 +14,7 @@ export const mockPlayerData = {
         "icon": {
             "player_icon_id": "31043202",
             "player_icon": "/players/heads/player_head_31043202.png",
-            "banner": "/premium/nameplates/31043202_banner.webp?expires=1748144665&signature=fca906390715f4da66430ee3a2e8d037fe47425f2d50efc7bea9c72cb5e7f952"
+            "banner": "/premium/nameplates/31043202_banner.webp?expires=1748195253&signature=0b1719a683dd65a6f0bac831d72c5a7ac201172986c830def350b36854984746"
         },
         "rank": {
             "rank": "Bronze III",

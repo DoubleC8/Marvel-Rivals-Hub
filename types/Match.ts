@@ -10,7 +10,7 @@ export interface Match {
   match_time_stamp: number;
   play_mode_id: number;
   game_mode_id: number;
-  score_info: any | null; // Replace `any` with a proper type if available
+  score_info: any | null; // Replace `any` with a better type if possible
   player_performance: {
     player_uid: number;
     hero_id: number;
@@ -28,6 +28,6 @@ export interface Match {
     level: number | null;
     new_level: number | null;
     score_change: number | null;
-    new_score: number;
+    new_score: number | null; // ← Fix here
   };
 }

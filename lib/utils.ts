@@ -58,6 +58,23 @@ export const formatPlayerImages = (playerImageData: string) => {
   : (`https://marvelrivalsapi.com/rivals${playerImageData}`)
 };
 
+
+
+export const hexToRgba = (hex: string, opacity: number) => {
+ var r = parseInt(hex.slice(1, 3), 16),
+        g = parseInt(hex.slice(3, 5), 16),
+        b = parseInt(hex.slice(5, 7), 16);
+
+    if (opacity) {
+        return "rgba(" + r + ", " + g + ", " + b + ", " + opacity + ")";
+    } else {
+      return "rgb(" + r + ", " + g + ", " + b + ")";
+    }
+      
+}
+
+const BASE_IMAGE_URL = 'https://marvelrivalsapi.com/rivals/ranked'; // Define your base image URL
+
 export const getLoginOsImage = (loginOs: string) => {
   const playstationLogo = "/images/playstation_logo.png";
   const xboxLogo = "/images/Xbox_one_logo.png";
@@ -133,7 +150,6 @@ export const getPercentColor = (percentage: number | string) => {
   return "var(--red)";
 };
 
-
 export const getMatchType = (matchGameModeId: number): string => {
   const gameModes: Record<number, string> = { 
     1: "Quick Play",
@@ -146,60 +162,6 @@ export const getMatchType = (matchGameModeId: number): string => {
 
   return gameModes[matchGameModeId] ?? "Other";
 } 
-
-export const hexToRgba = (hex: string, opacity: number) => {
- var r = parseInt(hex.slice(1, 3), 16),
-        g = parseInt(hex.slice(3, 5), 16),
-        b = parseInt(hex.slice(5, 7), 16);
-
-    if (opacity) {
-        return "rgba(" + r + ", " + g + ", " + b + ", " + opacity + ")";
-    } else {
-      return "rgb(" + r + ", " + g + ", " + b + ")";
-    }
-      
-}
-
-export const getCurrentSeasonRankInfo = (
-  rankSeasons: Record<string, { level: number; rank_score: number }>
-): { rank: string; rank_score: number; image: string | null } | null => {
-  const entries = Object.entries(rankSeasons)
-    .filter(([key]) => /^\d{7}$/.test(key))
-    .sort((a, b) => parseInt(b[0].slice(-1)) - parseInt(a[0].slice(-1))); // sort by season desc
-
-  if (entries.length === 0) return null;
-
-  const [_, latestSeasonData] = entries[0];
-  const { rank, image } = get_rank(latestSeasonData.level);
-
-  return {
-    rank,
-    rank_score: latestSeasonData.rank_score,
-    image,
-  };
-};
-
-
-export const getCurrentSeasonMaxRankInfo = (
-  rankSeasons: Record<string, { max_level: number; max_rank_score: number }>
-): { rank: string; max_rank_score: number; image: string | null } | null => {
-  const entries = Object.entries(rankSeasons)
-    .filter(([key]) => /^\d{7}$/.test(key)) 
-    .sort((a, b) => parseInt(b[0].slice(-1)) - parseInt(a[0].slice(-1))); // sort descending by season ID
-
-  if (entries.length === 0) return null;
-
-  const [_, latestSeasonData] = entries[0];
-  const { rank, image } = get_rank(latestSeasonData.max_level);
-
-  return {
-    rank,
-    max_rank_score: latestSeasonData.max_rank_score,
-    image,
-  };
-};
-
-const BASE_IMAGE_URL = 'https://marvelrivalsapi.com/rivals/ranked'; // Define your base image URL
 
 function range(start: number, end: number): number[] {
   const result: number[] = [];
@@ -272,3 +234,48 @@ export function chatHrefConstructor(id1: string, id2: string) {
   const sortedIds = [id1, id2].sort()
   return `${sortedIds[0]}--${sortedIds[1]}`
 }
+
+
+export const getCurrentSeasonRankInfo = (
+  //A record type is a object type that has a key and a type.Record<Keys, Type> is a utility type used to
+  //  define an object structure where the keys are of type Keys and the values are of type Type.
+  { rankSeasons }: { rankSeasons: Record<string, { level: number; rank_score: number }> }
+ ): { rank: string; rank_score: number; image: string | null } | null => {
+
+ const entries = Object.entries(rankSeasons)
+    .filter(([key]) => /^\d{7}$/.test(key))
+    .sort((a, b) => parseInt(b[0].slice(-1)) - parseInt(a[0].slice(-1))); // sort by season desc
+
+  if (entries.length === 0) return null;
+
+  const [_, latestSeasonData] = entries[0];
+  const { rank, image } = get_rank(latestSeasonData.level);
+
+  return {
+    rank,
+    rank_score: latestSeasonData.rank_score,
+    image,
+  };
+}
+
+
+export const getCurrentSeasonMaxRankInfo = ({
+  rankSeasons,
+}: {
+  rankSeasons: Record<string, { max_level: number; max_rank_score: number }>;
+}): { rank: string; max_rank_score: number; image: string | null } | null => {
+  const entries = Object.entries(rankSeasons)
+    .filter(([key]) => /^\d{7}$/.test(key))
+    .sort((a, b) => parseInt(b[0].slice(-1)) - parseInt(a[0].slice(-1)));
+
+  if (entries.length === 0) return null;
+
+  const [_, latestSeasonData] = entries[0];
+  const { rank, image } = get_rank(latestSeasonData.max_level);
+
+  return {
+    rank,
+    max_rank_score: latestSeasonData.max_rank_score,
+    image,
+  };
+};
