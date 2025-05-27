@@ -1,4 +1,3 @@
-import axios from "axios";
 import React from "react";
 import { mockPlayerData } from "@/mockPlayerData";
 import PlayerStatsHeader from "@/components/player-stats/PlayerStatsHeader";
@@ -9,27 +8,22 @@ import PlayerStatsChart from "@/components/player-stats/FullPlayerStats/PlayerSt
 
 import PlayerMatchHistory from "@/components/player-stats/FullPlayerStats/PlayerMatchHistory";
 import PlayerRankInfo from "@/components/player-stats/FullPlayerStats/PlayerRankInfo";
+import { PlayerInfo } from "@/types/playerInfo";
+import { fetchPlayerData } from "@/lib/actions";
 
 const page = async ({ params }: { params: { uid: string } }) => {
-  const userUid = params.uid;
+  const playerUid = params.uid;
   const playerData = mockPlayerData;
 
   // let playerData: PlayerInfo | null = null;
 
   // try {
-  //   const response = await axios.get(
-  //     `https://marvelrivalsapi.com/api/v1/player/${userUid}`,
-  //     {
-  //       headers: {
-  //         "x-api-key": process.env.API_KEY!,
-  //       },
-  //     }
-  //   );
-  //   playerData = response.data;
-  //   console.log("Succesfuly got data");
-  //   console.log(playerData);
+  //   const playerDataResponse = await fetchPlayerData(playerUid);
+
+  //   playerData = playerDataResponse;
+  //   console.log("Player Data", playerData);
   // } catch (error) {
-  //   console.error("Error fetching player data:", error);
+  //   console.error("Error fetching player data", error);
   // }
   // if (!playerData) {
   //   return;
@@ -46,12 +40,21 @@ const page = async ({ params }: { params: { uid: string } }) => {
         last_inserted_match={playerData.updates.last_inserted_match}
       />
 
+      <div className="w-9/10 mx-auto flex justify-end">
+        <div
+          className="h-8 w-35 text-center bg-[var(--secondary-background)] border-[1px] border-[var(--accent-color)] text-xl rounded-lg
+          font-extrabold hover:cursor-pointer hover:opacity-85 ease-in-out
+          duration-100"
+        >
+          Season
+        </div>
+      </div>
+
       <div className="w-9/10 mx-auto flex justify-between">
         <PlayerRankInfo playerData={playerData} />
 
         <div className="playerStatsContainer !w-[66%] !p-0">
-          <h1 className="font-extrabold text-xl p-3">KDA Trend</h1>
-          {/**<PlayerStatsChart matchHistory={playerData.match_history} /> */}
+          <PlayerStatsChart matchHistory={playerData.match_history} />
         </div>
       </div>
 
@@ -69,7 +72,7 @@ const page = async ({ params }: { params: { uid: string } }) => {
       </div>
 
       <div className="w-9/10 mx-auto flex flex-col gap-3">
-        <PlayerMatchHistory match_history={playerData.match_history} />
+        <PlayerMatchHistory playerUid={playerUid} />
       </div>
     </section>
   );

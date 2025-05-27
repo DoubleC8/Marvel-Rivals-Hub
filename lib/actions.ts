@@ -68,7 +68,7 @@ export const fetchNewsPageData = async (newsType: string, newsId: string) => {
   }
 };
 
-export const fetchPlayerData = async (playerIdentifier: string) => {
+export const fetchPlayerCardData = async (playerIdentifier: string) => {
   try {
     const response = await axios.get(
       `https://marvelrivalsapi.com/api/v1/player/${playerIdentifier}`,
@@ -108,6 +108,44 @@ export const fetchLeaderboardData = async(hero: string, consoleType: string) => 
     console.error("Error fetching player leaderboard data:", error);
   }
 }
+
+export const fetchPlayerData = async(playerUid: string) => {
+  try {
+    const response = await axios.get(
+      `https://marvelrivalsapi.com/api/v1/player/${playerUid}`,
+      {
+        headers: {
+          "x-api-key": process.env.API_KEY!,
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching player data", error);
+  }
+}
+
+export const fetchPlayerMatchHistory = async (playerUid: string, page = 1) => {
+  try {
+    const response = await axios.get(
+      `https://marvelrivalsapi.com/api/v2/player/${playerUid}/match-history?page=${page}&limit=20`,
+      {
+        headers: {
+          "x-api-key": process.env.API_KEY!,
+        },
+      }
+    );
+
+    return {
+      match_history: response.data.match_history,
+      has_more: response.data.pagination.has_more,
+    };
+  } catch (error) {
+    console.error("Failed to fetch match history", error);
+    return { match_history: [], has_more: false };
+  }
+};
 
 export const updatePlayerData = async (uid: number) => {
   try {

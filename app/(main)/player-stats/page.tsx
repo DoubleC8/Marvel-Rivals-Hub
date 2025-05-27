@@ -4,7 +4,7 @@ import { Search } from "lucide-react";
 import React, { useState } from "react";
 import SearchedPlayerCard from "@/components/cards/SearchedPlayerCard";
 import { toast } from "sonner";
-import { fetchPlayerData } from "@/lib/actions";
+import { fetchPlayerCardData } from "@/lib/actions";
 import PlayerCardLoader from "./loading";
 import StatsHeader from "@/components/player-stats/StatsHeader";
 import { PlayerInfo } from "@/types/playerInfo";
@@ -27,7 +27,7 @@ const PlayerStatsPage = () => {
     setLoading(true);
 
     try {
-      const data = await fetchPlayerData(playerIdentifier);
+      const data = await fetchPlayerCardData(playerIdentifier);
 
       console.log(data);
       setPlayerCardInfo(data);

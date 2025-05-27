@@ -51,8 +51,8 @@ const PlayerStatsHeader = ({
           </div>
           <p className="text-lg text-[var(--secondary-text)] font-bold">
             Last Match:{" "}
-            {getLastMatchDay(last_inserted_match) > 0
-              ? getLastMatchDay(last_inserted_match) + " day ago"
+            {getLastMatchDay(Number(last_inserted_match)) > 0
+              ? getLastMatchDay(Number(last_inserted_match)) + " day ago"
               : "Today"}
           </p>
         </div>

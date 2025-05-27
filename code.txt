@@ -1,38 +1,18 @@
-export const getCurrentSeasonRankInfo = (
-  rankSeasons: Record<string, { level: number; rank_score: number }>
-): { rank: string; rank_score: number; image: string | null } | null => {
-  const entries = Object.entries(rankSeasons)
-    .filter(([key]) => /^\d{7}$/.test(key))
-    .sort((a, b) => parseInt(b[0].slice(-1)) - parseInt(a[0].slice(-1))); // sort by season desc
-
-  if (entries.length === 0) return null;
-
-  const [_, latestSeasonData] = entries[0];
-  const { rank, image } = get_rank(latestSeasonData.level);
-
-  return {
-    rank,
-    rank_score: latestSeasonData.rank_score,
-    image,
-  };
-};
-
-
-export const getCurrentSeasonMaxRankInfo = (
-  rankSeasons: Record<string, { max_level: number; max_rank_score: number }>
-): { rank: string; max_rank_score: number; image: string | null } | null => {
-  const entries = Object.entries(rankSeasons)
-    .filter(([key]) => /^\d{7}$/.test(key)) 
-    .sort((a, b) => parseInt(b[0].slice(-1)) - parseInt(a[0].slice(-1))); // sort descending by season ID
-
-  if (entries.length === 0) return null;
-
-  const [_, latestSeasonData] = entries[0];
-  const { rank, image } = get_rank(latestSeasonData.max_level);
-
-  return {
-    rank,
-    max_rank_score: latestSeasonData.max_rank_score,
-    image,
-  };
-};
+ try {
+    const response = await axios.get(
+      `https://marvelrivalsapi.com/api/v1/player/${userUid}`,
+      {
+        headers: {
+          "x-api-key": process.env.API_KEY!,
+        },
+      }
+    );
+    playerData = response.data;
+    console.log("Succesfuly got data");
+    console.log(playerData);
+  } catch (error) {
+    console.error("Error fetching player data:", error);
+  }
+  if (!playerData) {
+    return;
+  }
