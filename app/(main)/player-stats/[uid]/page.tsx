@@ -10,6 +10,7 @@ import PlayerMatchHistory from "@/components/player-stats/FullPlayerStats/Player
 import PlayerRankInfo from "@/components/player-stats/FullPlayerStats/PlayerRankInfo";
 import { PlayerInfo } from "@/types/playerInfo";
 import { fetchPlayerData } from "@/lib/actions";
+import SelectSeasonButton from "@/components/player-stats/FullPlayerStats/SelectSeasonButton";
 
 const page = async ({ params }: { params: { uid: string } }) => {
   const playerUid = params.uid;
@@ -41,13 +42,7 @@ const page = async ({ params }: { params: { uid: string } }) => {
       />
 
       <div className="w-9/10 mx-auto flex justify-end">
-        <div
-          className="h-8 w-35 text-center bg-[var(--secondary-background)] border-[1px] border-[var(--accent-color)] text-xl rounded-lg
-          font-extrabold hover:cursor-pointer hover:opacity-85 ease-in-out
-          duration-100"
-        >
-          Season
-        </div>
+        <SelectSeasonButton />
       </div>
 
       <div className="w-9/10 mx-auto flex justify-between">

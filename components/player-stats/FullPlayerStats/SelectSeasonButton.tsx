@@ -17,18 +17,13 @@ const SelectSeasonButton = () => {
   useEffect(() => {
     const fetchSeasons = async () => {
       try {
-        const response = await axios.get(
-          `https://marvelrivalsapi.com/api/v1/seasons`,
-          {
-            headers: {
-              "x-api-key": process.env.API_KEY!,
-            },
-          }
-        );
+        const response = await axios.get("/api/seasons");
         setSeasons(response.data);
       } catch (error) {
         console.error("Error fetching seasons:", error);
       }
+
+      console.log("Seasons", seasons);
     };
 
     fetchSeasons();
@@ -37,23 +32,21 @@ const SelectSeasonButton = () => {
   if (seasons.length === 0) return null;
 
   return (
-    <div className="w-9/10 mx-auto flex justify-end">
-      <Select
-        value={selectedSeason}
-        onValueChange={(value) => setSelectedSeason(value)}
-      >
-        <SelectTrigger className="h-8 w-35 bg-[var(--accent-color)] border-[var(--secondary-background)] text-xl font-extrabold">
-          <SelectValue placeholder="Season" />
-        </SelectTrigger>
-        <SelectContent className="bg-[var(--secondary-background)] border-[var(--accent-color)]">
-          {seasons.map((season) => (
-            <SelectItem key={season} value={season.toString()}>
-              Season {season}
-            </SelectItem>
-          ))}
-        </SelectContent>
-      </Select>
-    </div>
+    <Select
+      value={selectedSeason}
+      onValueChange={(value) => setSelectedSeason(value)}
+    >
+      <SelectTrigger className="h-8 w-35 bg-[var(--secondary-background)] border-[var(--accent-color)] text-lg font-extrabold">
+        <SelectValue placeholder="Season" />
+      </SelectTrigger>
+      <SelectContent className="bg-[var(--secondary-background)] border-[var(--accent-color)]">
+        {seasons.map((season) => (
+          <SelectItem key={season} value={season.toString()}>
+            Season {season}
+          </SelectItem>
+        ))}
+      </SelectContent>
+    </Select>
   );
 };
 
