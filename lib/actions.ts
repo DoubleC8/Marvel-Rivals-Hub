@@ -129,7 +129,7 @@ export const fetchPlayerData = async(playerUid: string) => {
 export const fetchPlayerMatchHistory = async (playerUid: string, page = 1) => {
   try {
     const response = await axios.get(
-      `https://marvelrivalsapi.com/api/v2/player/${playerUid}/match-history?page=${page}&limit=20`,
+      `https://marvelrivalsapi.com/api/v2/player/${playerUid}/match-history?page=${page}&limit=15`,
       {
         headers: {
           "x-api-key": process.env.API_KEY!,
@@ -139,7 +139,7 @@ export const fetchPlayerMatchHistory = async (playerUid: string, page = 1) => {
 
     return {
       match_history: response.data.match_history,
-      has_more: response.data.pagination.has_more,
+      pagination: response.data.pagination,
     };
   } catch (error) {
     console.error("Failed to fetch match history", error);

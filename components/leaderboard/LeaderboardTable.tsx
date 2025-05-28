@@ -2,7 +2,7 @@ import React from "react";
 import { Table, TableBody, TableCell, TableRow } from "@/components/ui/table";
 import { formatWinLossRatio, get_rank, getRankClass } from "@/lib/utils";
 import LeaderboardTableHeader from "./leaderboard-table/LeaderboardTableHeader";
-import PaginationMenuBar from "./PaginationMenuBar";
+import PaginationMenuBar from "../ui/PaginationMenuBar";
 
 interface PlayerInfo {
   cur_head_icon_id: string;

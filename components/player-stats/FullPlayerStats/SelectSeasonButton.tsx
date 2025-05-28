@@ -37,7 +37,7 @@ const SelectSeasonButton = () => {
       onValueChange={(value) => setSelectedSeason(value)}
     >
       <SelectTrigger className="h-8 w-35 bg-[var(--secondary-background)] border-[var(--accent-color)] text-lg font-extrabold">
-        <SelectValue placeholder="Season" />
+        <SelectValue placeholder={`Season ${seasons[seasons.length - 1]}`} />
       </SelectTrigger>
       <SelectContent className="bg-[var(--secondary-background)] border-[var(--accent-color)]">
         {seasons.map((season) => (

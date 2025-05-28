@@ -14,21 +14,21 @@ import SelectSeasonButton from "@/components/player-stats/FullPlayerStats/Select
 
 const page = async ({ params }: { params: { uid: string } }) => {
   const playerUid = params.uid;
-  const playerData = mockPlayerData;
+  //const playerData = mockPlayerData;
 
-  // let playerData: PlayerInfo | null = null;
+  let playerData: PlayerInfo | null = null;
 
-  // try {
-  //   const playerDataResponse = await fetchPlayerData(playerUid);
+  try {
+    const playerDataResponse = await fetchPlayerData(playerUid);
 
-  //   playerData = playerDataResponse;
-  //   console.log("Player Data", playerData);
-  // } catch (error) {
-  //   console.error("Error fetching player data", error);
-  // }
-  // if (!playerData) {
-  //   return;
-  // }
+    playerData = playerDataResponse;
+    console.log("Player Data", playerData);
+  } catch (error) {
+    console.error("Error fetching player data", error);
+  }
+  if (!playerData) {
+    return;
+  }
 
   return (
     <section className="flex flex-col gap-5 min-h-[100vh] p-5">
@@ -42,7 +42,7 @@ const page = async ({ params }: { params: { uid: string } }) => {
       />
 
       <div className="w-9/10 mx-auto flex justify-end">
-        <SelectSeasonButton />
+        {/* <SelectSeasonButton /> */}
       </div>
 
       <div className="w-9/10 mx-auto flex justify-between">

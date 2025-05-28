@@ -100,6 +100,7 @@ export const getLastMatchDay = (timestamp: number) => {
   return diffDays;
 };
 
+
 export interface TopHero {
   hero_name: string, 
   hero_icon: string, //TEMP FIX, API WILL BE FIXED LATER
