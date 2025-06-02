@@ -90,16 +90,27 @@ export const getLoginOsImage = (loginOs: string) => {
   }
 }
 
-export const getLastMatchDay = (timestamp: number) => {
-  const matchDate = new Date(timestamp * 1000); // correct: convert UNIX to ms
+export const getLastMatchDay = (timestamp: number | string): string => {
+  let matchDate: Date;
+
+  if (typeof timestamp === "number") {
+    matchDate = new Date(timestamp * 1000); // UNIX timestamp to ms
+  } else {
+    matchDate = new Date(timestamp); // assumes ISO string
+  }
+
   const today = new Date();
+  const diffTime = today.getTime() - matchDate.getTime();
+  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
-  const diffTime = today.getTime() - matchDate.getTime(); // difference in ms
-  const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24)); // convert ms to days
-
-  return diffDays;
+  if (diffDays === 0) {
+    return "Today";
+  } else if (diffDays === 1) {
+    return "Yesterday";
+  } else {
+    return `${diffDays} days ago`;
+  }
 };
-
 
 export interface TopHero {
   hero_name: string, 

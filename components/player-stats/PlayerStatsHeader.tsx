@@ -21,6 +21,8 @@ const PlayerStatsHeader = ({
   login_os: string;
   last_inserted_match: string;
 }) => {
+  console.log(last_inserted_match);
+  console.log("last match day was", getLastMatchDay(last_inserted_match));
   return (
     <div className="w-9/10 mx-auto flex items-center justify-between bg-[var(--accent-color)] p-3 rounded-lg border-[2px] border-[var(--secondary-background)] shadow-2xl">
       <div className="flex gap-3 ">
@@ -50,10 +52,7 @@ const PlayerStatsHeader = ({
             ) : null}
           </div>
           <p className="text-lg text-[var(--secondary-text)] font-bold">
-            Last Match:{" "}
-            {getLastMatchDay(Number(last_inserted_match)) > 0
-              ? getLastMatchDay(Number(last_inserted_match)) + " day ago"
-              : "Today"}
+            Last Match: {getLastMatchDay(last_inserted_match)}
           </p>
         </div>
       </div>

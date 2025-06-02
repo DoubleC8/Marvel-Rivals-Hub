@@ -10,7 +10,9 @@ const SearchedPlayerCard = ({
 }) => {
   return (
     <>
+      {/**Web player card */}
       <div className="searchedPlayerCard shadow-2xl ease-in-out duration-200">
+        {/**Contains profile image, level, and uid */}
         <Link
           href={`/player-stats/${playerCardInfo.uid}`}
           className="flex gap-5 items-center
@@ -31,6 +33,7 @@ const SearchedPlayerCard = ({
           </div>
         </Link>
 
+        {/**Contains win percentage */}
         <div className="flex flex-col items-center justify-between h-[100px]">
           <h1 className="text-xl lg:text-3xl font-extrabold tracking-wide">
             Win Percentage
@@ -79,6 +82,7 @@ const SearchedPlayerCard = ({
           </div>
         </div>
 
+        {/**Contains Current Rank */}
         <div className="flex flex-col items-center justify-between h-[100px]">
           <h1 className="text-xl lg:text-3xl font-extrabold tracking-wide">
             Rank
@@ -113,6 +117,7 @@ const SearchedPlayerCard = ({
           )}
         </div>
 
+        {/**Contains login os info */}
         <div className="flex flex-col items-center justify-between h-[100px]">
           <h1 className="text-xl lg:text-3xl font-extrabold tracking-wide">
             Console
@@ -124,7 +129,9 @@ const SearchedPlayerCard = ({
         </div>
       </div>
 
+      {/**mobile player card */}
       <div className="mobileSearchedPlayerCard shadow-2xl">
+        {/**Contains profile image, level, and uid */}
         <div className="flex gap-5">
           <img
             src={`https://marvelrivalsapi.com/rivals${playerCardInfo.player.icon.player_icon}`}
@@ -140,6 +147,7 @@ const SearchedPlayerCard = ({
           </div>
         </div>
 
+        {/**Contains win percentage */}
         <div className="flex items-center justify-between gap-5">
           <h1 className="text-2xl font-extrabold tracking-wide">
             Win Percentage
@@ -188,6 +196,7 @@ const SearchedPlayerCard = ({
           </div>
         </div>
 
+        {/**Contains Current Rank */}
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-extrabold tracking-wide text-center">
             Rank
@@ -225,6 +234,7 @@ const SearchedPlayerCard = ({
           )}
         </div>
 
+        {/**Contains login os info */}
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-extrabold tracking-wide">Console</h1>
           <div className="flex flex-col justify-center items-center font-bold text-xl">
@@ -233,6 +243,7 @@ const SearchedPlayerCard = ({
           </div>
         </div>
 
+        {/**Go to proile page button*/}
         <Link
           href={`/player-stats/${playerCardInfo.uid}`}
           className="w-full bg-[var(--yellow)] text-[var(--black)] font-bold text-2xl text-center py-2 rounded-lg"

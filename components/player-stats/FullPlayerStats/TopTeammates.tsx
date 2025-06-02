@@ -1,4 +1,5 @@
 import { formatPlayerImages, getPercentColor } from "@/lib/utils";
+import { Ghost } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -13,6 +14,17 @@ interface TopTeammate {
 }
 
 const TopTeammates = ({ team_mates }: { team_mates: TopTeammate[] }) => {
+  if (team_mates.length === 0) {
+    return (
+      <div className="playerStatsContainer overflow-y-auto ">
+        <h1 className="font-extrabold text-xl">Top Teammates</h1>
+        <div className="font-extrabold text-2xl flex items-center justify-center gap-3 text-[var(--secondary-text)] h-full">
+          <Ghost size={25} />
+          <p>No Data Yet</p>
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="playerStatsContainer overflow-y-auto">
       <h1 className="font-extrabold text-xl h-[40px] flex items-center">

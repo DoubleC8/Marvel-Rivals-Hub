@@ -129,7 +129,7 @@ export const fetchPlayerData = async(playerUid: string) => {
 export const fetchPlayerMatchHistory = async (playerUid: string, page = 1) => {
   try {
     const response = await axios.get(
-      `https://marvelrivalsapi.com/api/v2/player/${playerUid}/match-history?page=${page}&limit=15`,
+      `https://marvelrivalsapi.com/api/v2/player/Double%20C/match-history`,
       {
         headers: {
           "x-api-key": process.env.API_KEY!,
@@ -164,6 +164,5 @@ export const updatePlayerData = async (uid: number) => {
     throw new Error("Failed to update player data");
   }
 };
-
 
 

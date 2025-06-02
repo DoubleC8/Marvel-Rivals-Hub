@@ -104,12 +104,9 @@ const TopHeroes = ({
           </tbody>
         </table>
       ) : (
-        <div
-          className="h-full flex justify-center gap-3 items-center text-[var(--secondary-text)]
-         text-2xl font-extrabold "
-        >
-          <h1 className="">No Data Yet</h1>
-          <Ghost />
+        <div className="font-extrabold text-2xl flex items-center justify-center gap-3 text-[var(--secondary-text)] h-full">
+          <Ghost size={25} />
+          <p>No Data Yet</p>
         </div>
       )}
     </div>

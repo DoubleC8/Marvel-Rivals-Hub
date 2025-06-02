@@ -5,8 +5,8 @@ export const mockPlayerData =
     "updates": {
         "info_update_time": "2/9/2025, 7:58:41 PM",
         "last_history_update": "5/26/2025, 8:28:17 PM",
-        "last_inserted_match": "5/26/2025, 6:48:44 PM",
-        "last_update_request": "5/26/2025, 8:28:15 PM"
+        "last_inserted_match": "5/27/2025, 6:48:44 AM",
+        "last_update_request": "5/28/2025, 12:06:54 PM"
     },
     "player": {
         "uid": 1786151874,
@@ -15,7 +15,7 @@ export const mockPlayerData =
         "icon": {
             "player_icon_id": "31025203",
             "player_icon": "/players/heads/player_head_31025203.png",
-            "banner": "/premium/nameplates/31025203_banner.webp?expires=1748314608&signature=31b6390a8517fe57bfb5ee4c0bfc80db20d995d9399117c7f82a26c8d510f5ef"
+            "banner": "/premium/nameplates/31025203_banner.webp?expires=1748458049&signature=73a85eb91916732aa7bdd9703dd40506b0ed584d1d33d9fe60d7f452534a7704"
         },
         "rank": {
             "rank": "Bronze II",
@@ -809,96 +809,6 @@ export const mockPlayerData =
     ],
     "hero_matchups": [
         {
-            "hero_id": 1011,
-            "hero_name": "hulk",
-            "hero_class": "Vanguard",
-            "hero_thumbnail": "/heroes/transformations/bruce-banner-headbig-0.webp",
-            "matches": 2,
-            "wins": 2,
-            "win_rate": "100.00"
-        },
-        {
-            "hero_id": 1039,
-            "hero_name": "thor",
-            "hero_class": "Vanguard",
-            "hero_thumbnail": "/heroes/transformations/thor-headbig-0.webp",
-            "matches": 1,
-            "wins": 0,
-            "win_rate": "0.00"
-        },
-        {
-            "hero_id": 1023,
-            "hero_name": "rocket raccoon",
-            "hero_class": "Strategist",
-            "hero_thumbnail": "/heroes/transformations/rocket-raccoon-headbig-0.webp",
-            "matches": 2,
-            "wins": 1,
-            "win_rate": "50.00"
-        },
-        {
-            "hero_id": 1034,
-            "hero_name": "iron man",
-            "hero_class": "Duelist",
-            "hero_thumbnail": "/heroes/transformations/iron-man-headbig-0.webp",
-            "matches": 4,
-            "wins": 3,
-            "win_rate": "75.00"
-        },
-        {
-            "hero_id": 1022,
-            "hero_name": "captain america",
-            "hero_class": "Vanguard",
-            "hero_thumbnail": "/heroes/transformations/captain-america-headbig-0.webp",
-            "matches": 3,
-            "wins": 2,
-            "win_rate": "66.67"
-        },
-        {
-            "hero_id": 1040,
-            "hero_name": "mister fantastic",
-            "hero_class": "Duelist",
-            "hero_thumbnail": "/heroes/transformations/mister-fantastic-headbig-0.webp",
-            "matches": 2,
-            "wins": 2,
-            "win_rate": "100.00"
-        },
-        {
-            "hero_id": 1046,
-            "hero_name": "adam warlock",
-            "hero_class": "Strategist",
-            "hero_thumbnail": "/heroes/transformations/adam-warlock-headbig-0.webp",
-            "matches": 1,
-            "wins": 1,
-            "win_rate": "100.00"
-        },
-        {
-            "hero_id": 1051,
-            "hero_name": "the thing",
-            "hero_class": "Vanguard",
-            "hero_thumbnail": "/heroes/transformations/the-thing-headbig-0.webp",
-            "matches": 1,
-            "wins": 0,
-            "win_rate": "0.00"
-        },
-        {
-            "hero_id": 1031,
-            "hero_name": "luna snow",
-            "hero_class": "Strategist",
-            "hero_thumbnail": "/heroes/transformations/luna-snow-headbig-0.webp",
-            "matches": 2,
-            "wins": 2,
-            "win_rate": "100.00"
-        },
-        {
-            "hero_id": 1027,
-            "hero_name": "groot",
-            "hero_class": "Vanguard",
-            "hero_thumbnail": "/heroes/transformations/groot-headbig-0.webp",
-            "matches": 1,
-            "wins": 0,
-            "win_rate": "0.00"
-        },
-        {
             "hero_id": 1042,
             "hero_name": "peni parker",
             "hero_class": "Vanguard",
@@ -908,31 +818,31 @@ export const mockPlayerData =
             "win_rate": "100.00"
         },
         {
-            "hero_id": 1045,
-            "hero_name": "namor",
+            "hero_id": 1015,
+            "hero_name": "storm",
             "hero_class": "Duelist",
-            "hero_thumbnail": "/heroes/transformations/namor-headbig-0.webp",
-            "matches": 2,
-            "wins": 1,
-            "win_rate": "50.00"
-        },
-        {
-            "hero_id": 1017,
-            "hero_name": "human torch",
-            "hero_class": "Duelist",
-            "hero_thumbnail": "/heroes/transformations/human-torch-headbig-0.webp",
-            "matches": 2,
-            "wins": 1,
-            "win_rate": "50.00"
-        },
-        {
-            "hero_id": 1053,
-            "hero_name": "emma frost",
-            "hero_class": "Vanguard",
-            "hero_thumbnail": "/heroes/transformations/emma-frost-headbig-0.webp",
+            "hero_thumbnail": "/heroes/transformations/storm-headbig-0.webp",
             "matches": 1,
-            "wins": 0,
-            "win_rate": "0.00"
+            "wins": 1,
+            "win_rate": "100.00"
+        },
+        {
+            "hero_id": 1050,
+            "hero_name": "invisible woman",
+            "hero_class": "Strategist",
+            "hero_thumbnail": "/heroes/transformations/invisible-woman-headbig-0.webp",
+            "matches": 4,
+            "wins": 1,
+            "win_rate": "25.00"
+        },
+        {
+            "hero_id": 1025,
+            "hero_name": "cloak & dagger",
+            "hero_class": "Strategist",
+            "hero_thumbnail": "/heroes/transformations/cloak-dagger-headbig-0.webp",
+            "matches": 5,
+            "wins": 3,
+            "win_rate": "60.00"
         },
         {
             "hero_id": 1032,
@@ -953,31 +863,13 @@ export const mockPlayerData =
             "win_rate": "0.00"
         },
         {
-            "hero_id": 1025,
-            "hero_name": "cloak & dagger",
+            "hero_id": 1020,
+            "hero_name": "mantis",
             "hero_class": "Strategist",
-            "hero_thumbnail": "/heroes/transformations/cloak-dagger-headbig-0.webp",
-            "matches": 5,
-            "wins": 3,
-            "win_rate": "60.00"
-        },
-        {
-            "hero_id": 1050,
-            "hero_name": "invisible woman",
-            "hero_class": "Strategist",
-            "hero_thumbnail": "/heroes/transformations/invisible-woman-headbig-0.webp",
-            "matches": 4,
+            "hero_thumbnail": "/heroes/transformations/mantis-headbig-0.webp",
+            "matches": 2,
             "wins": 1,
-            "win_rate": "25.00"
-        },
-        {
-            "hero_id": 1015,
-            "hero_name": "storm",
-            "hero_class": "Duelist",
-            "hero_thumbnail": "/heroes/transformations/storm-headbig-0.webp",
-            "matches": 1,
-            "wins": 1,
-            "win_rate": "100.00"
+            "win_rate": "50.00"
         },
         {
             "hero_id": 1024,
@@ -989,15 +881,6 @@ export const mockPlayerData =
             "win_rate": "100.00"
         },
         {
-            "hero_id": 1020,
-            "hero_name": "mantis",
-            "hero_class": "Strategist",
-            "hero_thumbnail": "/heroes/transformations/mantis-headbig-0.webp",
-            "matches": 2,
-            "wins": 1,
-            "win_rate": "50.00"
-        },
-        {
             "hero_id": 1018,
             "hero_name": "doctor strange",
             "hero_class": "Vanguard",
@@ -1005,13 +888,130 @@ export const mockPlayerData =
             "matches": 1,
             "wins": 0,
             "win_rate": "0.00"
+        },
+        {
+            "hero_id": 1022,
+            "hero_name": "captain america",
+            "hero_class": "Vanguard",
+            "hero_thumbnail": "/heroes/transformations/captain-america-headbig-0.webp",
+            "matches": 3,
+            "wins": 2,
+            "win_rate": "66.67"
+        },
+        {
+            "hero_id": 1051,
+            "hero_name": "the thing",
+            "hero_class": "Vanguard",
+            "hero_thumbnail": "/heroes/transformations/the-thing-headbig-0.webp",
+            "matches": 1,
+            "wins": 0,
+            "win_rate": "0.00"
+        },
+        {
+            "hero_id": 1039,
+            "hero_name": "thor",
+            "hero_class": "Vanguard",
+            "hero_thumbnail": "/heroes/transformations/thor-headbig-0.webp",
+            "matches": 1,
+            "wins": 0,
+            "win_rate": "0.00"
+        },
+        {
+            "hero_id": 1011,
+            "hero_name": "hulk",
+            "hero_class": "Vanguard",
+            "hero_thumbnail": "/heroes/transformations/bruce-banner-headbig-0.webp",
+            "matches": 2,
+            "wins": 2,
+            "win_rate": "100.00"
+        },
+        {
+            "hero_id": 1034,
+            "hero_name": "iron man",
+            "hero_class": "Duelist",
+            "hero_thumbnail": "/heroes/transformations/iron-man-headbig-0.webp",
+            "matches": 4,
+            "wins": 3,
+            "win_rate": "75.00"
+        },
+        {
+            "hero_id": 1046,
+            "hero_name": "adam warlock",
+            "hero_class": "Strategist",
+            "hero_thumbnail": "/heroes/transformations/adam-warlock-headbig-0.webp",
+            "matches": 1,
+            "wins": 1,
+            "win_rate": "100.00"
+        },
+        {
+            "hero_id": 1040,
+            "hero_name": "mister fantastic",
+            "hero_class": "Duelist",
+            "hero_thumbnail": "/heroes/transformations/mister-fantastic-headbig-0.webp",
+            "matches": 2,
+            "wins": 2,
+            "win_rate": "100.00"
+        },
+        {
+            "hero_id": 1023,
+            "hero_name": "rocket raccoon",
+            "hero_class": "Strategist",
+            "hero_thumbnail": "/heroes/transformations/rocket-raccoon-headbig-0.webp",
+            "matches": 2,
+            "wins": 1,
+            "win_rate": "50.00"
+        },
+        {
+            "hero_id": 1053,
+            "hero_name": "emma frost",
+            "hero_class": "Vanguard",
+            "hero_thumbnail": "/heroes/transformations/emma-frost-headbig-0.webp",
+            "matches": 1,
+            "wins": 0,
+            "win_rate": "0.00"
+        },
+        {
+            "hero_id": 1045,
+            "hero_name": "namor",
+            "hero_class": "Duelist",
+            "hero_thumbnail": "/heroes/transformations/namor-headbig-0.webp",
+            "matches": 2,
+            "wins": 1,
+            "win_rate": "50.00"
+        },
+        {
+            "hero_id": 1027,
+            "hero_name": "groot",
+            "hero_class": "Vanguard",
+            "hero_thumbnail": "/heroes/transformations/groot-headbig-0.webp",
+            "matches": 1,
+            "wins": 0,
+            "win_rate": "0.00"
+        },
+        {
+            "hero_id": 1031,
+            "hero_name": "luna snow",
+            "hero_class": "Strategist",
+            "hero_thumbnail": "/heroes/transformations/luna-snow-headbig-0.webp",
+            "matches": 2,
+            "wins": 2,
+            "win_rate": "100.00"
+        },
+        {
+            "hero_id": 1017,
+            "hero_name": "human torch",
+            "hero_class": "Duelist",
+            "hero_thumbnail": "/heroes/transformations/human-torch-headbig-0.webp",
+            "matches": 2,
+            "wins": 1,
+            "win_rate": "50.00"
         }
     ],
     "team_mates": [
         {
             "player_info": {
                 "nick_name": "Akio_Ren",
-                "player_icon": "/rivals/players/heads/player_head_31053001.png",
+                "player_icon": "/rivals/players/heads/player_head_30000058.png",
                 "player_uid": 1440347056
             },
             "matches": 41,
@@ -1050,9 +1050,9 @@ export const mockPlayerData =
         },
         {
             "player_info": {
-                "nick_name": "Phantasma17",
-                "player_icon": "/rivals/players/heads/player_head_30000031.png",
-                "player_uid": 382675847
+                "nick_name": "D1gamer",
+                "player_icon": "/rivals/players/heads/player_head_30000047.png",
+                "player_uid": 1525067822
             },
             "matches": 1,
             "wins": 0,
@@ -1060,9 +1060,9 @@ export const mockPlayerData =
         },
         {
             "player_info": {
-                "nick_name": "Parahax1023",
-                "player_icon": "/rivals/players/heads/player_head_31036201.png",
-                "player_uid": 31111820
+                "nick_name": "Dmickle",
+                "player_icon": "/rivals/players/heads/player_head_30000001.png",
+                "player_uid": 2082731056
             },
             "matches": 1,
             "wins": 0,
@@ -1070,39 +1070,39 @@ export const mockPlayerData =
         },
         {
             "player_info": {
-                "nick_name": "Fatmonkeylover",
-                "player_icon": "/rivals/players/heads/player_head_31031202.png",
-                "player_uid": 1167293161
-            },
-            "matches": 1,
-            "wins": 0,
-            "win_rate": "0.00"
-        },
-        {
-            "player_info": {
-                "nick_name": "RedAssailant02",
-                "player_icon": "/rivals/players/heads/player_head_31051001.png",
-                "player_uid": 1838036729
-            },
-            "matches": 1,
-            "wins": 1,
-            "win_rate": "100.00"
-        },
-        {
-            "player_info": {
-                "nick_name": "Scott Jennings",
-                "player_icon": "/rivals/players/heads/player_head_31016203.png",
-                "player_uid": 1332777678
-            },
-            "matches": 1,
-            "wins": 1,
-            "win_rate": "100.00"
-        },
-        {
-            "player_info": {
-                "nick_name": "H20 Akatsuki",
+                "nick_name": "UNKNOWN_NICO_",
                 "player_icon": "/rivals/players/heads/player_head_31038202.png",
-                "player_uid": 1289509034
+                "player_uid": 841000656
+            },
+            "matches": 1,
+            "wins": 0,
+            "win_rate": "0.00"
+        },
+        {
+            "player_info": {
+                "nick_name": "Jozey99",
+                "player_icon": "/rivals/players/heads/player_head_30000001.png",
+                "player_uid": 1177478585
+            },
+            "matches": 1,
+            "wins": 0,
+            "win_rate": "0.00"
+        },
+        {
+            "player_info": {
+                "nick_name": "LuluLemonzsss",
+                "player_icon": "/rivals/players/heads/player_head_31053001.png",
+                "player_uid": 1812339615
+            },
+            "matches": 1,
+            "wins": 1,
+            "win_rate": "100.00"
+        },
+        {
+            "player_info": {
+                "nick_name": "Ivan128000",
+                "player_icon": "/rivals/players/heads/player_head_31047201.png",
+                "player_uid": 1684759990
             },
             "matches": 1,
             "wins": 1,

@@ -29,11 +29,14 @@ const PlayerRankInfo = ({ playerData }: { playerData: PlayerInfo }) => {
         <h1 className="font-extrabold text-xl">Current Rank</h1>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
+            {/**Rank image */}
             <img
               src={formatPlayerImages(playerData.player.rank.image)}
               alt={`${playerData.name} Current Rank Icon`}
               className="w-[100px] h-[100px]"
             />
+
+            {/**Rank and score */}
             <div>
               <h1 className="font-extrabold text-2xl">
                 {playerData.player.rank.rank}
@@ -44,7 +47,8 @@ const PlayerRankInfo = ({ playerData }: { playerData: PlayerInfo }) => {
             </div>
           </div>
 
-          <div className="font-bold text-md text-[var(--secondary-text)]">
+          {/**Matches playes this season and win rate */}
+          <div className="font-bold text-md text-[var(--secondary-text)] text-end">
             <h1>
               {playerData.overall_stats.ranked.total_wins}W |{" "}
               {playerData.overall_stats.ranked.total_matches -
@@ -52,10 +56,13 @@ const PlayerRankInfo = ({ playerData }: { playerData: PlayerInfo }) => {
               L
             </h1>
             <p>
-              {formatWinLossRatio(
-                playerData.overall_stats.ranked.total_wins,
-                playerData.overall_stats.ranked.total_matches
-              )}
+              {playerData.overall_stats.ranked.total_matches > 0
+                ? formatWinLossRatio(
+                    playerData.overall_stats.ranked.total_wins,
+                    playerData.overall_stats.ranked.total_matches
+                  )
+                : "0%"}{" "}
+              Win Rate
             </p>
           </div>
         </div>

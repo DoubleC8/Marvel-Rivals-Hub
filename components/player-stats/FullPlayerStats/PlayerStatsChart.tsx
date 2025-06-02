@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/chart";
 import { MatchForChart } from "@/types/MatchForChart";
 import { getKDA } from "@/lib/utils";
+import { Ghost } from "lucide-react";
 
 export function PlayerStatsChart({
   matchHistory,
@@ -36,6 +37,15 @@ export function PlayerStatsChart({
       color: "var(--purple)",
     },
   } satisfies ChartConfig;
+
+  if (matchHistory.length === 0) {
+    return (
+      <div className="font-extrabold text-2xl flex items-center justify-center gap-3 text-[var(--secondary-text)]">
+        <Ghost size={25} />
+        <p>No Data Yet</p>
+      </div>
+    );
+  }
 
   return (
     <Card className="border-none">

@@ -19,24 +19,30 @@ import {
 import { Ghost } from "lucide-react";
 import { fetchPlayerMatchHistory } from "@/lib/actions";
 import PaginationMenuBar from "@/components/ui/PaginationMenuBar";
+import { Spinner } from "@/components/ui/spinner";
 
 const MATCHES_PER_PAGE = 20;
 
 const PlayerMatchHistory = ({ playerUid }: { playerUid: string }) => {
   const [matchHistory, setMatchHistory] = useState<Match[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [selectedType, setSelectedType] = useState<
     "all" | "unranked" | "ranked"
   >("all");
 
+  console.log("PlayerUID", playerUid);
   useEffect(() => {
     const fetchInitial = async () => {
       const { match_history } = await fetchPlayerMatchHistory(playerUid, 1);
       setMatchHistory(match_history);
+      setIsLoading(false);
     };
 
     fetchInitial();
   }, [playerUid]);
+
+  console.log("Match History", matchHistory);
 
   const filteredMatches = matchHistory.filter((match) => {
     if (selectedType === "all") return true;
@@ -79,7 +85,13 @@ const PlayerMatchHistory = ({ playerUid }: { playerUid: string }) => {
           </Select>
         </div>
 
-        {filteredMatches.length > 0 ? (
+        {isLoading ? (
+          <div className="flex flex-col gap-3">
+            <p className="text-md font-bold text-[var(--secondary-text)]">
+              Loading Matches
+            </p>
+          </div>
+        ) : filteredMatches.length > 0 ? (
           <div className="flex flex-col gap-3">
             {filteredMatches
               .slice(
@@ -123,11 +135,7 @@ const PlayerMatchHistory = ({ playerUid }: { playerUid: string }) => {
                           {match.match_player.is_win.is_win ? "Win" : "Loss"}
                         </p>
                         <p className="text-sm font-bold text-[var(--secondary-text)]">
-                          {daysAgo === 0
-                            ? "Today"
-                            : daysAgo === 1
-                            ? "Yesterday"
-                            : `${daysAgo} days ago`}
+                          {daysAgo}
                         </p>
                       </div>
                     </div>

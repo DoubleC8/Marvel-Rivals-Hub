@@ -13,22 +13,24 @@ import { fetchPlayerData } from "@/lib/actions";
 import SelectSeasonButton from "@/components/player-stats/FullPlayerStats/SelectSeasonButton";
 
 const page = async ({ params }: { params: { uid: string } }) => {
-  const playerUid = params.uid;
-  //const playerData = mockPlayerData;
+  const playerUid = await params.uid;
+  const playerData = mockPlayerData;
 
-  let playerData: PlayerInfo | null = null;
+  // let playerData: PlayerInfo | null = null;
 
-  try {
-    const playerDataResponse = await fetchPlayerData(playerUid);
+  // try {
+  //   const playerDataResponse = await fetchPlayerData(playerUid);
 
-    playerData = playerDataResponse;
-    console.log("Player Data", playerData);
-  } catch (error) {
-    console.error("Error fetching player data", error);
-  }
-  if (!playerData) {
-    return;
-  }
+  //   playerData = playerDataResponse;
+  //   console.log("Player Data", playerData);
+  // } catch (error) {
+  //   console.error("Error fetching player data", error);
+  // }
+  // if (!playerData) {
+  //   return;
+  // }
+
+  console.log("Player Data", playerData);
 
   return (
     <section className="flex flex-col gap-5 min-h-[100vh] p-5">
@@ -41,9 +43,9 @@ const page = async ({ params }: { params: { uid: string } }) => {
         last_inserted_match={playerData.updates.last_inserted_match}
       />
 
-      <div className="w-9/10 mx-auto flex justify-end">
-        {/* <SelectSeasonButton /> */}
-      </div>
+      {/* <div className="w-9/10 mx-auto flex justify-end">
+        <SelectSeasonButton />
+      </div> */}
 
       <div className="w-9/10 mx-auto flex justify-between">
         <PlayerRankInfo playerData={playerData} />
