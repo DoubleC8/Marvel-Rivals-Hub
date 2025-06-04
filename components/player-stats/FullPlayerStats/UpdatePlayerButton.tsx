@@ -35,8 +35,7 @@ const UpdatePlayerButton = ({
 
   return (
     <button
-      className="h-8 w-35 bg-[var(--yellow)] text-[var(--black)] text-xl font-extrabold rounded-lg border-[var(--secondary-background)]
-        hover:cursor-pointer hover:opacity-85 ease-in-out duration-100"
+      className="updatePlayerButton"
       onClick={handleUpdatePlayerProfile}
       title="Update Player Profile"
     >

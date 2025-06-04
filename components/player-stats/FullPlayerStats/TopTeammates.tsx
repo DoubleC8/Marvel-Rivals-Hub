@@ -16,7 +16,7 @@ interface TopTeammate {
 const TopTeammates = ({ team_mates }: { team_mates: TopTeammate[] }) => {
   if (team_mates.length === 0) {
     return (
-      <div className="playerStatsContainer overflow-y-auto ">
+      <div className="playerStatsCard overflow-y-auto">
         <h1 className="font-extrabold text-xl">Top Teammates</h1>
         <div className="font-extrabold text-2xl flex items-center justify-center gap-3 text-[var(--secondary-text)] h-full">
           <Ghost size={25} />
@@ -26,10 +26,8 @@ const TopTeammates = ({ team_mates }: { team_mates: TopTeammate[] }) => {
     );
   }
   return (
-    <div className="playerStatsContainer overflow-y-auto">
-      <h1 className="font-extrabold text-xl h-[40px] flex items-center">
-        Top Teammates
-      </h1>
+    <div className="playerStatsCard overflow-y-auto">
+      <h1 className="text-xl font-extrabold">Top Teammates</h1>
       <table className="table-auto w-full">
         <thead className="h-10 border-b border-[var(--accent-color)]">
           <tr className="font-extrabold text-lg">

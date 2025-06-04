@@ -48,49 +48,51 @@ export function PlayerStatsChart({
   }
 
   return (
-    <Card className="border-none">
-      <CardHeader>
-        <CardTitle className="font-extrabold">KDA Trend</CardTitle>
-        <CardDescription className="text-[var(--secondary-text)] font-bold">
-          Showing KDA from the past 20 matches.
-        </CardDescription>
-      </CardHeader>
-      <CardContent>
-        <ChartContainer
-          config={chartConfig}
-          className="w-full max-h-[250px] border-none"
-        >
-          <AreaChart
-            accessibilityLayer
-            data={chartData}
-            margin={{
-              left: 12,
-              right: 12,
-            }}
+    <div className="playerChartStatsCard !p-0">
+      <Card className="border-none">
+        <CardHeader>
+          <CardTitle className="text-xl font-extrabold">KDA Trend</CardTitle>
+          <CardDescription className="text-[var(--secondary-text)] font-bold">
+            Showing KDA from the past {matchHistory.length} matches.
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <ChartContainer
+            config={chartConfig}
+            className="w-full max-h-[25vh] border-none"
           >
-            <CartesianGrid vertical={false} />
-            <XAxis
-              dataKey="match"
-              tickLine={false}
-              axisLine={false}
-              tickMargin={8}
-              tickFormatter={(value) => value.slice(0, 3)}
-            />
-            <ChartTooltip
-              cursor={false}
-              content={<ChartTooltipContent indicator="dot" hideLabel />}
-            />
-            <Area
-              dataKey="KDA"
-              type="linear"
-              fill="var(--purple)"
-              fillOpacity={0.4}
-              stroke="var(--purple)"
-            />
-          </AreaChart>
-        </ChartContainer>
-      </CardContent>
-    </Card>
+            <AreaChart
+              accessibilityLayer
+              data={chartData}
+              margin={{
+                left: 12,
+                right: 12,
+              }}
+            >
+              <CartesianGrid vertical={false} />
+              <XAxis
+                dataKey="match"
+                tickLine={false}
+                axisLine={false}
+                tickMargin={8}
+                tickFormatter={(value) => value.slice(0, 3)}
+              />
+              <ChartTooltip
+                cursor={false}
+                content={<ChartTooltipContent indicator="dot" hideLabel />}
+              />
+              <Area
+                dataKey="KDA"
+                type="linear"
+                fill="var(--purple)"
+                fillOpacity={0.4}
+                stroke="var(--purple)"
+              />
+            </AreaChart>
+          </ChartContainer>
+        </CardContent>
+      </Card>
+    </div>
   );
 }
 

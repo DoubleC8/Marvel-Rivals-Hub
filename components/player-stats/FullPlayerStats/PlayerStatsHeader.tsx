@@ -1,10 +1,10 @@
 import React from "react";
-import UpdatePlayerButton from "./UpdatePlayerButton";
 import {
   formatPlayerImages,
   getLastMatchDay,
   getLoginOsImage,
 } from "@/lib/utils";
+import UpdatePlayerButton from "./UpdatePlayerButton";
 
 const PlayerStatsHeader = ({
   name,
@@ -21,12 +21,10 @@ const PlayerStatsHeader = ({
   login_os: string;
   last_inserted_match: string;
 }) => {
-  console.log(last_inserted_match);
-  console.log("last match day was", getLastMatchDay(last_inserted_match));
   return (
-    <div className="w-9/10 mx-auto flex items-center justify-between bg-[var(--accent-color)] p-3 rounded-lg border-[2px] border-[var(--secondary-background)] shadow-2xl">
-      <div className="flex gap-3 ">
-        <div className="relative w-[125px] h-[125px]">
+    <div className="playerStatsHeader">
+      <div className="flex gap-3">
+        <div className="relative w-[100px] h-[100px] md:w-[125px] md:h-[125px]">
           <img
             src={formatPlayerImages(player_icon)}
             alt={`${name} Player Icon`}
@@ -41,21 +39,38 @@ const PlayerStatsHeader = ({
           </p>
         </div>
 
-        <div className="h-[125px] flex flex-col justify-evenly">
-          <p className="text-2xl font-extrabold">{name}</p>
+        <div
+          className="h-[100px] md:h-[125px] 
+        flex flex-col justify-evenly"
+        >
+          <p
+            className="md:text-2xl md:font-extrabold
+          text-xl font-bold"
+          >
+            {name}
+          </p>
           <div className="flex gap-2 items-center">
-            <p className="text-xl font-bold text-[var(--secondary-text)]">
+            <p
+              className="md:text-xl md:font-bold 
+            text-lg font-semibold
+            text-[var(--secondary-text)]"
+            >
               {login_os}
             </p>
             {login_os !== "Unknown" ? (
               <img src={getLoginOsImage(login_os)} width={25} height={25}></img>
             ) : null}
           </div>
-          <p className="text-lg text-[var(--secondary-text)] font-bold">
+          <p
+            className="md:text-lg  font-bold 
+          text-md
+          text-[var(--secondary-text)]"
+          >
             Last Match: {getLastMatchDay(last_inserted_match)}
           </p>
         </div>
       </div>
+
       <UpdatePlayerButton userUid={uid} name={name} />
     </div>
   );

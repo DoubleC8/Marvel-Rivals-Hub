@@ -1,6 +1,5 @@
 import React from "react";
 import { mockPlayerData } from "@/mockPlayerData";
-import PlayerStatsHeader from "@/components/player-stats/PlayerStatsHeader";
 import TopHeroes from "@/components/player-stats/FullPlayerStats/TopHeroes";
 import TopTeammates from "@/components/player-stats/FullPlayerStats/TopTeammates";
 
@@ -11,24 +10,25 @@ import PlayerRankInfo from "@/components/player-stats/FullPlayerStats/PlayerRank
 import { PlayerInfo } from "@/types/playerInfo";
 import { fetchPlayerData } from "@/lib/actions";
 import SelectSeasonButton from "@/components/player-stats/FullPlayerStats/SelectSeasonButton";
+import PlayerStatsHeader from "@/components/player-stats/FullPlayerStats/PlayerStatsHeader";
 
 const page = async ({ params }: { params: { uid: string } }) => {
   const playerUid = await params.uid;
-  const playerData = mockPlayerData;
+  //const playerData = mockPlayerData;
 
-  // let playerData: PlayerInfo | null = null;
+  let playerData: PlayerInfo | null = null;
 
-  // try {
-  //   const playerDataResponse = await fetchPlayerData(playerUid);
+  try {
+    const playerDataResponse = await fetchPlayerData(playerUid);
 
-  //   playerData = playerDataResponse;
-  //   console.log("Player Data", playerData);
-  // } catch (error) {
-  //   console.error("Error fetching player data", error);
-  // }
-  // if (!playerData) {
-  //   return;
-  // }
+    playerData = playerDataResponse;
+    console.log("Player Data", playerData);
+  } catch (error) {
+    console.error("Error fetching player data", error);
+  }
+  if (!playerData) {
+    return;
+  }
 
   console.log("Player Data", playerData);
 
@@ -43,33 +43,24 @@ const page = async ({ params }: { params: { uid: string } }) => {
         last_inserted_match={playerData.updates.last_inserted_match}
       />
 
-      {/* <div className="w-9/10 mx-auto flex justify-end">
-        <SelectSeasonButton />
-      </div> */}
-
-      <div className="w-9/10 mx-auto flex justify-between">
+      <div className="playerStatsPageSectionContainer">
         <PlayerRankInfo playerData={playerData} />
-
-        <div className="playerStatsContainer !w-[66%] !p-0">
-          <PlayerStatsChart matchHistory={playerData.match_history} />
-        </div>
+        <PlayerStatsChart matchHistory={playerData.match_history} />
       </div>
 
-      <div className="w-9/10 mx-auto flex justify-between">
+      <div className="playerStatsPageSectionContainer">
         <TopHeroes
           heroes_ranked={playerData.heroes_ranked}
           heroes_unranked={playerData.heroes_unranked}
         />
 
-        <div className="playerStatsContainer">
-          <h1 className="font-extrabold text-xl">Top Roles</h1>
+        <div className="playerStatsCard overflow-y-auto">
+          <h1 className="font-extrabold text-xl flex items-center">
+            Top Roles
+          </h1>
         </div>
 
         <TopTeammates team_mates={playerData.team_mates} />
-      </div>
-
-      <div className="w-9/10 mx-auto flex flex-col gap-3">
-        <PlayerMatchHistory playerUid={playerUid} />
       </div>
     </section>
   );

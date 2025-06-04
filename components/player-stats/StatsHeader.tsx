@@ -4,7 +4,7 @@ import React from "react";
 const StatsHeader = () => {
   return (
     <div className="text-center">
-      <h1 className="playerStatsHeader">
+      <h1 className="searchPlayerPageHeader">
         <Search
           className="playerStatsSearchIcon"
           color={`var(--secondary-text)`}

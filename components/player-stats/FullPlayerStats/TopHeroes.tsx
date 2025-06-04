@@ -28,15 +28,29 @@ const TopHeroes = ({
   const [selectedType, setSelectedType] = useState<"unranked" | "ranked">(
     "unranked"
   );
+
   const topHeroes =
     selectedType === "ranked"
       ? getTopHeroes(heroes_ranked).sort((a, b) => b.kda - a.kda)
       : getTopHeroes(heroes_unranked).sort((a, b) => b.kda - a.kda);
 
+  if (topHeroes.length === 0) {
+    return (
+      <div className="playerStatsCard overflow-y-auto">
+        <h1 className="font-extraold text-xl">Top Teammates</h1>
+        <div className="font-extrabold text-2xl flex items-center justify-center gap-3 text-[var(--secondary-text)] h-full">
+          <Ghost size={25} />
+          <p>No Data Yet</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="playerStatsContainer overflow-y-auto">
-      <div className="flex items-center justify-between h-[40px]">
-        <h1 className="font-extrabold text-xl">Top Heroes</h1>
+    <div className="playerStatsCard">
+      <div className="flex items-center justify-between">
+        <h1 className="text-xl font-extrabold">Top Heroes</h1>
+
         <Select
           value={selectedType}
           onValueChange={(value) =>
