@@ -1,83 +1,197 @@
-import { formatPlayerImages, getPercentColor } from "@/lib/utils";
+"use client";
+
+import { Match } from "@/types/Match";
+import React, { useEffect, useState } from "react";
+import {
+  formatName,
+  formatPlayerImages,
+  getKDA,
+  getLastMatchDay,
+  getMatchType,
+} from "@/lib/utils";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 import { Ghost } from "lucide-react";
-import Link from "next/link";
-import React from "react";
+import { fetchPlayerMatchHistory } from "@/lib/actions";
+import PaginationMenuBar from "@/components/ui/PaginationMenuBar";
+import { Spinner } from "@/components/ui/spinner";
 
-interface TopTeammate {
-  player_info: {
-    nick_name: string;
-    player_icon: string;
-    player_uid: number;
-  };
-  matches: number;
-  win_rate: string;
-}
+const MATCHES_PER_PAGE = 20;
 
-const TopTeammates = ({ team_mates }: { team_mates: TopTeammate[] }) => {
-  if (team_mates.length === 0) {
-    return (
-      <div className="playerStatsContainer overflow-y-auto ">
-        <h1 className="font-extrabold text-xl">Top Teammates</h1>
-        <div className="font-extrabold text-2xl flex items-center justify-center gap-3 text-[var(--secondary-text)] h-full">
-          <Ghost size={25} />
-          <p>No Data Yet</p>
-        </div>
-      </div>
-    );
-  }
+const PlayerMatchHistory = ({ playerUid }: { playerUid: string }) => {
+  const [matchHistory, setMatchHistory] = useState<Match[]>([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedType, setSelectedType] = useState<
+    "all" | "unranked" | "ranked"
+  >("all");
+
+  useEffect(() => {
+    const fetchInitial = async () => {
+      const { match_history } = await fetchPlayerMatchHistory(playerUid, 1);
+      setMatchHistory(match_history);
+      setIsLoading(false);
+    };
+
+    fetchInitial();
+  }, [playerUid]);
+
+  console.log("Match History", matchHistory);
+
+  const filteredMatches = matchHistory.filter((match) => {
+    if (selectedType === "all") return true;
+    if (selectedType === "ranked") return match.game_mode_id === 2;
+    if (selectedType === "unranked") return match.game_mode_id === 1;
+    return false;
+  });
+
+  const totalPages = Math.ceil(filteredMatches.length / MATCHES_PER_PAGE);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [selectedType]);
+
+  useEffect(() => {
+    if (currentPage > totalPages) {
+      setCurrentPage(1);
+    }
+  }, [filteredMatches.length]);
+
   return (
-    <div className="playerStatsContainer overflow-y-auto">
-      <h1 className="font-extrabold text-xl">Top Teammates</h1>
-      <table className="table-auto w-full">
-        <thead className="h-10 border-b border-[var(--accent-color)]">
-          <tr className="font-extrabold text-lg">
-            <th className="text-left">Player</th>
-            <th className="text-right">Matches</th>
-            <th className="text-right">Win Rate</th>
-          </tr>
-        </thead>
-        <tbody>
-          {team_mates.map((teamMate, index) => (
-            <tr key={index} className="border-b border-[var(--accent-color)]">
-              <td className="py-2">
-                <div className="flex items-center gap-3 font-extrabold">
-                  <img
-                    src={formatPlayerImages(teamMate.player_info.player_icon)}
-                    alt={`${teamMate.player_info.nick_name} Player Icon`}
-                    className="w-[45px] h-[45px] rounded-lg bg-[var(--accent-color)]"
-                  />
-                  <Link
-                    href={`/player-stats/${teamMate.player_info.player_uid}`}
-                    className="font-extrabold text-md hover:cursor-pointer
-                         hover:text-[var(--yellow)] ease-in-out duration-100"
+    <>
+      <div className="playerMatchHistoryStatCard">
+        <div className="flex w-full justify-between">
+          <h1 className="font-extrabold text-xl">Match History</h1>
+          <Select
+            value={selectedType}
+            onValueChange={(value) =>
+              setSelectedType(value as typeof selectedType)
+            }
+          >
+            <SelectTrigger className="w-[150px] border-[var(--accent-color)] font-extrabold">
+              <SelectValue placeholder="All" />
+            </SelectTrigger>
+            <SelectContent className="bg-[var(--secondary-background)] border-[var(--accent-color)]">
+              <SelectItem value="all">All</SelectItem>
+              <SelectItem value="ranked">Ranked</SelectItem>
+              <SelectItem value="unranked">Unranked</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+
+        {isLoading ? (
+          <div className="flex flex-col gap-3">
+            <p className="text-md font-bold text-[var(--secondary-text)]">
+              Loading Matches
+            </p>
+          </div>
+        ) : filteredMatches.length > 0 ? (
+          <div
+            className="lg:gap-3
+          gap-2 flex flex-col"
+          >
+            {filteredMatches
+              .slice(
+                (currentPage - 1) * MATCHES_PER_PAGE,
+                currentPage * MATCHES_PER_PAGE
+              )
+              .map((match, index) => {
+                const matchType = getMatchType(match.game_mode_id);
+                const daysAgo = getLastMatchDay(match.match_time_stamp);
+                return (
+                  <div
+                    key={index}
+                    className="flex items-center justify-between border-[1px] rounded-lg"
+                    style={{
+                      borderColor: match.match_player.is_win.is_win
+                        ? "var(--green)"
+                        : "var(--red)",
+                      backgroundColor: match.match_player.is_win.is_win
+                        ? "rgba(50, 205, 50, .1)"
+                        : "rgba(255, 49, 49, .1)",
+                    }}
                   >
-                    {teamMate.player_info.nick_name}
-                  </Link>
-                </div>
-              </td>
+                    <div
+                      className="lg:min-w-[20%]
+                    flex gap-1 items-center w-5/10"
+                    >
+                      <img
+                        src={formatPlayerImages(
+                          match.match_player.player_hero.hero_type
+                        )}
+                        className="lg:w-[75px] lg:h-[75px] 
+                        w-[50px] h-[50px] rounded-l-lg bg-[var(--accent-color)]"
+                      />
+                      <div>
+                        <p
+                          className="lg:text-md 
+                        text-xs font-extrabold"
+                        >
+                          {formatName(match.match_player.player_hero.hero_name)}
+                        </p>
+                        <p
+                          className={`lg:text-md 
+                        text-xs font-bold ${
+                          match.match_player.is_win.is_win
+                            ? "text-[var(--green)]"
+                            : "text-[var(--red)]"
+                        }`}
+                        >
+                          {match.match_player.is_win.is_win ? "Win" : "Loss"}
+                        </p>
+                        <p
+                          className="lg:text-md 
+                        text-xs font-bold text-[var(--secondary-text)]"
+                        >
+                          {daysAgo}
+                        </p>
+                      </div>
+                    </div>
 
-              <td>
-                <p className="font-extrabold text-md text-right">
-                  {teamMate.matches}
-                </p>
-              </td>
+                    <div className="flex flex-col justify-center items-center text-xs font-bold w-3/10">
+                      <p>
+                        {match.match_player.kills} / {match.match_player.deaths}{" "}
+                        / {match.match_player.assists}
+                      </p>
+                      <p className="text-[var(--secondary-text)] font-semibold">
+                        {getKDA(
+                          match.match_player.kills,
+                          match.match_player.deaths,
+                          match.match_player.assists
+                        )}{" "}
+                        KDA
+                      </p>
+                    </div>
 
-              <td>
-                <p
-                  className="font-extrabold text-md text-right"
-                  style={{
-                    color: getPercentColor(teamMate.win_rate),
-                  }}
-                >
-                  {teamMate.win_rate}%
-                </p>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
+                    <img
+                      src={formatPlayerImages(match.map_thumbnail)}
+                      className="lg:w-[150px] lg:h-[75px] 
+                      h-[50px] w-[75px] rounded-r-lg bg-[var(--accent-color)] object-cover items-end"
+                    />
+                  </div>
+                );
+              })}
+          </div>
+        ) : (
+          <div className="font-extrabold text-2xl flex items-center justify-center gap-3 text-[var(--secondary-text)]">
+            <Ghost size={25} />
+            <p>No Data Yet</p>
+          </div>
+        )}
+
+        <PaginationMenuBar
+          currentPage={currentPage}
+          totalPages={totalPages}
+          onPageChange={setCurrentPage}
+        />
+      </div>
+    </>
   );
 };
 
-export default TopTeammates;
+export default PlayerMatchHistory;

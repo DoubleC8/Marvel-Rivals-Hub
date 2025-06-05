@@ -5,6 +5,7 @@ import {
   formatWinLossRatio,
   getCurrentSeasonRankInfo,
   getCurrentSeasonMaxRankInfo,
+  getPercentColor,
 } from "@/lib/utils";
 import { PlayerInfo } from "@/types/playerInfo";
 
@@ -21,7 +22,7 @@ const PlayerRankInfo = ({ playerData }: { playerData: PlayerInfo }) => {
     <div className="playerStatsCard !p-0">
       {/* Current Rank */}
       <div
-        className="p-3 h-1/2 flex-col"
+        className="p-3 h-1/2 flex-col rounded-t-lg"
         style={{
           backgroundColor: hexToRgba(playerData.player.rank.color, 0.1),
         }}
@@ -65,14 +66,22 @@ const PlayerRankInfo = ({ playerData }: { playerData: PlayerInfo }) => {
                 playerData.overall_stats.ranked.total_wins}
               L
             </h1>
-            <p>
+            <p
+              style={{
+                color: getPercentColor(
+                  formatWinLossRatio(
+                    playerData.overall_stats.ranked.total_wins,
+                    playerData.overall_stats.ranked.total_matches
+                  )
+                ),
+              }}
+            >
               {playerData.overall_stats.ranked.total_matches > 0
                 ? formatWinLossRatio(
                     playerData.overall_stats.ranked.total_wins,
                     playerData.overall_stats.ranked.total_matches
                   )
                 : "0%"}{" "}
-              Win Rate
             </p>
           </div>
         </div>

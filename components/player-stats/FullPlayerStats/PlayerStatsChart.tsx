@@ -59,7 +59,8 @@ export function PlayerStatsChart({
         <CardContent>
           <ChartContainer
             config={chartConfig}
-            className="w-full max-h-[25vh] border-none"
+            className="sm:max-h-[25vh]
+            min-h-[25vh] w-full border-none"
           >
             <AreaChart
               accessibilityLayer

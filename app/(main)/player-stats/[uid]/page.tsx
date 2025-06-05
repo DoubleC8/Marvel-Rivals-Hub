@@ -33,7 +33,7 @@ const page = async ({ params }: { params: { uid: string } }) => {
   console.log("Player Data", playerData);
 
   return (
-    <section className="flex flex-col gap-5 min-h-[100vh] p-5">
+    <section className="flex flex-col gap-5 min-h-[100vh] p-1 md:p-5">
       <PlayerStatsHeader
         name={playerData.name}
         uid={playerData.uid}
@@ -61,6 +61,10 @@ const page = async ({ params }: { params: { uid: string } }) => {
         </div>
 
         <TopTeammates team_mates={playerData.team_mates} />
+      </div>
+
+      <div className="playerStatsPageSectionContainer">
+        <PlayerMatchHistory playerUid={playerUid} />
       </div>
     </section>
   );

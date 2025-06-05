@@ -19,7 +19,6 @@ import {
 import { Ghost } from "lucide-react";
 import { fetchPlayerMatchHistory } from "@/lib/actions";
 import PaginationMenuBar from "@/components/ui/PaginationMenuBar";
-import { Spinner } from "@/components/ui/spinner";
 
 const MATCHES_PER_PAGE = 20;
 
@@ -31,7 +30,6 @@ const PlayerMatchHistory = ({ playerUid }: { playerUid: string }) => {
     "all" | "unranked" | "ranked"
   >("all");
 
-  console.log("PlayerUID", playerUid);
   useEffect(() => {
     const fetchInitial = async () => {
       const { match_history } = await fetchPlayerMatchHistory(playerUid, 1);
@@ -63,9 +61,13 @@ const PlayerMatchHistory = ({ playerUid }: { playerUid: string }) => {
     }
   }, [filteredMatches.length]);
 
+  if (matchHistory.length === 0) {
+    return <p>no data availablr</p>;
+  }
+
   return (
     <>
-      <div className="playerStatsContainer !h-fit !w-full mx-auto flex flex-col gap-3">
+      <div className="playerMatchHistoryStatCard">
         <div className="flex w-full justify-between">
           <h1 className="font-extrabold text-xl">Match History</h1>
           <Select
@@ -92,7 +94,10 @@ const PlayerMatchHistory = ({ playerUid }: { playerUid: string }) => {
             </p>
           </div>
         ) : filteredMatches.length > 0 ? (
-          <div className="flex flex-col gap-3">
+          <div
+            className="lg:gap-3
+          gap-2 flex flex-col"
+          >
             {filteredMatches
               .slice(
                 (currentPage - 1) * MATCHES_PER_PAGE,
@@ -104,7 +109,7 @@ const PlayerMatchHistory = ({ playerUid }: { playerUid: string }) => {
                 return (
                   <div
                     key={index}
-                    className="flex items-center justify-between border-[1px] rounded-lg"
+                    className="max-h-fit flex items-center justify-between border-[1px] rounded-lg"
                     style={{
                       borderColor: match.match_player.is_win.is_win
                         ? "var(--green)"
@@ -114,73 +119,101 @@ const PlayerMatchHistory = ({ playerUid }: { playerUid: string }) => {
                         : "rgba(255, 49, 49, .1)",
                     }}
                   >
-                    <div className="flex gap-3 items-center min-w-[20%]">
+                    <div
+                      className="md:gap-3 md:w-2/10
+                      w-1/2 flex gap-1 items-center"
+                    >
                       <img
                         src={formatPlayerImages(
                           match.match_player.player_hero.hero_type
                         )}
                         className="w-[75px] h-[75px] rounded-l-lg bg-[var(--accent-color)]"
                       />
+
                       <div>
-                        <p className="font-extrabold text-mg">
+                        <p
+                          className="lg:text-lg lg:font-bold
+                        text-xs font-extrabold"
+                        >
                           {formatName(match.match_player.player_hero.hero_name)}
                         </p>
                         <p
-                          className={`text-md font-bold ${
-                            match.match_player.is_win.is_win
-                              ? "text-[var(--green)]"
-                              : "text-[var(--red)]"
-                          }`}
+                          className={`lg:text-md 
+                        text-xs font-bold ${
+                          match.match_player.is_win.is_win
+                            ? "text-[var(--green)]"
+                            : "text-[var(--red)]"
+                        }`}
                         >
                           {match.match_player.is_win.is_win ? "Win" : "Loss"}
                         </p>
-                        <p className="text-sm font-bold text-[var(--secondary-text)]">
+                        <p
+                          className="lg:text-md 
+                        text-xs font-bold text-[var(--secondary-text)]"
+                        >
                           {daysAgo}
                         </p>
                       </div>
                     </div>
 
-                    <div className="min-w-[10%]">
-                      <p className="font-extrabold text-lg">{matchType}</p>
+                    <div
+                      className="md:w-1/10 md:block
+                    hidden"
+                    >
+                      <p
+                        className="
+                      text-md font-bold"
+                      >
+                        {matchType}
+                      </p>
                     </div>
 
-                    <p
-                      className="min-w-[5%] text-center font-extrabold text-lg py-1 rounded-sm text-[var(--black)]"
-                      style={{
-                        backgroundColor:
-                          (match.mvp_uid === match.match_player.player_uid
-                            ? "var(--gold)"
-                            : "") +
-                          (match.svp_uid === match.match_player.player_uid
-                            ? "var(--silver)"
-                            : ""),
-                      }}
+                    <div
+                      className="sm:w-1/10 md:flex md:items-center md:justify-center
+                    hidden"
                     >
-                      {(match.mvp_uid === match.match_player.player_uid
-                        ? "MVP"
-                        : "") +
-                        (match.svp_uid === match.match_player.player_uid
-                          ? "SVP"
-                          : "")}
-                    </p>
-
-                    <div className="flex text-center font-extrabold text-lg min-w-3/10 justify-between">
+                      <p
+                        className="lg:w-1/2
+                    w-full text-center font-extrabold text-lg py-1 rounded-sm text-[var(--black)] shadow-2xl"
+                        style={{
+                          backgroundColor:
+                            (match.mvp_uid === match.match_player.player_uid
+                              ? "var(--gold)"
+                              : "") +
+                            (match.svp_uid === match.match_player.player_uid
+                              ? "var(--silver)"
+                              : ""),
+                        }}
+                      >
+                        {(match.mvp_uid === match.match_player.player_uid
+                          ? "MVP"
+                          : "") +
+                          (match.svp_uid === match.match_player.player_uid
+                            ? "SVP"
+                            : "")}
+                      </p>
+                    </div>
+                    {/**Md devices and bigger */}
+                    <div
+                      className="md:flex md:w-3/10 md:text-md
+                    hidden text-center font-extrabold text-sm justify-between"
+                    >
                       <div>
-                        <p>Kills</p>
+                        <p className="text-[var(--secondary-text)]">Kills</p>
                         <p>{match.match_player.kills}</p>
                       </div>
                       <div>
-                        <p>Deaths</p>
+                        <p className="text-[var(--secondary-text)]">Deaths</p>
                         <p className="text-[var(--red)]">
                           {match.match_player.deaths}
                         </p>
                       </div>
                       <div>
-                        <p>Assists</p>
+                        <p className="text-[var(--secondary-text)]">Assists</p>
                         <p>{match.match_player.assists}</p>
                       </div>
                       <div>
-                        <p>KDA</p>
+                        <p className="text-[var(--secondary-text)]">KDA</p>
                         <p>
                           {getKDA(
                             match.match_player.kills,
@@ -191,9 +224,33 @@ const PlayerMatchHistory = ({ playerUid }: { playerUid: string }) => {
                       </div>
                     </div>
 
+                    {/**Only shown on mobile KDA */}
+                    <div
+                      className="md:hidden
+                    flex flex-col justify-center items-center text-xs font-bold w-1/4"
+                    >
+                      <p className="font-extrabold">{matchType}</p>
+                      <p>
+                        {match.match_player.kills} /{" "}
+                        <span className="text-[var(--red)]">
+                          {match.match_player.deaths}
+                        </span>{" "}
+                        / {match.match_player.assists}
+                      </p>
+                      <p className="text-[var(--secondary-text)] font-semibold">
+                        {getKDA(
+                          match.match_player.kills,
+                          match.match_player.deaths,
+                          match.match_player.assists
+                        )}{" "}
+                        KDA
+                      </p>
+                    </div>
+
                     <img
                       src={formatPlayerImages(match.map_thumbnail)}
-                      className="w-[150px] h-[75px] rounded-r-lg bg-[var(--accent-color)] object-cover"
+                      className="sm:block sm:w-[15%]
+                      hidden w-[150px] h-[75px] rounded-r-lg bg-[var(--accent-color)]"
                     />
                   </div>
                 );

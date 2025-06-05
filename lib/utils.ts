@@ -52,12 +52,13 @@ export const formatWinLossRatio = (total_wins: number, total_matches: number): s
   ).toFixed(2) + "%";
 };
 
-export const formatPlayerImages = (playerImageData: string) => {
-  return playerImageData.includes("/rivals") 
-  ? (`https://marvelrivalsapi.com${playerImageData}`) 
-  : (`https://marvelrivalsapi.com/rivals${playerImageData}`)
-};
+export const formatPlayerImages = (playerImageData?: string) => {
+  if (!playerImageData) return "/images/fallback_image.png"; // or return null / empty string if you prefer
 
+  return playerImageData.includes("/rivals")
+    ? `https://marvelrivalsapi.com${playerImageData}`
+    : `https://marvelrivalsapi.com/rivals${playerImageData}`;
+};
 
 
 export const hexToRgba = (hex: string, opacity: number) => {
@@ -91,6 +92,7 @@ export const getLoginOsImage = (loginOs: string) => {
 }
 
 export const getLastMatchDay = (timestamp: number | string): string => {
+  
   let matchDate: Date;
 
   if (typeof timestamp === "number") {
@@ -102,9 +104,14 @@ export const getLastMatchDay = (timestamp: number | string): string => {
   const today = new Date();
   const diffTime = today.getTime() - matchDate.getTime();
   const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+  const diffHours = Math.floor(diffTime / (1000 * 60 * 60));
 
-  if (diffDays === 0) {
-    return "Today";
+  if (diffDays <= 0) {
+    if (diffHours <= 1){
+      return "Moments ago"
+    } else {
+      return `${diffHours} hours ago`
+    }
   } else if (diffDays === 1) {
     return "Yesterday";
   } else {
@@ -152,6 +159,8 @@ export const getKDA = (kills: number, deaths: number, assists: number): number =
   if (!deaths || deaths === 0) return kills + assists; // avoid division by zero
   return parseFloat(((kills + assists) / deaths).toFixed(2));
 };
+
+
 
 export const getPercentColor = (percentage: number | string) => {
   const percentNum = typeof percentage === "string" ? parseFloat(percentage) : percentage;
