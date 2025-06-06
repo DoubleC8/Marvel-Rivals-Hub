@@ -66,7 +66,7 @@ const loading = () => {
 
       <div className="playerStatsPageSectionContainer">
         <Skeleton className="playerMatchHistoryStatCard !min-h-[500px] !bg-zinc-700 !border-zinc-800">
-          <Skeleton className="h-6 w-1/2 bg-zinc-800" />
+          <Skeleton className="h-6 w-3/10 bg-zinc-800" />
         </Skeleton>
       </div>
     </section>

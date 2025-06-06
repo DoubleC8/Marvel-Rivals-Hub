@@ -14,7 +14,7 @@ import PlayerStatsHeader from "@/components/player-stats/FullPlayerStats/PlayerS
 
 const page = async ({ params }: { params: { uid: string } }) => {
   const playerUid = await params.uid;
-  //const playerData = mockPlayerData;
+  //const playerData: PlayerInfo | null = mockPlayerData;
 
   let playerData: PlayerInfo | null = null;
 

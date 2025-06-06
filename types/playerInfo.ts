@@ -62,7 +62,7 @@ export interface PlayerInfo {
   interface Match {
     match_uid: string;
     map_id: number;
-    map_thumbnail: string;
+    map_thumbnail?: string;
     duration: number;
     season: number;
     winner_side: number;
@@ -101,13 +101,12 @@ export interface PlayerInfo {
   }
   
   interface MapStats {
-    map_id: number;
-    map_thumbnail: string;
-    matches: number;
-    wins: number;
-    kills: number;
-    deaths: number;
-    assists: number;
-    play_time: number;
-  }
-  
+  map_id: number;
+  map_thumbnail?: string;
+  matches: number;
+  wins: number;
+  kills: number;
+  deaths: number;
+  assists: number;
+  play_time: number;
+}

@@ -1,6 +1,6 @@
 export interface Match {
   match_map_id: number;
-  map_thumbnail: string;
+  map_thumbnail?: string;
   match_play_duration: string;
   match_season: string;
   match_uid: string;

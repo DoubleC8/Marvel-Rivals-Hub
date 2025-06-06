@@ -4,23 +4,23 @@ export const mockPlayerData =
     "name": "Double C",
     "updates": {
         "info_update_time": "2/9/2025, 7:58:41 PM",
-        "last_history_update": "5/26/2025, 8:28:17 PM",
-        "last_inserted_match": "5/27/2025, 6:48:44 AM",
-        "last_update_request": "5/28/2025, 12:06:54 PM"
+        "last_history_update": "6/5/2025, 2:01:11 AM",
+        "last_inserted_match": "6/5/2025, 1:45:02 AM",
+        "last_update_request": "6/5/2025, 9:34:46 PM"
     },
     "player": {
         "uid": 1786151874,
-        "level": "38",
+        "level": "39",
         "name": "Double C",
         "icon": {
             "player_icon_id": "31025203",
             "player_icon": "/players/heads/player_head_31025203.png",
-            "banner": "/premium/nameplates/31025203_banner.webp?expires=1748458049&signature=73a85eb91916732aa7bdd9703dd40506b0ed584d1d33d9fe60d7f452534a7704"
+            "banner": "/premium/nameplates/31025203_banner.webp?expires=1749179067&signature=2682e50d58e516a77b089fc22755571d1a4f58def7e36141a6e77903b6bdffa4"
         },
         "rank": {
-            "rank": "Bronze II",
-            "image": "/ranked/bronze.png",
-            "color": "#A7693F"
+            "rank": "Invalid level",
+            "image": "/ranked/silver.png",
+            "color": "#7B9196"
         },
         "team": {
             "club_team_id": "",
@@ -28,7 +28,7 @@ export const mockPlayerData =
             "club_team_type": "0"
         },
         "info": {
-            "completed_achievements": "74",
+            "completed_achievements": "80",
             "login_os": "Playstation",
             "rank_game_season": {
                 "2001001": {
@@ -74,222 +74,59 @@ export const mockPlayerData =
                     "win_count": 3,
                     "protect_score": 1,
                     "diff_score": 37.97801726959824
+                },
+                "2001005": {
+                    "rank_game_id": 5,
+                    "level": 6,
+                    "rank_score": 3507.058775379489,
+                    "max_level": 6,
+                    "max_rank_score": 3525.1017712815205,
+                    "update_time": 1749169508,
+                    "win_count": 9,
+                    "protect_score": 2,
+                    "diff_score": -10.308851447663073
                 }
             }
         }
     },
     "isPrivate": false,
     "overall_stats": {
-        "total_matches": 77,
-        "total_wins": 34,
+        "total_matches": 20,
+        "total_wins": 11,
         "unranked": {
-            "total_matches": 67,
-            "total_wins": 30,
-            "total_assists": 488,
-            "total_deaths": 410,
-            "total_kills": 1007,
-            "total_time_played": "9h 30m 0s",
-            "total_time_played_raw": 34200.354499578476,
-            "total_mvp": 8,
-            "total_svp": 9
+            "total_matches": 5,
+            "total_wins": 1,
+            "total_assists": 24,
+            "total_deaths": 28,
+            "total_kills": 48,
+            "total_time_played": "37m 47s",
+            "total_time_played_raw": 2267.6549758911133,
+            "total_mvp": 0,
+            "total_svp": 0
         },
         "ranked": {
-            "total_matches": 7,
-            "total_wins": 3,
-            "total_assists": 87,
-            "total_deaths": 31,
-            "total_kills": 89,
-            "total_time_played": "58m 43s",
-            "total_time_played_raw": 3523.346223115921,
+            "total_matches": 14,
+            "total_wins": 9,
+            "total_assists": 245,
+            "total_deaths": 56,
+            "total_kills": 250,
+            "total_time_played": "2h 14m 51s",
+            "total_time_played_raw": 8091.666515350342,
             "total_mvp": 2,
-            "total_svp": 2
+            "total_svp": 1
         }
     },
     "match_history": [
         {
-            "match_uid": "6698978_1748299724_1292021_11001_13",
-            "map_id": 1292,
-            "map_thumbnail": "/rivals/maps/map_1292.png",
-            "duration": 643.4370620250702,
-            "season": 3,
+            "match_uid": "5518294_1749102302_1290153_11001_11",
+            "map_id": 1290,
+            "map_thumbnail": "/rivals/maps/map_1290.png",
+            "duration": 704.6851797103882,
+            "season": 4,
             "winner_side": 0,
-            "mvp_uid": 1440347056,
-            "svp_uid": 1685488304,
-            "match_time_stamp": 1748300560,
-            "play_mode_id": 0,
-            "game_mode_id": 2,
-            "score_info": {
-                "0": 1,
-                "1": 0
-            },
-            "player_performance": {
-                "player_uid": 1786151874,
-                "hero_id": 1025,
-                "hero_name": "cloak & dagger",
-                "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
-                "kills": 18,
-                "deaths": 7,
-                "assists": 22,
-                "is_win": {
-                    "score": 1,
-                    "is_win": true
-                },
-                "disconnected": false,
-                "camp": 0,
-                "score_change": 37.97801726959824,
-                "level": 1,
-                "new_level": 2,
-                "new_score": 3137.0374225237615
-            }
-        },
-        {
-            "match_uid": "5517537_1748298962_1310030_11001_11",
-            "map_id": 1310,
-            "map_thumbnail": "/rivals/maps/map_1310.png",
-            "duration": 545.2027728557587,
-            "season": 3,
-            "winner_side": 1,
-            "mvp_uid": 1760025559,
-            "svp_uid": 138713808,
-            "match_time_stamp": 1748299675,
-            "play_mode_id": 0,
-            "game_mode_id": 2,
-            "score_info": {
-                "0": 0,
-                "1": 2
-            },
-            "player_performance": {
-                "player_uid": 1786151874,
-                "hero_id": 1025,
-                "hero_name": "cloak & dagger",
-                "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
-                "kills": 9,
-                "deaths": 6,
-                "assists": 10,
-                "is_win": {
-                    "score": 0,
-                    "is_win": false
-                },
-                "disconnected": false,
-                "camp": 0,
-                "score_change": 0,
-                "level": 1,
-                "new_level": 1,
-                "new_score": 3099.0594052541633
-            }
-        },
-        {
-            "match_uid": "5518121_1748298090_1240172_11001_11",
-            "map_id": 1240,
-            "map_thumbnail": "/rivals/maps/map_1240.png",
-            "duration": 626.4487643241882,
-            "season": 3,
-            "winner_side": 1,
-            "mvp_uid": 485808150,
-            "svp_uid": 1383749368,
-            "match_time_stamp": 1748298804,
-            "play_mode_id": 0,
-            "game_mode_id": 1,
-            "score_info": null,
-            "player_performance": {
-                "player_uid": 1786151874,
-                "hero_id": 1025,
-                "hero_name": "cloak & dagger",
-                "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
-                "kills": 19,
-                "deaths": 9,
-                "assists": 23,
-                "is_win": {
-                    "score": 1,
-                    "is_win": true
-                },
-                "disconnected": false,
-                "camp": 1,
-                "score_change": 34.24121780108044,
-                "level": 1,
-                "new_level": 1,
-                "new_score": 3076.851792424651
-            }
-        },
-        {
-            "match_uid": "5517606_1748195651_1201224_11001_11",
-            "map_id": 1201,
-            "map_thumbnail": "/rivals/maps/map_1201.png",
-            "duration": 300.009330034256,
-            "season": 3,
-            "winner_side": 1,
-            "mvp_uid": 1411760441,
-            "svp_uid": 917137063,
-            "match_time_stamp": 1748196044,
-            "play_mode_id": 0,
-            "game_mode_id": 1,
-            "score_info": null,
-            "player_performance": {
-                "player_uid": 1786151874,
-                "hero_id": 1025,
-                "hero_name": "cloak & dagger",
-                "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
-                "kills": 3,
-                "deaths": 5,
-                "assists": 1,
-                "is_win": {
-                    "score": 0,
-                    "is_win": false
-                },
-                "disconnected": true,
-                "camp": 0,
-                "score_change": -34.0775312774058,
-                "level": 1,
-                "new_level": 1,
-                "new_score": 3042.6105746235708
-            }
-        },
-        {
-            "match_uid": "5517987_1748125225_1292186_11001_11",
-            "map_id": 1292,
-            "map_thumbnail": "/rivals/maps/map_1292.png",
-            "duration": 291.1955614089966,
-            "season": 3,
-            "winner_side": 1,
-            "mvp_uid": 1841071857,
-            "svp_uid": 1786151874,
-            "match_time_stamp": 1748125706,
-            "play_mode_id": 0,
-            "game_mode_id": 2,
-            "score_info": {
-                "0": 0,
-                "1": 1
-            },
-            "player_performance": {
-                "player_uid": 1786151874,
-                "hero_id": 1025,
-                "hero_name": "cloak & dagger",
-                "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
-                "kills": 5,
-                "deaths": 2,
-                "assists": 4,
-                "is_win": {
-                    "score": 0,
-                    "is_win": false
-                },
-                "disconnected": false,
-                "camp": 0,
-                "score_change": 0,
-                "level": 1,
-                "new_level": 1,
-                "new_score": 3099.0594052541633
-            }
-        },
-        {
-            "match_uid": "5518205_1748124053_1291086_11001_11",
-            "map_id": 1291,
-            "map_thumbnail": "/rivals/maps/map_1291.png",
-            "duration": 881.211279630661,
-            "season": 3,
-            "winner_side": 0,
-            "mvp_uid": 1786151874,
-            "svp_uid": 606430000,
-            "match_time_stamp": 1748125125,
+            "mvp_uid": 2116712134,
+            "svp_uid": 379363442,
+            "match_time_stamp": 1749103193,
             "play_mode_id": 0,
             "game_mode_id": 2,
             "score_info": {
@@ -301,31 +138,139 @@ export const mockPlayerData =
                 "hero_id": 1025,
                 "hero_name": "cloak & dagger",
                 "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
-                "kills": 25,
-                "deaths": 7,
-                "assists": 28,
+                "kills": 28,
+                "deaths": 4,
+                "assists": 35,
                 "is_win": {
                     "score": 1,
                     "is_win": true
                 },
                 "disconnected": false,
                 "camp": 0,
-                "score_change": 48.6766568275325,
-                "level": 1,
-                "new_level": 1,
-                "new_score": 3099.0594052541633
+                "score_change": 37.96318818687496,
+                "level": 5,
+                "new_level": 6,
+                "new_score": 3525.1017712815205
             }
         },
         {
-            "match_uid": "5518131_1748122010_1292105_11001_11",
-            "map_id": 1292,
-            "map_thumbnail": "/rivals/maps/map_1292.png",
-            "duration": 359.6681010723114,
-            "season": 3,
+            "match_uid": "5517722_1749100885_1267272_11001_11",
+            "map_id": 1267,
+            "map_thumbnail": "/rivals/maps/map_1267.png",
+            "duration": 986.8617904186249,
+            "season": 4,
+            "winner_side": 12,
+            "mvp_uid": 958266556,
+            "svp_uid": 1440347056,
+            "match_time_stamp": 1749102239,
+            "play_mode_id": 0,
+            "game_mode_id": 2,
+            "score_info": {
+                "0": 3,
+                "1": 3
+            },
+            "player_performance": {
+                "player_uid": 1786151874,
+                "hero_id": 1025,
+                "hero_name": "cloak & dagger",
+                "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
+                "kills": 20,
+                "deaths": 10,
+                "assists": 17,
+                "is_win": {
+                    "score": 2,
+                    "is_win": false
+                },
+                "disconnected": false,
+                "camp": 0,
+                "score_change": 10.149674478625002,
+                "level": 5,
+                "new_level": 5,
+                "new_score": 3487.1385830946456
+            }
+        },
+        {
+            "match_uid": "5518391_1749097836_1290364_11001_11",
+            "map_id": 1290,
+            "map_thumbnail": "/rivals/maps/map_1290.png",
+            "duration": 546.4619784355164,
+            "season": 4,
+            "winner_side": 0,
+            "mvp_uid": 1786151874,
+            "svp_uid": 1861762019,
+            "match_time_stamp": 1749098569,
+            "play_mode_id": 0,
+            "game_mode_id": 2,
+            "score_info": {
+                "0": 3,
+                "1": 0
+            },
+            "player_performance": {
+                "player_uid": 1786151874,
+                "hero_id": 1025,
+                "hero_name": "cloak & dagger",
+                "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
+                "kills": 24,
+                "deaths": 0,
+                "assists": 20,
+                "is_win": {
+                    "score": 1,
+                    "is_win": true
+                },
+                "disconnected": false,
+                "camp": 0,
+                "score_change": 46.01988411455386,
+                "level": 5,
+                "new_level": 5,
+                "new_score": 3476.988908616021
+            }
+        },
+        {
+            "match_uid": "5517632_1749097253_1272258_11001_11",
+            "map_id": 1272,
+            "map_thumbnail": "/rivals/maps/map_1272.png",
+            "duration": 395.39484333992004,
+            "season": 4,
             "winner_side": 1,
-            "mvp_uid": 2015722423,
-            "svp_uid": 1786151874,
-            "match_time_stamp": 1748122561,
+            "mvp_uid": 573822655,
+            "svp_uid": 140723001,
+            "match_time_stamp": 1749097808,
+            "play_mode_id": 0,
+            "game_mode_id": 2,
+            "score_info": {
+                "0": 0,
+                "1": 2
+            },
+            "player_performance": {
+                "player_uid": 1786151874,
+                "hero_id": 1025,
+                "hero_name": "cloak & dagger",
+                "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
+                "kills": 23,
+                "deaths": 0,
+                "assists": 22,
+                "is_win": {
+                    "score": 1,
+                    "is_win": true
+                },
+                "disconnected": false,
+                "camp": 1,
+                "score_change": 38.76143342747082,
+                "level": 4,
+                "new_level": 5,
+                "new_score": 3430.969024501467
+            }
+        },
+        {
+            "match_uid": "5518473_1749096691_1245341_11001_11",
+            "map_id": 1245,
+            "map_thumbnail": "/rivals/maps/map_1245.png",
+            "duration": 343.0219655036926,
+            "season": 4,
+            "winner_side": 1,
+            "mvp_uid": 1654425651,
+            "svp_uid": 1525003108,
+            "match_time_stamp": 1749097224,
             "play_mode_id": 0,
             "game_mode_id": 2,
             "score_info": {
@@ -337,71 +282,35 @@ export const mockPlayerData =
                 "hero_id": 1025,
                 "hero_name": "cloak & dagger",
                 "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
-                "kills": 7,
-                "deaths": 4,
-                "assists": 3,
-                "is_win": {
-                    "score": 0,
-                    "is_win": false
-                },
-                "disconnected": false,
-                "camp": 0,
-                "score_change": 0,
-                "level": 1,
-                "new_level": 1,
-                "new_score": 3050.3827484266308
-            }
-        },
-        {
-            "match_uid": "5518143_1748121403_1288129_11001_11",
-            "map_id": 1288,
-            "map_thumbnail": "/rivals/maps/map_1288.png",
-            "duration": 314.31651186943054,
-            "season": 3,
-            "winner_side": 0,
-            "mvp_uid": 1786151874,
-            "svp_uid": 871364840,
-            "match_time_stamp": 1748121875,
-            "play_mode_id": 0,
-            "game_mode_id": 2,
-            "score_info": {
-                "0": 2,
-                "1": 0
-            },
-            "player_performance": {
-                "player_uid": 1786151874,
-                "hero_id": 1025,
-                "hero_name": "cloak & dagger",
-                "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
-                "kills": 13,
+                "kills": 14,
                 "deaths": 0,
-                "assists": 9,
+                "assists": 19,
                 "is_win": {
                     "score": 1,
                     "is_win": true
                 },
                 "disconnected": false,
-                "camp": 0,
-                "score_change": 50.38274842663077,
-                "level": 1,
-                "new_level": 1,
-                "new_score": 3050.3827484266308
+                "camp": 1,
+                "score_change": 45.922260677261875,
+                "level": 4,
+                "new_level": 4,
+                "new_score": 3392.2075910739964
             }
         },
         {
-            "match_uid": "5513756_1748120721_1310302_11001_12",
-            "map_id": 1310,
-            "map_thumbnail": "/rivals/maps/map_1310.png",
-            "duration": 488.3149342536926,
-            "season": 3,
+            "match_uid": "5518105_1749096056_1231308_11001_11",
+            "map_id": 1231,
+            "map_thumbnail": "/rivals/maps/map_1231.png",
+            "duration": 413.77819871902466,
+            "season": 4,
             "winner_side": 0,
-            "mvp_uid": 157729062,
-            "svp_uid": 2023367077,
-            "match_time_stamp": 1748121366,
+            "mvp_uid": 1768829546,
+            "svp_uid": 1786151874,
+            "match_time_stamp": 1749096647,
             "play_mode_id": 0,
             "game_mode_id": 2,
             "score_info": {
-                "0": 2,
+                "0": 3,
                 "1": 0
             },
             "player_performance": {
@@ -409,9 +318,9 @@ export const mockPlayerData =
                 "hero_id": 1025,
                 "hero_name": "cloak & dagger",
                 "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
-                "kills": 12,
-                "deaths": 5,
-                "assists": 11,
+                "kills": 10,
+                "deaths": 7,
+                "assists": 2,
                 "is_win": {
                     "score": 0,
                     "is_win": false
@@ -419,87 +328,56 @@ export const mockPlayerData =
                 "disconnected": false,
                 "camp": 1,
                 "score_change": 0,
-                "level": 1,
-                "new_level": 1,
-                "new_score": 3000
+                "level": 4,
+                "new_level": 4,
+                "new_score": 3346.2853303967345
             }
         },
         {
-            "match_uid": "5517497_1748026510_1034233_11001_11",
-            "map_id": 1034,
-            "map_thumbnail": "/rivals/maps/map_1034.png",
-            "duration": 651.5785143375397,
-            "season": 3,
+            "match_uid": "5521401_1749095512_1311267_11001_11",
+            "map_id": 1311,
+            "duration": 315.0327911376953,
+            "season": 4,
             "winner_side": 1,
-            "mvp_uid": 1941222607,
-            "svp_uid": 63311940,
-            "match_time_stamp": 1748027253,
-            "play_mode_id": 0,
-            "game_mode_id": 1,
-            "score_info": null,
-            "player_performance": {
-                "player_uid": 1786151874,
-                "hero_id": 1041,
-                "hero_name": "winter soldier",
-                "hero_type": "/heroes/transformations/winter-soldier-headbig-0.webp",
-                "kills": 12,
-                "deaths": 10,
-                "assists": 11,
-                "is_win": {
-                    "score": 0,
-                    "is_win": false
-                },
-                "disconnected": false,
-                "camp": 0,
-                "score_change": -48.32690990288984,
-                "level": 1,
-                "new_level": 1,
-                "new_score": 3076.6881059009766
-            }
-        },
-        {
-            "match_uid": "5517407_1748025501_1148536_11001_11",
-            "map_id": 1148,
-            "map_thumbnail": "/rivals/maps/map_1148.png",
-            "duration": 556.3225691318512,
-            "season": 3,
-            "winner_side": 0,
             "mvp_uid": 1786151874,
-            "svp_uid": 1768808326,
-            "match_time_stamp": 1748026147,
+            "svp_uid": 1967181499,
+            "match_time_stamp": 1749096012,
             "play_mode_id": 0,
-            "game_mode_id": 1,
-            "score_info": null,
+            "game_mode_id": 2,
+            "score_info": {
+                "0": 0,
+                "1": 1
+            },
             "player_performance": {
                 "player_uid": 1786151874,
                 "hero_id": 1025,
                 "hero_name": "cloak & dagger",
                 "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
-                "kills": 25,
-                "deaths": 6,
-                "assists": 22,
+                "kills": 17,
+                "deaths": 1,
+                "assists": 19,
                 "is_win": {
                     "score": 1,
                     "is_win": true
                 },
                 "disconnected": false,
-                "camp": 0,
-                "score_change": 35.447416781598804,
-                "level": 1,
-                "new_level": 1,
-                "new_score": 3125.0150158038664
+                "camp": 1,
+                "score_change": 42.02493836721396,
+                "level": 4,
+                "new_level": 4,
+                "new_score": 3346.2853303967345
             }
         },
         {
-            "match_uid": "5517886_1748025006_1032077_11001_11",
-            "map_id": 1032,
-            "map_thumbnail": "/rivals/maps/map_1032.png",
-            "duration": 659.0288171768188,
-            "season": 3,
+            "match_uid": "6697186_1749093704_1201014_11001_13",
+            "map_id": 1201,
+            "map_thumbnail": "/rivals/maps/map_1201.png",
+            "duration": 392.44630432128906,
+            "season": 4,
             "winner_side": 1,
-            "mvp_uid": 1479755796,
-            "svp_uid": 1277924373,
-            "match_time_stamp": 1748025751,
+            "mvp_uid": 174251417,
+            "svp_uid": 832725037,
+            "match_time_stamp": 1749094188,
             "play_mode_id": 0,
             "game_mode_id": 1,
             "score_info": null,
@@ -508,31 +386,30 @@ export const mockPlayerData =
                 "hero_id": 1025,
                 "hero_name": "cloak & dagger",
                 "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
-                "kills": 1,
-                "deaths": 1,
-                "assists": 1,
+                "kills": 3,
+                "deaths": 3,
+                "assists": 2,
                 "is_win": {
                     "score": 0,
                     "is_win": false
                 },
                 "disconnected": true,
-                "camp": 1,
-                "score_change": -44.460939557099664,
+                "camp": 0,
+                "score_change": -44.01236335915064,
                 "level": 1,
                 "new_level": 1,
-                "new_score": 3045.106659465168
+                "new_score": 3015.0443432001275
             }
         },
         {
-            "match_uid": "6697130_1748024301_1217013_11001_13",
-            "map_id": 1217,
-            "map_thumbnail": "/rivals/maps/map_1217.png",
-            "duration": 600.0175333023071,
-            "season": 3,
+            "match_uid": "5517624_1749081610_1286070_11001_11",
+            "map_id": 1286,
+            "duration": 694.8356385231018,
+            "season": 4,
             "winner_side": 1,
-            "mvp_uid": 1302253564,
-            "svp_uid": 673873503,
-            "match_time_stamp": 1748024989,
+            "mvp_uid": 1345663734,
+            "svp_uid": 1554900242,
+            "match_time_stamp": 1749082391,
             "play_mode_id": 0,
             "game_mode_id": 1,
             "score_info": null,
@@ -541,44 +418,41 @@ export const mockPlayerData =
                 "hero_id": 1025,
                 "hero_name": "cloak & dagger",
                 "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
-                "kills": 19,
-                "deaths": 10,
-                "assists": 8,
+                "kills": 15,
+                "deaths": 9,
+                "assists": 13,
                 "is_win": {
                     "score": 0,
                     "is_win": false
                 },
                 "disconnected": false,
                 "camp": 0,
-                "score_change": -21.79282706483491,
+                "score_change": -28.95023380172779,
                 "level": 1,
                 "new_level": 1,
-                "new_score": 3089.5675990222676
+                "new_score": 3059.056706559278
             }
         },
         {
-            "match_uid": "5518151_1747884943_1170494_11001_11",
-            "map_id": 1170,
-            "map_thumbnail": "/rivals/maps/map_1170.png",
-            "duration": 448.60840249061584,
-            "season": 3,
+            "match_uid": "5518320_1749081270_1032159_11001_11",
+            "map_id": 1032,
+            "map_thumbnail": "/rivals/maps/map_1032.png",
+            "duration": 268.7218961715698,
+            "season": 4,
             "winner_side": 0,
-            "mvp_uid": 100434370,
-            "svp_uid": 1669048396,
-            "match_time_stamp": 1747885549,
+            "mvp_uid": 569902096,
+            "svp_uid": 254720883,
+            "match_time_stamp": 1749081626,
             "play_mode_id": 0,
             "game_mode_id": 1,
-            "score_info": {
-                "0": 2,
-                "1": 0
-            },
+            "score_info": null,
             "player_performance": {
                 "player_uid": 1786151874,
-                "hero_id": 1025,
-                "hero_name": "cloak & dagger",
-                "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
-                "kills": 0,
-                "deaths": 3,
+                "hero_id": 1034,
+                "hero_name": "iron man",
+                "hero_type": "/heroes/transformations/iron-man-headbig-0.webp",
+                "kills": 2,
+                "deaths": 5,
                 "assists": 0,
                 "is_win": {
                     "score": 0,
@@ -586,189 +460,273 @@ export const mockPlayerData =
                 },
                 "disconnected": true,
                 "camp": 1,
-                "score_change": -30.71077137816019,
+                "score_change": -30.680270558381835,
                 "level": 1,
                 "new_level": 1,
-                "new_score": 3080.6496547089423
+                "new_score": 3057.326669802624
             }
         },
         {
-            "match_uid": "5517925_1747797438_1240105_11001_11",
-            "map_id": 1240,
-            "map_thumbnail": "/rivals/maps/map_1240.png",
-            "duration": 612.8331005573273,
-            "season": 3,
+            "match_uid": "5517713_1749066789_1310051_11001_11",
+            "map_id": 1310,
+            "map_thumbnail": "/rivals/maps/map_1310.png",
+            "duration": 462.68352580070496,
+            "season": 4,
             "winner_side": 1,
-            "mvp_uid": 1088498973,
-            "svp_uid": 1786151874,
-            "match_time_stamp": 1747798138,
+            "mvp_uid": 4222802,
+            "svp_uid": 406414213,
+            "match_time_stamp": 1749067410,
             "play_mode_id": 0,
-            "game_mode_id": 1,
-            "score_info": null,
-            "player_performance": {
-                "player_uid": 1786151874,
-                "hero_id": 1025,
-                "hero_name": "cloak & dagger",
-                "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
-                "kills": 23,
-                "deaths": 9,
-                "assists": 19,
-                "is_win": {
-                    "score": 0,
-                    "is_win": false
-                },
-                "disconnected": false,
-                "camp": 0,
-                "score_change": -22.912910801257567,
-                "level": 1,
-                "new_level": 1,
-                "new_score": 3111.360426087103
-            }
-        },
-        {
-            "match_uid": "5518151_1747768493_1101031_11001_11",
-            "map_id": 1101,
-            "map_thumbnail": "/rivals/maps/map_1101.png",
-            "duration": 366.5220854282379,
-            "season": 3,
-            "winner_side": 0,
-            "mvp_uid": 892234201,
-            "svp_uid": 1786151874,
-            "match_time_stamp": 1747768948,
-            "play_mode_id": 0,
-            "game_mode_id": 1,
-            "score_info": null,
+            "game_mode_id": 2,
+            "score_info": {
+                "0": 0,
+                "1": 2
+            },
             "player_performance": {
                 "player_uid": 1786151874,
                 "hero_id": 1043,
                 "hero_name": "star-lord",
                 "hero_type": "/heroes/transformations/star-lord-headbig-0.webp",
-                "kills": 6,
-                "deaths": 7,
+                "kills": 11,
+                "deaths": 3,
                 "assists": 0,
                 "is_win": {
-                    "score": 0,
-                    "is_win": false
+                    "score": 1,
+                    "is_win": true
                 },
                 "disconnected": false,
                 "camp": 1,
-                "score_change": -6.448416575099145,
-                "level": 1,
-                "new_level": 1,
-                "new_score": 3134.2733368883605
+                "score_change": 30.364929950247642,
+                "level": 3,
+                "new_level": 4,
+                "new_score": 3304.2603920295205
             }
         },
         {
-            "match_uid": "6697008_1747759816_1148017_11001_13",
-            "map_id": 1148,
-            "map_thumbnail": "/rivals/maps/map_1148.png",
-            "duration": 624.217360496521,
-            "season": 3,
-            "winner_side": 1,
-            "mvp_uid": 1918415972,
-            "svp_uid": 927183084,
-            "match_time_stamp": 1747760532,
+            "match_uid": "5518400_1749065737_1292042_11001_11",
+            "map_id": 1292,
+            "map_thumbnail": "/rivals/maps/map_1292.png",
+            "duration": 820.456235408783,
+            "season": 4,
+            "winner_side": 0,
+            "mvp_uid": 415459956,
+            "svp_uid": 1609996614,
+            "match_time_stamp": 1749066747,
             "play_mode_id": 0,
-            "game_mode_id": 1,
-            "score_info": null,
+            "game_mode_id": 2,
+            "score_info": {
+                "0": 3,
+                "1": 2
+            },
             "player_performance": {
                 "player_uid": 1786151874,
-                "hero_id": 1025,
-                "hero_name": "cloak & dagger",
-                "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
-                "kills": 7,
-                "deaths": 13,
+                "hero_id": 1051,
+                "hero_name": "the thing",
+                "hero_type": "/heroes/transformations/the-thing-headbig-0.webp",
+                "kills": 12,
+                "deaths": 10,
                 "assists": 7,
                 "is_win": {
                     "score": 0,
                     "is_win": false
                 },
                 "disconnected": false,
-                "camp": 0,
-                "score_change": -38.13198130932642,
-                "level": 1,
-                "new_level": 1,
-                "new_score": 3140.72175346346
+                "camp": 1,
+                "score_change": 0,
+                "level": 3,
+                "new_level": 3,
+                "new_score": 3273.895462079273
             }
         },
         {
-            "match_uid": "5517663_1747715221_1032276_11001_11",
-            "map_id": 1032,
-            "map_thumbnail": "/rivals/maps/map_1032.png",
-            "duration": 617.8350584506989,
-            "season": 3,
+            "match_uid": "5513846_1748992773_1290020_11001_12",
+            "map_id": 1290,
+            "map_thumbnail": "/rivals/maps/map_1290.png",
+            "duration": 1015.1105992794037,
+            "season": 4,
             "winner_side": 1,
-            "mvp_uid": 1786151874,
-            "svp_uid": 1230536535,
-            "match_time_stamp": 1747715925,
+            "mvp_uid": 357414498,
+            "svp_uid": 1168180561,
+            "match_time_stamp": 1748993975,
             "play_mode_id": 0,
-            "game_mode_id": 1,
-            "score_info": null,
+            "game_mode_id": 2,
+            "score_info": {
+                "0": 2,
+                "1": 3
+            },
             "player_performance": {
                 "player_uid": 1786151874,
                 "hero_id": 1025,
                 "hero_name": "cloak & dagger",
                 "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
-                "kills": 19,
-                "deaths": 5,
-                "assists": 19,
+                "kills": 28,
+                "deaths": 10,
+                "assists": 33,
+                "is_win": {
+                    "score": 0,
+                    "is_win": false
+                },
+                "disconnected": false,
+                "camp": 0,
+                "score_change": 0,
+                "level": 3,
+                "new_level": 3,
+                "new_score": 3273.895462079273
+            }
+        },
+        {
+            "match_uid": "5514072_1748991850_1290198_11001_12",
+            "map_id": 1290,
+            "map_thumbnail": "/rivals/maps/map_1290.png",
+            "duration": 673.6223256587982,
+            "season": 4,
+            "winner_side": 0,
+            "mvp_uid": 737723774,
+            "svp_uid": 321504129,
+            "match_time_stamp": 1748992710,
+            "play_mode_id": 0,
+            "game_mode_id": 2,
+            "score_info": {
+                "0": 3,
+                "1": 0
+            },
+            "player_performance": {
+                "player_uid": 1786151874,
+                "hero_id": 1025,
+                "hero_name": "cloak & dagger",
+                "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
+                "kills": 33,
+                "deaths": 2,
+                "assists": 25,
+                "is_win": {
+                    "score": 1,
+                    "is_win": true
+                },
+                "disconnected": false,
+                "camp": 0,
+                "score_change": 44.82714809138406,
+                "level": 3,
+                "new_level": 3,
+                "new_score": 3273.895462079273
+            }
+        },
+        {
+            "match_uid": "5518211_1748991248_1245092_11001_11",
+            "map_id": 1245,
+            "map_thumbnail": "/rivals/maps/map_1245.png",
+            "duration": 341.32593274116516,
+            "season": 4,
+            "winner_side": 1,
+            "mvp_uid": 1440347056,
+            "svp_uid": 805350168,
+            "match_time_stamp": 1748991780,
+            "play_mode_id": 0,
+            "game_mode_id": 2,
+            "score_info": {
+                "0": 0,
+                "1": 1
+            },
+            "player_performance": {
+                "player_uid": 1786151874,
+                "hero_id": 1025,
+                "hero_name": "cloak & dagger",
+                "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
+                "kills": 9,
+                "deaths": 2,
+                "assists": 13,
                 "is_win": {
                     "score": 1,
                     "is_win": true
                 },
                 "disconnected": false,
                 "camp": 1,
-                "score_change": 49.11162575888329,
-                "level": 1,
-                "new_level": 1,
-                "new_score": 3178.853734772787
+                "score_change": 39.83066249368994,
+                "level": 2,
+                "new_level": 3,
+                "new_score": 3229.068313987889
             }
         },
         {
-            "match_uid": "5517973_1747714798_1240224_11001_11",
-            "map_id": 1240,
-            "map_thumbnail": "/rivals/maps/map_1240.png",
-            "duration": 309.0795133113861,
-            "season": 3,
-            "winner_side": 0,
-            "mvp_uid": 1557215591,
-            "svp_uid": 933278273,
-            "match_time_stamp": 1747715195,
+            "match_uid": "5514522_1748990587_1217129_11001_12",
+            "map_id": 1217,
+            "map_thumbnail": "/rivals/maps/map_1217.png",
+            "duration": 300.00825691223145,
+            "season": 4,
+            "winner_side": 1,
+            "mvp_uid": 245046770,
+            "svp_uid": 653110419,
+            "match_time_stamp": 1748990978,
             "play_mode_id": 0,
             "game_mode_id": 1,
             "score_info": null,
             "player_performance": {
                 "player_uid": 1786151874,
-                "hero_id": 1025,
-                "hero_name": "cloak & dagger",
-                "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
-                "kills": 12,
-                "deaths": 2,
-                "assists": 16,
+                "hero_id": 1034,
+                "hero_name": "iron man",
+                "hero_type": "/heroes/transformations/iron-man-headbig-0.webp",
+                "kills": 19,
+                "deaths": 5,
+                "assists": 0,
                 "is_win": {
                     "score": 1,
                     "is_win": true
                 },
                 "disconnected": false,
-                "camp": 0,
-                "score_change": 39.29094939487277,
+                "camp": 1,
+                "score_change": 32.051263999950606,
                 "level": 1,
                 "new_level": 1,
-                "new_score": 3129.7421090139037
+                "new_score": 3088.006940361006
             }
         },
         {
-            "match_uid": "6697330_1747685509_1170087_11001_13",
-            "map_id": 1170,
-            "map_thumbnail": "/rivals/maps/map_1170.png",
-            "duration": 486.7331700325012,
-            "season": 3,
+            "match_uid": "5514684_1748841368_1245169_11001_12",
+            "map_id": 1245,
+            "map_thumbnail": "/rivals/maps/map_1245.png",
+            "duration": 635.5783932209015,
+            "season": 4,
             "winner_side": 1,
-            "mvp_uid": 1786151874,
-            "svp_uid": 1538989477,
-            "match_time_stamp": 1747686153,
+            "mvp_uid": 1194662092,
+            "svp_uid": 1440347056,
+            "match_time_stamp": 1748842194,
             "play_mode_id": 0,
-            "game_mode_id": 1,
+            "game_mode_id": 2,
+            "score_info": {
+                "0": 1,
+                "1": 2
+            },
+            "player_performance": {
+                "player_uid": 1786151874,
+                "hero_id": 1025,
+                "hero_name": "cloak & dagger",
+                "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
+                "kills": 9,
+                "deaths": 5,
+                "assists": 15,
+                "is_win": {
+                    "score": 0,
+                    "is_win": false
+                },
+                "disconnected": false,
+                "camp": 0,
+                "score_change": 0,
+                "level": 2,
+                "new_level": 2,
+                "new_score": 3189.2376514941993
+            }
+        },
+        {
+            "match_uid": "5518381_1748840733_1310128_11001_11",
+            "map_id": 1310,
+            "map_thumbnail": "/rivals/maps/map_1310.png",
+            "duration": 437.65275597572327,
+            "season": 4,
+            "winner_side": 1,
+            "mvp_uid": 1440347056,
+            "svp_uid": 700485968,
+            "match_time_stamp": 1748841327,
+            "play_mode_id": 0,
+            "game_mode_id": 2,
             "score_info": {
                 "0": 0,
                 "1": 2
@@ -778,206 +736,179 @@ export const mockPlayerData =
                 "hero_id": 1025,
                 "hero_name": "cloak & dagger",
                 "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
-                "kills": 22,
-                "deaths": 3,
-                "assists": 15,
+                "kills": 12,
+                "deaths": 2,
+                "assists": 18,
                 "is_win": {
                     "score": 1,
                     "is_win": true
                 },
                 "disconnected": false,
                 "camp": 1,
-                "score_change": 43.858495941507044,
+                "score_change": 52.200228970437365,
+                "level": 2,
+                "new_level": 2,
+                "new_score": 3189.2376514941993
+            }
+        },
+        {
+            "match_uid": "5517630_1748626225_1201149_11001_11",
+            "map_id": 1201,
+            "map_thumbnail": "/rivals/maps/map_1201.png",
+            "duration": 300.01585817337036,
+            "season": 4,
+            "winner_side": 1,
+            "mvp_uid": 1572650592,
+            "svp_uid": 81884,
+            "match_time_stamp": 1748626616,
+            "play_mode_id": 0,
+            "game_mode_id": 7,
+            "score_info": null,
+            "player_performance": {
+                "player_uid": 1786151874,
+                "hero_id": 1028,
+                "hero_name": "ultron",
+                "hero_type": "/heroes/transformations/ultron-headbig-0.webp",
+                "kills": 28,
+                "deaths": 0,
+                "assists": 31,
+                "is_win": {
+                    "score": 1,
+                    "is_win": true
+                },
+                "disconnected": false,
+                "camp": 1,
+                "score_change": null,
+                "level": null,
+                "new_level": null,
+                "new_score": null
+            }
+        },
+        {
+            "match_uid": "5518162_1748625471_1101231_11001_11",
+            "map_id": 1101,
+            "map_thumbnail": "/rivals/maps/map_1101.png",
+            "duration": 611.6428799629211,
+            "season": 4,
+            "winner_side": 1,
+            "mvp_uid": 725361757,
+            "svp_uid": 399594077,
+            "match_time_stamp": 1748626171,
+            "play_mode_id": 0,
+            "game_mode_id": 1,
+            "score_info": null,
+            "player_performance": {
+                "player_uid": 1786151874,
+                "hero_id": 1025,
+                "hero_name": "cloak & dagger",
+                "hero_type": "/heroes/transformations/cloak-dagger-headbig-0.webp",
+                "kills": 9,
+                "deaths": 6,
+                "assists": 9,
+                "is_win": {
+                    "score": 0,
+                    "is_win": false
+                },
+                "disconnected": false,
+                "camp": 0,
+                "score_change": -20.8961160635954,
                 "level": 1,
                 "new_level": 1,
-                "new_score": 3090.4511596190314
+                "new_score": 3055.9556763610562
             }
         }
     ],
     "rank_history": [
         {
-            "match_time_stamp": 1748300560,
+            "match_time_stamp": 1749103193,
             "level_progression": {
-                "from": 1,
-                "to": 2
+                "from": 5,
+                "to": 6
             },
             "score_progression": {
-                "add_score": 37.97801726959824,
-                "total_score": 3137.0374225237615
+                "add_score": 37.96318818687496,
+                "total_score": 3525.1017712815205
+            }
+        },
+        {
+            "match_time_stamp": 1749097808,
+            "level_progression": {
+                "from": 4,
+                "to": 5
+            },
+            "score_progression": {
+                "add_score": 38.76143342747082,
+                "total_score": 3430.969024501467
+            }
+        },
+        {
+            "match_time_stamp": 1749067410,
+            "level_progression": {
+                "from": 3,
+                "to": 4
+            },
+            "score_progression": {
+                "add_score": 30.364929950247642,
+                "total_score": 3304.2603920295205
+            }
+        },
+        {
+            "match_time_stamp": 1748991780,
+            "level_progression": {
+                "from": 2,
+                "to": 3
+            },
+            "score_progression": {
+                "add_score": 39.83066249368994,
+                "total_score": 3229.068313987889
             }
         }
     ],
     "hero_matchups": [
         {
-            "hero_id": 1042,
-            "hero_name": "peni parker",
-            "hero_class": "Vanguard",
-            "hero_thumbnail": "/heroes/transformations/peni-parker-headbig-0.webp",
-            "matches": 1,
-            "wins": 1,
-            "win_rate": "100.00"
-        },
-        {
-            "hero_id": 1015,
-            "hero_name": "storm",
-            "hero_class": "Duelist",
-            "hero_thumbnail": "/heroes/transformations/storm-headbig-0.webp",
-            "matches": 1,
-            "wins": 1,
-            "win_rate": "100.00"
-        },
-        {
             "hero_id": 1050,
             "hero_name": "invisible woman",
             "hero_class": "Strategist",
             "hero_thumbnail": "/heroes/transformations/invisible-woman-headbig-0.webp",
-            "matches": 4,
-            "wins": 1,
-            "win_rate": "25.00"
-        },
-        {
-            "hero_id": 1025,
-            "hero_name": "cloak & dagger",
-            "hero_class": "Strategist",
-            "hero_thumbnail": "/heroes/transformations/cloak-dagger-headbig-0.webp",
             "matches": 5,
-            "wins": 3,
-            "win_rate": "60.00"
-        },
-        {
-            "hero_id": 1032,
-            "hero_name": "squirrel girl",
-            "hero_class": "Duelist",
-            "hero_thumbnail": "/heroes/transformations/squirrel-girl-headbig-0.webp",
-            "matches": 1,
             "wins": 1,
-            "win_rate": "100.00"
-        },
-        {
-            "hero_id": 1038,
-            "hero_name": "scarlet witch",
-            "hero_class": "Duelist",
-            "hero_thumbnail": "/heroes/transformations/scarlet-witch-headbig-0.webp",
-            "matches": 2,
-            "wins": 0,
-            "win_rate": "0.00"
-        },
-        {
-            "hero_id": 1020,
-            "hero_name": "mantis",
-            "hero_class": "Strategist",
-            "hero_thumbnail": "/heroes/transformations/mantis-headbig-0.webp",
-            "matches": 2,
-            "wins": 1,
-            "win_rate": "50.00"
-        },
-        {
-            "hero_id": 1024,
-            "hero_name": "hela",
-            "hero_class": "Duelist",
-            "hero_thumbnail": "/heroes/transformations/hela-headbig-0.webp",
-            "matches": 1,
-            "wins": 1,
-            "win_rate": "100.00"
-        },
-        {
-            "hero_id": 1018,
-            "hero_name": "doctor strange",
-            "hero_class": "Vanguard",
-            "hero_thumbnail": "/heroes/transformations/doctor-strange-headbig-0.webp",
-            "matches": 1,
-            "wins": 0,
-            "win_rate": "0.00"
-        },
-        {
-            "hero_id": 1022,
-            "hero_name": "captain america",
-            "hero_class": "Vanguard",
-            "hero_thumbnail": "/heroes/transformations/captain-america-headbig-0.webp",
-            "matches": 3,
-            "wins": 2,
-            "win_rate": "66.67"
-        },
-        {
-            "hero_id": 1051,
-            "hero_name": "the thing",
-            "hero_class": "Vanguard",
-            "hero_thumbnail": "/heroes/transformations/the-thing-headbig-0.webp",
-            "matches": 1,
-            "wins": 0,
-            "win_rate": "0.00"
-        },
-        {
-            "hero_id": 1039,
-            "hero_name": "thor",
-            "hero_class": "Vanguard",
-            "hero_thumbnail": "/heroes/transformations/thor-headbig-0.webp",
-            "matches": 1,
-            "wins": 0,
-            "win_rate": "0.00"
-        },
-        {
-            "hero_id": 1011,
-            "hero_name": "hulk",
-            "hero_class": "Vanguard",
-            "hero_thumbnail": "/heroes/transformations/bruce-banner-headbig-0.webp",
-            "matches": 2,
-            "wins": 2,
-            "win_rate": "100.00"
-        },
-        {
-            "hero_id": 1034,
-            "hero_name": "iron man",
-            "hero_class": "Duelist",
-            "hero_thumbnail": "/heroes/transformations/iron-man-headbig-0.webp",
-            "matches": 4,
-            "wins": 3,
-            "win_rate": "75.00"
-        },
-        {
-            "hero_id": 1046,
-            "hero_name": "adam warlock",
-            "hero_class": "Strategist",
-            "hero_thumbnail": "/heroes/transformations/adam-warlock-headbig-0.webp",
-            "matches": 1,
-            "wins": 1,
-            "win_rate": "100.00"
-        },
-        {
-            "hero_id": 1040,
-            "hero_name": "mister fantastic",
-            "hero_class": "Duelist",
-            "hero_thumbnail": "/heroes/transformations/mister-fantastic-headbig-0.webp",
-            "matches": 2,
-            "wins": 2,
-            "win_rate": "100.00"
-        },
-        {
-            "hero_id": 1023,
-            "hero_name": "rocket raccoon",
-            "hero_class": "Strategist",
-            "hero_thumbnail": "/heroes/transformations/rocket-raccoon-headbig-0.webp",
-            "matches": 2,
-            "wins": 1,
-            "win_rate": "50.00"
+            "win_rate": "20.00"
         },
         {
             "hero_id": 1053,
             "hero_name": "emma frost",
             "hero_class": "Vanguard",
             "hero_thumbnail": "/heroes/transformations/emma-frost-headbig-0.webp",
-            "matches": 1,
-            "wins": 0,
-            "win_rate": "0.00"
+            "matches": 2,
+            "wins": 1,
+            "win_rate": "50.00"
         },
         {
             "hero_id": 1045,
             "hero_name": "namor",
             "hero_class": "Duelist",
             "hero_thumbnail": "/heroes/transformations/namor-headbig-0.webp",
-            "matches": 2,
-            "wins": 1,
-            "win_rate": "50.00"
+            "matches": 1,
+            "wins": 0,
+            "win_rate": "0.00"
+        },
+        {
+            "hero_id": 1017,
+            "hero_name": "human torch",
+            "hero_class": "Duelist",
+            "hero_thumbnail": "/heroes/transformations/human-torch-headbig-0.webp",
+            "matches": 1,
+            "wins": 0,
+            "win_rate": "0.00"
+        },
+        {
+            "hero_id": 1052,
+            "hero_name": "iron fist",
+            "hero_class": "Duelist",
+            "hero_thumbnail": "/heroes/transformations/iron-fist-headbig-0.webp",
+            "matches": 1,
+            "wins": 0,
+            "win_rate": "0.00"
         },
         {
             "hero_id": 1027,
@@ -989,520 +920,377 @@ export const mockPlayerData =
             "win_rate": "0.00"
         },
         {
-            "hero_id": 1031,
-            "hero_name": "luna snow",
+            "hero_id": 1035,
+            "hero_name": "venom",
+            "hero_class": "Vanguard",
+            "hero_thumbnail": "/heroes/transformations/venom-headbig-0.webp",
+            "matches": 5,
+            "wins": 0,
+            "win_rate": "0.00"
+        },
+        {
+            "hero_id": 1040,
+            "hero_name": "mister fantastic",
+            "hero_class": "Duelist",
+            "hero_thumbnail": "/heroes/transformations/mister-fantastic-headbig-0.webp",
+            "matches": 1,
+            "wins": 0,
+            "win_rate": "0.00"
+        },
+        {
+            "hero_id": 1046,
+            "hero_name": "adam warlock",
             "hero_class": "Strategist",
-            "hero_thumbnail": "/heroes/transformations/luna-snow-headbig-0.webp",
-            "matches": 2,
-            "wins": 2,
+            "hero_thumbnail": "/heroes/transformations/adam-warlock-headbig-0.webp",
+            "matches": 1,
+            "wins": 1,
             "win_rate": "100.00"
         },
         {
-            "hero_id": 1017,
-            "hero_name": "human torch",
+            "hero_id": 1026,
+            "hero_name": "black panther",
             "hero_class": "Duelist",
-            "hero_thumbnail": "/heroes/transformations/human-torch-headbig-0.webp",
-            "matches": 2,
+            "hero_thumbnail": "/heroes/transformations/black-panther-headbig-0.webp",
+            "matches": 1,
             "wins": 1,
-            "win_rate": "50.00"
-        }
-    ],
-    "team_mates": [
-        {
-            "player_info": {
-                "nick_name": "Akio_Ren",
-                "player_icon": "/rivals/players/heads/player_head_30000058.png",
-                "player_uid": 1440347056
-            },
-            "matches": 41,
-            "wins": 21,
-            "win_rate": "51.22"
+            "win_rate": "100.00"
         },
         {
-            "player_info": {
-                "nick_name": "marcoticz",
-                "player_icon": "/rivals/players/heads/player_head_31029203.png",
-                "player_uid": 1938341898
-            },
-            "matches": 11,
-            "wins": 5,
-            "win_rate": "45.45"
-        },
-        {
-            "player_info": {
-                "nick_name": "Zumarraga10",
-                "player_icon": "/rivals/players/heads/player_head_31026201.png",
-                "player_uid": 172655749
-            },
+            "hero_id": 1028,
+            "hero_name": "ultron",
+            "hero_class": "Strategist",
+            "hero_thumbnail": "/heroes/transformations/ultron-headbig-0.webp",
             "matches": 5,
             "wins": 2,
             "win_rate": "40.00"
         },
         {
-            "player_info": {
-                "nick_name": "Dre_Dre2017",
-                "player_icon": "/rivals/players/heads/player_head_31040001.png",
-                "player_uid": 627246917
-            },
+            "hero_id": 1020,
+            "hero_name": "mantis",
+            "hero_class": "Strategist",
+            "hero_thumbnail": "/heroes/transformations/mantis-headbig-0.webp",
+            "matches": 1,
+            "wins": 0,
+            "win_rate": "0.00"
+        },
+        {
+            "hero_id": 1030,
+            "hero_name": "moon knight",
+            "hero_class": "Duelist",
+            "hero_thumbnail": "/heroes/transformations/moon-knight-headbig-0.webp",
+            "matches": 4,
+            "wins": 1,
+            "win_rate": "25.00"
+        },
+        {
+            "hero_id": 1029,
+            "hero_name": "magik",
+            "hero_class": "Duelist",
+            "hero_thumbnail": "/heroes/transformations/magik-headbig-0.webp",
             "matches": 2,
             "wins": 1,
             "win_rate": "50.00"
         },
         {
-            "player_info": {
-                "nick_name": "D1gamer",
-                "player_icon": "/rivals/players/heads/player_head_30000047.png",
-                "player_uid": 1525067822
-            },
-            "matches": 1,
-            "wins": 0,
-            "win_rate": "0.00"
-        },
-        {
-            "player_info": {
-                "nick_name": "Dmickle",
-                "player_icon": "/rivals/players/heads/player_head_30000001.png",
-                "player_uid": 2082731056
-            },
-            "matches": 1,
-            "wins": 0,
-            "win_rate": "0.00"
-        },
-        {
-            "player_info": {
-                "nick_name": "UNKNOWN_NICO_",
-                "player_icon": "/rivals/players/heads/player_head_31038202.png",
-                "player_uid": 841000656
-            },
-            "matches": 1,
-            "wins": 0,
-            "win_rate": "0.00"
-        },
-        {
-            "player_info": {
-                "nick_name": "Jozey99",
-                "player_icon": "/rivals/players/heads/player_head_30000001.png",
-                "player_uid": 1177478585
-            },
-            "matches": 1,
-            "wins": 0,
-            "win_rate": "0.00"
-        },
-        {
-            "player_info": {
-                "nick_name": "LuluLemonzsss",
-                "player_icon": "/rivals/players/heads/player_head_31053001.png",
-                "player_uid": 1812339615
-            },
-            "matches": 1,
-            "wins": 1,
-            "win_rate": "100.00"
-        },
-        {
-            "player_info": {
-                "nick_name": "Ivan128000",
-                "player_icon": "/rivals/players/heads/player_head_31047201.png",
-                "player_uid": 1684759990
-            },
-            "matches": 1,
-            "wins": 1,
-            "win_rate": "100.00"
-        }
-    ],
-    "heroes_ranked": [
-        {
             "hero_id": 1025,
             "hero_name": "cloak & dagger",
+            "hero_class": "Strategist",
             "hero_thumbnail": "/heroes/transformations/cloak-dagger-headbig-0.webp",
             "matches": 7,
-            "wins": 3,
-            "mvp": 2,
-            "svp": 2,
-            "kills": 89,
-            "deaths": 30,
-            "assists": 87,
-            "play_time": 3480.923345454037,
-            "damage": 44878.483137607574,
-            "heal": 77575.99013710022,
-            "damage_taken": 30376.222808003426,
-            "main_attack": {
-                "total": 3127,
-                "hits": 2532
-            }
+            "wins": 2,
+            "win_rate": "28.57"
         },
         {
-            "hero_id": 1045,
-            "hero_name": "namor",
-            "hero_thumbnail": "/heroes/transformations/namor-headbig-0.webp",
-            "matches": 0,
+            "hero_id": 1042,
+            "hero_name": "peni parker",
+            "hero_class": "Vanguard",
+            "hero_thumbnail": "/heroes/transformations/peni-parker-headbig-0.webp",
+            "matches": 3,
             "wins": 0,
-            "mvp": 0,
-            "svp": 0,
-            "kills": 0,
-            "deaths": 0,
-            "assists": 0,
-            "play_time": 42.366400729864836,
-            "damage": 0,
-            "heal": 0,
-            "damage_taken": 0,
-            "main_attack": {
-                "total": 0,
-                "hits": 0
-            }
-        }
-    ],
-    "heroes_unranked": [
-        {
-            "hero_id": 1011,
-            "hero_name": "hulk",
-            "hero_thumbnail": "/heroes/transformations/bruce-banner-headbig-0.webp",
-            "matches": 0,
-            "wins": 0,
-            "mvp": 0,
-            "svp": 0,
-            "kills": 0,
-            "deaths": 0,
-            "assists": 0,
-            "play_time": 167.21028164587915,
-            "damage": 0,
-            "heal": 0,
-            "damage_taken": 0,
-            "main_attack": {
-                "total": 0,
-                "hits": 0
-            }
+            "win_rate": "0.00"
         },
         {
-            "hero_id": 1020,
-            "hero_name": "mantis",
-            "hero_thumbnail": "/heroes/transformations/mantis-headbig-0.webp",
-            "matches": 0,
-            "wins": 0,
-            "mvp": 0,
-            "svp": 0,
-            "kills": 0,
-            "deaths": 0,
-            "assists": 0,
-            "play_time": 59.336709301918745,
-            "damage": 0,
-            "heal": 0,
-            "damage_taken": 0,
-            "main_attack": {
-                "total": 0,
-                "hits": 0
-            }
-        },
-        {
-            "hero_id": 1025,
-            "hero_name": "cloak & dagger",
-            "hero_thumbnail": "/heroes/transformations/cloak-dagger-headbig-0.webp",
-            "matches": 30,
-            "wins": 14,
-            "mvp": 6,
-            "svp": 6,
-            "kills": 421,
-            "deaths": 157,
-            "assists": 370,
-            "play_time": 14384.27496916242,
-            "damage": 169072.5909678936,
-            "heal": 299912.6068377495,
-            "damage_taken": 144698.99878764153,
-            "main_attack": {
-                "total": 10231,
-                "hits": 8310
-            }
-        },
-        {
-            "hero_id": 1038,
-            "hero_name": "scarlet witch",
-            "hero_thumbnail": "/heroes/transformations/scarlet-witch-headbig-0.webp",
-            "matches": 2,
+            "hero_id": 1016,
+            "hero_name": "loki",
+            "hero_class": "Strategist",
+            "hero_thumbnail": "/heroes/transformations/loki-headbig-0.webp",
+            "matches": 3,
             "wins": 1,
-            "mvp": 0,
-            "svp": 0,
-            "kills": 33,
-            "deaths": 10,
-            "assists": 1,
-            "play_time": 951.9823968596756,
-            "damage": 16639.884100914,
-            "heal": 0,
-            "damage_taken": 9000.131432056427,
-            "main_attack": {
-                "total": 3287,
-                "hits": 1509
-            }
+            "win_rate": "33.33"
         },
         {
-            "hero_id": 1041,
-            "hero_name": "winter soldier",
-            "hero_thumbnail": "/heroes/transformations/winter-soldier-headbig-0.webp",
-            "matches": 11,
-            "wins": 3,
-            "mvp": 0,
-            "svp": 1,
-            "kills": 128,
-            "deaths": 61,
-            "assists": 91,
-            "play_time": 5792.884220292792,
-            "damage": 87141.40014982224,
-            "heal": 0,
-            "damage_taken": 65529.00481247902,
-            "main_attack": {
-                "total": 2718,
-                "hits": 805
-            }
-        },
-        {
-            "hero_id": 1043,
-            "hero_name": "star-lord",
-            "hero_thumbnail": "/heroes/transformations/star-lord-headbig-0.webp",
-            "matches": 10,
-            "wins": 3,
-            "mvp": 1,
-            "svp": 2,
-            "kills": 128,
-            "deaths": 59,
-            "assists": 0,
-            "play_time": 4734.904131423682,
-            "damage": 65359.001099169254,
-            "heal": 0,
-            "damage_taken": 38554.38211250305,
-            "main_attack": {
-                "total": 27552,
-                "hits": 6517
-            }
-        },
-        {
-            "hero_id": 1045,
-            "hero_name": "namor",
-            "hero_thumbnail": "/heroes/transformations/namor-headbig-0.webp",
-            "matches": 11,
-            "wins": 8,
-            "mvp": 1,
-            "svp": 0,
-            "kills": 171,
-            "deaths": 42,
-            "assists": 1,
-            "play_time": 5536.828355357051,
-            "damage": 101892.49382853508,
-            "heal": 0,
-            "damage_taken": 44661.13196158409,
-            "main_attack": {
-                "total": 1483,
-                "hits": 478
-            }
-        },
-        {
-            "hero_id": 1048,
-            "hero_name": "psylocke",
-            "hero_thumbnail": "/heroes/transformations/psylocke-headbig-0.webp",
-            "matches": 0,
+            "hero_id": 1036,
+            "hero_name": "spider-man",
+            "hero_class": "Duelist",
+            "hero_thumbnail": "/heroes/transformations/spider-man-headbig-0.webp",
+            "matches": 2,
             "wins": 0,
-            "mvp": 0,
-            "svp": 0,
-            "kills": 0,
-            "deaths": 0,
-            "assists": 0,
-            "play_time": 193.45838662609458,
-            "damage": 0,
-            "heal": 0,
-            "damage_taken": 0,
-            "main_attack": {
-                "total": 0,
-                "hits": 0
-            }
+            "win_rate": "0.00"
+        },
+        {
+            "hero_id": 1031,
+            "hero_name": "luna snow",
+            "hero_class": "Strategist",
+            "hero_thumbnail": "/heroes/transformations/luna-snow-headbig-0.webp",
+            "matches": 3,
+            "wins": 0,
+            "win_rate": "0.00"
         },
         {
             "hero_id": 1051,
             "hero_name": "the thing",
+            "hero_class": "Vanguard",
             "hero_thumbnail": "/heroes/transformations/the-thing-headbig-0.webp",
-            "matches": 0,
-            "wins": 0,
-            "mvp": 0,
-            "svp": 0,
-            "kills": 0,
-            "deaths": 0,
-            "assists": 0,
-            "play_time": 36.990844544023275,
-            "damage": 0,
-            "heal": 0,
-            "damage_taken": 0,
-            "main_attack": {
-                "total": 0,
-                "hits": 0
-            }
+            "matches": 1,
+            "wins": 1,
+            "win_rate": "100.00"
         },
         {
-            "hero_id": 1053,
-            "hero_name": "emma frost",
-            "hero_thumbnail": "/heroes/transformations/emma-frost-headbig-0.webp",
+            "hero_id": 1037,
+            "hero_name": "magneto",
+            "hero_class": "Vanguard",
+            "hero_thumbnail": "/heroes/transformations/magneto-headbig-0.webp",
+            "matches": 2,
+            "wins": 2,
+            "win_rate": "100.00"
+        },
+        {
+            "hero_id": 1022,
+            "hero_name": "captain america",
+            "hero_class": "Vanguard",
+            "hero_thumbnail": "/heroes/transformations/captain-america-headbig-0.webp",
+            "matches": 2,
+            "wins": 1,
+            "win_rate": "50.00"
+        },
+        {
+            "hero_id": 1023,
+            "hero_name": "rocket raccoon",
+            "hero_class": "Strategist",
+            "hero_thumbnail": "/heroes/transformations/rocket-raccoon-headbig-0.webp",
+            "matches": 5,
+            "wins": 1,
+            "win_rate": "20.00"
+        },
+        {
+            "hero_id": 1034,
+            "hero_name": "iron man",
+            "hero_class": "Duelist",
+            "hero_thumbnail": "/heroes/transformations/iron-man-headbig-0.webp",
+            "matches": 4,
+            "wins": 1,
+            "win_rate": "25.00"
+        },
+        {
+            "hero_id": 1021,
+            "hero_name": "hawkeye",
+            "hero_class": "Duelist",
+            "hero_thumbnail": "/heroes/transformations/hawkeye-headbig-0.webp",
+            "matches": 1,
+            "wins": 0,
+            "win_rate": "0.00"
+        },
+        {
+            "hero_id": 1039,
+            "hero_name": "thor",
+            "hero_class": "Vanguard",
+            "hero_thumbnail": "/heroes/transformations/thor-headbig-0.webp",
+            "matches": 1,
+            "wins": 1,
+            "win_rate": "100.00"
+        },
+        {
+            "hero_id": null,
+            "hero_name": "Unknown",
+            "hero_class": "Unknown",
+            "hero_thumbnail": null,
+            "matches": 2,
+            "wins": 0,
+            "win_rate": "0.00"
+        },
+        {
+            "hero_id": 1018,
+            "hero_name": "doctor strange",
+            "hero_class": "Vanguard",
+            "hero_thumbnail": "/heroes/transformations/doctor-strange-headbig-0.webp",
+            "matches": 2,
+            "wins": 0,
+            "win_rate": "0.00"
+        },
+        {
+            "hero_id": 1014,
+            "hero_name": "the punisher",
+            "hero_class": "Duelist",
+            "hero_thumbnail": "/heroes/transformations/the-punisher-headbig-0.webp",
+            "matches": 5,
+            "wins": 2,
+            "win_rate": "40.00"
+        },
+        {
+            "hero_id": 1043,
+            "hero_name": "star-lord",
+            "hero_class": "Duelist",
+            "hero_thumbnail": "/heroes/transformations/star-lord-headbig-0.webp",
+            "matches": 4,
+            "wins": 1,
+            "win_rate": "25.00"
+        },
+        {
+            "hero_id": 1038,
+            "hero_name": "scarlet witch",
+            "hero_class": "Duelist",
+            "hero_thumbnail": "/heroes/transformations/scarlet-witch-headbig-0.webp",
+            "matches": 3,
+            "wins": 2,
+            "win_rate": "66.67"
+        },
+        {
+            "hero_id": 1032,
+            "hero_name": "squirrel girl",
+            "hero_class": "Duelist",
+            "hero_thumbnail": "/heroes/transformations/squirrel-girl-headbig-0.webp",
             "matches": 3,
             "wins": 1,
-            "mvp": 0,
-            "svp": 0,
-            "kills": 23,
-            "deaths": 10,
-            "assists": 1,
-            "play_time": 999.8579746577889,
-            "damage": 7286.123779296875,
-            "heal": 0,
-            "damage_taken": 28950.402658224106,
-            "main_attack": {
-                "total": 2369,
-                "hits": 407
-            }
+            "win_rate": "33.33"
         }
+    ],
+    "team_mates": [
+
+    ],
+    "heroes_ranked": [
+        
+    ],
+    "heroes_unranked": [
+       
     ],
     "maps": [
         {
             "map_id": 1032,
             "map_thumbnail": "/rivals/maps/map_1032.png",
-            "matches": 7,
-            "wins": 3,
-            "kills": 105,
-            "deaths": 45,
-            "assists": 65,
-            "play_time": 3304.958821998909
-        },
-        {
-            "map_id": 1034,
-            "map_thumbnail": "/rivals/maps/map_1034.png",
-            "matches": 6,
-            "wins": 1,
-            "kills": 80,
-            "deaths": 42,
-            "assists": 36,
-            "play_time": 2899.95996520482
+            "matches": 1,
+            "wins": 0,
+            "kills": 2,
+            "deaths": 5,
+            "assists": 0,
+            "play_time": 204.45405677892268
         },
         {
             "map_id": 1101,
             "map_thumbnail": "/rivals/maps/map_1101.png",
-            "matches": 6,
-            "wins": 2,
-            "kills": 76,
-            "deaths": 34,
-            "assists": 20,
-            "play_time": 2551.095554292202
-        },
-        {
-            "map_id": 1148,
-            "map_thumbnail": "/rivals/maps/map_1148.png",
-            "matches": 7,
-            "wins": 1,
-            "kills": 87,
-            "deaths": 60,
-            "assists": 56,
-            "play_time": 3487.7361025623977
-        },
-        {
-            "map_id": 1170,
-            "map_thumbnail": "/rivals/maps/map_1170.png",
-            "matches": 7,
-            "wins": 5,
-            "kills": 155,
-            "deaths": 34,
-            "assists": 52,
-            "play_time": 3966.122204910964
+            "matches": 1,
+            "wins": 0,
+            "kills": 9,
+            "deaths": 6,
+            "assists": 9,
+            "play_time": 611.6393127031624
         },
         {
             "map_id": 1201,
             "map_thumbnail": "/rivals/maps/map_1201.png",
-            "matches": 10,
-            "wins": 6,
-            "kills": 137,
-            "deaths": 40,
-            "assists": 44,
-            "play_time": 3870.98898444511
+            "matches": 2,
+            "wins": 1,
+            "kills": 31,
+            "deaths": 3,
+            "assists": 33,
+            "play_time": 465.49034150503576
         },
         {
             "map_id": 1217,
             "map_thumbnail": "/rivals/maps/map_1217.png",
-            "matches": 7,
-            "wins": 4,
-            "kills": 110,
-            "deaths": 48,
-            "assists": 32,
-            "play_time": 3502.893221449107
-        },
-        {
-            "map_id": 1235,
-            "map_thumbnail": "/rivals/maps/map_1235.png",
-            "matches": 4,
-            "wins": 2,
-            "kills": 72,
-            "deaths": 22,
-            "assists": 48,
-            "play_time": 2132.747313950211
-        },
-        {
-            "map_id": 1240,
-            "map_thumbnail": "/rivals/maps/map_1240.png",
-            "matches": 10,
-            "wins": 5,
-            "kills": 130,
-            "deaths": 63,
-            "assists": 101,
-            "play_time": 4986.215885845944
-        },
-        {
-            "map_id": 1287,
-            "map_thumbnail": "/rivals/maps/map_1287.png",
-            "matches": 5,
-            "wins": 2,
-            "kills": 81,
-            "deaths": 23,
-            "assists": 34,
-            "play_time": 2452.229057509452
-        },
-        {
-            "map_id": 1288,
-            "map_thumbnail": "/rivals/maps/map_1288.png",
             "matches": 1,
             "wins": 1,
-            "kills": 13,
-            "deaths": 0,
-            "assists": 9,
-            "play_time": 314.3126751817763
+            "kills": 19,
+            "deaths": 5,
+            "assists": 0,
+            "play_time": 300.00053547136486
         },
         {
-            "map_id": 1291,
-            "map_thumbnail": "/rivals/maps/map_1291.png",
+            "map_id": 1231,
+            "map_thumbnail": "/rivals/maps/map_1231.png",
             "matches": 1,
-            "wins": 1,
-            "kills": 25,
+            "wins": 0,
+            "kills": 10,
             "deaths": 7,
-            "assists": 28,
-            "play_time": 881.2010640837252
+            "assists": 2,
+            "play_time": 413.7764323577285
+        },
+        {
+            "map_id": 1245,
+            "map_thumbnail": "/rivals/maps/map_1245.png",
+            "matches": 3,
+            "wins": 2,
+            "kills": 32,
+            "deaths": 7,
+            "assists": 47,
+            "play_time": 1319.9072553198785
+        },
+        {
+            "map_id": 1267,
+            "map_thumbnail": "/rivals/maps/map_1267.png",
+            "matches": 1,
+            "wins": 0,
+            "kills": 20,
+            "deaths": 10,
+            "assists": 17,
+            "play_time": 986.8482633046806
+        },
+        {
+            "map_id": 1272,
+            "map_thumbnail": "/rivals/maps/map_1272.png",
+            "matches": 1,
+            "wins": 1,
+            "kills": 23,
+            "deaths": 0,
+            "assists": 22,
+            "play_time": 395.39098390191793
+        },
+        {
+            "map_id": 1286,
+            "matches": 1,
+            "wins": 0,
+            "kills": 15,
+            "deaths": 9,
+            "assists": 13,
+            "play_time": 694.8298714756966
+        },
+        {
+            "map_id": 1290,
+            "map_thumbnail": "/rivals/maps/map_1290.png",
+            "matches": 4,
+            "wins": 3,
+            "kills": 113,
+            "deaths": 16,
+            "assists": 113,
+            "play_time": 2939.855269741267
         },
         {
             "map_id": 1292,
             "map_thumbnail": "/rivals/maps/map_1292.png",
-            "matches": 3,
-            "wins": 1,
-            "kills": 30,
-            "deaths": 13,
-            "assists": 29,
-            "play_time": 1294.2855991348624
-        },
-        {
-            "map_id": 1309,
-            "map_thumbnail": "/rivals/maps/map_1309.png",
             "matches": 1,
             "wins": 0,
-            "kills": 15,
-            "deaths": 8,
-            "assists": 0,
-            "play_time": 575.2094778306782
+            "kills": 12,
+            "deaths": 10,
+            "assists": 7,
+            "play_time": 820.452374599874
         },
         {
             "map_id": 1310,
             "map_thumbnail": "/rivals/maps/map_1310.png",
             "matches": 2,
-            "wins": 0,
-            "kills": 21,
-            "deaths": 11,
-            "assists": 21,
-            "play_time": 1033.490407783538
+            "wins": 2,
+            "kills": 23,
+            "deaths": 5,
+            "assists": 18,
+            "play_time": 900.3302339930087
+        },
+        {
+            "map_id": 1311,
+            "matches": 1,
+            "wins": 1,
+            "kills": 17,
+            "deaths": 1,
+            "assists": 19,
+            "play_time": 315.03063388355076
         }
     ]
 }

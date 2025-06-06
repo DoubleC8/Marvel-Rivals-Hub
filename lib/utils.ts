@@ -61,18 +61,19 @@ export const formatPlayerImages = (playerImageData?: string) => {
 };
 
 
-export const hexToRgba = (hex: string, opacity: number) => {
- var r = parseInt(hex.slice(1, 3), 16),
+export const hexToRgba = (hex: string | null | undefined, opacity: number) => {
+  if (!hex || typeof hex !== "string" || !/^#([A-Fa-f0-9]{6})$/.test(hex)) {
+    return "rgba(0, 0, 0, " + opacity + ")"; // fallback color
+  }
+
+  const r = parseInt(hex.slice(1, 3), 16),
         g = parseInt(hex.slice(3, 5), 16),
         b = parseInt(hex.slice(5, 7), 16);
 
-    if (opacity) {
-        return "rgba(" + r + ", " + g + ", " + b + ", " + opacity + ")";
-    } else {
-      return "rgb(" + r + ", " + g + ", " + b + ")";
-    }
-      
-}
+  return opacity != null
+    ? `rgba(${r}, ${g}, ${b}, ${opacity})`
+    : `rgb(${r}, ${g}, ${b})`;
+};
 
 const BASE_IMAGE_URL = 'https://marvelrivalsapi.com/rivals/ranked'; // Define your base image URL
 

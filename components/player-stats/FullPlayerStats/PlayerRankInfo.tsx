@@ -8,6 +8,7 @@ import {
   getPercentColor,
 } from "@/lib/utils";
 import { PlayerInfo } from "@/types/playerInfo";
+import { Ghost } from "lucide-react";
 
 const PlayerRankInfo = ({ playerData }: { playerData: PlayerInfo }) => {
   const playerCurrentRankInfo = getCurrentSeasonRankInfo({
@@ -17,6 +18,18 @@ const PlayerRankInfo = ({ playerData }: { playerData: PlayerInfo }) => {
   const playerCurrentMaxRankInfo = getCurrentSeasonMaxRankInfo({
     rankSeasons: playerData.player.info.rank_game_season,
   });
+
+  if (playerData.player.rank.rank === "Invalid level") {
+    return (
+      <div className="playerStatsCard">
+        <h1 className="font-extrabold text-xl">Current Rank</h1>
+        <div className="font-bold text-xl flex items-center justify-center gap-3 text-[var(--secondary-text)] h-full">
+          <Ghost size={25} />
+          <p>No Data</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="playerStatsCard !p-0">

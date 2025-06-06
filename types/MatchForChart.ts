@@ -1,7 +1,7 @@
 export interface MatchForChart {
   match_uid: string;
   map_id: number;
-  map_thumbnail: string;
+  map_thumbnail?: string;
   duration: number;
   season: number;
   winner_side: number;

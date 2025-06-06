@@ -16,11 +16,11 @@ interface TopTeammate {
 const TopTeammates = ({ team_mates }: { team_mates: TopTeammate[] }) => {
   if (team_mates.length === 0) {
     return (
-      <div className="playerStatsCard overflow-y-auto">
+      <div className="playerStatsCard">
         <h1 className="font-extrabold text-xl">Top Teammates</h1>
-        <div className="font-extrabold text-2xl flex items-center justify-center gap-3 text-[var(--secondary-text)] h-full">
+        <div className="font-bold text-xl flex items-center justify-center gap-3 text-[var(--secondary-text)] h-full">
           <Ghost size={25} />
-          <p>No Data Yet</p>
+          <p>No Data</p>
         </div>
       </div>
     );
