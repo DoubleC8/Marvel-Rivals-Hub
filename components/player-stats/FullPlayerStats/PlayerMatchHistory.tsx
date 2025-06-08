@@ -184,12 +184,14 @@ const PlayerMatchHistory = ({ playerUid }: { playerUid: string }) => {
                         className="md:w-1/10 md:block
                     hidden"
                       >
-                        <p
-                          className="
-                      text-md font-bold"
-                        >
-                          {matchType}
-                        </p>
+                        <div className="text-center text-md font-bold">
+                          <p>{matchType}</p>
+                          {match.score_info ? (
+                            <p className="text-[var(--secondary-text)]">
+                              {match.score_info[0]} : {match.score_info[1]}
+                            </p>
+                          ) : null}
+                        </div>
                       </div>
 
                       <div
@@ -207,6 +209,13 @@ const PlayerMatchHistory = ({ playerUid }: { playerUid: string }) => {
                               (match.svp_uid === match.match_player.player_uid
                                 ? "var(--silver)"
                                 : ""),
+                            color:
+                              (match.mvp_uid === match.match_player.player_uid
+                                ? "var(--black)"
+                                : "") +
+                              (match.svp_uid === match.match_player.player_uid
+                                ? "var(--white)"
+                                : ""),
                           }}
                         >
                           {(match.mvp_uid === match.match_player.player_uid
@@ -217,30 +226,33 @@ const PlayerMatchHistory = ({ playerUid }: { playerUid: string }) => {
                               : "")}
                         </p>
                       </div>
+
                       {/**Md devices and bigger */}
                       <div
                         className="md:flex md:w-3/10 md:text-md
                     hidden text-center font-extrabold text-sm justify-between"
                       >
                         <div>
-                          <p className="text-[var(--secondary-text)]">Kills</p>
-                          <p>{match.match_player.kills}</p>
+                          <p>Kills</p>
+                          <p className="text-[var(--secondary-text)]">
+                            {match.match_player.kills}
+                          </p>
                         </div>
                         <div>
-                          <p className="text-[var(--secondary-text)]">Deaths</p>
+                          <p>Deaths</p>
                           <p className="text-[var(--red)]">
                             {match.match_player.deaths}
                           </p>
                         </div>
                         <div>
+                          <p>Assists</p>
                           <p className="text-[var(--secondary-text)]">
-                            Assists
+                            {match.match_player.assists}
                           </p>
-                          <p>{match.match_player.assists}</p>
                         </div>
                         <div>
-                          <p className="text-[var(--secondary-text)]">KDA</p>
-                          <p>
+                          <p>KDA</p>
+                          <p className="text-[var(--secondary-text)]">
                             {getKDA(
                               match.match_player.kills,
                               match.match_player.deaths,

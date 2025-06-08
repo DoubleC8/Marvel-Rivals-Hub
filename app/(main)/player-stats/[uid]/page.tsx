@@ -11,6 +11,7 @@ import { PlayerInfo } from "@/types/playerInfo";
 import { fetchPlayerData } from "@/lib/actions";
 import SelectSeasonButton from "@/components/player-stats/FullPlayerStats/SelectSeasonButton";
 import PlayerStatsHeader from "@/components/player-stats/FullPlayerStats/PlayerStatsHeader";
+import TopRoles from "@/components/player-stats/FullPlayerStats/TopRoles";
 
 const page = async ({ params }: { params: { uid: string } }) => {
   const playerUid = await params.uid;
@@ -54,11 +55,7 @@ const page = async ({ params }: { params: { uid: string } }) => {
           heroes_unranked={playerData.heroes_unranked}
         />
 
-        <div className="playerStatsCard overflow-y-auto">
-          <h1 className="font-extrabold text-xl flex items-center">
-            Top Roles
-          </h1>
-        </div>
+        <TopRoles />
 
         <TopTeammates team_mates={playerData.team_mates} />
       </div>

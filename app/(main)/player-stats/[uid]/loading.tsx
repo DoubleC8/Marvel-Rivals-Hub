@@ -38,8 +38,8 @@ const loading = () => {
         </div>
 
         <Skeleton
-          className="sm:h-6 sm:w-1/10 sm:mx-0
-              mx-auto h-5 w-3/10 bg-zinc-800 "
+          className="md:w-1/10 lg:mx-0
+              h-8 mx-auto w-4/10 bg-zinc-800 "
         />
       </div>
 
