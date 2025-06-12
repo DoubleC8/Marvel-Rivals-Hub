@@ -40,9 +40,12 @@ export function PlayerStatsChart({
 
   if (matchHistory.length === 0) {
     return (
-      <div className="font-extrabold text-2xl flex items-center justify-center gap-3 text-[var(--secondary-text)]">
-        <Ghost size={25} />
-        <p>No Data Yet</p>
+      <div className="playerChartStatsCard">
+        <h1 className="font-extrabold text-xl">KDA Trend</h1>
+        <div className="font-bold text-xl flex items-center justify-center gap-3 text-[var(--secondary-text)] h-full">
+          <Ghost size={25} />
+          <p>No Data</p>
+        </div>
       </div>
     );
   }

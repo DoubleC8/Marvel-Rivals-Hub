@@ -1,5 +1,6 @@
 import React from "react";
 import NewsCard from "../cards/NewsCard";
+import { formatPlayerImages } from "@/lib/utils";
 
 interface apiData {
   date: string;
@@ -12,9 +13,10 @@ interface apiData {
 
 const Balances = ({ balances }: { balances: apiData[] }) => {
   return (
-    <div className="flex flex-col gap-3 w-full mx-auto">
+    <div className="flex flex-col gap-3 w-[95%] mx-auto">
       <h1
-        className="text-5xl text-[var(--primary-text)]"
+        className="md:text-4xl
+        text-3xl tracking-wide"
         style={{ fontFamily: "var(--marvelFont)" }}
       >
         Balance Changes
@@ -29,7 +31,7 @@ const Balances = ({ balances }: { balances: apiData[] }) => {
             id={balance.id}
             overview={balance.overview}
             title={balance.title}
-            imagePath={`https://marvelrivalsapi.com/rivals${balance.imagePath}`}
+            imagePath={formatPlayerImages(balance.imagePath)}
             key={index}
           />
         ))}

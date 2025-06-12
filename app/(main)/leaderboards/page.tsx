@@ -1,107 +1,21 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { toast } from "sonner";
-
-import LeaderboardLoadingPage from "./loading";
-import LeaderboardTable from "@/components/leaderboard/LeaderboardTable";
 import LeaderboardHeader from "@/components/leaderboard/LeaderboardHeader";
-import LeaderboardNavbar from "@/components/leaderboard/LeaderboardNavbar";
-import { fetchLeaderboardData } from "@/lib/actions";
-
-interface PlayerInfo {
-  cur_head_icon_id: string;
-  login_os: string;
-  name: string;
-  rank_season?: {
-    diff_score: string;
-    level: number;
-    max_level: number;
-    max_rank_score: string;
-    protect_score: number;
-    rank_game_id: number;
-    rank_score: string;
-    update_time: number;
-    win_count: number;
-  };
-}
-
-interface Player {
-  player_uid: number;
-  info: PlayerInfo;
-  matches: number;
-  wins: number;
-  kills: number;
-  deaths: number;
-  assists: number;
-  mvps: number;
-  svps: number;
-  play_time: string;
-  total_damage_taken: string;
-  total_hero_damage: string;
-  total_hero_heal: string;
-}
+import SelectHeroButton from "@/components/leaderboard/SelectHeroButton";
 
 const Page = () => {
-  const [hero, setHero] = useState("Winter Soldier");
-  const [consoleType, setConsoletype] = useState("pc");
-  const [heroLeaderboard, setHeroLeaderboard] = useState<Player[]>([]);
-  const [loading, setLoading] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const playersPerPage = 100;
-  const indexOfLastPlayer = currentPage * playersPerPage;
-  const indexOfFirstPlayer = indexOfLastPlayer - playersPerPage;
-  const currentPlayers = heroLeaderboard.slice(
-    indexOfFirstPlayer,
-    indexOfLastPlayer
-  );
-
-  useEffect(() => {
-    const fetchHeroLeaderboard = async () => {
-      setLoading(true);
-      try {
-        const leaderboardData = await fetchLeaderboardData(hero, consoleType);
-        console.log(leaderboardData);
-        setHeroLeaderboard(leaderboardData);
-        toast.success("Leaderboard data fetched successfully!", {
-          description: `Data for the top ${hero.toUpperCase()} players fetched on ${new Date().toLocaleString()}`,
-        });
-      } catch (error) {
-        toast.error("Could not load leaderboard.");
-        console.error("Error fetching leaderboard data: ", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    const timeoutId = setTimeout(fetchHeroLeaderboard, 500);
-    return () => clearTimeout(timeoutId);
-  }, [hero, consoleType]);
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [hero, consoleType]);
-
   return (
-    <section className="min-h-[92vh] p-5 flex flex-col justify-between items-center gap-5">
+    <section className="w-full h-[100vh] gap-5 flex flex-col p-5 justify-between">
       <LeaderboardHeader />
-      <LeaderboardNavbar
-        onHeroChange={setHero}
-        onConsoleChange={setConsoletype}
-      />
-      {loading && <LeaderboardLoadingPage />}
-      {!loading && (
-        <LeaderboardTable
-          players={currentPlayers}
-          currentPage={currentPage}
-          playersPerPage={playersPerPage}
-          totalPlayers={heroLeaderboard.length}
-          hero={hero}
-          consoleType={consoleType}
-          onPageChange={setCurrentPage}
-        />
-      )}
+
+      <div className="playerStatsPageSectionContainer !bg-red-500 items-center">
+        <p className="text-[var(--secondary-text)] text-md">
+          Top 500 players in Marvel Rivals
+        </p>
+        <SelectHeroButton />
+      </div>
+
       <p className="text-center text-[var(--secondary-text)]">
         IMPORTANT: Leaderboards may appear limited at the start of the season.
         More player data will populate as the season progresses and players

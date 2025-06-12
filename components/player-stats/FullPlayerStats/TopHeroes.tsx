@@ -34,7 +34,7 @@ const TopHeroes = ({
       ? getTopHeroes(heroes_ranked).sort((a, b) => b.kda - a.kda)
       : getTopHeroes(heroes_unranked).sort((a, b) => b.kda - a.kda);
 
-  if (topHeroes.length === 0) {
+  if (heroes_ranked.length === 0 && heroes_unranked.length === 0) {
     return (
       <div className="playerStatsCard">
         <h1 className="font-extrabold text-xl">Top Heroes</h1>
@@ -47,7 +47,7 @@ const TopHeroes = ({
   }
 
   return (
-    <div className="playerStatsCard">
+    <div className="playerStatsCard !overflow-y-auto">
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-extrabold">Top Heroes</h1>
 

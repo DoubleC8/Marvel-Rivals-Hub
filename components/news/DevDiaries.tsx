@@ -1,5 +1,6 @@
 import React from "react";
 import NewsCard from "../cards/NewsCard";
+import { formatPlayerImages } from "@/lib/utils";
 
 interface apiData {
   date: string;
@@ -12,9 +13,10 @@ interface apiData {
 
 const DevDiaries = ({ devDiaries }: { devDiaries: apiData[] }) => {
   return (
-    <div className="flex flex-col gap-3 w-full mx-auto">
+    <div className="flex flex-col gap-3 w-[95%] mx-auto">
       <h1
-        className="text-5xl text-[var(--primary-text)]"
+        className="md:text-4xl
+        text-3xl tracking-wide"
         style={{ fontFamily: "var(--marvelFont)" }}
       >
         Dev Diaries
@@ -29,7 +31,7 @@ const DevDiaries = ({ devDiaries }: { devDiaries: apiData[] }) => {
             id={devDiary.id}
             overview={devDiary.overview}
             title={devDiary.title}
-            imagePath={`https://marvelrivalsapi.com/rivals${devDiary.imagePath}`}
+            imagePath={formatPlayerImages(devDiary.imagePath)}
             key={index}
           />
         ))}

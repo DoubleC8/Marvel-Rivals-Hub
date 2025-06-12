@@ -1,4 +1,11 @@
-import { formatWinLossRatio, getPercentColor } from "@/lib/utils";
+import {
+  formatName,
+  formatPlayerImages,
+  formatWinLossRatio,
+  getLoginOsImage,
+  getPercentColor,
+  getTopHeroes,
+} from "@/lib/utils";
 import { PlayerInfo } from "@/types/playerInfo";
 import Link from "next/link";
 import React from "react";
@@ -8,250 +15,175 @@ const SearchedPlayerCard = ({
 }: {
   playerCardInfo: PlayerInfo;
 }) => {
+  const topHero = getTopHeroes(playerCardInfo.heroes_ranked)[0];
   return (
-    <>
-      {/**Web player card */}
-      <div className="searchedPlayerCard shadow-2xl ease-in-out duration-200">
-        {/**Contains profile image, level, and uid */}
-        <Link
-          href={`/player-stats/${playerCardInfo.uid}`}
-          className="flex gap-5 items-center
-        hover:cursor-pointer hover:bg-[var(--accent-color)] hover:text-[var(--yellow)] ease-in-out duration-100 pr-3 rounded-lg "
-          title="Go to Player Profile"
-        >
-          <img
-            src={`https://marvelrivalsapi.com/rivals${playerCardInfo.player.icon.player_icon}`}
-            alt={`${playerCardInfo.player.name} Icon`}
-            className="rounded-lg border-[2px] border-[var(--purple)]"
-            width={100}
-            height={100}
-          />
-          <div className="flex flex-col tracking-wide text-lg lg:text-xl font-extrabold justify-between h-[100px]">
-            <p>{playerCardInfo.player.name}</p>
-            <p>Level {playerCardInfo.player.level}</p>
-            <p>UID: {playerCardInfo.player.uid}</p>
-          </div>
-        </Link>
-
-        {/**Contains win percentage */}
-        <div className="flex flex-col items-center justify-between h-[100px]">
-          <h1 className="text-xl lg:text-3xl font-extrabold tracking-wide">
-            Win Percentage
-          </h1>
-          <div className="flex flex-col justify-center items-center font-bold text-lg lg:text-2xl">
-            <h2>
-              Ranked:{" "}
-              <span
-                style={{
-                  color: getPercentColor(
-                    formatWinLossRatio(
-                      playerCardInfo.overall_stats.ranked.total_wins,
-                      playerCardInfo.overall_stats.ranked.total_matches
-                    )
-                  ),
-                }}
-              >
-                {playerCardInfo?.overall_stats.ranked.total_matches
-                  ? formatWinLossRatio(
-                      playerCardInfo.overall_stats.ranked.total_wins,
-                      playerCardInfo.overall_stats.ranked.total_matches
-                    )
-                  : "N/A"}
-              </span>
-            </h2>
-            <h2>
-              Unranked:{" "}
-              <span
-                style={{
-                  color: getPercentColor(
-                    formatWinLossRatio(
-                      playerCardInfo.overall_stats.unranked.total_wins,
-                      playerCardInfo.overall_stats.unranked.total_matches
-                    )
-                  ),
-                }}
-              >
-                {playerCardInfo?.overall_stats.unranked.total_matches
-                  ? formatWinLossRatio(
-                      playerCardInfo.overall_stats.unranked.total_wins,
-                      playerCardInfo.overall_stats.unranked.total_matches
-                    )
-                  : "N/A"}
-              </span>
-            </h2>
-          </div>
-        </div>
-
-        {/**Contains Current Rank */}
-        <div className="flex flex-col items-center justify-between h-[100px]">
-          <h1 className="text-xl lg:text-3xl font-extrabold tracking-wide">
-            Rank
-          </h1>
-          {playerCardInfo?.player?.rank?.rank === "Invalid level" ? (
-            <div className="flex justify-center items-center text-lg lg:text-2xl">
+    <div className="searchedPlayerCard">
+      <div
+        className="lg:items-center
+      flex gap-3"
+      >
+        <img
+          src={`https://marvelrivalsapi.com/rivals${playerCardInfo.player.icon.player_icon}`}
+          alt={`${playerCardInfo.player.name} Icon`}
+          className="lg:w-[125px] lg:h-[125px] lg:border-[var(--secondary-background)]
+          w-[100px] h-[100px] rounded-lg border-[2px] border-[var(--purple)]"
+        />
+        <div className="h-[100px] flex flex-col font-bold text-lg justify-between">
+          <p>{playerCardInfo.player.name}</p>
+          <p className="text-[var(--secondary-text)]">
+            Level {playerCardInfo.player.level}
+          </p>
+          <div className="flex gap-2 items-center">
+            <p
+              className="md:text-xl md:font-bold 
+                        text-lg font-semibold
+                        text-[var(--secondary-text)]"
+            >
+              {playerCardInfo.player.info.login_os}
+            </p>
+            {playerCardInfo.player.info.login_os !== "Unknown" ? (
               <img
-                src={`https://marvelrivalsapi.com/rivals/ranked/bronze.png`}
-                alt={`${playerCardInfo.player.name} Rank`}
-                width={50}
-                height={50}
-              />
-              <p className="font-bold">Bronze III</p>
-            </div>
-          ) : (
-            <div className="flex flex-col items-center justify-center h-full">
-              <div className="flex justify-center items-center text-lg lg:text-2xl">
-                <img
-                  src={`https://marvelrivalsapi.com/rivals${playerCardInfo?.player?.rank?.image}`}
-                  alt={`${playerCardInfo.player.name} Rank`}
-                  width={50}
-                  height={50}
-                />
-                <h2
-                  className="flex flex-col justify-center tracking-wide font-bold text-lg lg:text-2xl"
-                  style={{ color: playerCardInfo.player.rank.color }}
-                >
-                  {playerCardInfo.player.rank.rank}
-                </h2>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/**Contains login os info */}
-        <div className="flex flex-col items-center justify-between h-[100px]">
-          <h1 className="text-xl lg:text-3xl font-extrabold tracking-wide">
-            Console
-          </h1>
-          <div className="flex flex-col justify-center items-center font-bold text-lg lg:text-2xl">
-            <h2>{playerCardInfo?.player.info.login_os}</h2>
-            <h2>{`${playerCardInfo.isPrivate ? "Private" : "Public"}`}</h2>
+                src={getLoginOsImage(playerCardInfo.player.info.login_os)}
+                width={25}
+                height={25}
+              ></img>
+            ) : null}
           </div>
         </div>
       </div>
 
-      {/**mobile player card */}
-      <div className="mobileSearchedPlayerCard shadow-2xl">
-        {/**Contains profile image, level, and uid */}
-        <div className="flex gap-5">
-          <img
-            src={`https://marvelrivalsapi.com/rivals${playerCardInfo.player.icon.player_icon}`}
-            alt={`${playerCardInfo.player.name} Icon`}
-            className="rounded-lg border-[2px] border-[var(--purple)]"
-            width={100}
-            height={100}
-          />
-          <div className="flex flex-col tracking-wide font-bold text-xl justify-between">
-            <p>{playerCardInfo.player.name}</p>
-            <p>Level {playerCardInfo.player.level}</p>
-            <p>UID: {playerCardInfo.player.uid}</p>
-          </div>
-        </div>
-
-        {/**Contains win percentage */}
-        <div className="flex items-center justify-between gap-5">
-          <h1 className="text-2xl font-extrabold tracking-wide">
-            Win Percentage
-          </h1>
-          <div className="flex flex-col text-end font-bold text-xl">
-            <h2>
-              Ranked:{" "}
-              <span
-                style={{
-                  color: getPercentColor(
-                    formatWinLossRatio(
-                      playerCardInfo.overall_stats.ranked.total_wins,
-                      playerCardInfo.overall_stats.ranked.total_matches
-                    )
-                  ),
-                }}
-              >
-                {playerCardInfo?.overall_stats.ranked.total_matches
-                  ? formatWinLossRatio(
-                      playerCardInfo.overall_stats.ranked.total_wins,
-                      playerCardInfo.overall_stats.ranked.total_matches
-                    )
-                  : "N/A"}
-              </span>
-            </h2>
-            <h2>
-              Unranked:{" "}
-              <span
-                style={{
-                  color: getPercentColor(
-                    formatWinLossRatio(
-                      playerCardInfo.overall_stats.unranked.total_wins,
-                      playerCardInfo.overall_stats.unranked.total_matches
-                    )
-                  ),
-                }}
-              >
-                {playerCardInfo?.overall_stats.unranked.total_matches
-                  ? formatWinLossRatio(
-                      playerCardInfo.overall_stats.unranked.total_wins,
-                      playerCardInfo.overall_stats.unranked.total_matches
-                    )
-                  : "N/A"}
-              </span>
-            </h2>
-          </div>
-        </div>
-
-        {/**Contains Current Rank */}
-        <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-extrabold tracking-wide text-center">
-            Rank
-          </h1>
-          {playerCardInfo?.player?.rank?.rank === "Invalid level" ? (
-            <div className="flex justify-center items-center">
-              <img
-                src={`https://marvelrivalsapi.com/rivals/ranked/bronze.png`}
-                alt={`${playerCardInfo.player.name} Rank`}
-                width={50}
-                height={50}
-              />
-              <h2 className="flex flex-col justify-center tracking-wide font-bold text-xl">
-                Bronze III
-              </h2>
-            </div>
-          ) : (
-            <div className="flex flex-col items-center justify-center">
-              <h1 className="font-bold text-xl">Current Rank:</h1>
-              <div className="flex gap-1 items-center">
-                <img
-                  src={`https://marvelrivalsapi.com/rivals${playerCardInfo?.player?.rank?.image}`}
-                  alt={`${playerCardInfo.player.name} Rank`}
-                  width={50}
-                  height={50}
-                />
-                <h2
-                  className="flex flex-col justify-center tracking-wide font-bold text-xl"
-                  style={{ color: playerCardInfo.player.rank.color }}
-                >
-                  {playerCardInfo.player.rank.rank}
-                </h2>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {/**Contains login os info */}
-        <div className="flex items-center justify-between">
-          <h1 className="text-2xl font-extrabold tracking-wide">Console</h1>
-          <div className="flex flex-col justify-center items-center font-bold text-xl">
-            <h2>{playerCardInfo?.player.info.login_os}</h2>
-            <h2>{`${playerCardInfo.isPrivate ? "Private" : "Public"}`}</h2>
-          </div>
-        </div>
-
-        {/**Go to proile page button*/}
-        <Link
-          href={`/player-stats/${playerCardInfo.uid}`}
-          className="w-full bg-[var(--yellow)] text-[var(--black)] font-bold text-2xl text-center py-2 rounded-lg"
+      <div
+        className="lg:flex-col lg:justify-start lg:h-[125px]
+      flex items-center justify-between gap-5"
+      >
+        <h1
+          className="lg:text-xl lg:font-extrabold
+        text-lg font-bold"
         >
-          Go to Profile
-        </Link>
+          Favorite Hero
+        </h1>
+        <div
+          className="lg:text-xl lg:font-extrabold 
+        flex items-center gap-3 text-end text-lg font-bold"
+        >
+          <img
+            src={formatPlayerImages(topHero.hero_icon)}
+            alt={`${playerCardInfo.player.name} Rank`}
+            className="
+            w-[50px] h-[50px] bg-[var(--secondary-background)] rounded-lg"
+          />
+          <h2>{formatName(topHero.hero_name)}</h2>
+        </div>
       </div>
-    </>
+
+      <div
+        className="lg:flex-col lg:justify-start lg:h-[125px]
+      flex items-center justify-between gap-5"
+      >
+        <h1
+          className="lg:text-xl lg:font-extrabold
+        text-lg font-bold"
+        >
+          Win Percentage
+        </h1>
+        <div
+          className="lg:text-xl lg:font-extrabold
+        flex flex-col text-end text-lg font-bold"
+        >
+          {/* Ranked */}
+          <h2>
+            Ranked:{" "}
+            {playerCardInfo?.overall_stats?.ranked?.total_matches > 0 ? (
+              <span
+                style={{
+                  color: getPercentColor(
+                    formatWinLossRatio(
+                      playerCardInfo.overall_stats.ranked.total_wins,
+                      playerCardInfo.overall_stats.ranked.total_matches
+                    )
+                  ),
+                }}
+              >
+                {formatWinLossRatio(
+                  playerCardInfo.overall_stats.ranked.total_wins,
+                  playerCardInfo.overall_stats.ranked.total_matches
+                )}
+              </span>
+            ) : (
+              <span className="text-[var(--secondary-text)]">N/A</span>
+            )}
+          </h2>
+
+          {/* Unranked */}
+          <h2>
+            Unranked:{" "}
+            {playerCardInfo?.overall_stats?.unranked?.total_matches > 0 ? (
+              <span
+                style={{
+                  color: getPercentColor(
+                    formatWinLossRatio(
+                      playerCardInfo.overall_stats.unranked.total_wins,
+                      playerCardInfo.overall_stats.unranked.total_matches
+                    )
+                  ),
+                }}
+              >
+                {formatWinLossRatio(
+                  playerCardInfo.overall_stats.unranked.total_wins,
+                  playerCardInfo.overall_stats.unranked.total_matches
+                )}
+              </span>
+            ) : (
+              <span className="text-gray-400">N/A</span>
+            )}
+          </h2>
+        </div>
+      </div>
+
+      <div
+        className="lg:flex-col lg:justify-start lg:h-[125px]
+      flex items-center justify-between gap-5"
+      >
+        <h1
+          className="lg:text-xl lg:font-extrabold
+        text-lg font-bold"
+        >
+          Rank
+        </h1>
+        <div
+          className="lg:text-xl lg:font-extrabold
+        flex items-center gap-1 text-end text-lg font-bold"
+        >
+          <img
+            src={formatPlayerImages(playerCardInfo.player.rank.image)}
+            alt={`${playerCardInfo.player.name} Rank`}
+            className="
+            w-[50px] h-[50px]"
+          />
+          <h2>
+            {playerCardInfo?.player.rank ? (
+              <span
+                style={{
+                  color: playerCardInfo.player.rank.color,
+                }}
+              >
+                {playerCardInfo.player.rank.rank}
+              </span>
+            ) : (
+              <span className="text-[var(--secondary-text)]">N/A</span>
+            )}
+          </h2>
+        </div>
+      </div>
+
+      <Link
+        href={`/player-stats/${playerCardInfo.uid}`}
+        className="lg:w-[15%] lg:my-auto lg:hover:opacity-85
+        w-full h-8 font-bold text-lg text-[var(--black)] bg-[var(--yellow)] flex items-center justify-center rounded-lg"
+      >
+        Go to Profile
+      </Link>
+    </div>
   );
 };
 

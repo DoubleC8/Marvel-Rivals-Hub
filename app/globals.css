@@ -73,6 +73,22 @@ html, body{
   border-radius: 0.25rem;
 }
 
+.pageSection{
+  display: flex;
+  flex-direction: column;
+  margin-top: calc(var(--spacing) * 3) /* 1.25rem = 20px */;
+  gap: calc(var(--spacing) * 3) /* 1.25rem = 20px */;
+  min-height: 100vh;
+  width: 100%;
+}
+
+@media (min-width: 815px) {
+  .headerIcon {
+  width: 45px;
+  height: 45px;
+}
+}
+
 
 /* Modular Component Styles */
 @import "../components/navbars/navbar.css";

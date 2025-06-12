@@ -1,42 +1,48 @@
 import { Skeleton } from "@/components/ui/skeleton";
 
 const NewsCardLoadingComponent = () => {
-  const newsCardArray = new Array(6).fill(null);
-  const newsTitle = ["Balance Changes", "Patch Notes", "Dev Diaries"];
-
   return (
-    <div className="flex flex-col gap-10 w-full max-w-[1100px] mx-auto">
-      {newsTitle.map((title, index) => (
-        <div className="flex flex-col gap-3 w-full mx-auto" key={index}>
-          <h1
-            className="text-5xl text-[var(--primary-text)]"
-            style={{ fontFamily: "var(--marvelFont)" }}
-          >
-            {title}
-          </h1>
+    <>
+      {[...Array(3)].map((_, sectionIndex) => (
+        <div key={sectionIndex} className="flex flex-col gap-3 w-[95%] mx-auto">
+          <Skeleton
+            className="md:w-2/10 md:h-10
+          w-1/2 h-8 bg-zinc-700"
+          />
 
-          <div className="newsLoadingSection">
-            {newsCardArray.map((_, index) => (
-              <Skeleton key={index} className="newsCardLoader">
-                <Skeleton className="w-full bg-zinc-800 rounded-2xl mx-auto min-h-[250px]" />
+          <div className="newsCardSection">
+            {[...Array(6)].map((_, cardIndex) => (
+              <Skeleton key={cardIndex} className="newsCardLoader">
+                <Skeleton className="w-full min-h-1/2 rounded-xl mx-auto bg-zinc-800" />
+                <div className="w-full h-1/2 flex flex-col justify-between mt-4">
+                  <Skeleton
+                    className="h-5 w-full bg-zinc-800"
+                    style={{ fontFamily: "var(--marvelFont)" }}
+                  />
 
-                <div className="flex flex-col justify-between h-[250px]">
-                  <div className="flex flex-col gap-5">
+                  <div className="flex flex-col gap-3">
                     <Skeleton
-                      className="h-9 w-1/2 bg-zinc-800 rounded-xl"
+                      className="h-5 w-9/10 bg-zinc-800"
                       style={{ fontFamily: "var(--marvelFont)" }}
                     />
-                    <Skeleton className="h-7 w-9/10 bg-zinc-800 rounded-xl" />
-                    <Skeleton className="h-7 w-7/10 bg-zinc-800 rounded-xl" />
+                    <Skeleton
+                      className="h-5 w-8/10 bg-zinc-800"
+                      style={{ fontFamily: "var(--marvelFont)" }}
+                    />
+                    <Skeleton
+                      className="h-5 w-7/10 bg-zinc-800"
+                      style={{ fontFamily: "var(--marvelFont)" }}
+                    />
                   </div>
-                  <p className="h-7 w-3/10 bg-zinc-800 rounded-xl"></p>
+
+                  <Skeleton className="w-1/4 h-5 bg-zinc-800 mt-3" />
                 </div>
               </Skeleton>
             ))}
           </div>
         </div>
       ))}
-    </div>
+    </>
   );
 };
 

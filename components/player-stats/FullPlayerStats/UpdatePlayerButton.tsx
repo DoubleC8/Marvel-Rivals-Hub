@@ -59,9 +59,7 @@ const UpdatePlayerButton = ({
     <button
       onClick={handleUpdatePlayerProfile}
       title="Update Player Profile"
-      className="md:w-1/10 lg:mx-0
-      bg-[var(--purple)] w-4/10 h-8 mx-auto border-[1px] border-[var(--secondary-background)] 
-      rounded-lg shadow-2xl text-center"
+      className="updatePlayerButton"
     >
       {loading ? (
         <LoaderCircle className="animate-spin mx-auto" />

@@ -92,9 +92,13 @@ export const getLoginOsImage = (loginOs: string) => {
   }
 }
 
-export const getLastMatchDay = (timestamp: number | string): string => {
+export const getLastMatchDay = (timestamp: number | string | null): string => {
   
   let matchDate: Date;
+
+  if (timestamp === null){
+    return "Unknown"
+  }
 
   if (typeof timestamp === "number") {
     matchDate = new Date(timestamp * 1000); // UNIX timestamp to ms

@@ -10,7 +10,21 @@
   border-radius: var(--radius-lg) /* 0.5rem = 8px */;
 }
 
+.updatePlayerButton{
+      width: calc(4/10 * 100%) /* 40% */;
+      height: calc(var(--spacing) * 8) /* 2rem = 32px */;
+      margin-inline: auto;
+      border: 1px solid var(--secondary-background);
+      border-radius: var(--radius-lg) /* 0.5rem = 8px */;
+      background-color: var(--purple);
+      text-align: center;
+      transition: ease-in-out 100ms;
+}
 
+.updatePlayerButton:hover{
+      opacity: 85%;
+      cursor: pointer;
+}
 
 .playerStatsPageSectionContainer{
       width: 100%;
@@ -58,9 +72,14 @@
     border: 1px solid var(--accent-color)
 }
 
+@media (width >= 48rem /* 768px */) {
+      .updatePlayerButton{
+        width: calc(1/10 * 100%) /* 10% */;}
+}
+
 @media (min-width: 1025px){
   .playerStatsHeader {
-    width: 90%;
+   width: 90%;
    flex-direction: row;
    align-items: center;
    justify-content: space-between;

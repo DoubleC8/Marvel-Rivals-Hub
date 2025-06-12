@@ -19,7 +19,7 @@ const PlayerStatsHeader = ({
   player_icon: string;
   level: string;
   login_os: string;
-  last_inserted_match: string;
+  last_inserted_match: string | null;
 }) => {
   return (
     <div className="playerStatsHeader">
@@ -66,7 +66,7 @@ const PlayerStatsHeader = ({
           text-md
           text-[var(--secondary-text)]"
           >
-            Last Match: {getLastMatchDay(last_inserted_match)}
+            {getLastMatchDay(last_inserted_match)}
           </p>
         </div>
       </div>

@@ -1,5 +1,6 @@
 import React from "react";
 import NewsCard from "../cards/NewsCard";
+import { formatPlayerImages } from "@/lib/utils";
 
 interface apiData {
   date: string;
@@ -12,9 +13,10 @@ interface apiData {
 
 const PatchNotes = ({ patchNotes }: { patchNotes: apiData[] }) => {
   return (
-    <div className="flex flex-col gap-3 w-full mx-auto">
+    <div className="flex flex-col gap-3 w-[95%] mx-auto">
       <h1
-        className="text-5xl text-[var(--primary-text)]"
+        className="md:text-4xl
+        text-3xl tracking-wide"
         style={{ fontFamily: "var(--marvelFont)" }}
       >
         Patch Notes
@@ -29,7 +31,7 @@ const PatchNotes = ({ patchNotes }: { patchNotes: apiData[] }) => {
             id={patchNote.id}
             overview={patchNote.overview}
             title={patchNote.title}
-            imagePath={`https://marvelrivalsapi.com/rivals${patchNote.imagePath}`}
+            imagePath={formatPlayerImages(patchNote.imagePath)}
             key={index}
           />
         ))}

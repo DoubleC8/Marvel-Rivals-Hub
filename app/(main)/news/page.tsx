@@ -65,7 +65,7 @@ const Page = () => {
         return <DevDiaries devDiaries={devDiaries} />;
       default:
         return (
-          <div className="flex flex-col gap-10 w-full max-w-[1100px] mx-auto">
+          <div className="flex flex-col gap-5">
             <Balances balances={balances} />
             <PatchNotes patchNotes={patchNotes} />
             <DevDiaries devDiaries={devDiaries} />
@@ -74,10 +74,12 @@ const Page = () => {
     }
   };
 
+  console.log("News data", balances);
+
   return (
-    <section className="p-5 flex flex-col gap-5">
+    <section className="flex flex-col gap-3 py-3 min-h-[100vh] p-1 md:p-5">
       {/* Tabs */}
-      <nav className="newsNavbar" style={{ fontFamily: "var(--marvelFont)" }}>
+      <nav className="newsNavbar">
         {TABS.map((tab) => (
           <button
             key={tab}
@@ -92,9 +94,7 @@ const Page = () => {
       </nav>
 
       {/* Content */}
-      <div className="flex flex-col gap-10 w-full max-w-[1100px] mx-auto">
-        {renderContent()}
-      </div>
+      <>{renderContent()}</>
     </section>
   );
 };
