@@ -188,7 +188,13 @@ const PlayerMatchHistory = ({ playerUid }: { playerUid: string }) => {
                           <p>{matchType}</p>
                           {match.score_info ? (
                             <p className="text-[var(--secondary-text)]">
-                              {match.score_info[1]} : {match.score_info[0]}
+                              {match.match_player.is_win.is_win
+                                ? match.score_info[0] > match.score_info[1]
+                                  ? `${match.score_info[0]} : ${match.score_info[1]}`
+                                  : `${match.score_info[1]} : ${match.score_info[0]}`
+                                : match.score_info[0] < match.score_info[1]
+                                ? `${match.score_info[0]} : ${match.score_info[1]}`
+                                : `${match.score_info[1]} : ${match.score_info[0]}`}
                             </p>
                           ) : null}
                         </div>
