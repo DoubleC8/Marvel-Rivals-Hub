@@ -77,7 +77,7 @@ function PaginationPrevious({
       {...props}
     >
       <ChevronLeftIcon color="var(--purple)" />
-      <span className="hidden sm:block text-lg font-bold">Previous</span>
+      <span className="hidden sm:block text-md font-bold">Previous</span>
     </PaginationLink>
   );
 }
@@ -93,7 +93,7 @@ function PaginationNext({
       className={cn("gap-1 px-2.5 sm:pr-2.5", className)}
       {...props}
     >
-      <span className="hidden sm:block text-lg font-bold">Next</span>
+      <span className="hidden sm:block text-md font-bold">Next</span>
       <ChevronRightIcon color="var(--purple)" />
     </PaginationLink>
   );

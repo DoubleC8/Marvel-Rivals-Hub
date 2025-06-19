@@ -1,197 +1,167 @@
-"use client";
-
-import { Match } from "@/types/Match";
-import React, { useEffect, useState } from "react";
 import {
   formatName,
   formatPlayerImages,
-  getKDA,
-  getLastMatchDay,
-  getMatchType,
+  formatWinLossRatio,
+  get_rank,
+  getPercentColor,
 } from "@/lib/utils";
+import { LeaderboardPlayer } from "@/types/LeaderboardPlayer";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+
 import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Ghost } from "lucide-react";
-import { fetchPlayerMatchHistory } from "@/lib/actions";
-import PaginationMenuBar from "@/components/ui/PaginationMenuBar";
-import { Spinner } from "@/components/ui/spinner";
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from "@/components/ui/table";
+import Link from "next/link";
+import { LoaderCircle } from "lucide-react";
 
-const MATCHES_PER_PAGE = 20;
-
-const PlayerMatchHistory = ({ playerUid }: { playerUid: string }) => {
-  const [matchHistory, setMatchHistory] = useState<Match[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [selectedType, setSelectedType] = useState<
-    "all" | "unranked" | "ranked"
-  >("all");
+const Leaderboard = () => {
+  const [leaderboard, setLeaderboard] = useState<LeaderboardPlayer[]>();
 
   useEffect(() => {
-    const fetchInitial = async () => {
-      const { match_history } = await fetchPlayerMatchHistory(playerUid, 1);
-      setMatchHistory(match_history);
-      setIsLoading(false);
+    const fetchLeaderboard = async () => {
+      try {
+        const response = await axios.get(
+          "https://marvelrivalsapi.com/api/v1/heroes/leaderboard/winter%20soldier",
+          {
+            headers: {
+              "x-api-key":
+                "19fb1c19789bf850f690e30ef8c660bc95ea8e8a40dd64d8bd7cbe486e35156f", // Replace with a real key
+            },
+          }
+        );
+        setLeaderboard(response.data.players.slice(0, 100));
+        console.log(response.data);
+      } catch (error) {
+        console.error("Error fetching leaderboard:", error);
+      }
     };
 
-    fetchInitial();
-  }, [playerUid]);
+    fetchLeaderboard();
+  }, []);
 
-  console.log("Match History", matchHistory);
-
-  const filteredMatches = matchHistory.filter((match) => {
-    if (selectedType === "all") return true;
-    if (selectedType === "ranked") return match.game_mode_id === 2;
-    if (selectedType === "unranked") return match.game_mode_id === 1;
-    return false;
-  });
-
-  const totalPages = Math.ceil(filteredMatches.length / MATCHES_PER_PAGE);
-
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [selectedType]);
-
-  useEffect(() => {
-    if (currentPage > totalPages) {
-      setCurrentPage(1);
-    }
-  }, [filteredMatches.length]);
+  console.log("Leaderboard", leaderboard);
 
   return (
-    <>
-      <div className="playerMatchHistoryStatCard">
-        <div className="flex w-full justify-between">
-          <h1 className="font-extrabold text-xl">Match History</h1>
-          <Select
-            value={selectedType}
-            onValueChange={(value) =>
-              setSelectedType(value as typeof selectedType)
-            }
-          >
-            <SelectTrigger className="w-[150px] border-[var(--accent-color)] font-extrabold">
-              <SelectValue placeholder="All" />
-            </SelectTrigger>
-            <SelectContent className="bg-[var(--secondary-background)] border-[var(--accent-color)]">
-              <SelectItem value="all">All</SelectItem>
-              <SelectItem value="ranked">Ranked</SelectItem>
-              <SelectItem value="unranked">Unranked</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
+    <Table
+      className="lg:w-[90%] mx-auto
+    !bg-[var(--secondary-background)] !border-[2px] !border-[var(--accent-color)]"
+    >
+      <TableHeader>
+        <TableRow className="border-[var(--accent-color)]">
+          <TableHead className="text-center font-bold rounded-tl-lg">
+            Place
+          </TableHead>
 
-        {isLoading ? (
-          <div className="flex flex-col gap-3">
-            <p className="text-md font-bold text-[var(--secondary-text)]">
-              Loading Matches
-            </p>
-          </div>
-        ) : filteredMatches.length > 0 ? (
-          <div
-            className="lg:gap-3
-          gap-2 flex flex-col"
+          <TableHead className="text-left font-bold">Player</TableHead>
+
+          <TableHead className="font-bold">Rank</TableHead>
+
+          <TableHead
+            className="lg:table-cell lg:text-left
+          hidden font-bold"
           >
-            {filteredMatches
-              .slice(
-                (currentPage - 1) * MATCHES_PER_PAGE,
-                currentPage * MATCHES_PER_PAGE
-              )
-              .map((match, index) => {
-                const matchType = getMatchType(match.game_mode_id);
-                const daysAgo = getLastMatchDay(match.match_time_stamp);
-                return (
-                  <div
-                    key={index}
-                    className="flex items-center justify-between border-[1px] rounded-lg"
-                    style={{
-                      borderColor: match.match_player.is_win.is_win
-                        ? "var(--green)"
-                        : "var(--red)",
-                      backgroundColor: match.match_player.is_win.is_win
-                        ? "rgba(50, 205, 50, .1)"
-                        : "rgba(255, 49, 49, .1)",
-                    }}
+            Rank Score
+          </TableHead>
+
+          <TableHead className="text-center font-bold">Win Rate</TableHead>
+        </TableRow>
+      </TableHeader>
+
+      <TableBody className="!overflow-x-auto">
+        {leaderboard?.map((player, index) => {
+          //getting player rank, so we can get the image, the score, and the rank itself
+          const level = player.info.rank_season.level;
+          const playerRank = get_rank(level);
+
+          return (
+            <TableRow key={index} className="border-[var(--accent-color)]">
+              {/**Contains place*/}
+
+              <TableCell>
+                <p className="text-md font-bold text-center">{index + 1}</p>
+              </TableCell>
+
+              {/**Contains players name and name */}
+              <TableCell>
+                <div className="flex items-center gap-2">
+                  <img
+                    src={`https://marvelrivalsapi.com/rivals/players/heads/player_head_${player.info.cur_head_icon_id}.png`}
+                    alt={`${player.info.name} Icon`}
+                    className="w-[40px] h-[40px] rounded-lg"
+                  />
+                  <Link
+                    href={`/player-stats/${player.player_uid}`}
+                    className="text-md font-bold hover:text-[var(--yellow)]"
                   >
-                    <div
-                      className="lg:min-w-[20%]
-                    flex gap-1 items-center w-5/10"
-                    >
-                      <img
-                        src={formatPlayerImages(
-                          match.match_player.player_hero.hero_type
-                        )}
-                        className="lg:w-[75px] lg:h-[75px] 
-                        w-[50px] h-[50px] rounded-l-lg bg-[var(--accent-color)]"
-                      />
-                      <div>
-                        <p
-                          className="lg:text-md 
-                        text-xs font-extrabold"
-                        >
-                          {formatName(match.match_player.player_hero.hero_name)}
-                        </p>
-                        <p
-                          className={`lg:text-md 
-                        text-xs font-bold ${
-                          match.match_player.is_win.is_win
-                            ? "text-[var(--green)]"
-                            : "text-[var(--red)]"
-                        }`}
-                        >
-                          {match.match_player.is_win.is_win ? "Win" : "Loss"}
-                        </p>
-                        <p
-                          className="lg:text-md 
-                        text-xs font-bold text-[var(--secondary-text)]"
-                        >
-                          {daysAgo}
-                        </p>
-                      </div>
-                    </div>
+                    {player.info.name}
+                  </Link>
+                </div>
+              </TableCell>
 
-                    <div className="flex flex-col justify-center items-center text-xs font-bold w-3/10">
-                      <p>
-                        {match.match_player.kills} / {match.match_player.deaths}{" "}
-                        / {match.match_player.assists}
-                      </p>
-                      <p className="text-[var(--secondary-text)] font-semibold">
-                        {getKDA(
-                          match.match_player.kills,
-                          match.match_player.deaths,
-                          match.match_player.assists
-                        )}{" "}
-                        KDA
-                      </p>
-                    </div>
-
+              {/**Contains players rank and rank image */}
+              <TableCell>
+                <div className="flex items-center gap-1">
+                  {playerRank.image && (
                     <img
-                      src={formatPlayerImages(match.map_thumbnail)}
-                      className="lg:w-[150px] lg:h-[75px] 
-                      h-[50px] w-[75px] rounded-r-lg bg-[var(--accent-color)] object-cover items-end"
+                      src={playerRank.image}
+                      alt={`${player.info.name} Rank`}
+                      className="w-[45px] h-[45px] rounded-lg"
                     />
+                  )}
+                  <div
+                    className="
+                    md:flex md:flex-col
+                    hidden"
+                  >
+                    <p
+                      className="text-md font-bold"
+                      style={{
+                        color: `${playerRank.color}`,
+                      }}
+                    >
+                      {playerRank.rank}
+                    </p>
+                    <p
+                      className="lg:hidden
+                    text-md font-bold text-[var(--secondary-text)]"
+                    >
+                      {player.info.rank_season.rank_score} Score
+                    </p>
                   </div>
-                );
-              })}
-          </div>
-        ) : (
-          <div className="font-extrabold text-2xl flex items-center justify-center gap-3 text-[var(--secondary-text)]">
-            <Ghost size={25} />
-            <p>No Data Yet</p>
-          </div>
-        )}
+                </div>
+              </TableCell>
 
-        <PaginationMenuBar
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPageChange={setCurrentPage}
-        />
-      </div>
-    </>
+              <TableCell className="hidden lg:table-cell lg:text-left">
+                <p className="text-md font-bold text-[var(--secondary-text)]">
+                  {player.info.rank_season.rank_score}
+                </p>
+              </TableCell>
+
+              {/**Contains win rate */}
+              <TableCell className="text-center">
+                <p
+                  className="text-md font-bold"
+                  style={{
+                    color: getPercentColor(
+                      formatWinLossRatio(player.wins, player.matches)
+                    ),
+                  }}
+                >
+                  {formatWinLossRatio(player.wins, player.matches)}
+                </p>
+              </TableCell>
+            </TableRow>
+          );
+        })}
+      </TableBody>
+    </Table>
   );
 };
 
-export default PlayerMatchHistory;
+export default Leaderboard;

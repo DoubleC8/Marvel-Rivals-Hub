@@ -166,7 +166,6 @@ export const getKDA = (kills: number, deaths: number, assists: number): number =
 };
 
 
-
 export const getPercentColor = (percentage: number | string) => {
   const percentNum = typeof percentage === "string" ? parseFloat(percentage) : percentage;
 
@@ -248,18 +247,11 @@ export const get_rank = (level: number): { rank: string; image: string | null; c
   return { rank: 'Invalid level', image: null, color: null };
 };
 
-export const getRankClass = (rank: number) => {
-  const base = "py-2 rounded-xl text-[var(--primary-text)]";
-
-  if (rank === 1) return `${base} !text-[var(--black)] bg-[var(--gold)]`;
-  if (rank === 2) return `${base} bg-[var(--silver)]`;
-  if (rank === 3) return `${base} bg-[var(--bronze)]`;
-}
-
 export function chatHrefConstructor(id1: string, id2: string) {
   const sortedIds = [id1, id2].sort()
   return `${sortedIds[0]}--${sortedIds[1]}`
 }
+
 
 
 export const getCurrentSeasonRankInfo = (

@@ -9,6 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { formatName } from "@/lib/utils";
 
 const SelectHeroButton = () => {
   const [heroes, setHeroes] = useState<string[]>([]);
@@ -37,15 +38,15 @@ const SelectHeroButton = () => {
   console.log(heroes);
   return (
     <Select>
-      <SelectTrigger className="w-1/2">
+      <SelectTrigger className="leaderboardNavbarDropdown">
         <SelectValue placeholder="Select a Hero" />
       </SelectTrigger>
-      <SelectContent>
+      <SelectContent className="bg-[var(--secondary-background)] border-[var(--accent-color)]">
         <SelectGroup>
           <SelectLabel>Heroes</SelectLabel>
           {heroes.map((hero, index) => (
             <SelectItem key={index} value={hero}>
-              {hero}
+              {formatName(hero)}
             </SelectItem>
           ))}
         </SelectGroup>

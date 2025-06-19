@@ -37,14 +37,14 @@ const NavbarBurgerButton = ({
         >
           <X size={40} />
         </button>
-        <div className="flex flex-col justify-evenly w-full h-full text-4xl">
+        <div className="flex flex-col justify-evenly w-full h-full text-2xl">
           <button onClick={() => setIsMenuOpen((prev) => !prev)}>
             <Link
               href="/"
               className="flex items-center gap-3"
               title="Home Page"
             >
-              <Home size={36} />
+              <Home size={24} />
               Home
             </Link>
           </button>
@@ -54,7 +54,7 @@ const NavbarBurgerButton = ({
               className="flex items-center gap-3"
               title="Messages"
             >
-              <MessageSquareText size={36} />
+              <MessageSquareText size={24} />
               Messages
             </Link>
           </button>
@@ -64,7 +64,7 @@ const NavbarBurgerButton = ({
               className="flex items-center gap-3"
               title="Leaderboards"
             >
-              <ChartNoAxesColumnIncreasing size={36} />
+              <ChartNoAxesColumnIncreasing size={24} />
               Leaderboards
             </Link>
           </button>
@@ -74,13 +74,13 @@ const NavbarBurgerButton = ({
               className="flex items-center gap-3"
               title="Player Stats"
             >
-              <Search size={36} />
+              <Search size={24} />
               Player Stats
             </Link>
           </button>
           <button onClick={() => setIsMenuOpen((prev) => !prev)}>
             <Link href="/news" className="flex items-center gap-3" title="News">
-              <Newspaper size={36} />
+              <Newspaper size={24} />
               News
             </Link>
           </button>

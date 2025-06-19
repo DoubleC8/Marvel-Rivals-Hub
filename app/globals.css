@@ -94,5 +94,6 @@ html, body{
 @import "../components/navbars/navbar.css";
 @import "../components/news/news.css";
 @import "../components/home/home.css";
+@import "../components/leaderboard/leaderboard.css";
 @import "../components/player-stats/search-player-page.css";
 @import "../components/player-stats/FullPlayerStats/full-player-stats-page.css";

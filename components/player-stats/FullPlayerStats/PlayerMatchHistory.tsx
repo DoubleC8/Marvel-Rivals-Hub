@@ -18,7 +18,7 @@ import {
 } from "@/components/ui/select";
 import { Ghost, LoaderCircle } from "lucide-react";
 import { fetchPlayerMatchHistory } from "@/lib/actions";
-import PaginationMenuBar from "@/components/ui/PaginationMenuBar";
+import PaginationMenuBar from "@/components/navbars/PaginationMenuBar";
 
 const MATCHES_PER_PAGE = 20;
 
