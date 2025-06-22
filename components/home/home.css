@@ -19,14 +19,15 @@
   
   
 .homeSectionButton {
-    font-family: "marvelFont";
-    color: var(--black);
-    background-color: var(--yellow);
-    padding-block: calc(var(--spacing) * 3);
-    padding-inline: calc(var(--spacing) * 5);
-    font-size: 24px;
+    width: 100%;
     text-align: center;
-    border-radius: var(--radius-lg) /* 1rem = 16px */;
+    font-weight: var(--font-weight-bold) /* 700 */;
+    font-size: var(--text-lg) /* 1.125rem = 18px */;
+    line-height: var(--tw-leading, var(--text-lg--line-height) /* calc(1.75 / 1.125) ≈ 1.5556 */);
+    padding-block: calc(var(--spacing) * 1) /* 0.25rem = 4px */;
+    background-color: var(--yellow);
+    color: var(--black);
+    border-radius: var(--radius-sm) /* 0.25rem = 4px */;
     transition: ease-in-out 0.1s;
 }
   
@@ -77,6 +78,11 @@
       opacity: 0.85;
       text-decoration: underline;
     }
+
+    .homeSectionButton {
+      width: 50%;
+      margin-inline: auto;
+    }
   
     .homeSection {
       height: 100%;
@@ -104,12 +110,17 @@
       flex-direction: column;
       gap: calc(var(--spacing) * 5) /* 1.25rem = 20px */;
       padding: calc(var(--spacing) * 5) /* 1.25rem = 20px */;
-      border: 2px solid var(--purple);
+      border: 2px solid var(--accent-color);
       border-radius: var(--radius-lg) /* 0.5rem = 8px */;
       width: 45%;
       height: fit-content;
       background-color: var(--secondary-background);
+      transition: ease-in-out 100ms;
     }
+
+     .homeContextCard:hover {
+      border-color: var(--purple);
+     }
   
     .homeHeroImageCard{
       max-width: 40%;
@@ -129,6 +140,7 @@
       width: 100%;
       height: 98%;
       display: flex;
+      backdrop-filter: blur(5px);
       flex-direction: column;
       align-items: center;
       justify-content: space-evenly;
@@ -147,11 +159,6 @@
       font-weight: bold;
       font-size: 1rem;
       color: var(--white);
-      background-color: var(--secondary-background);
-      padding: 1rem;
-      border: 2px solid var(--purple);
-      border-color: var(--purple);
-      border-radius: 0.5rem;
     }
   
     .welcomeHeroButton {

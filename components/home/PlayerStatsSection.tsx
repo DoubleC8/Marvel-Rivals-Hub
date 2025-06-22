@@ -16,18 +16,17 @@ const PlayerStatsSection = () => {
               Track Player Stats & Rankings!
             </h1>
           </div>
-          <p className="text-[20px] text-[var(--secondary-text)]">
+          <p className="text-lg text-[var(--secondary-text)]">
             Search for player profiles, compare stats, and find skilled
             teammates to dominate Marvel Rivals with!
           </p>
         </div>
 
         {/*TODO: Make this take you create a player profile page (different from login page) */}
-        <div>
-          <Link href="/player-stats" className="homeSectionButton">
-            Look up Player Stats
-          </Link>
-        </div>
+
+        <Link href="/player-stats" className="homeSectionButton">
+          Look up Player Stats
+        </Link>
       </div>
       <div className="homeHeroImageCard">
         <img src="/images/Peni_Parker.webp" className="homeHeroImage"></img>

@@ -1,4 +1,4 @@
-import { Users } from "lucide-react";
+import { Trophy, Users } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -8,75 +8,62 @@ const CreatePlayerProfileSection = () => {
       <div className="homeContextCard">
         <div className="flex flex-col">
           <div className="flex gap-3 items-stretch">
-            <Users size={36} className="text-[var(--secondary-text)]" />
+            <Trophy size={36} className="text-[var(--secondary-text)]" />
             <h1
               className="text-4xl"
               style={{ fontFamily: "var(--marvelFont)" }}
             >
-              Looking for a Team?
+              Climb the Leaderboard
             </h1>
           </div>
-          <p className="text-xl">
-            Let everyone know you're looking to team up in four easy steps:
+          <p className="text-lg">
+            Track the top 500 players across all platforms and heroes in Marvel
+            Rivals. See who's dominating each role and rising through the ranks.
           </p>
         </div>
 
         <div className="h-full flex flex-col gap-3 text-2xl">
           <div>
             <h2 style={{ fontFamily: "var(--marvelFont)" }}>
-              Introduce Yourself
+              Hero-Based Rankings
             </h2>
-            <p className="text-xl text-[var(--secondary-text)]">
-              Let others know who you are! Share your gaming experience and
-              interests to connect with like-minded players.
+            <p className="text-base text-[var(--secondary-text)]">
+              Filter by your favorite hero to see who's the best in the field.
+              Whether you're chasing Winter Soldier dominance or top-tier Storm
+              plays, it's all here.
             </p>
           </div>
 
           <div>
             <h2 style={{ fontFamily: "var(--marvelFont)" }}>
-              Customize Your Profile
+              Platform Breakdown
             </h2>
-            <p className="text-xl text-[var(--secondary-text)]">
-              Showcase your in-game stats, achievements, and playstyle to help
-              find teammates that match your skill level.
+            <p className="text-base text-[var(--secondary-text)]">
+              Sort players by PC, PlayStation, or Xbox to compare rankings.
+            </p>
+          </div>
+
+          <div>
+            <h2 style={{ fontFamily: "var(--marvelFont)" }}>Updated Live</h2>
+            <p className="text-base text-[var(--secondary-text)]">
+              Our leaderboard pulls real-time data so you’re always viewing the
+              most accurate stats as players win, lose, and grind ranked.
             </p>
           </div>
 
           <div>
             <h2 style={{ fontFamily: "var(--marvelFont)" }}>
-              Choose Your Role
+              Your Spot Awaits
             </h2>
-            <p className="text-xl text-[var(--secondary-text)]">
-              Specify the role you play best, whether it's a tank, damage
-              dealer, or support, to form the perfect squad.
-            </p>
-          </div>
-
-          <div>
-            <h2 style={{ fontFamily: "var(--marvelFont)" }}>
-              Join the Community
-            </h2>
-            <p className="text-xl text-[var(--secondary-text)]">
-              Create your account and start engaging with other players, forming
-              teams, and climbing the leaderboards!
-            </p>
-          </div>
-
-          <div>
-            <h2 style={{ fontFamily: "var(--marvelFont)" }}>You're Done</h2>
-            <p className="text-xl text-[var(--secondary-text)]">
-              Your account and your Marvel Rivals Hub player profile are
-              created. You're ready to find your new teammates!
+            <p className="text-base  text-[var(--secondary-text)]">
+              Think you’ve got what it takes? Keep playing, improving, and your
+              name might be the next to show up.
             </p>
           </div>
         </div>
-
-        {/*TODO: Make this take you create a player profile page (different from login page) */}
-        <div>
-          <Link href="/" className="homeSectionButton">
-            Create Player Profile
-          </Link>
-        </div>
+        <Link href={`/leaderboard`} className="homeSectionButton">
+          Go to Leaderboard
+        </Link>
       </div>
 
       <div>

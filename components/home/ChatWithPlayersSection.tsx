@@ -26,18 +26,15 @@ const ChatWithPlayersSection = () => {
               Chat with New Teammates Now!
             </h1>
           </div>
-          <p className="text-[20px] text-[var(--secondary-text)]">
+          <p className="text-lg text-[var(--secondary-text)]">
             Connect and chat with online players and find the perfect teammate
             to dominate Marvel Rivals together!
           </p>
         </div>
 
-        {/*TODO: Make this take you create a player profile page (different from login page) */}
-        <div>
-          <Link href="/messages" className="homeSectionButton">
-            Find Your Next Teammate
-          </Link>
-        </div>
+        <Link href="/messages" className="homeSectionButton">
+          Find Your Next Teammate
+        </Link>
       </div>
     </section>
   );
