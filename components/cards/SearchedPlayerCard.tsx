@@ -1,12 +1,16 @@
+"use client";
+
 import {
   formatName,
   formatPlayerImages,
   formatWinLossRatio,
+  getFavoriteHero,
   getLoginOsImage,
   getPercentColor,
   getTopHeroes,
 } from "@/lib/utils";
 import { PlayerInfo } from "@/types/playerInfo";
+import { Ghost } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -15,7 +19,7 @@ const SearchedPlayerCard = ({
 }: {
   playerCardInfo: PlayerInfo;
 }) => {
-  const topHero = getTopHeroes(playerCardInfo.heroes_ranked)[0];
+  const topHero = getFavoriteHero(playerCardInfo.heroes_ranked);
   return (
     <div className="searchedPlayerCard">
       <div
@@ -52,29 +56,47 @@ const SearchedPlayerCard = ({
         </div>
       </div>
 
-      <div
-        className="lg:flex-col lg:justify-start lg:h-[125px]
-      flex items-center justify-between gap-5"
-      >
-        <h1
-          className="lg:text-xl lg:font-extrabold
-        text-lg font-bold"
-        >
-          Favorite Hero
-        </h1>
+      {getTopHeroes(playerCardInfo.heroes_ranked).length == 0 ? (
         <div
-          className="lg:text-xl lg:font-extrabold 
-        flex items-center gap-3 text-end text-lg font-bold"
+          className="lg:flex-col lg:justify-start lg:h-[125px]
+      flex items-center justify-between gap-5"
         >
-          <img
-            src={formatPlayerImages(topHero.hero_icon)}
-            alt={`${playerCardInfo.player.name} Rank`}
-            className="
-            w-[50px] h-[50px] bg-[var(--secondary-background)] rounded-lg"
-          />
-          <h2>{formatName(topHero.hero_name)}</h2>
+          <h1
+            className="lg:text-xl lg:font-extrabold
+        text-lg font-bold"
+          >
+            Favorite Hero
+          </h1>
+          <div className="font-bold text-xl flex items-center justify-center gap-3 text-[var(--secondary-text)] h-full">
+            <Ghost size={25} />
+            <p>No Data Yet</p>
+          </div>
         </div>
-      </div>
+      ) : (
+        <div
+          className="lg:flex-col lg:justify-start lg:h-[125px]
+      flex items-center justify-between gap-5"
+        >
+          <h1
+            className="lg:text-xl lg:font-extrabold
+        text-lg font-bold"
+          >
+            Favorite Hero
+          </h1>
+          <div
+            className="lg:text-xl lg:font-extrabold 
+        flex items-center gap-3 text-end text-lg font-bold"
+          >
+            <img
+              src={formatPlayerImages(topHero?.hero_thumbnail)}
+              alt={`${playerCardInfo.player.name} Rank`}
+              className="
+            w-[50px] h-[50px] bg-[var(--secondary-background)] rounded-lg"
+            />
+            <h2>{formatName(topHero?.hero_name ?? "")}</h2>
+          </div>
+        </div>
+      )}
 
       <div
         className="lg:flex-col lg:justify-start lg:h-[125px]
@@ -87,7 +109,7 @@ const SearchedPlayerCard = ({
           Win Percentage
         </h1>
         <div
-          className="lg:text-xl lg:font-extrabold
+          className="lg:text-xl lg:font-extrabold lg:text-center
         flex flex-col text-end text-lg font-bold"
         >
           {/* Ranked */}
@@ -150,30 +172,37 @@ const SearchedPlayerCard = ({
         >
           Rank
         </h1>
-        <div
-          className="lg:text-xl lg:font-extrabold
+        {playerCardInfo.player.rank.rank == "Invalid level" ? (
+          <div className="font-bold text-xl flex items-center justify-center gap-3 text-[var(--secondary-text)] h-full">
+            <Ghost size={25} />
+            <p>No Data Yet</p>
+          </div>
+        ) : (
+          <div
+            className="lg:text-xl lg:font-extrabold
         flex items-center gap-1 text-end text-lg font-bold"
-        >
-          <img
-            src={formatPlayerImages(playerCardInfo.player.rank.image)}
-            alt={`${playerCardInfo.player.name} Rank`}
-            className="
+          >
+            <img
+              src={formatPlayerImages(playerCardInfo.player.rank.icon)}
+              alt={`${playerCardInfo.player.name} Rank`}
+              className="
             w-[50px] h-[50px]"
-          />
-          <h2>
-            {playerCardInfo?.player.rank ? (
-              <span
-                style={{
-                  color: playerCardInfo.player.rank.color,
-                }}
-              >
-                {playerCardInfo.player.rank.rank}
-              </span>
-            ) : (
-              <span className="text-[var(--secondary-text)]">N/A</span>
-            )}
-          </h2>
-        </div>
+            />
+            <h2>
+              {playerCardInfo?.player.rank ? (
+                <span
+                  style={{
+                    color: playerCardInfo.player.rank.color,
+                  }}
+                >
+                  {playerCardInfo.player.rank.rank}
+                </span>
+              ) : (
+                <span className="text-[var(--secondary-text)]">N/A</span>
+              )}
+            </h2>
+          </div>
+        )}
       </div>
 
       <Link

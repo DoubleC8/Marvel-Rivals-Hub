@@ -3,22 +3,12 @@ import {
   formatPlayerImages,
   hexToRgba,
   formatWinLossRatio,
-  getCurrentSeasonRankInfo,
-  getCurrentSeasonMaxRankInfo,
   getPercentColor,
 } from "@/lib/utils";
 import { PlayerInfo } from "@/types/playerInfo";
 import { Ghost } from "lucide-react";
 
 const PlayerRankInfo = ({ playerData }: { playerData: PlayerInfo }) => {
-  const playerCurrentRankInfo = getCurrentSeasonRankInfo({
-    rankSeasons: playerData.player.info.rank_game_season,
-  });
-
-  const playerCurrentMaxRankInfo = getCurrentSeasonMaxRankInfo({
-    rankSeasons: playerData.player.info.rank_game_season,
-  });
-
   if (playerData.player.rank.rank === "Invalid level") {
     return (
       <div className="playerStatsCard">
@@ -30,7 +20,6 @@ const PlayerRankInfo = ({ playerData }: { playerData: PlayerInfo }) => {
       </div>
     );
   }
-
   return (
     <div className="playerStatsCard !p-0">
       {/* Current Rank */}
@@ -45,7 +34,7 @@ const PlayerRankInfo = ({ playerData }: { playerData: PlayerInfo }) => {
           <div className="flex items-center gap-3">
             {/**Rank image */}
             <img
-              src={formatPlayerImages(playerData.player.rank.image)}
+              src={formatPlayerImages(playerData.player.rank.icon)}
               alt={`${playerData.name} Current Rank Icon`}
               className="xl:w-[100px] xl:h-[100px]
               w-[75px] h-[75px]"
@@ -63,7 +52,7 @@ const PlayerRankInfo = ({ playerData }: { playerData: PlayerInfo }) => {
                 className="xl:text-md 
               text-sm font-extrabold text-[var(--secondary-text)]"
               >
-                {playerCurrentRankInfo?.rank_score.toFixed(2)} Score
+                {playerData.player.rank.score} Score
               </p>
             </div>
           </div>
@@ -107,7 +96,7 @@ const PlayerRankInfo = ({ playerData }: { playerData: PlayerInfo }) => {
           <div className="flex items-center gap-3">
             {/**Rank image */}
             <img
-              src={formatPlayerImages(playerData.player.rank.image)}
+              src={formatPlayerImages(playerData.player.rank.peak_rank.icon)}
               alt={`${playerData.name} Current Rank Icon`}
               className="xl:w-[100px] xl:h-[100px]
               w-[75px] h-[75px]"
@@ -119,13 +108,13 @@ const PlayerRankInfo = ({ playerData }: { playerData: PlayerInfo }) => {
                 className="xl:text-lg 
               text-md font-extrabold"
               >
-                {playerCurrentMaxRankInfo?.rank}
+                {playerData.player.rank.peak_rank.rank}
               </h1>
               <p
                 className="xl:text-md 
               text-sm font-extrabold text-[var(--secondary-text)]"
               >
-                {playerCurrentMaxRankInfo?.max_rank_score.toFixed(2)} Score
+                {playerData.player.rank.peak_rank.score} Score
               </p>
             </div>
           </div>

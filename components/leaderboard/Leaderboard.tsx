@@ -1,4 +1,9 @@
-import { formatWinLossRatio, get_rank, getPercentColor } from "@/lib/utils";
+import {
+  formatPlayerImages,
+  formatWinLossRatio,
+  get_rank,
+  getPercentColor,
+} from "@/lib/utils";
 import { LeaderboardPlayer } from "@/types/LeaderboardPlayer";
 import React, { useState } from "react";
 
@@ -88,7 +93,7 @@ const Leaderboard = ({
                 flex items-center gap-2"
                     >
                       <img
-                        src={`https://marvelrivalsapi.com/rivals/players/heads/player_head_${player.info.cur_head_icon_id}.png`}
+                        src={formatPlayerImages(player.info.icon.player_icon)}
                         alt={`${player.info.name} Icon`}
                         className="lg:w-[50px] lg:h-[50px]
                     w-[40px] h-[40px] rounded-lg"

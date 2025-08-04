@@ -53,11 +53,18 @@ export const formatWinLossRatio = (total_wins: number, total_matches: number): s
 };
 
 export const formatPlayerImages = (playerImageData?: string) => {
-  if (!playerImageData) return "/images/fallback_image.png"; // or return null / empty string if you prefer
+  if (!playerImageData) return "/images/fallback_image.png";
+
+  let fixedPath = playerImageData;
+
+  //temp fix
+  if(fixedPath.startsWith("/classes/")){
+    fixedPath = fixedPath.replace("/classes/", "/ranked/");
+  }
 
   return playerImageData.includes("/rivals")
-    ? `https://marvelrivalsapi.com${playerImageData}`
-    : `https://marvelrivalsapi.com/rivals${playerImageData}`;
+    ? `https://marvelrivalsapi.com${fixedPath}`
+    : `https://marvelrivalsapi.com/rivals${fixedPath}`;
 };
 
 
@@ -150,7 +157,7 @@ export const getTopHeroes = (heroes: Hero[]): TopHero[] => {
         hero_icon: hero.hero_thumbnail,
         numberOfMatches: hero.matches,
         numberOfWins: hero.wins,
-        winLossRatio: winRate, // ✅ You missed this line
+        winLossRatio: winRate,
         kills: hero.kills,
         deaths: hero.deaths,
         assists: hero.assists,
@@ -159,6 +166,16 @@ export const getTopHeroes = (heroes: Hero[]): TopHero[] => {
       };
     });
 };
+
+export const getFavoriteHero = (heroes: Hero[] = []): Hero | null => {
+  if(!heroes.length){
+    return null;
+  }
+
+  return heroes.reduce((prev, current) => {
+    return current.matches > prev.matches ? current : prev;
+  });
+}
 
 export const getKDA = (kills: number, deaths: number, assists: number): number => {
   if (!deaths || deaths === 0) return kills + assists; // avoid division by zero
@@ -253,47 +270,3 @@ export function chatHrefConstructor(id1: string, id2: string) {
 }
 
 
-
-export const getCurrentSeasonRankInfo = (
-  //A record type is a object type that has a key and a type.Record<Keys, Type> is a utility type used to
-  //  define an object structure where the keys are of type Keys and the values are of type Type.
-  { rankSeasons }: { rankSeasons: Record<string, { level: number; rank_score: number }> }
- ): { rank: string; rank_score: number; image: string | null } | null => {
-
- const entries = Object.entries(rankSeasons)
-    .filter(([key]) => /^\d{7}$/.test(key))
-    .sort((a, b) => parseInt(b[0].slice(-1)) - parseInt(a[0].slice(-1))); // sort by season desc
-
-  if (entries.length === 0) return null;
-
-  const [_, latestSeasonData] = entries[0];
-  const { rank, image } = get_rank(latestSeasonData.level);
-
-  return {
-    rank,
-    rank_score: latestSeasonData.rank_score,
-    image,
-  };
-}
-
-
-export const getCurrentSeasonMaxRankInfo = ({
-  rankSeasons,
-}: {
-  rankSeasons: Record<string, { max_level: number; max_rank_score: number }>;
-}): { rank: string; max_rank_score: number; image: string | null } | null => {
-  const entries = Object.entries(rankSeasons)
-    .filter(([key]) => /^\d{7}$/.test(key))
-    .sort((a, b) => parseInt(b[0].slice(-1)) - parseInt(a[0].slice(-1)));
-
-  if (entries.length === 0) return null;
-
-  const [_, latestSeasonData] = entries[0];
-  const { rank, image } = get_rank(latestSeasonData.max_level);
-
-  return {
-    rank,
-    max_rank_score: latestSeasonData.max_rank_score,
-    image,
-  };
-};

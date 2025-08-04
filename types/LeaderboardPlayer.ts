@@ -12,8 +12,11 @@ export interface LeaderboardPlayer {
   total_damage_taken: string;
   total_hero_heal: string;
   info: {
+    icon: {
+      player_icon_id: string;
+      player_icon: string;
+    }
     name: string;
-    cur_head_icon_id: string;
     login_os: string;
     rank_season: {
       rank_game_id: number;

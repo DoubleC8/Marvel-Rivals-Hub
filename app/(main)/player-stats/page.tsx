@@ -28,7 +28,6 @@ const PlayerStatsPage = () => {
 
     try {
       const data = await fetchPlayerData(playerIdentifier);
-
       console.log(data);
       setPlayerCardInfo(data);
 

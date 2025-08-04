@@ -20,29 +20,25 @@ export const formatEmail = async (email: string) => {
 }
 
 export const getNewsData = async () => {
-  // ✅ Define fetch options correctly
   const fetchOptions: RequestInit = {
     headers: {
       "x-api-key": process.env.API_KEY || "",
     },
-    cache: "no-store", // ✅ Moved this to the correct level
+    cache: "no-store",
   };
 
-  // ✅ Fetch all three endpoints in parallel
   const [balancesRes, patchesRes, devsRes] = await Promise.all([
     fetch("https://marvelrivalsapi.com/api/v1/balances?page=1&limit=10", fetchOptions),
     fetch("https://marvelrivalsapi.com/api/v1/patch-notes?page=1&limit=10", fetchOptions),
     fetch("https://marvelrivalsapi.com/api/v1/dev-diaries?page=1&limit=10", fetchOptions),
   ]);
 
-  // ✅ Parse the JSON responses
   const [balancesJson, patchesJson, devsJson] = await Promise.all([
     balancesRes.json(),
     patchesRes.json(),
     devsRes.json(),
   ]);
 
-  // ✅ Return structured data
   return {
     balances: balancesJson.balances || [],
     patchNotes: patchesJson.formatted_patches || [],
@@ -68,30 +64,6 @@ export const fetchNewsPageData = async (newsType: string, newsId: string) => {
   }
 };
 
-export const fetchPlayerCardData = async (playerIdentifier: string) => {
-  try {
-    const response = await axios.get(
-      `https://marvelrivalsapi.com/api/v1/player/${playerIdentifier}`,
-      {
-        headers: {
-          "x-api-key": process.env.API_KEY,
-        },
-      }
-    );
-
-    // Check if the API explicitly marks the profile as private
-    if (response.data?.error && response.data?.status === 403) {
-      return { isPrivate: true };
-    }
-
-    return response.data;
-  } catch (error: any) {
-    if (error.response?.status === 403) {
-      return { isPrivate: true };
-    }
-    throw error; // Let other errors bubble up
-  }
-};
 
 export const fetchLeaderboardData = async(hero: string, consoleType: string) => {
   try {
@@ -112,7 +84,7 @@ export const fetchLeaderboardData = async(hero: string, consoleType: string) => 
 export const fetchPlayerData = async(playerUid: string) => {
   try {
     const response = await axios.get(
-      `https://marvelrivalsapi.com/api/v1/player/${playerUid}`,
+      `https://marvelrivalsapi.com/api/v2/player/${playerUid}`,
       {
         headers: {
           "x-api-key": process.env.API_KEY!,
