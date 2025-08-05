@@ -17,21 +17,21 @@ import Link from "next/link";
 
 const page = async ({ params }: { params: { uid: string } }) => {
   const playerUid = await params.uid;
-  //const playerData: PlayerInfo | null = mockPlayerData;
+  const playerData: PlayerInfo | null = mockPlayerData;
 
-  let playerData: PlayerInfo | null = null;
+  // let playerData: PlayerInfo | null = null;
 
-  try {
-    const playerDataResponse = await fetchPlayerData(playerUid);
+  // try {
+  //   const playerDataResponse = await fetchPlayerData(playerUid);
 
-    playerData = playerDataResponse;
-    console.log("Player Data", playerData);
-  } catch (error) {
-    console.error("Error fetching player data", error);
-  }
-  if (!playerData) {
-    return;
-  }
+  //   playerData = playerDataResponse;
+  //   console.log("Player Data", playerData);
+  // } catch (error) {
+  //   console.error("Error fetching player data", error);
+  // }
+  // if (!playerData) {
+  //   return;
+  // }
 
   console.log("Player Data", playerData);
 
@@ -76,7 +76,7 @@ const page = async ({ params }: { params: { uid: string } }) => {
           heroes_ranked={playerData.heroes_ranked ?? []}
           heroes_unranked={playerData.heroes_unranked ?? []}
         />
-        <TopRoles />
+        <TopRoles top_roles={playerData.overall_stats?.roles_played ?? {}} />
         <TopTeammates team_mates={playerData.team_mates ?? []} />
       </div>
 

@@ -19,9 +19,12 @@ const SearchedPlayerCard = ({
 }: {
   playerCardInfo: PlayerInfo;
 }) => {
-  const topHero = getFavoriteHero(playerCardInfo.heroes_ranked);
+  //getting the users top hero
+  const favoriteHero = getFavoriteHero(playerCardInfo.heroes_ranked);
+
   return (
     <div className="searchedPlayerCard">
+      {/**Players profile picture along with name, level and console */}
       <div
         className="lg:items-center
       flex gap-3"
@@ -56,15 +59,33 @@ const SearchedPlayerCard = ({
         </div>
       </div>
 
-      {getTopHeroes(playerCardInfo.heroes_ranked).length == 0 ? (
+      {/**Players favorite hero*/}
+      {favoriteHero ? (
         <div
           className="lg:flex-col lg:justify-start lg:h-[125px]
-      flex items-center justify-between gap-5"
+    flex items-center justify-between gap-5"
         >
-          <h1
-            className="lg:text-xl lg:font-extrabold
-        text-lg font-bold"
+          <h1 className="lg:text-xl lg:font-extrabold text-lg font-bold">
+            Favorite Hero
+          </h1>
+          <div
+            className="lg:text-xl lg:font-extrabold 
+      flex items-center gap-3 text-end text-lg font-bold"
           >
+            <img
+              src={formatPlayerImages(favoriteHero.hero_thumbnail)}
+              alt={`${playerCardInfo.player.name} Favorite Hero`}
+              className="w-[50px] h-[50px] bg-[var(--secondary-background)] rounded-lg"
+            />
+            <h2>{formatName(favoriteHero.hero_name)}</h2>
+          </div>
+        </div>
+      ) : (
+        <div
+          className="lg:flex-col lg:justify-start lg:h-[125px]
+    flex items-center justify-between gap-5"
+        >
+          <h1 className="lg:text-xl lg:font-extrabold text-lg font-bold">
             Favorite Hero
           </h1>
           <div className="font-bold text-xl flex items-center justify-center gap-3 text-[var(--secondary-text)] h-full">
@@ -72,32 +93,9 @@ const SearchedPlayerCard = ({
             <p>No Data Yet</p>
           </div>
         </div>
-      ) : (
-        <div
-          className="lg:flex-col lg:justify-start lg:h-[125px]
-      flex items-center justify-between gap-5"
-        >
-          <h1
-            className="lg:text-xl lg:font-extrabold
-        text-lg font-bold"
-          >
-            Favorite Hero
-          </h1>
-          <div
-            className="lg:text-xl lg:font-extrabold 
-        flex items-center gap-3 text-end text-lg font-bold"
-          >
-            <img
-              src={formatPlayerImages(topHero?.hero_thumbnail)}
-              alt={`${playerCardInfo.player.name} Rank`}
-              className="
-            w-[50px] h-[50px] bg-[var(--secondary-background)] rounded-lg"
-            />
-            <h2>{formatName(topHero?.hero_name ?? "")}</h2>
-          </div>
-        </div>
       )}
 
+      {/**Players win percentage*/}
       <div
         className="lg:flex-col lg:justify-start lg:h-[125px]
       flex items-center justify-between gap-5"
@@ -162,6 +160,7 @@ const SearchedPlayerCard = ({
         </div>
       </div>
 
+      {/**Players rank*/}
       <div
         className="lg:flex-col lg:justify-start lg:h-[125px]
       flex items-center justify-between gap-5"

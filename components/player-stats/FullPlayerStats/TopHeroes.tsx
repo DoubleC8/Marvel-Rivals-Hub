@@ -94,7 +94,9 @@ const TopHeroes = ({
                   <div className="flex flex-col items-end">
                     <h1 className="font-extrabold text-lg">{hero.kda}</h1>
                     <p className="text-[var(--secondary-text)] text-sm font-bold">
-                      {hero.kills}/{hero.deaths}/{hero.assists}
+                      {hero.kills}/
+                      <span className="text-[var(--red)]">{hero.deaths}</span>/
+                      {hero.assists}
                     </p>
                   </div>
                 </td>
