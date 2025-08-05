@@ -81,7 +81,7 @@ export const fetchLeaderboardData = async(hero: string, consoleType: string) => 
   }
 }
 
-export const fetchPlayerData = async(playerUid: string) => {
+export const fetchPlayerData = async (playerUid: string) => {
   try {
     const response = await axios.get(
       `https://marvelrivalsapi.com/api/v2/player/${playerUid}`,
@@ -92,11 +92,28 @@ export const fetchPlayerData = async(playerUid: string) => {
       }
     );
 
+    if (response.data?.error && response.data?.status === 403) {
+      return {
+        isPrivate: true,
+        message: response.data.message || "This player's profile is private.",
+      };
+    }
+
     return response.data;
-  } catch (error) {
+  } catch (error: any) {
     console.error("Error fetching player data", error);
+
+
+    if (error.response?.status === 403) {
+      return {
+        isPrivate: true,
+        message: error.response.data?.message || "This player's profile is private.",
+      };
+    }
+
+    throw error;
   }
-}
+};
 
 export const fetchPlayerMatchHistory = async (playerUid: string, page = 1) => {
   try {
