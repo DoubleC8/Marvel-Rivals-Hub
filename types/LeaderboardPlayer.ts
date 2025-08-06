@@ -2,27 +2,29 @@ export interface LeaderboardPlayer {
   score: number;
   uid: string;
   name: string;
-  icon: {
+  icon?: {
     player_icon_id: string;
     player_icon: string;
   };
+  cur_head_icon_id?: string;
   rank: {
-    rank: {
-      rank: string;
-      image: string;
-      color: string;
-    };
-    win_rate: string;
-    max_level: number;
     rank_score: number;
+    max_rank_score: number;
+    level: number;
+    max_level: number;
+    season_max_level?: number;
     protect_score: number;
     diff_score: number;
     season_number: number;
     win_count: number;
-    level: number;
-    max_rank_score: number;
-    season_max_level: number;
     battle_count: number;
+    win_rate?: string;
+    update_time?: number;
+    rank?: {
+      rank: string;
+      image: string;
+      color: string;
+    };
   };
 }
 

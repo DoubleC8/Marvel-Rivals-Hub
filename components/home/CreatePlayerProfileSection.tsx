@@ -61,7 +61,7 @@ const CreatePlayerProfileSection = () => {
             </p>
           </div>
         </div>
-        <Link href={`/leaderboard`} className="homeSectionButton">
+        <Link href={`/leaderboards`} className="homeSectionButton">
           Go to Leaderboard
         </Link>
       </div>

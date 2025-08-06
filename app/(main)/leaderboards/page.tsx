@@ -15,38 +15,26 @@ import Leaderboard from "@/components/leaderboard/Leaderboard";
 import axios from "axios";
 import { LeaderboardResponse } from "@/types/LeaderboardPlayer";
 import { LoaderCircle } from "lucide-react";
+import SelectSeasonButton from "@/components/buttons/SelectSeasonButton";
+import { fetchLeaderBoard } from "@/lib/actions";
 
 const Page = () => {
   const [leaderboardData, setLeaderboardData] = useState<LeaderboardResponse>();
+  const [season, setSeason] = useState<string>("3");
   const [device, setDevice] = useState<string>("pc");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const fetchLeaderboard = async () => {
-      try {
-        setLoading(true);
-
-        const response = await axios.get(
-          "https://marvelrivalsapi.com/api/v2/players/leaderboard",
-          {
-            params: {
-              limit: 500,
-              device,
-            },
-            headers: {
-              "x-api-key":
-                "19fb1c19789bf850f690e30ef8c660bc95ea8e8a40dd64d8bd7cbe486e35156f",
-            },
-          }
-        );
-        setLeaderboardData(response.data);
-      } catch (error) {
-        console.error("Error fetching leaderboard:", error);
-      }
+    const getData = async () => {
+      setLoading(true);
+      const data = await fetchLeaderBoard(season, device);
+      setLeaderboardData(data);
+      setLoading(false);
     };
-    fetchLeaderboard();
-  }, [device]);
+    getData();
+  }, [season, device]);
 
+  console.log("Season: " + season + " Console: " + device + " leaderboard: ");
   console.log(leaderboardData);
   return (
     <section
@@ -66,6 +54,24 @@ const Page = () => {
           className="lg:w-1/2 lg:justify-end lg:gap-2
         w-full flex items-center justify-evenly"
         >
+          {/* <SelectSeasonButton /> */}
+          <Select onValueChange={setSeason} defaultValue={season}>
+            <SelectTrigger className="leaderboardNavbarDropdown">
+              <SelectValue placeholder="Season" />
+            </SelectTrigger>
+            <SelectContent className="bg-[var(--secondary-background)] border-[var(--accent-color)]">
+              <SelectGroup>
+                <SelectLabel>Seasons</SelectLabel>
+                <SelectItem value="0">Season 0</SelectItem>
+                <SelectItem value="1">Season 1</SelectItem>
+                <SelectItem value="1.5">Season 1.5</SelectItem>
+                <SelectItem value="2">Season 2</SelectItem>
+                <SelectItem value="2.5">Season 2.5</SelectItem>
+                <SelectItem value="3">Season 3</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+
           <Select onValueChange={setDevice} defaultValue={device}>
             <SelectTrigger className="leaderboardNavbarDropdown">
               <SelectValue placeholder="Select a Platform" />
@@ -82,12 +88,7 @@ const Page = () => {
         </div>
       </div>
 
-      {leaderboardData ? (
-        <Leaderboard
-          leaderboard={leaderboardData.players}
-          totalPlayers={leaderboardData.total_players}
-        />
-      ) : (
+      {loading || !leaderboardData ? (
         <div
           className="lg:w-[90%]
           w-full mx-auto bg-[var(--secondary-background)] shadow-2xl 
@@ -100,6 +101,11 @@ const Page = () => {
           />
           <p>Loading Leaderboard</p>
         </div>
+      ) : (
+        <Leaderboard
+          leaderboard={leaderboardData.players}
+          totalPlayers={leaderboardData.total_players}
+        />
       )}
 
       <p className="text-center text-[var(--secondary-text)] mt-auto text-sm md:text-md">

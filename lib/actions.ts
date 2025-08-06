@@ -65,22 +65,6 @@ export const fetchNewsPageData = async (newsType: string, newsId: string) => {
 };
 
 
-export const fetchLeaderboardData = async(hero: string, consoleType: string) => {
-  try {
-    const response = await axios.get(
-      `https://marvelrivalsapi.com/api/v1/heroes/leaderboard/${hero}?platform=${consoleType}`,
-      {
-        headers: { "x-api-key": process.env.API_KEY },
-      }
-    );
-
-    return response.data.players;
-    
-  } catch (error) {
-    console.error("Error fetching player leaderboard data:", error);
-  }
-}
-
 export const fetchPlayerData = async (playerUid: string) => {
   try {
     const response = await axios.get(
@@ -151,6 +135,33 @@ export const updatePlayerData = async (uid: number) => {
   } catch (error) {
     console.error("Error updating player data:", error);
     throw new Error("Failed to update player data");
+  }
+};
+
+export const fetchLeaderBoard = async (season: string, device: string) => {
+  try {
+    const response = await axios.get(
+      "https://marvelrivalsapi.com/api/v2/players/leaderboard",
+      {
+        params: {
+          limit: 500,
+          season,
+          device,
+        },
+        headers: {
+          "x-api-key": process.env.API_KEY!,
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error: any) {
+    if (axios.isAxiosError(error) && error.response) {
+      console.error("Error response:", error.response.data);
+    } else {
+      console.error("Unknown error:", error.message || error);
+    }
+    return null;
   }
 };
 
