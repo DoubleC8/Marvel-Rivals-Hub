@@ -84,11 +84,10 @@ export const fetchPlayerData = async (playerUid: string) => {
     }
 
     return response.data;
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Error fetching player data", error);
 
-
-    if (error.response?.status === 403) {
+    if (axios.isAxiosError(error) && error.response?.status === 403) {
       return {
         isPrivate: true,
         message: error.response.data?.message || "This player's profile is private.",
@@ -99,7 +98,7 @@ export const fetchPlayerData = async (playerUid: string) => {
   }
 };
 
-export const fetchPlayerMatchHistory = async (playerUid: string, page = 1) => {
+export const fetchPlayerMatchHistory = async (playerUid: string) => {
   try {
     const response = await axios.get(
       `https://marvelrivalsapi.com/api/v2/player/${playerUid}/match-history`,
@@ -155,11 +154,11 @@ export const fetchLeaderBoard = async (season: string, device: string) => {
     );
 
     return response.data;
-  } catch (error: any) {
+  } catch (error: unknown) {
     if (axios.isAxiosError(error) && error.response) {
       console.error("Error response:", error.response.data);
     } else {
-      console.error("Unknown error:", error.message || error);
+      console.error("Unknown error:", error instanceof Error ? error.message : String(error));
     }
     return null;
   }

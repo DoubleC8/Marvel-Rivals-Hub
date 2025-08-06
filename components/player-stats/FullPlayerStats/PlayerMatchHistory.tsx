@@ -57,7 +57,7 @@ const PlayerMatchHistory = ({ playerUid }: { playerUid: string }) => {
     if (currentPage > totalPages) {
       setCurrentPage(1);
     }
-  }, [filteredMatches.length]);
+  }, [currentPage, totalPages, filteredMatches.length]);
 
   if (matchHistory.length === 0) {
     return (

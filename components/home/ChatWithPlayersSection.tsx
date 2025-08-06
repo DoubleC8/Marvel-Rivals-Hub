@@ -1,4 +1,4 @@
-import { MessageCircle, MessageSquare, MessageSquareMore } from "lucide-react";
+import { MessageSquareMore } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -8,6 +8,7 @@ const ChatWithPlayersSection = () => {
       <div className="homeHeroImageCard">
         <img
           src="./images/Cloak_and_Dagger.webp"
+          alt="Cloak and Dagger hero image"
           className="homeHeroImage"
         ></img>
       </div>

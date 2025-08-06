@@ -5,7 +5,6 @@ import React from "react";
 
 const WelcomePage = async () => {
   const session = await auth();
-  const user = session?.user;
 
   return (
     <section className="homeHeader">

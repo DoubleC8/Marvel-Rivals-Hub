@@ -14,7 +14,6 @@ interface ExtendedMessage extends Message {
 
 const GlobalSocketHandler = ({ sessionId }: { sessionId: string }) => {
   const pathname = usePathname();
-  const router = useRouter();
 
   const playNotifcationSound = () => {
     const audio = new Audio("/sounds/message-notification.mp3");

@@ -7,7 +7,6 @@ import {
   getFavoriteHero,
   getLoginOsImage,
   getPercentColor,
-  getTopHeroes,
 } from "@/lib/utils";
 import { PlayerInfo } from "@/types/playerInfo";
 import { Ghost } from "lucide-react";
@@ -51,6 +50,7 @@ const SearchedPlayerCard = ({
             {playerCardInfo.player.info.login_os !== "Unknown" ? (
               <img
                 src={getLoginOsImage(playerCardInfo.player.info.login_os)}
+                alt={`${playerCardInfo.player.info.login_os} platform icon`}
                 width={25}
                 height={25}
               ></img>

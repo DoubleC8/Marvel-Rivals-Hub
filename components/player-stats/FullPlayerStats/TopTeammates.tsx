@@ -1,6 +1,5 @@
 import { formatPlayerImages, getPercentColor } from "@/lib/utils";
 import { Ghost } from "lucide-react";
-import Link from "next/link";
 import React from "react";
 
 interface TopTeammate {

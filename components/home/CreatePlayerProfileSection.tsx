@@ -1,4 +1,4 @@
-import { Trophy, Users } from "lucide-react";
+import { Trophy } from "lucide-react";
 import Link from "next/link";
 import React from "react";
 
@@ -18,7 +18,7 @@ const CreatePlayerProfileSection = () => {
           </div>
           <p className="text-lg">
             Track the top 500 players across all platforms and heroes in Marvel
-            Rivals. See who's dominating each role and rising through the ranks.
+            Rivals. See who&apos;s dominating each role and rising through the ranks.
           </p>
         </div>
 
@@ -28,9 +28,9 @@ const CreatePlayerProfileSection = () => {
               Hero-Based Rankings
             </h2>
             <p className="text-base text-[var(--secondary-text)]">
-              Filter by your favorite hero to see who's the best in the field.
-              Whether you're chasing Winter Soldier dominance or top-tier Storm
-              plays, it's all here.
+              Filter by your favorite hero to see who&apos;s the best in the field.
+              Whether you&apos;re chasing Winter Soldier dominance or top-tier Storm
+              plays, it&apos;s all here.
             </p>
           </div>
 
@@ -46,7 +46,7 @@ const CreatePlayerProfileSection = () => {
           <div>
             <h2 style={{ fontFamily: "var(--marvelFont)" }}>Updated Live</h2>
             <p className="text-base text-[var(--secondary-text)]">
-              Our leaderboard pulls real-time data so you’re always viewing the
+              Our leaderboard pulls real-time data so you&apos;re always viewing the
               most accurate stats as players win, lose, and grind ranked.
             </p>
           </div>
@@ -56,7 +56,7 @@ const CreatePlayerProfileSection = () => {
               Your Spot Awaits
             </h2>
             <p className="text-base  text-[var(--secondary-text)]">
-              Think you’ve got what it takes? Keep playing, improving, and your
+              Think you&apos;ve got what it takes? Keep playing, improving, and your
               name might be the next to show up.
             </p>
           </div>
@@ -67,7 +67,7 @@ const CreatePlayerProfileSection = () => {
       </div>
 
       <div>
-        <img src="./images/Winter-Solider.png" className="homeHeroImage" />
+        <img src="./images/Winter-Solider.png" alt="Winter Soldier hero image" className="homeHeroImage" />
       </div>
     </section>
   );

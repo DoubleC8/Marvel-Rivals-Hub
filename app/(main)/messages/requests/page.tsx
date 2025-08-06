@@ -1,7 +1,7 @@
 import { auth } from "@/auth";
 import FriendRequests from "@/components/messages/FriendRequests";
 import { fetchRedis } from "@/helpers/redis";
-import { SmilePlus, UserPlus } from "lucide-react";
+import { SmilePlus } from "lucide-react";
 import { notFound } from "next/navigation";
 import React from "react";
 

@@ -1,5 +1,4 @@
 import { Skeleton } from "@/components/ui/skeleton";
-import { LoaderCircle } from "lucide-react";
 import React from "react";
 
 const loading = () => {

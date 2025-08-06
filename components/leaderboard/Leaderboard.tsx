@@ -15,7 +15,6 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import Link from "next/link";
 import PaginationMenuBar from "../navbars/PaginationMenuBar";
 import { Ghost } from "lucide-react";
 

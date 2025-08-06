@@ -26,7 +26,7 @@ const SelectHeroButton = () => {
           }
         );
         console.log(response.data);
-        const heroNames = response.data.map((hero: any) => hero.name);
+        const heroNames = response.data.map((hero: { name: string }) => hero.name);
         setHeroes(heroNames);
       } catch (error) {
         console.error("Error fetching balances:", error);

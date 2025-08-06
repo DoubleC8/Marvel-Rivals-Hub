@@ -1,5 +1,4 @@
 import React from "react";
-import { mockPlayerData } from "@/mockPlayerData";
 import TopHeroes from "@/components/player-stats/FullPlayerStats/TopHeroes";
 import TopTeammates from "@/components/player-stats/FullPlayerStats/TopTeammates";
 
@@ -41,7 +40,7 @@ const page = async ({ params }: { params: { uid: string } }) => {
           <div className="border-[4px] p-5 rounded-full">
             <Lock size={35} />
           </div>
-          <h1>This player's profile is private</h1>
+          <h1>This player&apos;s profile is private</h1>
           <Link
             href={"/"}
             className="md:w-2/10
