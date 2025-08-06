@@ -9,7 +9,6 @@ import PlayerMatchHistory from "@/components/player-stats/FullPlayerStats/Player
 import PlayerRankInfo from "@/components/player-stats/FullPlayerStats/PlayerRankInfo";
 import { PlayerInfo } from "@/types/playerInfo";
 import { fetchPlayerData } from "@/lib/actions";
-import SelectSeasonButton from "@/components/player-stats/FullPlayerStats/SelectSeasonButton";
 import PlayerStatsHeader from "@/components/player-stats/FullPlayerStats/PlayerStatsHeader";
 import TopRoles from "@/components/player-stats/FullPlayerStats/TopRoles";
 import { Lock } from "lucide-react";
@@ -17,21 +16,21 @@ import Link from "next/link";
 
 const page = async ({ params }: { params: { uid: string } }) => {
   const playerUid = await params.uid;
-  const playerData: PlayerInfo | null = mockPlayerData;
+  //const playerData: PlayerInfo | null = mockPlayerData;
 
-  // let playerData: PlayerInfo | null = null;
+  let playerData: PlayerInfo | null = null;
 
-  // try {
-  //   const playerDataResponse = await fetchPlayerData(playerUid);
+  try {
+    const playerDataResponse = await fetchPlayerData(playerUid);
 
-  //   playerData = playerDataResponse;
-  //   console.log("Player Data", playerData);
-  // } catch (error) {
-  //   console.error("Error fetching player data", error);
-  // }
-  // if (!playerData) {
-  //   return;
-  // }
+    playerData = playerDataResponse;
+    console.log("Player Data", playerData);
+  } catch (error) {
+    console.error("Error fetching player data", error);
+  }
+  if (!playerData) {
+    return;
+  }
 
   console.log("Player Data", playerData);
 

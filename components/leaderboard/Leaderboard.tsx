@@ -21,19 +21,18 @@ import { Ghost } from "lucide-react";
 
 const Leaderboard = ({
   leaderboard,
+  totalPlayers,
 }: {
   leaderboard?: LeaderboardPlayer[];
+  totalPlayers: number;
 }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const PLAYERS_PER_PAGE = 100;
-
-  console.log("Leaderboard", leaderboard);
 
   const paginatedLeaderboard = leaderboard?.slice(
     (currentPage - 1) * PLAYERS_PER_PAGE,
     currentPage * PLAYERS_PER_PAGE
   );
-
   const isEmptyObject = (obj: object) => Object.keys(obj).length === 0;
 
   return (
@@ -64,7 +63,7 @@ const Leaderboard = ({
                 className="lg:table-cell lg:text-center
           hidden font-bold"
               >
-                MVP's
+                Max Rank Score
               </TableHead>
 
               <TableHead className="text-center font-bold">Win Rate</TableHead>
@@ -73,10 +72,6 @@ const Leaderboard = ({
 
           <TableBody className="!overflow-x-auto">
             {paginatedLeaderboard?.map((player, index) => {
-              //getting player rank, so we can get the image, the score, and the rank itself
-              const level = player.info.rank_season.level;
-              const playerRank = get_rank(level);
-
               return (
                 <TableRow key={index} className="border-[var(--accent-color)]">
                   {/**Contains place*/}
@@ -86,31 +81,27 @@ const Leaderboard = ({
                     </p>
                   </TableCell>
 
-                  {/**Contains players name and name */}
+                  {/**Contains players name and image */}
+                  {/**Contains players name and image */}
                   <TableCell>
-                    <div
-                      className="lg:gap-3
-                flex items-center gap-2"
-                    >
+                    <div className="lg:gap-3 flex items-center gap-2">
                       <img
-                        src={formatPlayerImages(player.info.icon.player_icon)}
-                        alt={`${player.info.name} Icon`}
-                        className="lg:w-[50px] lg:h-[50px]
-                    w-[40px] h-[40px] rounded-lg"
+                        src={formatPlayerImages(player.icon.player_icon)}
+                        alt={`${player.name} Icon`}
+                        className="lg:w-[50px] lg:h-[50px] w-[40px] h-[40px] rounded-lg"
                       />
-                      <Link
-                        href={`/player-stats/${player.player_uid}`}
-                        className="text-md font-bold hover:text-[var(--yellow)]"
-                      >
-                        {player.info.name}
-                      </Link>
+
+                      {/**Might change back to a link once i figure out how to check if profile is private */}
+                      <p className="text-md font-bold hover:text-[var(--yellow)]">
+                        {player.name}
+                      </p>
                     </div>
                   </TableCell>
 
                   {/**Contains players rank and rank image */}
                   <TableCell>
                     {/**Displays if user has a privated their profile */}
-                    {isEmptyObject(player.info.rank_season) ? (
+                    {isEmptyObject(player.rank.rank) ? (
                       <div
                         className="lg:justify-normal
                       flex items-center justify-center gap-1"
@@ -135,10 +126,10 @@ const Leaderboard = ({
                     ) : (
                       //Displays if users profile is public
                       <div className="flex items-center gap-1">
-                        {playerRank.image && (
+                        {player.rank.rank.image && (
                           <img
-                            src={playerRank.image}
-                            alt={`${player.info.name} Rank`}
+                            src={formatPlayerImages(player.rank.rank.image)}
+                            alt={`${player.name} Rank`}
                             className="lg:w-[50px] lg:h-[50px]
                       w-[45px] h-[45px] rounded-lg"
                           />
@@ -152,16 +143,16 @@ const Leaderboard = ({
                             className="lg:text-lg
                       text-md font-bold"
                             style={{
-                              color: `${playerRank.color}`,
+                              color: `${player.rank.rank.color}`,
                             }}
                           >
-                            {playerRank.rank}
+                            {player.rank.rank.rank}
                           </p>
                           <p
                             className="lg:hidden
                     text-md font-bold text-[var(--secondary-text)]"
                           >
-                            {player.info.rank_season.rank_score} Score
+                            {player.rank.rank_score.toFixed(2)} Score
                           </p>
                         </div>
                       </div>
@@ -174,13 +165,15 @@ const Leaderboard = ({
                       className="
                 text-md font-bold text-[var(--secondary-text)]"
                     >
-                      {player.info.rank_season.rank_score}
+                      {player.rank.rank_score.toFixed(2)}
                     </p>
                   </TableCell>
 
-                  {/**Contains the number of times the player has gotten mvp's*/}
+                  {/**Contains the max rank score*/}
                   <TableCell className="hidden lg:table-cell lg:text-center">
-                    <p className="text-md font-bold">{player.mvps}</p>
+                    <p className="text-md font-bold">
+                      {player.rank.max_rank_score.toFixed(2)}
+                    </p>
                   </TableCell>
 
                   {/**Contains win rate */}
@@ -189,17 +182,24 @@ const Leaderboard = ({
                       className="text-md font-bold"
                       style={{
                         color: getPercentColor(
-                          formatWinLossRatio(player.wins, player.matches)
+                          formatWinLossRatio(
+                            player.rank.win_count,
+                            player.rank.battle_count
+                          )
                         ),
                       }}
                     >
-                      {formatWinLossRatio(player.wins, player.matches)}
+                      {formatWinLossRatio(
+                        player.rank.win_count,
+                        player.rank.battle_count
+                      )}
                     </p>
                     <p
                       className="md:block
                 hidden text-md font-bold text-[var(--secondary-text)]"
                     >
-                      {player.wins}W/{player.matches - player.wins}L
+                      {player.rank.win_count}W /{" "}
+                      {player.rank.battle_count - player.rank.win_count}L
                     </p>
                   </TableCell>
                 </TableRow>
@@ -220,7 +220,7 @@ const Leaderboard = ({
 
       <PaginationMenuBar
         currentPage={currentPage}
-        totalPages={Math.ceil((leaderboard?.length || 0) / PLAYERS_PER_PAGE)}
+        totalPages={Math.ceil(totalPlayers / PLAYERS_PER_PAGE)}
         onPageChange={setCurrentPage}
       />
     </>

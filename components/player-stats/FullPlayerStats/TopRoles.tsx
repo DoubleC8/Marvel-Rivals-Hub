@@ -1,7 +1,7 @@
 import React from "react";
 import { PlayerInfo } from "@/types/playerInfo";
 import { Ghost } from "lucide-react";
-import { formatWinLossRatio, getPercentColor } from "@/lib/utils";
+import { getPercentColor } from "@/lib/utils";
 
 interface TopRolesProps {
   top_roles: PlayerInfo["overall_stats"]["roles_played"];
@@ -27,9 +27,9 @@ const TopRoles: React.FC<TopRolesProps> = ({ top_roles }) => {
   return (
     <div className="playerStatsCard overflow-y-auto">
       <h1 className="font-extrabold text-xl flex items-center">Top Roles</h1>
-      <div className="h-9/10 flex flex-col justify-between pt-3">
+      <div className="h-9/10 flex flex-col justify-evenly pt-3">
         {Object.entries(top_roles).map(([roleName, stats]) => (
-          <div className="flex gap-5 items-center h-1/4 w-full">
+          <div className="flex gap-5 items-center h-1/4 w-full" key={roleName}>
             <div className="w-1/3">
               <img
                 src={`/images/${

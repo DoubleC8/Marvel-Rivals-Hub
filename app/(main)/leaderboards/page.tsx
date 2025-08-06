@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useActionState } from "react";
 import LeaderboardHeader from "@/components/leaderboard/LeaderboardHeader";
-import SelectHeroButton from "@/components/leaderboard/SelectHeroButton";
 import {
   Select,
   SelectContent,
@@ -14,34 +13,41 @@ import {
 } from "@/components/ui/select";
 import Leaderboard from "@/components/leaderboard/Leaderboard";
 import axios from "axios";
-import { LeaderboardPlayer } from "@/types/LeaderboardPlayer";
+import { LeaderboardResponse } from "@/types/LeaderboardPlayer";
 import { LoaderCircle } from "lucide-react";
 
 const Page = () => {
-  const [leaderboard, setLeaderboard] = useState<LeaderboardPlayer[]>();
+  const [leaderboardData, setLeaderboardData] = useState<LeaderboardResponse>();
+  const [device, setDevice] = useState<string>("pc");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     const fetchLeaderboard = async () => {
       try {
+        setLoading(true);
+
         const response = await axios.get(
-          "https://marvelrivalsapi.com/api/v1/heroes/leaderboard/winter%20soldier",
+          "https://marvelrivalsapi.com/api/v2/players/leaderboard",
           {
+            params: {
+              limit: 500,
+              device,
+            },
             headers: {
               "x-api-key":
-                "19fb1c19789bf850f690e30ef8c660bc95ea8e8a40dd64d8bd7cbe486e35156f", // Replace with a real key
+                "19fb1c19789bf850f690e30ef8c660bc95ea8e8a40dd64d8bd7cbe486e35156f",
             },
           }
         );
-        setLeaderboard(response.data.players);
-        console.log(response.data);
+        setLeaderboardData(response.data);
       } catch (error) {
         console.error("Error fetching leaderboard:", error);
       }
     };
-
     fetchLeaderboard();
-  }, []);
+  }, [device]);
 
+  console.log(leaderboardData);
   return (
     <section
       className="lg:gap-5
@@ -60,9 +66,7 @@ const Page = () => {
           className="lg:w-1/2 lg:justify-end lg:gap-2
         w-full flex items-center justify-evenly"
         >
-          <SelectHeroButton />
-
-          <Select>
+          <Select onValueChange={setDevice} defaultValue={device}>
             <SelectTrigger className="leaderboardNavbarDropdown">
               <SelectValue placeholder="Select a Platform" />
             </SelectTrigger>
@@ -78,8 +82,11 @@ const Page = () => {
         </div>
       </div>
 
-      {leaderboard !== undefined ? (
-        <Leaderboard leaderboard={leaderboard} />
+      {leaderboardData ? (
+        <Leaderboard
+          leaderboard={leaderboardData.players}
+          totalPlayers={leaderboardData.total_players}
+        />
       ) : (
         <div
           className="lg:w-[90%]
