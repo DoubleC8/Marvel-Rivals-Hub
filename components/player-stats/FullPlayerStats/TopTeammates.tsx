@@ -45,13 +45,9 @@ const TopTeammates = ({ team_mates }: { team_mates: TopTeammate[] }) => {
                   alt={`${teamMate.player_info.nick_name} Player Icon`}
                   className="w-[45px] h-[45px] rounded-lg bg-[var(--accent-color)]"
                 />
-                <Link
-                  href={`/player-stats/${teamMate.player_info.player_uid}`}
-                  className="font-extrabold text-md hover:cursor-pointer
-                         hover:text-[var(--yellow)] ease-in-out duration-100"
-                >
+                <p className="font-extrabold text-md hover:cursor-pointer">
                   {teamMate.player_info.nick_name}
-                </Link>
+                </p>
               </td>
 
               <td>
