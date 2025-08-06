@@ -11,9 +11,9 @@ import { notFound } from "next/navigation";
 import React from "react";
 
 interface PageProps {
-  params: {
+  params: Promise<{
     chatId: string;
-  };
+  }>;
 }
 
 async function getChatMessages(chatId: string) {

@@ -31,7 +31,7 @@ const PlayerMatchHistory = ({ playerUid }: { playerUid: string }) => {
 
   useEffect(() => {
     const fetchInitial = async () => {
-      const { match_history } = await fetchPlayerMatchHistory(playerUid, 1);
+      const { match_history } = await fetchPlayerMatchHistory(playerUid);
       setMatchHistory(match_history);
     };
 

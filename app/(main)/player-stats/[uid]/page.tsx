@@ -13,8 +13,8 @@ import TopRoles from "@/components/player-stats/FullPlayerStats/TopRoles";
 import { Lock } from "lucide-react";
 import Link from "next/link";
 
-const page = async ({ params }: { params: { uid: string } }) => {
-  const playerUid = await params.uid;
+const page = async ({ params }: { params: Promise<{ uid: string }> }) => {
+  const { uid: playerUid } = await params;
   //const playerData: PlayerInfo | null = mockPlayerData;
 
   let playerData: PlayerInfo | null = null;

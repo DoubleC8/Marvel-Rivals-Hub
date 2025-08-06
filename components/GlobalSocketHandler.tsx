@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { pusherClient } from "@/lib/pusher";
 import { toPusherKey, chatHrefConstructor } from "@/lib/utils";
 import { toast } from "sonner";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { UnseenChatToast } from "./messages/UnseenChatToast";
 
 interface ExtendedMessage extends Message {
