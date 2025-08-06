@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useActionState } from "react";
+import React, { useState, useEffect } from "react";
 import LeaderboardHeader from "@/components/leaderboard/LeaderboardHeader";
 import {
   Select,
@@ -12,10 +12,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Leaderboard from "@/components/leaderboard/Leaderboard";
-import axios from "axios";
 import { LeaderboardResponse } from "@/types/LeaderboardPlayer";
 import { LoaderCircle } from "lucide-react";
-import SelectSeasonButton from "@/components/buttons/SelectSeasonButton";
 import { fetchLeaderBoard } from "@/lib/actions";
 
 const Page = () => {

@@ -1,7 +1,6 @@
 import React from "react";
 import Form from "next/form";
 import LoginButton from "@/components/buttons/LoginButton";
-import Footer from "@/components/navbars/Footer";
 import Link from "next/link";
 
 const page = () => {

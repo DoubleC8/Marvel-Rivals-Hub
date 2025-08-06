@@ -2,7 +2,6 @@
 
 
 import { Hero } from "@/types/Heroes";
-import { Match } from "@/types/Match";
 import { clsx, type ClassValue } from "clsx"
 import { twMerge } from "tailwind-merge"
 
@@ -37,7 +36,7 @@ export const formatText = (text: string = ""): string => {
 
 export const formatName = (playerName: string): string => {
   const formattedName = playerName.toLowerCase().split(' ');
-  for (var i = 0; i < formattedName.length; i++) {
+  for (let i = 0; i < formattedName.length; i++) {
       // You do not need to check if i is larger than splitStr length, as your for does that for you
       // Assign it back to the array
       formattedName[i] = formattedName[i].charAt(0).toUpperCase() + formattedName[i].substring(1);     
