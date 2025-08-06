@@ -67,7 +67,7 @@ const CreatePlayerProfileSection = () => {
       </div>
 
       <div>
-        <img src="/images/Winter-Solider.png" className="homeHeroImage" />
+        <img src="./images/Winter-Solider.png" className="homeHeroImage" />
       </div>
     </section>
   );

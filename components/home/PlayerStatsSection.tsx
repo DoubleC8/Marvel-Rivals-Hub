@@ -29,7 +29,7 @@ const PlayerStatsSection = () => {
         </Link>
       </div>
       <div className="homeHeroImageCard">
-        <img src="/images/Peni_Parker.webp" className="homeHeroImage"></img>
+        <img src="./images/Peni_Parker.webp" className="homeHeroImage"></img>
       </div>
     </section>
   );

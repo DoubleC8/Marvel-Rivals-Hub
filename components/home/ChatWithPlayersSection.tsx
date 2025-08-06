@@ -7,7 +7,7 @@ const ChatWithPlayersSection = () => {
     <section className="homeSectionChat">
       <div className="homeHeroImageCard">
         <img
-          src="/images/Cloak_and_Dagger.webp"
+          src="./images/Cloak_and_Dagger.webp"
           className="homeHeroImage"
         ></img>
       </div>
