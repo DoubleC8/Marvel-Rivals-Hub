@@ -27,9 +27,9 @@ const UserDropdownButton = ({
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className="border-[1px] border-[var(--secondary-accent-color)] bg-[var(--accent-color)] w-[200px]">
-        <DropdownMenuItem className="flex justify-center hover:bg-[var(--secondary-text)] ease-in-out duration-100">
-          {/**TODO: Make profile page where users can see their stats, friends, pending invitations, etc.. */}
-          <Link href="/" className="flex gap-1 font-extralight tracking-wider">
+        {/* <DropdownMenuItem className="flex justify-center hover:bg-[var(--secondary-text)] ease-in-out duration-100"> */}
+        {/**TODO: Make profile page where users can see their stats, friends, pending invitations, etc.. */}
+        {/* <Link href="/" className="flex gap-1 font-extralight tracking-wider">
             <p className="tracking-wider text-[var(--white)] font-extrabold">
               Profile
             </p>
@@ -39,17 +39,17 @@ const UserDropdownButton = ({
               className="font-extrabold"
             />
           </Link>
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
 
-        <DropdownMenuItem className="flex justify-center hover:bg-[var(--secondary-text)]">
-          {/**TODO: Make settings page where users can change their icon, claim an account, change thir theme, etc.. */}
-          <Link href="/" className="flex gap-1 font-extralight tracking-wider">
+        {/**TODO: Make settings page where users can change their icon, claim an account, change thir theme, etc.. */}
+        {/* <DropdownMenuItem className="flex justify-center hover:bg-[var(--secondary-text)]"> */}
+        {/* <Link href="/" className="flex gap-1 font-extralight tracking-wider">
             <p className="tracking-wider text-[var(--white)] font-extrabold">
               Settings
             </p>
             <Settings color="var(--white)" className="font-extrabold" />
           </Link>
-        </DropdownMenuItem>
+        </DropdownMenuItem> */}
 
         <DropdownMenuItem className="flex justify-center hover:bg-[var(--secondary-text)]">
           <SignOutButton />
