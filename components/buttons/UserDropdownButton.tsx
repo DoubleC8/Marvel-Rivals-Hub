@@ -1,4 +1,4 @@
-import { ChevronDown, Settings, User } from "lucide-react";
+import { ChevronDown } from "lucide-react";
 import React from "react";
 import {
   DropdownMenu,
@@ -7,7 +7,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import SignOutButton from "./SignOutButton";
-import Link from "next/link";
 
 const UserDropdownButton = ({
   formattedEmail,
