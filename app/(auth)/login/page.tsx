@@ -87,14 +87,9 @@ const page = () => {
                 Login
               </button>
             </Form> */}
-            <div className="flex flex-col gap-3">
-              <p className="text-center text-[var(--secondary-text)]">
-                Login with:{" "}
-              </p>
-              <div className="flex flex-row gap-3 justify-center">
-                <LoginButton name="github" logo={githubLogo} />
-                <LoginButton name="google" logo={googleLogo} />
-              </div>
+            <div className="flex flex-col gap-3 mx-auto w-full justify-center items-center">
+              <LoginButton name="github" logo={githubLogo} />
+              <LoginButton name="google" logo={googleLogo} />
             </div>
           </div>
           <div className="flex gap-3 justify-center text-[var(--secondary-text)]">
