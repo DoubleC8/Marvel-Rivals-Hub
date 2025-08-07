@@ -3,7 +3,7 @@ import FriendRequestsSidebarOptions from "@/components/messages/FriendRequestsSi
 import SidebarChatList from "@/components/messages/SidebarChatList";
 import { getFriendsByUserId } from "@/helpers/get-friends-by-user-id";
 import { fetchRedis } from "@/helpers/redis";
-import { Handshake, UserPlus, Users } from "lucide-react";
+import { Handshake, MessageSquare, UserPlus, Users } from "lucide-react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -50,7 +50,10 @@ export default async function MessagesLayout({
   return (
     <div className="flex w-full h-screen overflow-hidden">
       {/* Sidebar */}
-      <nav className="sticky top-0 flex flex-col gap-5 h-screen w-1/4 p-5 border-r-[2px] border-[var(--accent-color)] overflow-y-auto">
+      <nav
+        className="hidden sm:flex
+      w-1/4 sticky top-0 flex-col gap-5 h-screen p-5 border-r-[2px] border-[var(--accent-color)] overflow-y-auto"
+      >
         <Link
           href={"/messages"}
           className="text-5xl text-center tracking-wide"
@@ -59,7 +62,10 @@ export default async function MessagesLayout({
           Messages
         </Link>
 
-        <div className="flex flex-col gap-3">
+        <div
+          className="sm:hidden
+        md:flex md:flex-col md:gap-3"
+        >
           <span className="flex gap-3 items-center text-lg font-bold">
             <Users />
             <h1>Friends</h1>
@@ -89,6 +95,43 @@ export default async function MessagesLayout({
             initialUnseenRequestCount={unseenRequestCount}
           />
         </div>
+      </nav>
+
+      <nav
+        className="sm:hidden items-center
+      w-[15%] sticky top-0 flex flex-col gap-5 h-screen p-5 border-r-[2px] border-[var(--accent-color)] overflow-y-auto"
+      >
+        <Link
+          href={"/messages"}
+          className="text-5xl text-center tracking-wide"
+          style={{ fontFamily: "marvelFont" }}
+        >
+          <MessageSquare />
+        </Link>
+
+        <div
+          className="sm:hidden
+        md:flex md:flex-col md:gap-3"
+        >
+          <Users />
+          <SidebarChatList sessionId={session.user.id} friends={friends} />
+        </div>
+
+        {sidebarOptions.map(({ id, href, icon: Icon }) => (
+          <Link
+            href={href}
+            key={id}
+            className="flex items-center gap-3 w-fit py-2 px-3 justify-center 
+                rounded-lg hover:bg-[var(--accent-color)] ease-in-out duration-[0.1s] truncate"
+          >
+            <Icon />
+          </Link>
+        ))}
+
+        <FriendRequestsSidebarOptions
+          sessionId={session.user.id}
+          initialUnseenRequestCount={unseenRequestCount}
+        />
       </nav>
 
       {/* Main chat window */}

@@ -38,10 +38,10 @@ const page = async () => {
     <section className="w-full h-full flex flex-col p-5">
       <div>
         <h1
-          className="text-7xl flex gap-3"
+          className="text-3xl flex gap-3"
           style={{ fontFamily: "var(--marvelFont)" }}
         >
-          <SmilePlus size={60} color={`var(--secondary-text)`} />
+          <SmilePlus size={30} color={`var(--secondary-text)`} />
           Friend Requests
         </h1>
       </div>

@@ -51,12 +51,12 @@ const FriendRequestsSidebarOptions: React.FC<
   return (
     <Link
       href={"/messages/requests"}
-      className="flex items-center gap-3 w-fit py-2 px-3
+      className="flex items-center gap-3 w-fit sm:py-2 sm:px-3
       rounded-lg hover:bg-[var(--accent-color)] ease-in-out duration-[0.1s] truncate"
     >
       <SmilePlus />
       <div className="flex gap-3 items-center">
-        <p className="font-bold text-lg">Friend Requests</p>
+        <p className="hidden sm:block font-bold text-lg">Friend Requests</p>
         {unseenRequestCount > 0 ? (
           <p className="text-md font-bold rounded-full bg-[var(--red)] w-7 h-7 text-center flex items-center justify-center">
             {unseenRequestCount}

@@ -79,7 +79,7 @@ const AddFriendButton = () => {
       onSubmit={handleSubmit(onSubmit)}
       className="flex flex-col gap-1 w-full"
     >
-      <label htmlFor="email" className="font-bold text-xl text-[var(--white)]">
+      <label htmlFor="email" className="font-bold text-lg text-[var(--white)]">
         Add Friend by Email:
       </label>
       <div className="flex gap-3">
@@ -88,8 +88,8 @@ const AddFriendButton = () => {
             {...register("email")}
             type="email"
             id="email"
-            className="w-[400px] h-11 border-[var(--border)] font-bold
-            bg-[var(--white)] p-2 rounded-lg border-[2px] text-[var(--black)]
+            className="w-[400px] h-8 border-[var(--border)] font-bold
+            bg-[var(--white)] p-3 rounded-lg border-[2px] text-[var(--black)]
               focus:outline-none focus:ring-1 focus:ring-[var(--yellow)]"
             placeholder="you@example.com"
             disabled={isLoading}
@@ -103,7 +103,7 @@ const AddFriendButton = () => {
         <button
           type="submit"
           disabled={isLoading}
-          className="min-w-[150px] h-11 py-2 px-4 text-2xl font-semibold 
+          className="min-w-[150px] h-8 py-2 px-4 text-2xl font-semibold 
     bg-[var(--yellow)] text-[var(--black)] rounded-lg shadow-lg transition-all 
     hover:opacity-85 cursor-pointer hover:underline disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
         >

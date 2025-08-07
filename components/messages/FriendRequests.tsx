@@ -79,8 +79,8 @@ const FriendRequests: React.FC<FriendRequestsProps> = ({
     <>
       {friendRequests.length === 0 ? (
         <div className="h-3/4 flex flex-col gap-5 text-[var(--secondary-text)] font-extrabold items-center justify-center">
-          <Frown className="size-40" />
-          <p className="text-4xl">No Friend Request yet.</p>
+          <Frown className="size-30" />
+          <p className="text-2xl">No Friend Request yet.</p>
         </div>
       ) : (
         friendRequests.map((request) => (

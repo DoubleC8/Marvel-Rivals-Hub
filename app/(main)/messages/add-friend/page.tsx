@@ -7,10 +7,10 @@ const page = () => {
     <section className="w-full h-[80vh] flex flex-col p-5 justify-center">
       <div>
         <h1
-          className="text-7xl flex gap-3"
+          className="text-3xl flex gap-3"
           style={{ fontFamily: "var(--marvelFont)" }}
         >
-          <Users size={60} color={`var(--secondary-text)`} />
+          <Users size={30} color={`var(--secondary-text)`} />
           Add Friend
         </h1>
       </div>
