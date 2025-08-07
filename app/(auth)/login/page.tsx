@@ -43,7 +43,7 @@ const page = () => {
               dominate the battlefield!
             </p>
 
-            <Form action="/" className="flex flex-col gap-3">
+            {/* <Form action="/" className="flex flex-col gap-3">
               <div className="flex flex-col">
                 <label
                   htmlFor="email"
@@ -86,10 +86,10 @@ const page = () => {
               >
                 Login
               </button>
-            </Form>
+            </Form> */}
             <div className="flex flex-col gap-3">
               <p className="text-center text-[var(--secondary-text)]">
-                Or Login with:{" "}
+                Login with:{" "}
               </p>
               <div className="flex flex-row gap-3 justify-center">
                 <LoginButton name="github" logo={githubLogo} />
