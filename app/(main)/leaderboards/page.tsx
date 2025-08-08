@@ -61,8 +61,7 @@ const Page = () => {
               <SelectValue placeholder="Select a Platform" />
             </SelectTrigger>
             <SelectContent className="bg-[var(--secondary-background)] border-[var(--accent-color)]">
-              <SelectGroup>
-                <SelectLabel>Platforms</SelectLabel>
+              <SelectGroup className="text-[var(--secondary-text)] font-semibold">
                 <SelectItem value="pc">PC</SelectItem>
                 <SelectItem value="ps">Playstation</SelectItem>
                 <SelectItem value="xbox">Xbox</SelectItem>

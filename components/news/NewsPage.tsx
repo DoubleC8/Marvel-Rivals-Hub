@@ -1,4 +1,5 @@
 import { formatNewsPageDate, formatText } from "@/lib/utils";
+import Image from "next/image";
 import React from "react";
 
 const NewsPage = ({
@@ -13,28 +14,33 @@ const NewsPage = ({
   fullContent: string;
 }) => {
   return (
-    <div className="newsPage">
+    <div className="flex flex-col w-9/10 mx-auto gap-8">
       {imagePath && (
-        <img
-          src={`https://marvelrivalsapi.com/rivals${imagePath}`}
-          alt="Dev Dairy Image"
-          className="w-full max-h-[550px] rounded-xl mx-auto"
-        />
+        <div className="relative w-full h-[350px] sm:h-[500px] rounded-xl overflow-hidden mx-auto">
+          <Image
+            src={`https://marvelrivalsapi.com/rivals${imagePath}`}
+            alt="Dev Diary Image"
+            fill
+            className="object-cover"
+          />
+        </div>
       )}
+
       <div>
         <div className="flex flex-col justify-center items-center">
           <h2
-            className="text-5xl tracking-wider"
+            className="sm:text-3xl text-center text-xl tracking-wider"
             style={{ fontFamily: "var(--marvelFont)" }}
           >
             {title}
           </h2>
-          <p className="text-xl text-[var(--secondary-text)]">
+          <p className="sm:text-lg text-sm font-semibold text-[var(--secondary-text)]">
             {formatNewsPageDate(date || "")}
           </p>
         </div>
+
         <p
-          className="text-lg overflow-x-clip"
+          className="sm:text-md text-sm overflow-x-clip"
           dangerouslySetInnerHTML={{
             __html: fullContent ? formatText(fullContent) : "",
           }}

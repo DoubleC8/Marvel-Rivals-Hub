@@ -1,4 +1,5 @@
 import { formatDate } from "@/lib/utils";
+import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -20,11 +21,17 @@ const NewsCard = ({
 }) => {
   return (
     <div className="newsCard">
-      <img
-        src={imagePath}
-        alt={`${title} image`}
-        className="w-full min-h-1/2 rounded-xl mx-auto"
-      />
+      {/* Image Container */}
+      <div className="relative w-full h-60 rounded-xl overflow-hidden">
+        <Image
+          src={imagePath}
+          alt={`${title} image`}
+          fill
+          className="object-cover"
+        />
+      </div>
+
+      {/* Text Content */}
       <div className="w-full h-1/2 flex flex-col justify-between">
         <h2
           className="text-lg tracking-wide"
