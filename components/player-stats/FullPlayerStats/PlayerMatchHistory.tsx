@@ -67,7 +67,7 @@ const PlayerMatchHistory = ({ playerUid }: { playerUid: string }) => {
     return (
       <div className="playerMatchHistoryStatCard">
         <div className="flex w-full justify-between">
-          <h1 className="font-extrabold tet-xl">Match History</h1>
+          <h1 className="font-extrabold text-xl">Match History</h1>
           <Select
             value={selectedType}
             onValueChange={(value) =>

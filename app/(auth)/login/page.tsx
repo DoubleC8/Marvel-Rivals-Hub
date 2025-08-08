@@ -2,6 +2,7 @@ import React from "react";
 import Form from "next/form";
 import LoginButton from "@/components/buttons/LoginButton";
 import Link from "next/link";
+import Image from "next/image";
 
 const page = () => {
   const marvelRivalsLogo = "/images/Marvel_Rivals_Logo.webp";
@@ -13,11 +14,14 @@ const page = () => {
       {/**Landscape tablet and up */}
       <section className="hidden md:flex h-screen">
         <div className="w-1/2 h-full bg-[var(--yellow)] flex flex-col justify-center">
-          <img
-            src={marvelRivalsLogo}
-            alt="Marvel Rivals Logo"
-            className="w-10/12 mx-auto"
-          ></img>
+          <div className="w-10/12 mx-auto relative aspect-[4/1]">
+            <Image
+              src={marvelRivalsLogo}
+              alt="Marvel Rivals Logo"
+              fill
+              className="object-contain"
+            />
+          </div>
         </div>
 
         <div className="w-1/2 h-full flex flex-col gap-5 items-center justify-center">

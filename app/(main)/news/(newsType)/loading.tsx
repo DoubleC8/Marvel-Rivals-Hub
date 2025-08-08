@@ -2,22 +2,30 @@ import { Skeleton } from "@/components/ui/skeleton";
 import React from "react";
 
 const NewsPageLoadingComponent = () => {
-  const array = new Array(5).fill(null);
+  const lines = new Array(6).fill(null);
 
   return (
-    <section className="p-5 flex flex-col gap-5">
-      <Skeleton className="newsPageLoader">
-        <Skeleton className="w-full h-[200px] lg:h-[550px] md:h-[350px] rounded-xl mx-auto bg-zinc-800" />
-        <div className="flex flex-col gap-5">
-          <Skeleton className="w-3/4 h-12 mx-auto bg-zinc-800" />
-          <Skeleton className="w-2/10 h-6 mx-auto bg-zinc-800" />
+    <section className="p-5">
+      <div className="flex flex-col w-9/10 mx-auto gap-8">
+        {/* Image */}
+        <Skeleton className="w-full h-[250px] sm:h-[500px] rounded-xl bg-zinc-800" />
+
+        {/* Title and Date */}
+        <div className="flex flex-col justify-center items-center gap-3">
+          <Skeleton className="w-3/4 h-10 sm:h-14 bg-zinc-800 rounded-md" />
+          <Skeleton className="w-1/4 h-6 bg-zinc-800 rounded-md" />
         </div>
-        <div className="flex flex-col gap-5">
-          {array.map((_, i) => {
-            return <Skeleton key={i} className={`h-7 w-3/4 bg-zinc-800`} />;
-          })}
+
+        {/* Body content */}
+        <div className="flex flex-col gap-4">
+          {lines.map((_, i) => (
+            <Skeleton
+              key={i}
+              className="w-full sm:w-3/4 h-6 bg-zinc-800 rounded"
+            />
+          ))}
         </div>
-      </Skeleton>
+      </div>
     </section>
   );
 };
