@@ -15,7 +15,7 @@ const PlayerRankInfo = ({ playerData }: { playerData: PlayerInfo }) => {
         <h1 className="font-extrabold text-xl">Current Rank</h1>
         <div className="font-bold text-xl flex items-center justify-center gap-3 text-[var(--secondary-text)] h-full">
           <Ghost size={25} />
-          <p>No Data</p>
+          <p>No Data Yet</p>
         </div>
       </div>
     );

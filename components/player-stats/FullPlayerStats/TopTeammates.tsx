@@ -19,7 +19,7 @@ const TopTeammates = ({ team_mates }: { team_mates: TopTeammate[] }) => {
         <h1 className="font-extrabold text-xl">Top Teammates</h1>
         <div className="font-bold text-xl flex items-center justify-center gap-3 text-[var(--secondary-text)] h-full">
           <Ghost size={25} />
-          <p>No Data</p>
+          <p>No Data Yet</p>
         </div>
       </div>
     );
