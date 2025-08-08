@@ -40,7 +40,8 @@ const PlayerStatsPage = () => {
       }
     } catch (error) {
       toast.error(`Could not load player stats.`, {
-        description: "Please check their name or use their UID.",
+        description:
+          "Please check their name or use their UID. Or the API might be down. Please try again later.",
       });
       console.error("Error fetching player stats:", error);
     } finally {
