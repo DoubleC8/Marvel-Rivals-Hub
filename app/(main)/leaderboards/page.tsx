@@ -15,6 +15,7 @@ import Leaderboard from "@/components/leaderboard/Leaderboard";
 import { LeaderboardResponse } from "@/types/LeaderboardPlayer";
 import { LoaderCircle } from "lucide-react";
 import { fetchLeaderBoard } from "@/lib/actions";
+import SelectSeasonButton from "@/components/buttons/SelectSeasonButton";
 
 const Page = () => {
   const [leaderboardData, setLeaderboardData] = useState<LeaderboardResponse>();
@@ -32,8 +33,6 @@ const Page = () => {
     getData();
   }, [season, device]);
 
-  console.log("Season: " + season + " Console: " + device + " leaderboard: ");
-  console.log(leaderboardData);
   return (
     <section
       className="lg:gap-5
@@ -53,22 +52,10 @@ const Page = () => {
         w-full flex items-center justify-evenly"
         >
           {/* <SelectSeasonButton /> */}
-          <Select onValueChange={setSeason} defaultValue={season}>
-            <SelectTrigger className="leaderboardNavbarDropdown">
-              <SelectValue placeholder="Season" />
-            </SelectTrigger>
-            <SelectContent className="bg-[var(--secondary-background)] border-[var(--accent-color)]">
-              <SelectGroup>
-                <SelectLabel>Seasons</SelectLabel>
-                <SelectItem value="0">Season 0</SelectItem>
-                <SelectItem value="1">Season 1</SelectItem>
-                <SelectItem value="1.5">Season 1.5</SelectItem>
-                <SelectItem value="2">Season 2</SelectItem>
-                <SelectItem value="2.5">Season 2.5</SelectItem>
-                <SelectItem value="3">Season 3</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select>
+          <SelectSeasonButton
+            selectedSeason={season}
+            onSeasonChange={(newSeason) => setSeason(newSeason)}
+          />
 
           <Select onValueChange={setDevice} defaultValue={device}>
             <SelectTrigger className="leaderboardNavbarDropdown">

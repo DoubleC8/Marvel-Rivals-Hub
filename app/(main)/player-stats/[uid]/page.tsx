@@ -12,6 +12,8 @@ import PlayerStatsHeader from "@/components/player-stats/FullPlayerStats/PlayerS
 import TopRoles from "@/components/player-stats/FullPlayerStats/TopRoles";
 import { Lock } from "lucide-react";
 import Link from "next/link";
+// import SelectSeasonButton from "@/components/buttons/SelectSeasonButton";
+// import { mockPlayerData } from "@/mockPlayerData";
 
 const page = async ({ params }: { params: Promise<{ uid: string }> }) => {
   const { uid: playerUid } = await params;
@@ -63,6 +65,14 @@ const page = async ({ params }: { params: Promise<{ uid: string }> }) => {
         login_os={playerData.player.info.login_os}
         last_inserted_match={playerData.updates?.last_inserted_match ?? null}
       />
+
+      {/**TODO: Make data responsive */}
+      {/* <div className="playerStatsPageSectionContainer">
+        <SelectSeasonButton
+          selectedSeason={season}
+          onSeasonChange={(newSeason) => setSeason(newSeason)}
+        />
+      </div> */}
 
       <div className="playerStatsPageSectionContainer">
         <PlayerRankInfo playerData={playerData} />

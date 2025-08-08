@@ -164,4 +164,26 @@ export const fetchLeaderBoard = async (season: string, device: string) => {
   }
 };
 
+export const fetchSeasons  = async () => {
+  try{
+    const response = await axios.get(
+      "https://marvelrivalsapi.com/api/v1/seasons", 
+      {
+        headers: {
+          "x-api-key": process.env.API_KEY!,
+        },
+      },
+    )
+
+    return response.data.seasons;
+  } catch(error: unknown){
+    if(axios.isAxiosError(error) && error.response){
+      console.error("Error Response: ", error.response.data);
+    }else{
+      console.error("Unknown Error: ", error instanceof Error ? error.message : String(error));
+    }
+    return null;
+  }
+}
+
 

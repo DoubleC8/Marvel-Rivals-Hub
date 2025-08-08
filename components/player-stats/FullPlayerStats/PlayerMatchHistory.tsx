@@ -29,10 +29,14 @@ const PlayerMatchHistory = ({ playerUid }: { playerUid: string }) => {
     "all" | "unranked" | "ranked"
   >("all");
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchInitial = async () => {
-      const { match_history } = await fetchPlayerMatchHistory(playerUid);
+      const { match_history = [] } =
+        (await fetchPlayerMatchHistory(playerUid)) ?? {};
       setMatchHistory(match_history);
+      setLoading(false);
     };
 
     fetchInitial();
@@ -59,11 +63,11 @@ const PlayerMatchHistory = ({ playerUid }: { playerUid: string }) => {
     }
   }, [currentPage, totalPages, filteredMatches.length]);
 
-  if (matchHistory.length === 0) {
+  if (loading) {
     return (
       <div className="playerMatchHistoryStatCard">
         <div className="flex w-full justify-between">
-          <h1 className="font-extrabold text-xl">Match History</h1>
+          <h1 className="font-extrabold tet-xl">Match History</h1>
           <Select
             value={selectedType}
             onValueChange={(value) =>
@@ -80,6 +84,7 @@ const PlayerMatchHistory = ({ playerUid }: { playerUid: string }) => {
             </SelectContent>
           </Select>
         </div>
+
         <div className="min-h-[10vh] font-bold text-xl flex flex-col items-center justify-center gap-3 text-[var(--secondary-text)]">
           <LoaderCircle
             size={50}
@@ -114,7 +119,7 @@ const PlayerMatchHistory = ({ playerUid }: { playerUid: string }) => {
           </Select>
         </div>
 
-        {filteredMatches.length > 0 ? (
+        {filteredMatches.length != 0 ? (
           <>
             <div
               className="lg:gap-3
@@ -309,7 +314,7 @@ const PlayerMatchHistory = ({ playerUid }: { playerUid: string }) => {
         ) : (
           <div className="min-h-[10vh] font-bold text-xl flex items-center justify-center gap-3 text-[var(--secondary-text)]">
             <Ghost size={25} />
-            <p>No Data</p>
+            <p>No Matches Yet</p>
           </div>
         )}
       </div>
