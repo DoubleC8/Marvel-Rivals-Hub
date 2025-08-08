@@ -9,6 +9,13 @@ import Image from "next/image";
 import { notFound } from "next/navigation";
 import React from "react";
 
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  image: string;
+}
+
 interface PageProps {
   params: Promise<{
     chatId: string;
@@ -54,11 +61,21 @@ const Page = async ({ params }: PageProps) => {
 
   const chatPartnerId = user.id === userId1 ? userId2 : userId1;
 
-  const chatPartnerRaw = (await fetchRedis(
-    "get",
-    `user:${chatPartnerId}`
-  )) as string;
-  const chatPartner = JSON.parse(chatPartnerRaw) as User;
+  const chatPartnerRaw = (await fetchRedis("get", `user:${chatPartnerId}`)) as
+    | string
+    | null;
+
+  if (!chatPartnerRaw) {
+    notFound();
+  }
+
+  let chatPartner: User;
+  try {
+    chatPartner = JSON.parse(chatPartnerRaw) as User;
+  } catch (error) {
+    console.error("Error parsing chat partner data:", error);
+    notFound();
+  }
 
   const initialMessages = await getChatMessages(chatId);
 

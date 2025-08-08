@@ -5,6 +5,13 @@ import { pusherServer } from '@/lib/pusher'
 import { toPusherKey } from '@/lib/utils'
 import { z } from 'zod'
 
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  image: string;
+}
+
 export async function POST(req: Request) {
   try {
     const body = await req.json()
@@ -41,10 +48,21 @@ export async function POST(req: Request) {
     const [userRaw, friendRaw] = (await Promise.all([
       fetchRedis('get', `user:${session.user.id}`),
       fetchRedis('get', `user:${idToAdd}`),
-    ])) as [string, string]
+    ])) as [string | null, string | null]
 
-    const user = JSON.parse(userRaw) as User
-    const friend = JSON.parse(friendRaw) as User
+    // Check if both users exist in Redis
+    if (!userRaw || !friendRaw) {
+      return new Response('User not found', { status: 404 })
+    }
+
+    let user: User, friend: User;
+    try {
+      user = JSON.parse(userRaw) as User
+      friend = JSON.parse(friendRaw) as User
+    } catch (error) {
+      console.error('Error parsing user data:', error)
+      return new Response('Invalid user data', { status: 400 })
+    }
 
     // notify added user
 

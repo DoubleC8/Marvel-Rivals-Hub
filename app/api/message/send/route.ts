@@ -6,6 +6,13 @@ import { toPusherKey } from '@/lib/utils'
 import { Message, messageValidator } from '@/lib/validations/message'
 import { nanoid } from 'nanoid'
 
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  image: string;
+}
+
 export async function POST(req: Request) {
   try {
     const { text, chatId }: { text: string; chatId: string } = await req.json()
@@ -34,9 +41,19 @@ export async function POST(req: Request) {
     const rawSender = (await fetchRedis(
       'get',
       `user:${session.user.id}`
-    )) as string
+    )) as string | null
     
-    const sender = JSON.parse(rawSender) as User
+    if (!rawSender) {
+      return new Response('User not found', { status: 404 })
+    }
+    
+    let sender: User;
+    try {
+      sender = JSON.parse(rawSender) as User
+    } catch (error) {
+      console.error('Error parsing sender data:', error)
+      return new Response('Invalid user data', { status: 400 })
+    }
 
     const timestamp = Date.now()
 
