@@ -21,8 +21,7 @@ const SelectSeasonButton = () => {
           "https://marvelrivalsapi.com/api/v1/seasons",
           {
             headers: {
-              "x-api-key":
-                "19fb1c19789bf850f690e30ef8c660bc95ea8e8a40dd64d8bd7cbe486e35156f",
+              "x-api-key": process.env.NEXT_PUBLIC_API_KEY || "",
             },
           }
         );
