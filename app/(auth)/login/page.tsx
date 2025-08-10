@@ -1,5 +1,4 @@
 import React from "react";
-import Form from "next/form";
 import LoginButton from "@/components/buttons/LoginButton";
 import Link from "next/link";
 
@@ -138,7 +137,7 @@ const page = () => {
               dominate the battlefield!
             </p>
 
-            <Form action="/" className="flex flex-col gap-3">
+            {/* <Form action="/" className="flex flex-col gap-3">
               <div className="flex flex-col">
                 <label
                   htmlFor="email"
@@ -181,15 +180,10 @@ const page = () => {
               >
                 Login
               </button>
-            </Form>
-            <div className="flex flex-col gap-3">
-              <p className="text-center text-[var(--secondary-text)]">
-                Or Login with:{" "}
-              </p>
-              <div className="flex flex-row gap-3 justify-center">
-                <LoginButton name="github" logo={githubLogo} />
-                <LoginButton name="google" logo={googleLogo} />
-              </div>
+            </Form> */}
+            <div className="flex flex-col gap-3 mx-auto w-full justify-center items-center">
+              <LoginButton name="github" logo={githubLogo} />
+              <LoginButton name="google" logo={googleLogo} />
             </div>
           </div>
         </div>
