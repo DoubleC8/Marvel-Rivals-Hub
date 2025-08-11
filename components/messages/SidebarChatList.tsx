@@ -89,16 +89,22 @@ const SidebarChatList: React.FC<SidebarChatListProps> = ({
             >
               <Image
                 src={friend.image}
-                height={30}
-                width={30}
                 alt={`${friend.email} Profile Pic`}
-                className="rounded-lg"
+                width={30}
+                height={30}
+                className="rounded-lg w-10 h-10 object-cover"
               />
-              <p className="font-bold text-lg">{formatName(friend.name)}</p>{" "}
+              <p
+                className="md:block
+              hidden font-bold text-lg"
+              >
+                {formatName(friend.name)}
+              </p>{" "}
               {unseenMessagesCount > 0 ? (
                 <p
-                  className="text-md font-bold rounded-full 
-                bg-[var(--red)] w-7 h-7 text-center flex items-center justify-center"
+                  className="flex
+                 text-md font-bold rounded-full 
+                bg-[var(--red)] w-7 h-7 text-center items-center justify-center"
                 >
                   {unseenMessagesCount}
                 </p>

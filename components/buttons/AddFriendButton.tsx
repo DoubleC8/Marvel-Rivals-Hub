@@ -88,7 +88,8 @@ const AddFriendButton = () => {
             {...register("email")}
             type="email"
             id="email"
-            className="w-[400px] h-8 border-[var(--border)] font-bold
+            className="md:w-[400px]
+            w- h-8 border-[var(--border)] font-bold
             bg-[var(--white)] p-3 rounded-lg border-[2px] text-[var(--black)]
               focus:outline-none focus:ring-1 focus:ring-[var(--yellow)]"
             placeholder="you@example.com"
@@ -103,7 +104,8 @@ const AddFriendButton = () => {
         <button
           type="submit"
           disabled={isLoading}
-          className="min-w-[150px] h-8 py-2 px-4 text-2xl font-semibold 
+          className="md:w-2/10
+          w-1/3 h-8 py-2 px-4 text-2xl font-semibold 
     bg-[var(--yellow)] text-[var(--black)] rounded-lg shadow-lg transition-all 
     hover:opacity-85 cursor-pointer hover:underline disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center"
         >
@@ -114,7 +116,12 @@ const AddFriendButton = () => {
           ) : (
             <div className="flex items-center justify-end gap-3">
               <UserPlus />
-              <p className="text-lg font-bold">Add as Friend</p>
+              <p
+                className="lg:block
+              hidden text-lg font-bold"
+              >
+                Add as Friend
+              </p>
             </div>
           )}
         </button>
