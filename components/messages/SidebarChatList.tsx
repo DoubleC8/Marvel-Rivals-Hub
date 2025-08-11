@@ -69,7 +69,8 @@ const SidebarChatList: React.FC<SidebarChatListProps> = ({
   return (
     <ul
       role="list"
-      className="max-h-[25rem] overflow-y-auto flex flex-col gap-3"
+      className="sm:items-baseline sm:bg-transparent sm:gap-3
+      bg-[var(--accent-color)] w-full  max-h-[25rem] overflow-y-auto flex flex-col items-center"
     >
       {activeChats.sort().map((friend) => {
         const unseenMessagesCount = unseenMessages.filter((unseenMsg) => {
@@ -83,7 +84,8 @@ const SidebarChatList: React.FC<SidebarChatListProps> = ({
                 sessionId,
                 friend.id
               )}`}
-              className="flex gap-3 items-center py-2 px-3
+              className="sm:gap-1
+              flex items-center py-2 px-3
               rounded-lg hover:bg-[var(--accent-color)] 
               ease-in-out duration-[0.1s] truncate w-fit"
             >
@@ -92,12 +94,9 @@ const SidebarChatList: React.FC<SidebarChatListProps> = ({
                 alt={`${friend.email} Profile Pic`}
                 width={30}
                 height={30}
-                className="rounded-lg w-10 h-10 object-cover"
+                className="rounded-lg object-cover"
               />
-              <p
-                className="md:block
-              hidden font-bold text-lg"
-              >
+              <p className="hidden sm:block font-bold text-md">
                 {formatName(friend.name)}
               </p>{" "}
               {unseenMessagesCount > 0 ? (

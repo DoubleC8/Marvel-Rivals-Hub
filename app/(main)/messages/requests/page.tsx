@@ -64,13 +64,9 @@ const page = async () => {
 
   return (
     <section className="w-full h-full flex flex-col p-5">
-      <div>
-        <h1
-          className="md:flex
-          hidden text-3xl  gap-3"
-          style={{ fontFamily: "var(--marvelFont)" }}
-        >
-          <SmilePlus size={30} color={`var(--secondary-text)`} />
+      <div className="flex justify-center align-middle gap-1">
+        <SmilePlus className="w-[30px]" color={`var(--secondary-text)`} />
+        <h1 className="text-lg" style={{ fontFamily: "var(--marvelFont)" }}>
           Friend Requests
         </h1>
       </div>

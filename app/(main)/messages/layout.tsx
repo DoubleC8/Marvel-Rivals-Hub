@@ -49,23 +49,20 @@ export default async function MessagesLayout({
 
   return (
     <div className="flex w-full h-screen overflow-hidden">
-      {/* Sidebar */}
+      {/* Sidebar Tablet and up */}
       <nav
-        className="hidden sm:flex
-      w-1/4 sticky top-0 flex-col gap-5 h-screen p-5 border-r-[2px] border-[var(--accent-color)] overflow-y-auto"
+        className="sm:flex
+        hidden w-1/4 sticky top-0 flex-col gap-5 h-screen p-5 border-r-[2px] border-[var(--accent-color)] overflow-y-auto"
       >
         <Link
           href={"/messages"}
-          className="text-5xl text-center tracking-wide"
+          className="text-3xl text-center tracking-wide"
           style={{ fontFamily: "marvelFont" }}
         >
           Messages
         </Link>
 
-        <div
-          className="sm:hidden
-        md:flex md:flex-col md:gap-3"
-        >
+        <div className="flex flex-col md:gap-3">
           <span className="flex gap-3 items-center text-lg font-bold">
             <Users />
             <h1>Friends</h1>
@@ -97,34 +94,20 @@ export default async function MessagesLayout({
         </div>
       </nav>
 
+      {/** Mobile Navabar */}
       <nav
-        className="sm:hidden items-center
-      w-[15%] sticky top-0 flex flex-col gap-5 h-screen p-5 border-r-[2px] border-[var(--accent-color)] overflow-y-auto"
+        className="sm:hidden
+      gap-5 items-center w-[15%] sticky top-0 flex flex-col h-screen py-5 border-r-[2px] border-[var(--accent-color)] overflow-y-auto"
       >
-        <Link
-          href={"/messages"}
-          className="text-5xl text-center tracking-wide"
-          style={{ fontFamily: "marvelFont" }}
-        >
-          <MessageSquare />
+        <Link href={"/messages"} style={{ fontFamily: "marvelFont" }}>
+          <MessageSquare className="w-7 h-7" />
         </Link>
 
-        <div
-          className="sm:hidden
-        md:flex md:flex-col md:gap-3"
-        >
-          <Users />
-          <SidebarChatList sessionId={session.user.id} friends={friends} />
-        </div>
+        <SidebarChatList sessionId={session.user.id} friends={friends} />
 
         {sidebarOptions.map(({ id, href, icon: Icon }) => (
-          <Link
-            href={href}
-            key={id}
-            className="flex items-center gap-3 w-fit py-2 px-3 justify-center 
-                rounded-lg hover:bg-[var(--accent-color)] ease-in-out duration-[0.1s] truncate"
-          >
-            <Icon />
+          <Link href={href} key={id}>
+            <Icon className="w-7 h-7" />
           </Link>
         ))}
 

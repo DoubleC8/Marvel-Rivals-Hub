@@ -49,21 +49,33 @@ const FriendRequestsSidebarOptions: React.FC<
   }, [sessionId]);
 
   return (
-    <Link
-      href={"/messages/requests"}
-      className="flex items-center gap-3 w-fit sm:py-2 sm:px-3
-      rounded-lg hover:bg-[var(--accent-color)] ease-in-out duration-[0.1s] truncate"
+    <div
+      className="sm:justify-start sm:hover:bg-[var(--accent-color)] 
+      sm:ease-in-out sm:duration-[0.1s] sm:w-fit sm:py-2 sm:px-3 sm:rounded-lg
+      h-[50px] flex items-center justify-center"
     >
-      <SmilePlus />
-      <div className="flex gap-3 items-center">
-        <p className="hidden sm:block font-bold text-lg">Friend Requests</p>
-        {unseenRequestCount > 0 ? (
-          <p className="text-md font-bold rounded-full bg-[var(--red)] w-7 h-7 text-center flex items-center justify-center">
+      <Link
+        href="/messages/requests"
+        className="sm:flex sm:gap-1 relative inline-block"
+      >
+        <SmilePlus className="w-7 h-7" />
+        <p
+          className="sm:flex 
+          hidden font-bold text-lg"
+        >
+          Friend Requests
+        </p>
+        {unseenRequestCount > 0 && (
+          <span
+            className="-left-1
+            absolute -bottom-1  flex items-center justify-center
+          w-4 h-4 rounded-full bg-[var(--red)] text-white text-xs font-bold"
+          >
             {unseenRequestCount}
-          </p>
-        ) : null}
-      </div>
-    </Link>
+          </span>
+        )}
+      </Link>
+    </div>
   );
 };
 

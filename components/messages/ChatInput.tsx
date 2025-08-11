@@ -34,11 +34,13 @@ const ChatInput: FC<ChatInputProps> = ({ chatId }) => {
 
   return (
     <div
-      className="h-[17%] flex justify-between items-center border-t-[2px]
+      className="sm:flex-row
+      h-[17%] flex flex-col justify-between items-center border-t-[2px] gap-3
      border-[var(--accent-color)] px-4 py-5 mb-2 sm:mb-0"
     >
       <div
-        className="max-w-9/10 relative flex-1 overflow-hidden rounded-lg ring-[var(--accent-color)] ring-[2px]
+        className="sm:h-full
+        h-1/2 w-full relative flex-1 overflow-hidden rounded-lg ring-[var(--accent-color)] ring-[2px]
       shadow-sm py-1 px-3 focus-within:ring-[var(--purple)] "
       >
         <TextareaAutosize
@@ -71,7 +73,8 @@ const ChatInput: FC<ChatInputProps> = ({ chatId }) => {
 
       <div className="flex-shrink-0">
         <button
-          className="min-w-[5.5rem] h-11 px-5 rounded-lg flex justify-center items-center
+          className="sm:h-11
+          px-5 rounded-lg flex justify-center items-center
     bg-gradient-to-bl from-violet-500 to-[var(--purple)] 
     font-bold text-lg hover:cursor-pointer hover:opacity-85 ease-in-out duration-100"
           disabled={isLoading}
