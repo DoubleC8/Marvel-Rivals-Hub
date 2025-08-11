@@ -24,6 +24,8 @@ const NavbarBurgerButton = ({
   userProfilePic: string;
   userName: string;
 }) => {
+  const formaNavbarEmail = userEmail.substring(0, userEmail.indexOf("@"));
+
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   return (
     <>
@@ -35,7 +37,7 @@ const NavbarBurgerButton = ({
           onClick={() => setIsMenuOpen((prev) => !prev)}
           className="w-full flex  justify-end"
         >
-          <X size={40} />
+          <X />
         </button>
         <div className="flex flex-col justify-evenly w-full h-full text-2xl">
           <button onClick={() => setIsMenuOpen((prev) => !prev)}>
@@ -91,14 +93,16 @@ const NavbarBurgerButton = ({
             <div className="flex gap-3">
               <Image
                 src={userProfilePic}
-                width={50}
-                height={50}
-                className="rounded-xl"
+                width={30}
+                height={30}
+                className="rounded-lg object-cover"
                 alt={`${userEmail} Profile Picture`}
               />
               <div className="flex flex-col justify-start">
-                <p className="text-xl">{userEmail}</p>
-                <p className="text-lg text-[var(--secondary-text)]">
+                <p className="text-md text-[var(--primary-text)] tracking-wide">
+                  {"@" + formaNavbarEmail}
+                </p>
+                <p className="text-sm text-[var(--secondary-text)]">
                   {userName}
                 </p>
               </div>
