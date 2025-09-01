@@ -46,6 +46,7 @@ function getGithubCredentials() {
 
 export const { handlers, auth, signIn, signOut } = NextAuth({
   adapter: UpstashRedisAdapter(db),
+  secret: process.env.NEXTAUTH_SECRET,
   session: {
     strategy: "jwt",
   },

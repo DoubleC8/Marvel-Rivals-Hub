@@ -68,7 +68,7 @@ export const fetchNewsPageData = async (newsType: string, newsId: string) => {
 export const fetchPlayerData = async (playerUid: string) => {
   try {
     const response = await axios.get(
-      `https://marvelrivalsapi.com/api/v2/player/${playerUid}`,
+      `https://marvelrivalsapi.com/api/v1/player/${playerUid}`,
       {
         headers: {
           "x-api-key": process.env.API_KEY!,
@@ -101,7 +101,7 @@ export const fetchPlayerData = async (playerUid: string) => {
 export const fetchPlayerMatchHistory = async (playerUid: string) => {
   try {
     const response = await axios.get(
-      `https://marvelrivalsapi.com/api/v2/player/${playerUid}/match-history`,
+      `https://marvelrivalsapi.com/api/v1/player/${playerUid}/match-history`,
       {
         headers: {
           "x-api-key": process.env.API_KEY!,
