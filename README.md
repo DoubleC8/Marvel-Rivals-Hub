@@ -48,20 +48,24 @@ Marvel Rivals Hub is a comprehensive web application designed to enhance the Mar
 ## 🛠️ Tech Stack
 
 ### Core Framework
+
 - **Next.js 15.3.0** - React framework with App Router
 - **React 19.0.0** - UI library
 - **TypeScript 5** - Type-safe development
 
 ### Authentication & Database
+
 - **NextAuth v5 (beta)** - Authentication framework
 - **Upstash Redis** - Serverless Redis database
 - **@auth/upstash-redis-adapter** - Session storage adapter
 
 ### Real-Time Communication
+
 - **Pusher** - Real-time messaging infrastructure
 - **pusher-js** - Client-side Pusher integration
 
 ### UI & Styling
+
 - **Tailwind CSS 4.1.4** - Utility-first CSS framework
 - **Radix UI** - Accessible component primitives
   - Dropdown Menu
@@ -72,12 +76,14 @@ Marvel Rivals Hub is a comprehensive web application designed to enhance the Mar
 - **next-themes** - Dark/light theme support
 
 ### Data Visualization & Forms
+
 - **Recharts 2.15.2** - Chart library for statistics
 - **React Hook Form 7.56.0** - Form management
 - **Zod 3.24.3** - Schema validation
 - **@hookform/resolvers** - Form validation resolvers
 
 ### Utilities
+
 - **Axios** - HTTP client
 - **date-fns** - Date manipulation
 - **nanoid** - Unique ID generation
@@ -150,6 +156,7 @@ NEXT_PUBLIC_API_KEY=your-marvel-rivals-api-key  # Optional: for client-side usag
 #### Setting Up OAuth Providers
 
 **Google OAuth:**
+
 1. Go to [Google Cloud Console](https://console.cloud.google.com/)
 2. Create a new project or select an existing one
 3. Enable Google+ API
@@ -157,22 +164,26 @@ NEXT_PUBLIC_API_KEY=your-marvel-rivals-api-key  # Optional: for client-side usag
 5. Add authorized redirect URIs: `http://localhost:3000/api/auth/callback/google`
 
 **GitHub OAuth:**
+
 1. Go to GitHub Settings → Developer settings → OAuth Apps
 2. Create a new OAuth App
 3. Set Authorization callback URL: `http://localhost:3000/api/auth/callback/github`
 4. Copy Client ID and Client Secret
 
 **Upstash Redis:**
+
 1. Sign up at [Upstash](https://upstash.com/)
 2. Create a Redis database
 3. Copy the REST URL and token from the dashboard
 
 **Pusher:**
+
 1. Sign up at [Pusher](https://pusher.com/)
 2. Create a new app (cluster: us3)
 3. Copy App ID, Key, and Secret from the dashboard
 
 **Marvel Rivals API:**
+
 1. Obtain API key from the Marvel Rivals API provider
 2. Add the key to your environment variables
 
@@ -318,6 +329,7 @@ Contributions are welcome! To contribute to this project:
 ### Reporting Issues
 
 If you encounter any bugs or have feature requests, please open an issue on the GitHub repository with:
+
 - A clear description of the problem
 - Steps to reproduce the issue
 - Expected vs. actual behavior
@@ -331,18 +343,6 @@ This project is private and proprietary. All rights reserved.
 
 ---
 
-## 🙏 Acknowledgments
-
-- Marvel Rivals API for providing game data
-- Next.js team for the excellent framework
-- All open-source contributors whose libraries make this project possible
-
 ---
 
-## 📞 Support
-
-For questions, issues, or support, please open an issue on the repository or contact the maintainers.
-
----
-
-**Built with ❤️ for the Marvel Rivals community**
+\*_Built with ❤️ for the Marvel Rivals community_
